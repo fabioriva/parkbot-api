@@ -1,0 +1,32 @@
+{
+  "name": "parkbot-api",
+  "version": "0.0.1",
+  "description": "parkbot backend",
+  "scripts": {
+    "dev": "nodemon aps/18017K",
+    "start": "NODE_ENV=production pm2 start aps/18017K/index.js --name aps-18017K --max-memory-restart 128M",
+    "test": "standard"
+  },
+  "author": "f.riva@sotefin.ch",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "date-fns-tz": "^2.0.0",
+    "dotenv": "^16.0.3",
+    "mongodb": "^5.1.0",
+    "node-fetch": "^2.6.9",
+    "node-snap7": "^1.0.6",
+    "pino": "^8.11.0",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21",
+    "standard": "^17.0.0"
+  },
+  "standard": {
+    "ignore": [
+      "/node_modules/**",
+      "/public"
+    ]
+  }
+}
