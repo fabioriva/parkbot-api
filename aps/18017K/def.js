@@ -1,12 +1,11 @@
 exports.APS = '18017K'
-exports.LOG_PORT = 49026
-// exports.HOST =
-//   process.env.NODE_ENV !== 'production'
-//     ? process.env.DEVELOPMENT_SERVER
-//     : process.env.PRODUCTION_SERVER
+exports.PORT = 49026
+exports.HOST = process.env.NODE_ENV !== 'production'
+  ? process.env.DEVELOPMENT_SERVER
+  : process.env.PRODUCTION_SERVER
 exports.HTTP = 9021
 exports.PLC = {
-  ip: '192.168.76.2',
+  ip: '192.168.20.55', // 76.2',
   rack: 0,
   slot: 1,
   polling_time: 500
@@ -26,16 +25,16 @@ exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
 const DB_DATA = 505
-const DB_DATA_LEN = 160 // 206
+const DB_DATA_LEN = 206
 exports.DB_DATA_INIT_DEVICE = 32
 exports.DB_DATA_INIT_POS = 80
 exports.DB_DATA_INIT_QUEUE = 100
-// exports.DB_DATA_INIT_EXITS = 120
-// exports.DB_DATA_INIT_SCREENS = 128
-// exports.DB_DATA_INIT_OCCUPANCY = 148
-exports.DB_DATA_INIT_AB = 120 // 166
-exports.DB_DATA_INIT_EB = 134 // 180
-exports.DB_DATA_INIT_MB = 152 // 198
+exports.DB_DATA_INIT_EXITS = 120
+exports.DB_DATA_INIT_SCREENS = 128
+exports.DB_DATA_INIT_OCCUPANCY = 148
+exports.DB_DATA_INIT_AB = 166
+exports.DB_DATA_INIT_EB = 180
+exports.DB_DATA_INIT_MB = 198
 exports.DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,
