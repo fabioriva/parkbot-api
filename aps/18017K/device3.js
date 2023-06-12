@@ -53,8 +53,7 @@ const view = {
   b: positions,
   c: lamps,
   d: [],
-  e: silomat,
-  alarms: [] // alarms[0]._active
+  e: silomat
 }
 
 const inverters = []

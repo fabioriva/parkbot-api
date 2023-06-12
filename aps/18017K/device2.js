@@ -1,5 +1,5 @@
 const def = require('./def')
-const { alarms, inputs, merkers, outputs } = require('./obj')
+const { inputs, merkers, outputs } = require('./obj')
 const { Device } = require('../../models/Device')
 
 const device = new Device(2, 'EU2')
@@ -24,8 +24,7 @@ const view = {
   b: positions,
   c: lamps,
   d: [A0],
-  e: [],
-  alarms: [] // alarms[0]._active
+  e: []
 }
 
 const inverters = []
