@@ -63,9 +63,11 @@ exports.overview = {
   exitQueue: {
     queueList: queue,
     exitButton: {
-      conn: def.REQ_0,
+      // conn: def.REQ_0,
       enable: merkers.find(b => b.addr === 'M3.0'),
-      key: 'action-exit'
+      key: 'action-exit',
+      min: 1,
+      max: def.CARDS
     }
   }
 }

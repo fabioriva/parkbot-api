@@ -11,7 +11,8 @@ class Device {
     position = 0,
     size = 0,
     stall = 0,
-    step = 0
+    step = 0,
+    steps = []
   ) {
     this.id = id
     this.name = name
@@ -23,6 +24,7 @@ class Device {
     this.size = size
     this.stall = stall
     this.step = step
+    this.steps = steps
   }
 
   update (buffer, modes) {
@@ -34,6 +36,25 @@ class Device {
     this.size = buffer.readInt16BE(10)
     this.stall = buffer.readInt16BE(12)
     this.step = buffer.readInt16BE(14)
+    // this.updateSteps()
+  }
+
+  updateSteps () {
+    if (this.steps.length === 0) return
+    if (this.step === 0) {
+      this.steps.forEach(element => { element.color = 'gray' })
+    } else {
+      const i = this.step - 1
+      this.steps.forEach((element, index) => {
+        if (index < i) {
+          element.color = 'emerald'
+        } else if (index === i) {
+          element.color = this.alarms.length === 0 ? 'yellow' : 'rose'
+        } else {
+          element.color = 'gray'
+        }
+      })
+    }
   }
 }
 

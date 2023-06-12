@@ -33,6 +33,20 @@ const silomat = [
   outputs.find(b => b.addr === 'A12.6'),
   outputs.find(b => b.addr === 'A12.7')
 ]
+const steps = [
+  { key: 'step-1', color: 'gray', tooltip: 'step-1' },
+  { key: 'step-2', color: 'gray', tooltip: 'step-2' },
+  { key: 'step-3', color: 'gray', tooltip: 'step-3' },
+  { key: 'step-4', color: 'gray', tooltip: 'step-4' },
+  { key: 'step-5', color: 'gray', tooltip: 'step-5' },
+  { key: 'step-6', color: 'gray', tooltip: 'step-6' },
+  { key: 'step-7', color: 'gray', tooltip: 'step-7' },
+  { key: 'step-8', color: 'gray', tooltip: 'step-8' },
+  { key: 'step-9', color: 'gray', tooltip: 'step-9' }
+]
+
+device.steps = steps
+// device.alarms = alarms[0]._active
 
 const view = {
   a: device,
