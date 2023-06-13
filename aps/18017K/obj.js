@@ -24,13 +24,13 @@ exports.outputs = outputs
 const ab = generateBytes(outputs)
 exports.ab = ab
 
-const racks = require('./racks')
-exports.racks = racks
-
 const merkers = generateBits('M', 0, 7)
 exports.merkers = merkers
 const mb = generateBytes(merkers)
 exports.mb = mb
+
+const racks = require('./racks')
+exports.racks = racks
 
 const device1 = require('./device1') // EU1
 const device2 = require('./device2') // EU2

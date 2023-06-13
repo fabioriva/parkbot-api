@@ -1,4 +1,4 @@
-const { ab, eb } = require('./obj')
+const { ab, eb, merkers } = require('./obj')
 const {
   S7_521_1BL00_0AB0,
   S7_522_1BL01_0AB0,
@@ -9,6 +9,7 @@ const {
 
 const rack1 = {
   nr: 1,
+  online: merkers.find(b => b.addr === 'M4.0'),
   serie: 'et200m',
   title: 'LS',
   cards: [
@@ -23,6 +24,7 @@ const rack1 = {
 
 const rack2 = {
   nr: 2,
+  online: merkers.find(b => b.addr === 'M4.1'),
   serie: 'et200s',
   title: 'KKP',
   cards: [
