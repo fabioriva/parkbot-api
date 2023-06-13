@@ -33,29 +33,36 @@ exports.generateStalls = def => {
   return stalls
 }
 
-exports.updateStalls = util.promisify(
-  (start, buffer, offset, stalls, callback) => {
-    let byte = start
-    const min = 0
-    const max = buffer.length / offset
-    for (let i = min; i < max; i++) {
-      stalls[i].update(buffer.slice(byte, byte + offset))
-      byte += offset
-    }
-    callback(null, stalls)
-  }
-)
-
-// exports.updateStalls_ = util.promisify(
-//   (min, max, buffer, offset, stalls, callback) => {
-//     let byte = min === 1 ? 0 : (min - 1) * offset
-//     for (let i = min - 1; i < max; i++) {
+// exports.updateStalls = util.promisify(
+//   (start, buffer, offset, stalls, callback) => {
+//     let byte = start
+//     const min = 0
+//     const max = buffer.length / offset
+//     for (let i = min; i < max; i++) {
 //       stalls[i].update(buffer.slice(byte, byte + offset))
 //       byte += offset
 //     }
 //     callback(null, stalls)
 //   }
 // )
+
+exports.updateStalls = util.promisify(
+  (start, buffer, offset, cards, stalls, callback) => {
+    let byte = start
+    const min = 0
+    const max = buffer.length / offset
+    for (let i = min; i < max; i++) {
+      stalls[i].update(buffer.slice(byte, byte + offset))
+      byte += offset
+      // update card status
+      const card = stalls[i].status
+      if (card >= 1 && card <= cards.length) {
+        cards[card - 1].status = i + 1
+      }
+    }
+    callback(null, stalls)
+  }
+)
 
 exports.occupancy = (size, stalls, stallStatus) => {
   // const occupancy = { free: 0, busy: 0, locked: 0 }

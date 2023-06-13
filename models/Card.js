@@ -33,7 +33,7 @@ class Card {
       .toUpperCase()
     this.from = format(getPlcDateTime(0, buffer.readInt32BE(2)), 'HH:mm:ss')
     this.to = format(getPlcDateTime(0, buffer.readInt32BE(6)), 'HH:mm:ss')
-    this.status = buffer.length === 12 && buffer.readInt16BE(10)
+    // this.status = buffer.length === 12 && buffer.readInt16BE(10)
   }
 }
 

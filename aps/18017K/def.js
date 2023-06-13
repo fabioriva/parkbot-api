@@ -19,7 +19,7 @@ exports.DB_ALARM_INIT = 6
 exports.DB_ALARM_LEN = 64 * ALARM_LEN
 exports.DBS_ALARM = [531, 532, 533] // EU1, EU2, EL
 
-const CARDS = 119
+const CARDS = 300
 const CARD_LEN = 10
 exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
