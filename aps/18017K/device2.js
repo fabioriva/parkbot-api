@@ -19,12 +19,28 @@ const A0 = {
   key: 'action-entry'
 }
 
+const AMC = inputs.find(b => b.addr === 'E15.0')
+const ECA = inputs.find(b => b.addr === 'E8.0')
+const ECB = inputs.find(b => b.addr === 'E8.6')
+const SCA = inputs.find(b => b.addr === 'E15.1')
+const SCB = outputs.find(b => b.addr === 'A4.0')
+
+const Flap = {
+  name: 'mot-flap',
+  encoders: [],
+  io: [AMC, ECA, ECB, SCA, SCB],
+  status: 'Going down'
+}
+
 const view = {
   a: device,
   b: positions,
   c: lamps,
   d: [A0],
-  e: []
+  e: [],
+  main: [Flap],
+  more: []
+  // silomat: []
 }
 
 const inverters = []
