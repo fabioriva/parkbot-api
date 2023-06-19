@@ -116,7 +116,7 @@ const Rotation = new MotorVFD(
   [ENR],
   [AD, ASBK2, AIV2, EXD],
   [KBA21, KBA22, TD],
-  ['lockwise', 'anticlockwise']
+  ['clockwise', 'anticlockwise']
 )
 
 const AMM = inputs.find(b => b.addr === 'E13.1')
