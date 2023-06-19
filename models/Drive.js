@@ -31,7 +31,7 @@ class Drive {
   }
 }
 
-const updateInverters = util.promisify(
+const updateDrives = util.promisify(
   (start, buffer, offset, inverters, callback) => {
     let byte = start
     for (let i = 0; i < inverters.length; i++) {
@@ -42,4 +42,4 @@ const updateInverters = util.promisify(
   }
 )
 
-module.exports = { updateInverters, Drive }
+module.exports = { updateDrives, Drive }

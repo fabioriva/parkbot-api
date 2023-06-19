@@ -1,6 +1,7 @@
 const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
 const { Device } = require('../../models/Device')
+const { Motor } = require('../../models/Motor')
 
 const device = new Device(1, 'EU1')
 
@@ -25,25 +26,46 @@ const ECB1 = inputs.find(b => b.addr === 'E8.6')
 const SCA1 = outputs.find(b => b.addr === 'A7.2')
 const SCB1 = outputs.find(b => b.addr === 'A7.3')
 
-const Flap1 = {
-  name: 'mot-flap',
-  encoders: [],
-  io: [AMC1, ECA1, ECB1, SCA1, SCB1],
-  status: 'Going down'
-}
+const Flap = new Motor(
+  1, 'mot-flap',
+  [],
+  [ECA1, ECB1, AMC1],
+  [SCA1, SCB1],
+  ['up', 'down', 'high', 'low']
+)
 
-const AMC2 = inputs.find(b => b.addr === 'E3.1')
-const ECA2 = inputs.find(b => b.addr === 'E9.5')
-const ECB2 = inputs.find(b => b.addr === 'E9.6')
-const SCA2 = outputs.find(b => b.addr === 'A7.4')
-const SCB2 = outputs.find(b => b.addr === 'A7.5')
+const AP = inputs.find(b => b.addr === 'E3.2')
+const EZ = inputs.find(b => b.addr === 'E4.0')
+const EO = inputs.find(b => b.addr === 'E4.1')
+const EX = inputs.find(b => b.addr === 'E8.0')
+const FB = inputs.find(b => b.addr === 'E4.2')
+const SZ = outputs.find(b => b.addr === 'A8.1')
+const SO = outputs.find(b => b.addr === 'A8.2')
+const KX = outputs.find(b => b.addr === 'A8.3')
 
-const Flap2 = {
-  name: 'mot-flap',
-  encoders: [],
-  io: [AMC2, ECA2, ECB2, SCA2, SCB2],
-  status: 'Low'
-}
+const Door = new Motor(
+  2, 'mot-door',
+  [],
+  [EZ, EO, AP, FB, EX],
+  [SZ, SO, KX],
+  ['close', 'open', 'closed', 'opened']
+)
+
+const APB = inputs.find(b => b.addr === 'E3.3')
+const EZB = inputs.find(b => b.addr === 'E8.2')
+const EOB = inputs.find(b => b.addr === 'E8.3')
+const FBB = inputs.find(b => b.addr === 'E8.4')
+const SZB = outputs.find(b => b.addr === 'A8.5')
+const SOB = outputs.find(b => b.addr === 'A8.6')
+const KXB = outputs.find(b => b.addr === 'A8.7')
+
+const Barrier = new Motor(
+  3, 'mot-barrier',
+  [],
+  [EZB, EOB, APB, FBB],
+  [SZB, SOB, KXB],
+  ['close', 'open', 'closed', 'opened']
+)
 
 const view = {
   a: device,
@@ -51,18 +73,18 @@ const view = {
   c: lamps,
   d: [A0],
   e: [],
-  main: [Flap1, Flap2],
+  main: [Barrier, Door, Flap],
   more: []
   // silomat: []
 }
 
-const inverters = []
+const drives = []
 
-const motors = []
+const motors = [Barrier, Door, Flap]
 
 /**
  * Silomat
  */
 const silomat = { motors: [] }
 
-module.exports = { device, inverters, motors, positions, silomat, view }
+module.exports = { device, drives, motors, positions, silomat, view }
