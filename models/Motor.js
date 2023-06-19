@@ -18,14 +18,12 @@ class Motor {
       this.status = this.str[0]
     } else if (RB.status) {
       this.status = this.str[1]
-    } else if (P1.status && P2.status) {
-      this.status = 'error' // this.str[4]
     } else if (P1.status) {
       this.status = this.str[2]
     } else if (P2.status) {
       this.status = this.str[3]
     } else {
-      this.status = '---' // this.str[5]
+      this.status = 'mov-idle' // this.str[5]
     }
     const { id, name, encoders, inputs, outputs, status } = this
     return { id, name, encoders, io: inputs.concat(outputs), status }
@@ -52,7 +50,7 @@ class MotorVFD {
     } else if (this.drive.speed < 0) {
       this.status = this.str[1]
     } else {
-      this.status = 'idle'
+      this.status = 'mov-idle'
     }
     const { id, name, drive, encoders, inputs, outputs, status } = this
     return { id, name, drive, encoders, io: inputs.concat(outputs), status }

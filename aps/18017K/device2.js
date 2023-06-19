@@ -31,7 +31,7 @@ const Flap = new Motor(
   [],
   [ECA2, ECB2, AMC2],
   [SCA2, SCB2],
-  ['up', 'down', 'high', 'low']
+  ['mov-up', 'mov-down', 'pos-high', 'pos-low']
 )
 
 const AP = inputs.find(b => b.addr === 'E3.4')
@@ -48,7 +48,7 @@ const Door = new Motor(
   [],
   [EZ, EO, AP, FB, EX],
   [SZ, SO, KX],
-  ['close', 'open', 'closed', 'opened']
+  ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
 )
 
 const APB = inputs.find(b => b.addr === 'E3.5')
@@ -64,7 +64,7 @@ const Barrier = new Motor(
   [],
   [EZB, EOB, APB, FBB],
   [SZB, SOB, KXB],
-  ['close', 'open', 'closed', 'opened']
+  ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
 )
 
 const view = {

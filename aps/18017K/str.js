@@ -260,9 +260,9 @@ exports.outputs1 = [
   { addr: 'A13.7', label: '' }
 ]
 exports.ALARMS = [
-  { id: 1, key: 'al-to', query: { motor: 'flap', numMotor: 1 } },
-  { id: 2, key: 'al-fc', query: { motor: 'flap', numMotor: 1, name1: 'ECA', name2: 'ECB' } },
-  { id: 3, key: 'al-th', query: { motor: 'tt-r', name: 'AD' } },
+  { id: 1, key: 'al-to', query: { motor: 'mot-flap', numMotor: 1 } },
+  { id: 2, key: 'al-fc', query: { motor: 'mot-flap', numMotor: 1, name1: 'ECA', name2: 'ECB' } },
+  { id: 3, key: 'al-th', query: { motor: 'mot-flap', name: 'AMC' } },
   { id: 4, key: '', query: {} },
   { id: 5, key: '', query: {} },
   { id: 6, key: '', query: {} },

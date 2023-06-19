@@ -87,7 +87,7 @@ const Hoisting = new MotorVFD(
   [LV1, LV2],
   [RTA, ASBK, FSBK],
   [KBA11, KBA12, SBK1, SBK2],
-  ['up', 'down']
+  ['mov-up', 'mov-down']
 )
 
 const ASBK2 = inputs.find(b => b.addr === 'E16.0')
@@ -102,7 +102,7 @@ const Traveling = new MotorVFD(
   [LH1, LH2],
   [AH, ASBK2],
   [KBA21, KBA22, T10],
-  ['right', 'left']
+  ['mov-right', 'mov-left']
 )
 
 const AD = inputs.find(b => b.addr === 'E16.2')
@@ -116,7 +116,7 @@ const Rotation = new MotorVFD(
   [ENR],
   [AD, ASBK2, AIV2, EXD],
   [KBA21, KBA22, TD],
-  ['clockwise', 'anticlockwise']
+  ['mov-clockwise', 'mov-anticlock']
 )
 
 const AMM = inputs.find(b => b.addr === 'E13.1')
@@ -130,7 +130,7 @@ const Lock = new Motor(
   [],
   [EZM, EOM, AMM],
   [SMA, SMB],
-  ['lock', 'unlock', 'locked', 'unlocked']
+  ['mov-lock', 'mov-unlock', 'pos-locked', 'pos-unlocked']
 )
 
 const AF8 = inputs.find(b => b.addr === 'E2.4')
@@ -146,28 +146,28 @@ const Silomat = {
       [],
       [RMV, RMH, AF8],
       [T2, KCS, KCH],
-      ['sil-stall', 'sil-home']
+      ['sil-mov-stall', 'sil-mov-home']
     ),
     new Motor(
       2, 'mot-hoisting',
       [],
       [RES, REH, MTC],
       [TRA, TRB, KCS],
-      ['sil-up', 'sil-down', 'sil-low', 'sil-high']
+      ['sil-mov-up', 'sil-mov-down', 'sil-pos-low', 'sil-pos-high']
     ),
     new Motor(
       3, 'mot-center-v',
       [],
       [RCV, REAV, MTC],
       [TRA, TRB, KCV],
-      ['sil-close-v', 'sil-center-v', 'sil-closed-v', 'sil-opened-v']
+      ['sil-mov-close', 'sil-mov-open', 'sil-pos-closed', 'sil-pos-opened']
     ),
     new Motor(
       4, 'mot-center-h',
       [],
       [RCH, REAH, MTC],
       [TRA, TRB, KCH],
-      ['sil-close-h', 'sil-center-h', 'sil-closed-h', 'sil-opened-h']
+      ['sil-mov-close', 'sil-mov-open', 'sil-pos-closed', 'sil-pos-opened']
     )
   ]
 }

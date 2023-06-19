@@ -5,7 +5,7 @@ exports.HOST = process.env.NODE_ENV !== 'production'
   : process.env.PRODUCTION_SERVER
 exports.HTTP = 9021
 exports.PLC = {
-  ip: '192.168.76.2',
+  ip: '192.168.20.55', // 76.2',
   rack: 0,
   slot: 1,
   polling_time: 500
