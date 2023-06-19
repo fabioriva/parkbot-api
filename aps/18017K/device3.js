@@ -92,7 +92,6 @@ const Hoisting = new MotorVFD(
 
 const ASBK2 = inputs.find(b => b.addr === 'E16.0')
 const AH = inputs.find(b => b.addr === 'E16.1')
-// const AIV2 = inputs.find(b => b.addr === 'E2.7')
 const T10 = outputs.find(b => b.addr === 'A12.0')
 const KBA21 = outputs.find(b => b.addr === 'A1.0')
 const KBA22 = outputs.find(b => b.addr === 'A6.0')
@@ -129,40 +128,47 @@ const SMB = outputs.find(b => b.addr === 'A11.1')
 const Lock = new Motor(
   1, 'mot-lock',
   [],
-  [EOM, EZM, AMM],
+  [EZM, EOM, AMM],
   [SMA, SMB],
   ['lock', 'unlock', 'locked', 'unlocked']
 )
+
+const AF8 = inputs.find(b => b.addr === 'E2.4')
+const MTC = inputs.find(b => b.addr === 'E16.4')
 
 const Silomat = {
   inputs: silomat.slice(0, 8),
   outputs: silomat.slice(8),
   motors: [
-    {
-      name: 'mot-traveling',
-      drive: IV2,
-      encoders: [],
-      io: [RMV, RMH, T2, KCS, KCH],
-      status: 'Traveling front'
-    },
-    {
-      name: 'mot-hoisting',
-      encoders: [],
-      io: [RES, REH, TRA, TRB, KCS],
-      status: 'Going down'
-    },
-    {
-      name: 'mot-center-v',
-      encoders: [],
-      io: [RCV, REAV, TRA, TRB, KCV],
-      status: 'Centering V'
-    },
-    {
-      name: 'mot-center-h',
-      encoders: [],
-      io: [RCH, REAH, TRA, TRB, KCH],
-      status: 'Centering H'
-    }
+    new MotorVFD(
+      1, 'mot-traveling',
+      IV2,
+      [],
+      [RMV, RMH, AF8],
+      [T2, KCS, KCH],
+      ['sil-stall', 'sil-home']
+    ),
+    new Motor(
+      2, 'mot-hoisting',
+      [],
+      [RES, REH, MTC],
+      [TRA, TRB, KCS],
+      ['sil-up', 'sil-down', 'sil-low', 'sil-high']
+    ),
+    new Motor(
+      3, 'mot-center-v',
+      [],
+      [RCV, REAV, MTC],
+      [TRA, TRB, KCV],
+      ['sil-close-v', 'sil-center-v', 'sil-closed-v', 'sil-opened-v']
+    ),
+    new Motor(
+      4, 'mot-center-h',
+      [],
+      [RCH, REAH, MTC],
+      [TRA, TRB, KCH],
+      ['sil-close-h', 'sil-center-h', 'sil-closed-h', 'sil-opened-h']
+    )
   ]
 }
 
@@ -179,6 +185,6 @@ const view = {
 
 const drives = [IV1, IV2]
 
-const motors = [Hoisting, Traveling, Rotation, Lock]
+const motors = [Hoisting, Traveling, Rotation, Lock, ...Silomat.motors]
 
 module.exports = { device, drives, motors, positions, view }
