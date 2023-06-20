@@ -72,9 +72,8 @@ const view = {
   b: positions,
   c: lamps,
   d: [A0],
-  e: [],
-  main: [Barrier, Door, Flap],
-  more: []
+  // e: [],
+  motors: [Barrier, Door, Flap]
   // silomat: []
 }
 

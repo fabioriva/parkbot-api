@@ -32,13 +32,15 @@ class Drive {
 }
 
 const updateDrives = util.promisify(
-  (start, buffer, offset, inverters, callback) => {
-    let byte = start
-    for (let i = 0; i < inverters.length; i++) {
-      inverters[i].update(buffer.slice(byte, byte + offset))
-      byte += offset
+  (start, buffer, offset, drives, callback) => {
+    if (!isNaN(start)) {
+      let byte = start
+      for (let i = 0; i < drives.length; i++) {
+        drives[i].update(buffer.slice(byte, byte + offset))
+        byte += offset
+      }
+      callback(null, drives)
     }
-    callback(null, inverters)
   }
 )
 

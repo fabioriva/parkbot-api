@@ -177,9 +177,9 @@ const view = {
   b: positions,
   c: lamps,
   d: [],
-  e: silomat,
-  main: [Hoisting, Traveling, Rotation],
-  more: [Lock],
+  // e: silomat,
+  motors: [Hoisting, Lock, Traveling, Rotation],
+  // more: [Lock],
   silomat: Silomat
 }
 

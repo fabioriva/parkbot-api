@@ -45,10 +45,11 @@ exports.devices = [
   device3.device
 ]
 
-exports.drives = device1.drives.concat(
+const drives = device1.drives.concat(
   device2.drives,
   device3.drives
 )
+exports.drives = drives
 
 exports.motors = device1.motors.concat(
   device2.motors,
@@ -70,6 +71,7 @@ exports.overview = {
     device3.view
 
   ],
+  drives,
   exitQueue: {
     queueList: queue,
     exitButton: {
