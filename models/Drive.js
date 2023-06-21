@@ -39,8 +39,9 @@ const updateDrives = util.promisify(
         drives[i].update(buffer.slice(byte, byte + offset))
         byte += offset
       }
-      callback(null, drives)
+      // callback(null, drives)
     }
+    callback(null, drives)
   }
 )
 
