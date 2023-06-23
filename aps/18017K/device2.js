@@ -81,6 +81,6 @@ const drives = []
 
 const motors = [Barrier, Door, Flap]
 
-const silomat = []
+// const silomat = []
 
-module.exports = { device, drives, motors, positions, silomat, view }
+module.exports = { device, drives, motors, positions, view }

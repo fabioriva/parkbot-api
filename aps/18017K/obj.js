@@ -71,7 +71,7 @@ exports.overview = {
     device3.view
 
   ],
-  drives,
+  // drives,
   exitQueue: {
     queueList: queue,
     exitButton: {

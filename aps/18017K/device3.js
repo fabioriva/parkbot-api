@@ -25,39 +25,6 @@ const lamps = [
   outputs.find(b => b.addr === 'A1.6')
 ]
 
-// const silomat = [
-//   inputs.find(b => b.addr === 'E17.0'),
-//   inputs.find(b => b.addr === 'E17.1'),
-//   inputs.find(b => b.addr === 'E17.2'),
-//   inputs.find(b => b.addr === 'E17.3'),
-//   inputs.find(b => b.addr === 'E17.4'),
-//   inputs.find(b => b.addr === 'E17.5'),
-//   inputs.find(b => b.addr === 'E17.6'),
-//   inputs.find(b => b.addr === 'E17.7'),
-//   outputs.find(b => b.addr === 'A12.2'),
-//   outputs.find(b => b.addr === 'A12.3'),
-//   outputs.find(b => b.addr === 'A12.4'),
-//   outputs.find(b => b.addr === 'A12.5'),
-//   outputs.find(b => b.addr === 'A12.6'),
-//   outputs.find(b => b.addr === 'A12.7')
-// ]
-
-const RMV = inputs.find(b => b.addr === 'E17.0')
-const RMH = inputs.find(b => b.addr === 'E17.1')
-const RES = inputs.find(b => b.addr === 'E17.2')
-const REH = inputs.find(b => b.addr === 'E17.3')
-const RCV = inputs.find(b => b.addr === 'E17.4')
-const REAV = inputs.find(b => b.addr === 'E17.5')
-const REAH = inputs.find(b => b.addr === 'E17.6')
-const RCH = inputs.find(b => b.addr === 'E17.7')
-const T2 = outputs.find(b => b.addr === 'A12.2')
-const TRA = outputs.find(b => b.addr === 'A12.3')
-const TRB = outputs.find(b => b.addr === 'A12.4')
-const KCS = outputs.find(b => b.addr === 'A12.5')
-const KCV = outputs.find(b => b.addr === 'A12.6')
-const KCH = outputs.find(b => b.addr === 'A12.7')
-
-const silomat = [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH]
 // const steps = [
 //   { key: 'step-1', color: 'gray', tooltip: 'step-1' },
 //   { key: 'step-2', color: 'gray', tooltip: 'step-2' },
@@ -132,6 +99,23 @@ const Lock = new Motor(
   [SMA, SMB],
   ['mov-lock', 'mov-unlock', 'pos-locked', 'pos-unlocked']
 )
+
+const RMV = inputs.find(b => b.addr === 'E17.0')
+const RMH = inputs.find(b => b.addr === 'E17.1')
+const RES = inputs.find(b => b.addr === 'E17.2')
+const REH = inputs.find(b => b.addr === 'E17.3')
+const RCV = inputs.find(b => b.addr === 'E17.4')
+const REAV = inputs.find(b => b.addr === 'E17.5')
+const REAH = inputs.find(b => b.addr === 'E17.6')
+const RCH = inputs.find(b => b.addr === 'E17.7')
+const T2 = outputs.find(b => b.addr === 'A12.2')
+const TRA = outputs.find(b => b.addr === 'A12.3')
+const TRB = outputs.find(b => b.addr === 'A12.4')
+const KCS = outputs.find(b => b.addr === 'A12.5')
+const KCV = outputs.find(b => b.addr === 'A12.6')
+const KCH = outputs.find(b => b.addr === 'A12.7')
+
+const silomat = [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH]
 
 const AF8 = inputs.find(b => b.addr === 'E2.4')
 const MTC = inputs.find(b => b.addr === 'E16.4')
