@@ -1,7 +1,7 @@
 const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
 const { Device } = require('../../models/Device')
-const { Motor } = require('../../models/Motor')
+const { Barrier, Door, Flap } = require('../../models/Motor')
 
 const device = new Device(2, 'EU2')
 
@@ -26,12 +26,10 @@ const ECB2 = inputs.find(b => b.addr === 'E9.6')
 const SCA2 = outputs.find(b => b.addr === 'A7.4')
 const SCB2 = outputs.find(b => b.addr === 'A7.5')
 
-const Flap = new Motor(
-  1, 'mot-flap',
-  [],
+const Flap1 = new Flap(
+  0,
   [ECA2, ECB2, AMC2],
-  [SCA2, SCB2],
-  ['mov-up', 'mov-down', 'pos-high', 'pos-low']
+  [SCA2, SCB2]
 )
 
 const AP = inputs.find(b => b.addr === 'E3.4')
@@ -43,12 +41,10 @@ const SZ = outputs.find(b => b.addr === 'A9.1')
 const SO = outputs.find(b => b.addr === 'A9.2')
 const KX = outputs.find(b => b.addr === 'A9.3')
 
-const Door = new Motor(
-  2, 'mot-door',
-  [],
+const Door1 = new Door(
+  0,
   [EZ, EO, AP, FB, EX],
-  [SZ, SO, KX],
-  ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
+  [SZ, SO, KX]
 )
 
 const APB = inputs.find(b => b.addr === 'E3.5')
@@ -59,27 +55,27 @@ const SZB = outputs.find(b => b.addr === 'A9.5')
 const SOB = outputs.find(b => b.addr === 'A9.6')
 const KXB = outputs.find(b => b.addr === 'A9.7')
 
-const Barrier = new Motor(
-  3, 'mot-barrier',
-  [],
+const Barrier1 = new Barrier(
+  0,
   [EZB, EOB, APB, FBB],
-  [SZB, SOB, KXB],
-  ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
+  [SZB, SOB, KXB]
 )
 
+const drives = []
+const motors = [Barrier1, Door1, Flap1]
 const view = {
   a: device,
   b: positions,
   c: lamps,
   d: [A0],
   // e: [],
-  motors: [Barrier, Door, Flap]
+  // motors: [Barrier1, Door1, Flap1],
+  // more: []
   // silomat: []
+  drives,
+  motors
+
 }
-
-const drives = []
-
-const motors = [Barrier, Door, Flap]
 
 // const silomat = []
 

@@ -1,7 +1,7 @@
 const { inputs, outputs } = require('./obj')
 const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
-const { Motor, MotorVFD } = require('../../models/Motor')
+const { Hoisting, Lock, Rotation, Traveling, Silomat } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
 
 const device = new Device(3, 'EL')
@@ -48,13 +48,12 @@ const KBA12 = outputs.find(b => b.addr === 'A6.0')
 const SBK1 = outputs.find(b => b.addr === 'A6.7')
 const SBK2 = outputs.find(b => b.addr === 'A7.7')
 
-const Hoisting = new MotorVFD(
-  1, 'mot-hoisting',
+const Hoisting1 = new Hoisting(
+  0,
   IV1,
   [LV1, LV2],
   [RTA, ASBK, FSBK],
-  [KBA11, KBA12, SBK1, SBK2],
-  ['mov-up', 'mov-down']
+  [KBA11, KBA12, SBK1, SBK2]
 )
 
 const ASBK2 = inputs.find(b => b.addr === 'E16.0')
@@ -63,13 +62,12 @@ const T10 = outputs.find(b => b.addr === 'A12.0')
 const KBA21 = outputs.find(b => b.addr === 'A1.0')
 const KBA22 = outputs.find(b => b.addr === 'A6.0')
 
-const Traveling = new MotorVFD(
-  2, 'mot-traveling',
+const Traveling1 = new Traveling(
+  0,
   IV2,
   [LH1, LH2],
   [AH, ASBK2],
-  [KBA21, KBA22, T10],
-  ['mov-right', 'mov-left']
+  [KBA21, KBA22, T10]
 )
 
 const AD = inputs.find(b => b.addr === 'E16.2')
@@ -77,13 +75,12 @@ const AIV2 = inputs.find(b => b.addr === 'E2.3')
 const EXD = inputs.find(b => b.addr === 'E15.0')
 const TD = outputs.find(b => b.addr === 'A12.1')
 
-const Rotation = new MotorVFD(
-  3, 'mot-rotation',
+const Rotation1 = new Rotation(
+  0,
   IV2,
   [ENR],
   [AD, ASBK2, AIV2, EXD],
-  [KBA21, KBA22, TD],
-  ['mov-clockwise', 'mov-anticlock']
+  [KBA21, KBA22, TD]
 )
 
 const AMM = inputs.find(b => b.addr === 'E13.1')
@@ -92,12 +89,10 @@ const EZM = inputs.find(b => b.addr === 'E14.1')
 const SMA = outputs.find(b => b.addr === 'A11.0')
 const SMB = outputs.find(b => b.addr === 'A11.1')
 
-const Lock = new Motor(
-  1, 'mot-lock',
-  [],
+const Lock1 = new Lock(
+  0,
   [EZM, EOM, AMM],
-  [SMA, SMB],
-  ['mov-lock', 'mov-unlock', 'pos-locked', 'pos-unlocked']
+  [SMA, SMB]
 )
 
 const RMV = inputs.find(b => b.addr === 'E17.0')
@@ -115,60 +110,28 @@ const KCS = outputs.find(b => b.addr === 'A12.5')
 const KCV = outputs.find(b => b.addr === 'A12.6')
 const KCH = outputs.find(b => b.addr === 'A12.7')
 
-const silomat = [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH]
-
 const AF8 = inputs.find(b => b.addr === 'E2.4')
 const MTC = inputs.find(b => b.addr === 'E16.4')
 
-const Silomat = {
-  inputs: silomat.slice(0, 8),
-  outputs: silomat.slice(8),
-  motors: [
-    new MotorVFD(
-      1, 'mot-traveling',
-      IV2,
-      [],
-      [RMV, RMH, AF8],
-      [T2, KCS, KCH],
-      ['sil-mov-stall', 'sil-mov-home']
-    ),
-    new Motor(
-      2, 'mot-hoisting',
-      [],
-      [RES, REH, MTC],
-      [TRA, TRB, KCS],
-      ['sil-mov-up', 'sil-mov-down', 'sil-pos-low', 'sil-pos-high']
-    ),
-    new Motor(
-      3, 'mot-center-v',
-      [],
-      [RCV, REAV, MTC],
-      [TRA, TRB, KCV],
-      ['sil-mov-close', 'sil-mov-open', 'sil-pos-closed', 'sil-pos-opened']
-    ),
-    new Motor(
-      4, 'mot-center-h',
-      [],
-      [RCH, REAH, MTC],
-      [TRA, TRB, KCH],
-      ['sil-mov-close', 'sil-mov-open', 'sil-pos-closed', 'sil-pos-opened']
-    )
-  ]
-}
+const silomat = new Silomat(
+  IV2,
+  [],
+  [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH],
+  [AF8, MTC]
+)
 
+const drives = [IV1, IV2]
 const view = {
   a: device,
   b: positions,
   c: lamps,
   d: [],
   // e: silomat,
-  motors: [Hoisting, Lock, Traveling, Rotation],
+  drives,
+  motors: [Hoisting1, Lock1, Traveling1, Rotation1],
   // more: [Lock],
-  silomat: Silomat
+  silomat // : Silomat
 }
 
-const drives = [IV1, IV2]
-
-const motors = [Hoisting, Traveling, Rotation, Lock, ...Silomat.motors]
-
+const motors = [Hoisting1, Traveling1, Rotation1, Lock1, ...silomat.motors]
 module.exports = { device, drives, motors, positions, view }
