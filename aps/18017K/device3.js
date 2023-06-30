@@ -20,7 +20,7 @@ const ENR = new Position(5, 'ENR')
 const positions = [LV1, LV2, LH1, LH2, ENR]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E1.3'),
+  inputs.find(b => b.addr === 'E1.4'),
   outputs.find(b => b.addr === 'A1.7'),
   outputs.find(b => b.addr === 'A1.6')
 ]
@@ -53,7 +53,8 @@ const Hoisting1 = new Hoisting(
   IV1,
   [LV1, LV2],
   [RTA, ASBK, FSBK],
-  [SBK1, SBK2]
+  [SBK1, SBK2],
+  FSBK
 )
 
 const ASBK2 = inputs.find(b => b.addr === 'E16.0')
@@ -133,6 +134,6 @@ const view = new DeviceView(
   lamps,
   [Hoisting1, Lock1, Traveling1, Rotation1],
   silomat
-  )
+)
 
 module.exports = { device, drives, motors, positions, view }

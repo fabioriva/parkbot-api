@@ -10,21 +10,28 @@ class Motor {
     this.io = inputs.concat(outputs)
     // this.messages = messages
     // this.message = message
+    this.run = { status: false }
   }
 
   update_ (messages) {
     const [P1, P2] = this.#inputs
-    const [RA, RB] = this.#outputs
+    const [RA, RB, KC] = this.#outputs
+    // console.log(this.name.key, RA, RB, KC)
     if (RA.status) {
-      this.message = messages[0] // this.messages[0]
+      this.message = messages[0]
     } else if (RB.status) {
-      this.message = messages[1] // this.messages[1]
+      this.message = messages[1]
     } else if (P1.status) {
-      this.message = messages[2] // this.messages[2]
+      this.message = messages[2]
     } else if (P2.status) {
-      this.message = messages[3] // this.messages[3]
+      this.message = messages[3]
     } else {
-      this.message = 'mov-idle' // this.messages[5]
+      this.message = 'mov-idle'
+    }
+    if ((RA.status || RB.status) && (KC !== undefined ? KC.status : true)) {
+      this.run.status = 1
+    } else {
+      this.run.status = 0
     }
     // const { name, inputs, outputs, message } = this
     // return { name, io: inputs.concat(outputs), message }
@@ -33,8 +40,8 @@ class Motor {
 
 class Barrier extends Motor {
   static messages = ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
-  constructor (id, inputs, outputs) {
-    super(id, inputs, outputs)
+  constructor (id, inputs, outputs, run) {
+    super(id, inputs, outputs, run)
     this.name = { key: 'mot-barrier', query: { id } }
   }
 
@@ -45,8 +52,8 @@ class Barrier extends Motor {
 
 class Door extends Motor {
   static messages = ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
-  constructor (id, inputs, outputs) {
-    super(id, inputs, outputs)
+  constructor (id, inputs, outputs, run) {
+    super(id, inputs, outputs, run)
     this.name = { key: 'mot-door', query: { id } }
   }
 
@@ -57,8 +64,8 @@ class Door extends Motor {
 
 class Flap extends Motor {
   static messages = ['mov-up', 'mov-down', 'pos-high', 'pos-low']
-  constructor (id, inputs, outputs) {
-    super(id, inputs, outputs)
+  constructor (id, inputs, outputs, run) {
+    super(id, inputs, outputs, run)
     this.name = { key: 'mot-flap', query: { id } }
   }
 
@@ -69,8 +76,8 @@ class Flap extends Motor {
 
 class Lock extends Motor {
   static messages = ['mov-lock', 'mov-unlock', 'pos-locked', 'pos-unlocked']
-  constructor (id, inputs, outputs) {
-    super(id, inputs, outputs)
+  constructor (id, inputs, outputs, run) {
+    super(id, inputs, outputs, run)
     this.name = { key: 'mot-lock', query: { id } }
   }
 
@@ -83,7 +90,10 @@ class MotorVFD {
   #drive
   #inputs
   #outputs
-  constructor (id, drive, encoders = [], inputs = [], outputs = [], run = { status: true }) {
+  constructor (id, drive, encoders = [], inputs = [], outputs = [], run) {
+    if (run === undefined) {
+      throw new Error('id is undefined')
+    }
     this.id = id
     // this.name = name
     this.#drive = drive
@@ -107,6 +117,11 @@ class MotorVFD {
     } else {
       this.message = 'mov-idle'
     }
+    // if (RA || RB) {
+    //   this.run.status = 1
+    // } else {
+    //   this.run.status = 0
+    // }
     // console.log(RA, RB, this.message)
     // const { name, encoders, inputs, outputs, message } = this
     // return { name, encoders, io: inputs.concat(outputs), message }
@@ -202,8 +217,8 @@ class SilomatTraveling extends MotorVFD {
 
 class SilomatHoisting extends Motor {
   static messages = ['sil-mov-up', 'sil-mov-down', 'sil-pos-low', 'sil-pos-high']
-  constructor (id, inputs, outputs) {
-    super(id, inputs, outputs)
+  constructor (id, inputs, outputs, run) {
+    super(id, inputs, outputs, run)
     this.name = { key: 'mot-hoisting', query: { id } }
   }
 
@@ -214,8 +229,8 @@ class SilomatHoisting extends Motor {
 
 class SilomatCentering extends Motor {
   static messages = ['sil-mov-close', 'sil-mov-open', 'sil-pos-closed', 'sil-pos-opened']
-  constructor (id, inputs, outputs) {
-    super(id, inputs, outputs)
+  constructor (id, inputs, outputs, run) {
+    super(id, inputs, outputs, run)
     this.name = id === 'h' ? { key: 'mot-center-h' } : { key: 'mot-center-v' }
   }
 

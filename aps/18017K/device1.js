@@ -8,7 +8,7 @@ const device = new Device(1, 'EU1')
 const positions = []
 
 const lamps = [
-  inputs.find(b => b.addr === 'E1.3'),
+  inputs.find(b => b.addr === 'E1.4'),
   outputs.find(b => b.addr === 'A1.7'),
   outputs.find(b => b.addr === 'A1.6')
 //   inputs.find(b => b.addr === 'E4.3') // FPE
