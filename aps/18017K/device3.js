@@ -1,5 +1,5 @@
 const { inputs, outputs } = require('./obj')
-const { Device } = require('../../models/Device')
+const { Device, DeviceView } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const { Hoisting, Lock, Rotation, Traveling, Silomat } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
@@ -43,8 +43,8 @@ const lamps = [
 const RTA = inputs.find(b => b.addr === 'E2.2')
 const ASBK = inputs.find(b => b.addr === 'E2.7')
 const FSBK = inputs.find(b => b.addr === 'E2.6')
-const KBA11 = outputs.find(b => b.addr === 'A1.0')
-const KBA12 = outputs.find(b => b.addr === 'A6.0')
+// const KBA11 = outputs.find(b => b.addr === 'A1.0')
+// const KBA12 = outputs.find(b => b.addr === 'A6.0')
 const SBK1 = outputs.find(b => b.addr === 'A6.7')
 const SBK2 = outputs.find(b => b.addr === 'A7.7')
 
@@ -53,25 +53,26 @@ const Hoisting1 = new Hoisting(
   IV1,
   [LV1, LV2],
   [RTA, ASBK, FSBK],
-  [KBA11, KBA12, SBK1, SBK2]
+  [SBK1, SBK2]
 )
 
 const ASBK2 = inputs.find(b => b.addr === 'E16.0')
 const AH = inputs.find(b => b.addr === 'E16.1')
 const T10 = outputs.find(b => b.addr === 'A12.0')
-const KBA21 = outputs.find(b => b.addr === 'A1.0')
-const KBA22 = outputs.find(b => b.addr === 'A6.0')
+// const KBA21 = outputs.find(b => b.addr === 'A1.0')
+// const KBA22 = outputs.find(b => b.addr === 'A6.0')
 
 const Traveling1 = new Traveling(
   0,
   IV2,
   [LH1, LH2],
   [AH, ASBK2],
-  [KBA21, KBA22, T10]
+  [T10],
+  T10
 )
 
 const AD = inputs.find(b => b.addr === 'E16.2')
-const AIV2 = inputs.find(b => b.addr === 'E2.3')
+// const AIV2 = inputs.find(b => b.addr === 'E2.3')
 const EXD = inputs.find(b => b.addr === 'E15.0')
 const TD = outputs.find(b => b.addr === 'A12.1')
 
@@ -79,8 +80,9 @@ const Rotation1 = new Rotation(
   0,
   IV2,
   [ENR],
-  [AD, ASBK2, AIV2, EXD],
-  [KBA21, KBA22, TD]
+  [AD, ASBK2, EXD],
+  [TD],
+  TD
 )
 
 const AMM = inputs.find(b => b.addr === 'E13.1')
@@ -121,17 +123,16 @@ const silomat = new Silomat(
 )
 
 const drives = [IV1, IV2]
-const view = {
-  a: device,
-  b: positions,
-  c: lamps,
-  d: [],
-  // e: silomat,
-  drives,
-  motors: [Hoisting1, Lock1, Traveling1, Rotation1],
-  // more: [Lock],
-  silomat // : Silomat
-}
 
 const motors = [Hoisting1, Traveling1, Rotation1, Lock1, ...silomat.motors]
+
+const view = new DeviceView(
+  device,
+  [],
+  drives,
+  lamps,
+  [Hoisting1, Lock1, Traveling1, Rotation1],
+  silomat
+  )
+
 module.exports = { device, drives, motors, positions, view }

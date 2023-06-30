@@ -69,7 +69,6 @@ exports.overview = {
     device1.view,
     device2.view,
     device3.view
-
   ],
   // drives,
   exitQueue: {

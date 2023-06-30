@@ -58,6 +58,17 @@ class Device {
   }
 }
 
+class DeviceView {
+  constructor (device, actions = [], drives = [], leds = [], motors = [], silomat) {
+    this.a = device
+    this.d = actions
+    this.drives = drives
+    this.c = leds
+    this.motors = motors
+    this.silomat = silomat
+  }
+}
+
 const updateDevices = util.promisify(
   (start, buffer, offset, devices, modes, callback) => {
     let byte = start
@@ -69,4 +80,4 @@ const updateDevices = util.promisify(
   }
 )
 
-module.exports = { updateDevices, Device }
+module.exports = { updateDevices, Device, DeviceView }
