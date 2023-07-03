@@ -3,7 +3,7 @@ const str = require('./str')
 const { Alarms, generateAlarms } = require('../../models/Alarm')
 const { generateBits, generateBytes } = require('../../models/Bit')
 const { generateCards } = require('../../models/Card')
-const { Exit, ExitScreen, GarageScreen, Occupancy } = require('../../models/Dss')
+const { Exit, ExitScreen, GarageScreen/*, Occupancy */ } = require('../../models/Dss')
 const { generateQueue } = require('../../models/Queue')
 const { generateStalls } = require('../../models/Stall')
 
