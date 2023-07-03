@@ -4,12 +4,9 @@ class Motor {
   #outputs
   constructor (id, inputs = [], outputs = []) {
     this.id = id
-    // this.name = name
     this.#inputs = inputs
     this.#outputs = outputs
     this.io = inputs.concat(outputs)
-    // this.messages = messages
-    // this.message = message
     this.run = { status: false }
   }
 
@@ -95,19 +92,16 @@ class MotorVFD {
       throw new Error('id is undefined')
     }
     this.id = id
-    // this.name = name
     this.#drive = drive
     this.encoders = encoders
     this.#inputs = inputs
     this.#outputs = outputs
     this.io = inputs.concat(outputs)
-    // this.messages = messages
-    // this.message = message
     this.run = run
   }
 
   update_ (messages) {
-    // console.log(this.name, this.run, this.#drive.speed)
+    // console.log(this.name, this.run)
     const RA = this.run.status && this.#drive.speed > 0
     const RB = this.run.status && this.#drive.speed < 0
     if (RA) {
@@ -122,7 +116,6 @@ class MotorVFD {
     // } else {
     //   this.run.status = 0
     // }
-    // console.log(RA, RB, this.message)
     // const { name, encoders, inputs, outputs, message } = this
     // return { name, encoders, io: inputs.concat(outputs), message }
   }
@@ -165,17 +158,11 @@ class Traveling extends MotorVFD {
 }
 
 class Silomat {
-  // #inputs
-  // #outputs
   constructor (drive, encoders = [], sensors = [], thermics = []) {
     const [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH] = sensors
     const [AF8, MTC] = thermics
     this.drive = drive
     this.encoders = encoders
-    // this.#inputs = [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH]
-    // this.#outputs = [T2, TRA, TRB, KCS, KCV, KCH]
-    // this.sensors = sensors
-    // this.thermics = thermics
     this.motors = [
       new SilomatTraveling(
         0,
