@@ -44,8 +44,6 @@ exports.DATA_READ = {
   wordLen: 0x02
 }
 
-const DB_MAP = 510
-exports.DB_MAP = DB_MAP
 const STALLS = 276
 const STALL_LEN = 10
 exports.STALLS = STALLS
