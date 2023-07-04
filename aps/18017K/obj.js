@@ -3,7 +3,7 @@ const str = require('./str')
 const { Alarms, generateAlarms } = require('../../models/Alarm')
 const { generateBits, generateBytes } = require('../../models/Bit')
 const { generateCards } = require('../../models/Card')
-const { Exit, ExitScreen, GarageScreen/*, Occupancy */ } = require('../../models/Dss')
+// const { Exit, ExitScreen, GarageScreen/*, Occupancy */ } = require('../../models/Dss')
 const { generateQueue } = require('../../models/Queue')
 const { generateStalls } = require('../../models/Stall')
 
@@ -168,17 +168,17 @@ exports.map = {
  * Dss
  */
 
-const exit1 = new Exit(1, 'EXIT 1')
-const exit2 = new Exit(2, 'EXIT 2')
-const exits = [exit1, exit2]
-exports.exits = exits
+// const exit1 = new Exit(1, 'EXIT 1')
+// const exit2 = new Exit(2, 'EXIT 2')
+// const exits = [exit1, exit2]
+// exports.exits = exits
 
-const exitScreen = new ExitScreen(1, 'EXIT SCREEN')
-exports.exitScreen = exitScreen
+// const exitScreen = new ExitScreen(1, 'EXIT SCREEN')
+// exports.exitScreen = exitScreen
 
-const screen1 = new GarageScreen(1, 'GARAGE 1')
-const screen2 = new GarageScreen(2, 'GARAGE 2')
-const screens = [screen1, screen2]
-exports.screens = screens
+// const screen1 = new GarageScreen(1, 'GARAGE 1')
+// const screen2 = new GarageScreen(2, 'GARAGE 2')
+// const screens = [screen1, screen2]
+// exports.screens = screens
 
-exports.dss = { screens, exitScreen }
+// exports.dss = { screens, exitScreen }
