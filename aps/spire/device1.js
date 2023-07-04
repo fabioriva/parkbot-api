@@ -137,7 +137,7 @@ const KCS = outputs.find(b => b.addr === 'A110.4')
 const KCV = outputs.find(b => b.addr === 'A110.5')
 const KCH = outputs.find(b => b.addr === 'A110.6')
 
-const AF8 = inputs.find(b => b.addr === '103.7')
+const AF8 = inputs.find(b => b.addr === 'E103.7')
 const MTC = inputs.find(b => b.addr === 'E111.5')
 
 const silomat = new Silomat(
