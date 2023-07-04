@@ -87,7 +87,8 @@ class MotorVFD {
   #drive
   #inputs
   #outputs
-  constructor (id, drive, encoders = [], inputs = [], outputs = [], run) {
+  #positions
+  constructor (id, drive, encoders = [], inputs = [], outputs = [], positions = [], run) {
     if (run === undefined) {
       throw new Error('id is undefined')
     }
@@ -96,18 +97,24 @@ class MotorVFD {
     this.encoders = encoders
     this.#inputs = inputs
     this.#outputs = outputs
+    this.#positions = positions
     this.io = inputs.concat(outputs)
     this.run = run
   }
 
   update_ (messages) {
     // console.log(this.name, this.run)
+    const [P1, P2] = this.#positions
     const RA = this.run.status && this.#drive.speed > 0
     const RB = this.run.status && this.#drive.speed < 0
     if (RA) {
       this.message = messages[0]
     } else if (RB) {
       this.message = messages[1]
+    } else if (P1 !== undefined && P1.status) {
+      this.message = messages[2]
+    } else if (P2 !== undefined && P2.status) {
+      this.message = messages[3]
     } else {
       this.message = 'mov-idle'
     }
@@ -122,9 +129,9 @@ class MotorVFD {
 }
 
 class DoorVFD extends MotorVFD {
-  static messages = ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
-  constructor (id, inputs, outputs, run) {
-    super(id, inputs, outputs, run)
+  static messages = ['mov-open', 'mov-close', 'pos-closed', 'pos-opened']
+  constructor (id, drive, encoders = [], inputs = [], outputs = [], positions, run) {
+    super(id, drive, encoders, inputs, outputs, positions, run)
     this.name = { key: 'mot-door', query: { id } }
   }
 
@@ -135,8 +142,8 @@ class DoorVFD extends MotorVFD {
 
 class Hoisting extends MotorVFD {
   static messages = ['mov-up', 'mov-down']
-  constructor (id, drive, encoders = [], inputs = [], outputs = [], run) {
-    super(id, drive, encoders, inputs, outputs, run)
+  constructor (id, drive, encoders = [], inputs = [], outputs = [], positions = [], run) {
+    super(id, drive, encoders, inputs, outputs, positions, run)
     this.name = { key: 'mot-hoisting', query: { id } }
   }
 
@@ -147,8 +154,8 @@ class Hoisting extends MotorVFD {
 
 class Rotation extends MotorVFD {
   static messages = ['mov-clockwise', 'mov-anticlock']
-  constructor (id, drive, encoders = [], inputs = [], outputs = [], run) {
-    super(id, drive, encoders, inputs, outputs, run)
+  constructor (id, drive, encoders = [], inputs = [], outputs = [], positions = [], run) {
+    super(id, drive, encoders, inputs, outputs, positions, run)
     this.name = { key: 'mot-rotation', query: { id } }
   }
 
@@ -159,8 +166,8 @@ class Rotation extends MotorVFD {
 
 class Traveling extends MotorVFD {
   static messages = ['mov-right', 'mov-left']
-  constructor (id, drive, encoders = [], inputs = [], outputs = [], run) {
-    super(id, drive, encoders, inputs, outputs, run)
+  constructor (id, drive, encoders = [], inputs = [], outputs = [], positions = [], run) {
+    super(id, drive, encoders, inputs, outputs, positions, run)
     this.name = { key: 'mot-traveling', query: { id } }
   }
 
@@ -182,6 +189,7 @@ class Silomat {
         [],
         [RMV, RMH, AF8],
         [T2, KCS, KCH],
+        [],
         T2
       ),
       new SilomatHoisting(
@@ -204,8 +212,8 @@ class Silomat {
 
 class SilomatTraveling extends MotorVFD {
   static messages = ['sil-mov-stall', 'sil-mov-home']
-  constructor (id, drive, encoders = [], inputs = [], outputs = [], run) {
-    super(id, drive, encoders, inputs, outputs, run)
+  constructor (id, drive, encoders = [], inputs = [], outputs = [], positions = [], run) {
+    super(id, drive, encoders, inputs, outputs, positions, run)
     this.name = { key: 'mot-traveling', query: { id } }
   }
 
@@ -250,6 +258,7 @@ class Garage {
 module.exports = {
   Barrier,
   Door,
+  DoorVFD,
   Flap,
   Garage,
   Hoisting,

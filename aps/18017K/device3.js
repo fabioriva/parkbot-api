@@ -54,6 +54,7 @@ const Hoisting1 = new Hoisting(
   [LV1, LV2],
   [RTA, ASBK, FSBK],
   [SBK1, SBK2],
+  [],
   FSBK
 )
 
@@ -69,6 +70,7 @@ const Traveling1 = new Traveling(
   [LH1, LH2],
   [AH, ASBK2],
   [T10],
+  [],
   T10
 )
 
@@ -83,6 +85,7 @@ const Rotation1 = new Rotation(
   [ENR],
   [AD, ASBK2, EXD],
   [TD],
+  [],
   TD
 )
 

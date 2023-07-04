@@ -1,8 +1,8 @@
-const { inputs, outputs, merkers } = require('./obj')
+const { inputs, outputs } = require('./obj')
 const { Device, DeviceView } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const {
-  Door,
+  DoorVFD,
   Flap,
   Lock,
   Hoisting,
@@ -44,6 +44,7 @@ const M1 = new Hoisting(
   [LV1, LV2],
   [RTA, ASBK, FSBK],
   [SBK1, SBK2],
+  [],
   FSBK
 )
 
@@ -62,6 +63,7 @@ const M6 = new Traveling(
   [ENH],
   [ASH, AKKS, EMC, MNR, MNL],
   [T10],
+  [],
   T10
 )
 
@@ -76,6 +78,7 @@ const M7 = new Rotation(
   [ENR],
   [AD, ASBK2, EXD],
   [TD],
+  [],
   TD
 )
 
@@ -98,13 +101,17 @@ const EO = inputs.find(b => b.addr === 'E10.1')
 const FB = inputs.find(b => b.addr === 'E10.2')
 const AP = inputs.find(b => b.addr === 'E9.1')
 const KX = outputs.find(b => b.addr === 'A4.5')
-const SZ = merkers.find(b => b.addr === 'M1.0')
-const SO = merkers.find(b => b.addr === 'M1.1')
+// const SZ = merkers.find(b => b.addr === 'M1.0')
+// const SO = merkers.find(b => b.addr === 'M1.1')
 
-const M9 = new Door(
+const M9 = new DoorVFD(
   0,
+  IV2,
+  [],
   [EZ, EO, AP, FB, EX, FX],
-  [SZ, SO, KX]
+  [KX],
+  [EZ, EO],
+  KX
 )
 
 const AMM = inputs.find(b => b.addr === 'E7.0')
