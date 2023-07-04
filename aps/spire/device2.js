@@ -1,7 +1,7 @@
 const { inputs, outputs } = require('./obj')
 const { Device, DeviceView } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
-const { Door, Flap, Lock, Hoisting, Rotation, Silomat } = require('../../models/Motor')
+const { Door, Flap, Garage, Lock, Hoisting, Rotation, Silomat } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
 
 const device = new Device(2, 'EVT2')
@@ -16,35 +16,6 @@ const lamps = [
   outputs.find(b => b.addr === 'A200.6'),
   inputs.find(b => b.addr === 'E212.3')
 ]
-
-// const L1 = outputs.find(b => b.addr === 'A201.0')
-// const L2 = outputs.find(b => b.addr === 'A201.1')
-// const L3 = outputs.find(b => b.addr === 'A201.2')
-// const L4 = outputs.find(b => b.addr === 'A201.3')
-// const L5 = outputs.find(b => b.addr === 'A201.4')
-
-// const FDL = inputs.find(b => b.addr === 'E206.4')
-// const FDR = inputs.find(b => b.addr === 'E206.5')
-// const FLA = inputs.find(b => b.addr === 'E207.2')
-// const FLP = inputs.find(b => b.addr === 'E207.0')
-// const FPE = inputs.find(b => b.addr === 'E206.3')
-// const FRE = inputs.find(b => b.addr === 'E210.6')
-// const FT1 = inputs.find(b => b.addr === 'E206.6')
-// const FT2 = inputs.find(b => b.addr === 'E206.7')
-
-// const view = {
-//   a: device,
-//   b: positions,
-//   c: lamps,
-//   d: [],
-//   e: [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH],
-//   alarms: [],
-//   vg: {
-//     panel: [L1, L2, L3, L4, L5],
-//     sensors: [FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]
-//   }
-// }
-
 const EN1 = inputs.find(b => b.addr === 'E202.3')
 const EN2 = inputs.find(b => b.addr === 'E202.0')
 
@@ -177,13 +148,36 @@ const drives = [IV1, IV2]
 
 const motors = [M1, M2, M3, M4, M5, M6, ...silomat.motors]
 
+const L1 = outputs.find(b => b.addr === 'A201.0')
+const L2 = outputs.find(b => b.addr === 'A201.1')
+const L3 = outputs.find(b => b.addr === 'A201.2')
+const L4 = outputs.find(b => b.addr === 'A201.3')
+const L5 = outputs.find(b => b.addr === 'A201.4')
+
+const FDL = inputs.find(b => b.addr === 'E206.4')
+const FDR = inputs.find(b => b.addr === 'E206.5')
+const FLA = inputs.find(b => b.addr === 'E207.2')
+const FLP = inputs.find(b => b.addr === 'E207.0')
+const FPE = inputs.find(b => b.addr === 'E206.3')
+const FRE = inputs.find(b => b.addr === 'E210.6')
+const FT1 = inputs.find(b => b.addr === 'E206.6')
+const FT2 = inputs.find(b => b.addr === 'E206.7')
+
+const vg = new Garage(
+  1,
+  [M4, M5, M6],
+  [L1, L2, L3, L4, L5],
+  [FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]
+)
+
 const view = new DeviceView(
   device,
   [],
   drives,
   lamps,
-  [M1, M2, M3, M4, M5, M6],
-  silomat
+  [M1, M2, M3],
+  silomat,
+  vg
 )
 
 module.exports = { device, drives, motors, positions, silomat, view }

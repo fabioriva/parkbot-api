@@ -121,6 +121,18 @@ class MotorVFD {
   }
 }
 
+class DoorVFD extends MotorVFD {
+  static messages = ['mov-close', 'mov-open', 'pos-closed', 'pos-opened']
+  constructor (id, inputs, outputs, run) {
+    super(id, inputs, outputs, run)
+    this.name = { key: 'mot-door', query: { id } }
+  }
+
+  update () {
+    this.update_(Door.messages)
+  }
+}
+
 class Hoisting extends MotorVFD {
   static messages = ['mov-up', 'mov-down']
   constructor (id, drive, encoders = [], inputs = [], outputs = [], run) {
@@ -226,13 +238,23 @@ class SilomatCentering extends Motor {
   }
 }
 
+class Garage {
+  constructor (id, motors = [], panel = [], sensors = []) {
+    this.id = id
+    this.motors = motors
+    this.panel = panel
+    this.sensors = sensors
+  }
+}
+
 module.exports = {
   Barrier,
   Door,
   Flap,
-  Lock,
+  Garage,
   Hoisting,
+  Lock,
   Rotation,
-  Traveling,
-  Silomat
+  Silomat,
+  Traveling
 }

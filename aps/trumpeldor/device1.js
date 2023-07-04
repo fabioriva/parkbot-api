@@ -98,8 +98,10 @@ const EO = inputs.find(b => b.addr === 'E10.1')
 const FB = inputs.find(b => b.addr === 'E10.2')
 const AP = inputs.find(b => b.addr === 'E9.1')
 const KX = outputs.find(b => b.addr === 'A4.5')
-const SZ = merkers.find(b => b.addr === 'M1.0')
-const SO = merkers.find(b => b.addr === 'M1.1')
+// const SZ = merkers.find(b => b.addr === 'M1.0')
+// const SO = merkers.find(b => b.addr === 'M1.1')
+const SZ = outputs.find(b => b.addr === 'A4.5')
+const SO = outputs.find(b => b.addr === 'A4.5')
 
 const M9 = new Door(
   0,
