@@ -146,8 +146,6 @@ const vg = new Garage(
   [FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]
 )
 
-console.log(vg)
-
 const view = new DeviceView(
   device,
   [],
