@@ -247,10 +247,10 @@ class SilomatCentering extends Motor {
 }
 
 class Garage {
-  static messages = ['vacant', 'busy', 'car']
+  static messages = ['vg-vacant', 'vg-busy', 'vg-car']
   constructor (data = []) {
     this.data = data
-    this.name = 'bits-garage'
+    this.name = 'view-garage'
   }
 
   update () {
@@ -269,10 +269,10 @@ class Garage {
 }
 
 class Panel {
-  static messages = ['L1', 'L2', 'L3', 'L4', 'L5']
+  static messages = ['lp-1', 'lp-2', 'lp-3', 'lp-4', 'lp-5']
   constructor (data = []) {
     this.data = data
-    this.name = 'bits-panel'
+    this.name = 'view-panel'
   }
 
   update () {
@@ -288,7 +288,7 @@ class Panel {
     } else if (L5.status) {
       this.message = Panel.messages[4]
     } else {
-      this.message = 'off'
+      this.message = 'lp-off'
     }
     // console.log(this.name, this.message)
   }
