@@ -1,7 +1,7 @@
 const { inputs, outputs } = require('./obj')
 const { Device, DeviceView } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
-const { Door, Flap, Garage, Lock, Hoisting, Rotation, Silomat } = require('../../models/Motor')
+const { Door, Flap, Garage, Panel, Lock, Hoisting, Rotation, Silomat } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
 
 const device = new Device(2, 'EVT2')
@@ -165,21 +165,21 @@ const FRE = inputs.find(b => b.addr === 'E210.6')
 const FT1 = inputs.find(b => b.addr === 'E206.6')
 const FT2 = inputs.find(b => b.addr === 'E206.7')
 
-const vg = new Garage(
-  1,
-  [M4, M5, M6],
-  [L1, L2, L3, L4, L5],
-  [FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]
-)
+const bits = [
+  new Garage([FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]),
+  new Panel([L1, L2, L3, L4, L5])
+]
+
+const views = [
+  { name: 'view-main', drives, motors: [M1, M2, M3] },
+  { name: 'view-garage', bits, motors: [M4, M5, M6] }
+]
 
 const view = new DeviceView(
   device,
   [],
-  drives,
   lamps,
-  [M1, M2, M3],
-  silomat,
-  vg
+  views
 )
 
 module.exports = { device, drives, motors, positions, silomat, view }

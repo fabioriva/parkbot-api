@@ -247,11 +247,50 @@ class SilomatCentering extends Motor {
 }
 
 class Garage {
-  constructor (id, motors = [], panel = [], sensors = []) {
-    this.id = id
-    this.motors = motors
-    this.panel = panel
-    this.sensors = sensors
+  static messages = ['vacant', 'busy', 'car']
+  constructor (data = []) {
+    this.data = data
+    this.name = 'bits-garage'
+  }
+
+  update () {
+    const [FPE, FRE, FLA, FLP, FDL, FDR] = this.data
+    const vacant = FPE.status && !FRE.status && FLA.status && FLP.status && FDL.status && FDR.status
+    const car = !FPE.status && FRE.status && FLA.status && FLP.status && FDL.status && FDR.status
+    if (vacant) {
+      this.message = Garage.messages[0]
+    } else if (car) {
+      this.message = Garage.messages[2]
+    } else {
+      this.message = Garage.messages[1]
+    }
+    // console.log(this.name, this.message)
+  }
+}
+
+class Panel {
+  static messages = ['L1', 'L2', 'L3', 'L4', 'L5']
+  constructor (data = []) {
+    this.data = data
+    this.name = 'bits-panel'
+  }
+
+  update () {
+    const [L1, L2, L3, L4, L5] = this.data
+    if (L1.status) {
+      this.message = Panel.messages[0]
+    } else if (L2.status) {
+      this.message = Panel.messages[1]
+    } else if (L3.status) {
+      this.message = Panel.messages[2]
+    } else if (L4.status) {
+      this.message = Panel.messages[3]
+    } else if (L5.status) {
+      this.message = Panel.messages[4]
+    } else {
+      this.message = 'off'
+    }
+    // console.log(this.name, this.message)
   }
 }
 
@@ -260,10 +299,11 @@ module.exports = {
   Door,
   DoorVFD,
   Flap,
-  Garage,
   Hoisting,
   Lock,
   Rotation,
   Silomat,
-  Traveling
+  Traveling,
+  Garage,
+  Panel
 }

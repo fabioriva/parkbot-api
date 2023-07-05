@@ -59,14 +59,11 @@ class Device {
 }
 
 class DeviceView {
-  constructor (device, actions = [], drives = [], leds = [], motors = [], silomat, vg) {
+  constructor (device, actions = [], leds = [], views = []) {
     this.a = device
     this.d = actions
-    this.drives = drives
     this.c = leds
-    this.motors = motors
-    this.silomat = silomat
-    this.vg = vg
+    this.views = views
   }
 }
 

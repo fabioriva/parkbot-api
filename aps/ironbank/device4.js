@@ -21,7 +21,7 @@ const A0 = {
 }
 
 const EN1 = inputs.find(b => b.addr === 'E12.0')
-const IV1 = new Drive(1, 'IV1', EN1)
+const IV1 = new Drive(1, 'IVB', EN1)
 
 /**
  * Rotation
@@ -83,16 +83,14 @@ const M4 = new Barrier(
   [SZB, SOB]
 )
 
-const drives = []
+const drives = [IV1]
 
 const motors = [M1, M2, M3, M4]
 
-const view = new DeviceView(
-  device,
-  [A0],
-  drives,
-  lamps,
-  [M1, M2, M3, M4]
-)
+const views = [
+  { name: 'view-main', drives, motors: [M1, M2, M3, M4] }
+]
+
+const view = new DeviceView(device, [A0], lamps, views)
 
 module.exports = { device, drives, motors, positions, view }

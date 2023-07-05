@@ -111,13 +111,11 @@ const drives = [IV1, IV2]
 
 const motors = [M1, M2, M3, ...silomat.motors]
 
-const view = new DeviceView(
-  device,
-  [],
-  drives,
-  lamps,
-  [M1, M2, M3],
-  silomat
-)
+const views = [
+  { name: 'view-main', drives, motors: [M1, M2, M3] },
+  { name: 'view-sil', drives: [IV2], motors: [...silomat.motors] }
+]
+
+const view = new DeviceView(device, [], lamps, views)
 
 module.exports = { device, drives, motors, positions, view }

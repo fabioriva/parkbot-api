@@ -1,7 +1,7 @@
 const { inputs, outputs } = require('./obj')
 const { Device, DeviceView } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
-const { Door, Flap, Garage, Lock, Hoisting, Rotation } = require('../../models/Motor')
+const { Door, Flap, Garage, Panel, Lock, Hoisting, Rotation } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
 
 const device = new Device(1, 'EL1')
@@ -122,7 +122,7 @@ const drives = [IV1]
 
 const motors = [M1, M2, M3, M4, M5, M6]
 
-const silomat = undefined
+// const silomat = undefined
 
 const L1 = outputs.find(b => b.addr === 'A101.0')
 const L2 = outputs.find(b => b.addr === 'A101.1')
@@ -139,21 +139,21 @@ const FRE = inputs.find(b => b.addr === 'E107.5')
 const FT1 = inputs.find(b => b.addr === 'E106.6')
 const FT2 = inputs.find(b => b.addr === 'E106.7')
 
-const vg = new Garage(
-  1,
-  [M5, M6],
-  [L1, L2, L3, L4, L5],
-  [FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]
-)
+const bits = [
+  new Garage([FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]),
+  new Panel([L1, L2, L3, L4, L5])
+]
+
+const views = [
+  { name: 'view-main', drives, motors: [M1, M2, M3, M4] },
+  { name: 'view-garage', bits, motors: [M5, M6] }
+]
 
 const view = new DeviceView(
   device,
   [],
-  drives,
   lamps,
-  [M1, M2, M3, M4],
-  silomat,
-  vg
+  views
 )
 
 module.exports = { device, drives, motors, positions, view }
