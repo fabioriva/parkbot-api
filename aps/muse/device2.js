@@ -1,10 +1,10 @@
 const { inputs, outputs } = require('./obj')
-const { Device, DeviceView } = require('../../models/Device')
+const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const { Door, Flap, Garage, Panel, Lock, Hoisting, Rotation, Traveling } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
 
-const device = new Device(2, 'EL2')
+// const device = new Device(2, 'EL2')
 
 const LV1 = new Position(1, 'LV1')
 const LV2 = new Position(2, 'LV2')
@@ -151,15 +151,18 @@ const bits = [
 ]
 
 const views = [
-  { name: 'view-main', drives, motors: [M1, M2, M3, M4, M5, M6, M7] },
+  { name: 'view-main', drives, motors: [M1, M6, M7] },
+  { name: 'view-more', motors: [M2, M3, M4, M5] },
   { name: 'view-garage', bits, motors: [M8, M9] }
 ]
 
-const view = new DeviceView(
-  device,
-  [],
-  lamps,
-  views
-)
+const device = new Device(2, 'EL2', [], lamps, views)
 
-module.exports = { device, drives, motors, positions, view }
+// const view = new DeviceView(
+//   device,
+//   [],
+//   lamps,
+//   views
+// )
+
+module.exports = { device, drives, motors, positions }

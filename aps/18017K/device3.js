@@ -1,10 +1,8 @@
 const { inputs, outputs } = require('./obj')
-const { Device, DeviceView } = require('../../models/Device')
+const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const { Hoisting, Lock, Rotation, Traveling, Silomat } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
-
-const device = new Device(3, 'EL')
 
 const EN1 = inputs.find(b => b.addr === 'E2.0')
 const EN2 = inputs.find(b => b.addr === 'E2.1')
@@ -130,13 +128,6 @@ const drives = [IV1, IV2]
 
 const motors = [Hoisting1, Traveling1, Rotation1, Lock1, ...silomat.motors]
 
-const view = new DeviceView(
-  device,
-  [],
-  drives,
-  lamps,
-  [Hoisting1, Lock1, Traveling1, Rotation1],
-  silomat
-)
+const device = new Device(3, 'EL', [], lamps, [])
 
-module.exports = { device, drives, motors, positions, view }
+module.exports = { device, drives, motors, positions }

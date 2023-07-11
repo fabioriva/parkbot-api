@@ -1,5 +1,5 @@
 const { inputs, outputs } = require('./obj')
-const { Device, DeviceView } = require('../../models/Device')
+const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const {
   Door,
@@ -13,8 +13,6 @@ const {
   Traveling
 } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
-
-const device = new Device(1, 'EL1')
 
 const LV1 = new Position(1, 'LV1')
 const LV2 = new Position(2, 'LV2')
@@ -188,11 +186,6 @@ const views = [
   { name: 'view-sil', drives: [IV1], motors: [...silomat.motors] }
 ]
 
-const view = new DeviceView(
-  device,
-  [],
-  lamps,
-  views
-)
+const device = new Device(1, 'EL1', [], lamps, views)
 
-module.exports = { device, drives, motors, positions, view }
+module.exports = { device, drives, motors, positions }

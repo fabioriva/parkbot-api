@@ -48,8 +48,8 @@ exports.positions = device1.positions
 exports.modes = str.MODES
 
 exports.overview = {
-  definitions: { cards: def.CARDS, stalls: def.STALLS },
-  devices: [device1.view],
+  // definitions: { cards: def.CARDS, stalls: def.STALLS },
+  devices: [[device1.device]],
   // drives,
   exitQueue: {
     queueList: queue,

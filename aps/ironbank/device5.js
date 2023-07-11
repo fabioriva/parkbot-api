@@ -1,10 +1,8 @@
 const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
-const { Device, DeviceView } = require('../../models/Device')
+const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const { Barrier, Door, Flap, Rotation } = require('../../models/Motor')
-
-const device = new Device(5, 'C')
 
 const positions = []
 
@@ -91,6 +89,6 @@ const views = [
   { name: 'view-main', drives, motors: [M1, M2, M3, M4] }
 ]
 
-const view = new DeviceView(device, [A0], lamps, views)
+const device = new Device(3, 'A', [A0], lamps, views)
 
-module.exports = { device, drives, motors, positions, view }
+module.exports = { device, drives, motors, positions }
