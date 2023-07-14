@@ -1,5 +1,6 @@
 const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
+const { Action } = require('../../models/Action')
 const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const { Hoisting, Lock, Traveling, Silomat } = require('../../models/Motor')
@@ -19,11 +20,12 @@ const lamps = [
   outputs.find(b => b.addr === 'A400.6')
 ]
 
-const A0 = {
-  conn: def.ROLLBACK_EL3,
-  enable: merkers.find(b => b.addr === 'M4.2'),
-  key: 'action-rollback'
-}
+// const A0 = {
+//   conn: def.ROLLBACK_EL4,
+//   enable: merkers.find(b => b.addr === 'M4.2'),
+//   key: 'action-rollback'
+// }
+const A0 = new Action('action-rollback', merkers.find(b => b.addr === 'M4.3'), def.ROLLBACK_EL4)
 
 const EN1 = inputs.find(b => b.addr === 'E401.1')
 const EN2 = inputs.find(b => b.addr === 'E413.0')

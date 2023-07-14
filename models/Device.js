@@ -24,7 +24,6 @@ class Device {
     this.size = size
     this.stall = stall
     this.step = step
-    this.a = { id, name, card, mode, motor, operation, position, size, stall, step } // necessary for old backend compatibility
     this.d = actions
     this.c = lamps
     this.views = views
@@ -39,15 +38,6 @@ class Device {
     this.size = buffer.readInt16BE(10)
     this.stall = buffer.readInt16BE(12)
     this.step = buffer.readInt16BE(14)
-    // below is necessary for old backend compatibility
-    this.a.card = buffer.readInt16BE(0)
-    this.a.mode = modes.find(mode => mode.id === buffer.readInt16BE(2))
-    this.a.motor = buffer.readInt16BE(4)
-    this.a.operation = buffer.readInt16BE(6)
-    this.a.position = buffer.readInt16BE(8)
-    this.a.size = buffer.readInt16BE(10)
-    this.a.stall = buffer.readInt16BE(12)
-    this.a.step = buffer.readInt16BE(14)
   }
 }
 

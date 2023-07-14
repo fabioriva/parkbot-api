@@ -1,5 +1,6 @@
 const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
+const { Action } = require('../../models/Action')
 const { Device } = require('../../models/Device')
 const { Barrier, Door, Flap } = require('../../models/Motor')
 
@@ -12,11 +13,12 @@ const lamps = [
 //   inputs.find(b => b.addr === 'E6.3') // FPE
 ]
 
-const A0 = {
-  conn: def.REQ_2,
-  enable: merkers.find(b => b.addr === 'M3.2'),
-  key: 'action-entry'
-}
+// const A0 = {
+//   conn: def.REQ_2,
+//   enable: merkers.find(b => b.addr === 'M3.2'),
+//   key: 'action-entry'
+// }
+const A0 = new Action('action-entry', merkers.find(b => b.addr === 'M3.2'), def.REQ_2, 1, def.CARDS)
 
 const AMC2 = inputs.find(b => b.addr === 'E3.1')
 const ECA2 = inputs.find(b => b.addr === 'E9.5')

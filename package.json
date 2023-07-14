@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/nyu",
+    "dev": "nodemon aps/18017K",
     "start": "NODE_ENV=production pm2 start aps/18017K/index.js --name aps-xian --max-memory-restart 128M",
     "test": "standard"
   },

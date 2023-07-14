@@ -1,5 +1,6 @@
 const def = require('./def')
 const str = require('./str')
+const { Action } = require('../../models/Action')
 const { Alarms, generateAlarms } = require('../../models/Alarm')
 const { generateBits, generateBytes } = require('../../models/Bit')
 const { generateCards } = require('../../models/Card')
@@ -69,13 +70,14 @@ exports.overview = {
   // drives,
   exitQueue: {
     queueList: queue,
-    exitButton: {
-      // conn: def.REQ_0,
-      enable: merkers.find(b => b.addr === 'M3.0'),
-      key: 'action-exit',
-      min: 1,
-      max: def.CARDS
-    }
+    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
+    // exitButton: {
+    //   // conn: def.REQ_0,
+    //   enable: merkers.find(b => b.addr === 'M3.0'),
+    //   key: 'action-exit',
+    //   min: 1,
+    //   max: def.CARDS
+    // }
   }
 }
 
