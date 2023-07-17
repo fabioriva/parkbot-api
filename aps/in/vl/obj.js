@@ -39,7 +39,7 @@ const device1 = require('./device1')
 const queue = generateQueue(def)
 exports.queue = queue
 
-exports.devices = [device1.device]
+exports.devices = [[device1.device]]
 
 exports.drives = device1.drives
 

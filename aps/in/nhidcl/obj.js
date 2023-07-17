@@ -100,8 +100,6 @@ exports.positions = device1.positions.concat(
   device6.positions
 )
 
-exports.diagnostic = [device1, device2, device3, device4, device5, device6]
-
 exports.modes = str.MODES
 
 exports.overview = {

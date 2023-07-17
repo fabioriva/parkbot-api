@@ -70,7 +70,7 @@ exports.modes = str.MODES
 
 exports.overview = {
   devices: [
-    [device1.device, device2.device, device3.device]
+    [[device1.device, device2.device, device3.device]]
   ],
   exitQueue: {
     queueList: queue,
