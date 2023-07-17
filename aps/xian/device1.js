@@ -1,5 +1,6 @@
-const { REQ_1 } = require('./def')
+const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
+const { Action } = require('../../models/Action')
 const { Device } = require('../../models/Device')
 
 const device = new Device(1, 'E1')
@@ -12,11 +13,7 @@ const lamps = [
   outputs.find(b => b.addr === 'A1.6')
 ]
 
-const A0 = {
-  conn: REQ_1,
-  enable: merkers.find(b => b.addr === 'M3.1'),
-  key: 'action-entry'
-}
+const A0 = new Action('action-entry', merkers.find(b => b.addr === 'M3.1'), def.REQ_1, 1, def.CARDS)
 
 const view = {
   a: device,

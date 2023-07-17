@@ -1,5 +1,6 @@
 const def = require('./def')
 const str = require('./str')
+const { Action } = require('../../models/Action')
 const { Alarms, generateAlarms } = require('../../models/Alarm')
 const { generateBits, generateBytes } = require('../../models/Bit')
 const { generateCards } = require('../../models/Card')
@@ -212,20 +213,13 @@ exports.positions = device1.positions.concat(
 exports.modes = str.MODES
 
 exports.overview = {
-  // definitions: { cards: def.CARDS, stalls: def.STALLS },
   devices: [
     [device1.device, device2.device, device3.device],
     [device4.device, device5.device, device6.device]
   ],
   exitQueue: {
     queueList: queue,
-    exitButton: {
-      // conn: def.REQ_0,
-      enable: merkers.find(b => b.addr === 'M3.0'),
-      key: 'action-exit',
-      min: 1,
-      max: def.CARDS
-    }
+    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
   }
 }
 
