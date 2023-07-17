@@ -5,6 +5,7 @@ const util = require('util')
 const { getPlcDateTime } = require('../lib/utils7')
 
 class Card {
+  #rand
   constructor (
     nr,
     code = '000',
@@ -16,7 +17,7 @@ class Card {
     this.code = code
     this.from = from
     this.to = to
-    this.rand = this.getRandomIntInclusive(256, 4095)
+    this.#rand = this.getRandomIntInclusive(256, 4095)
       .toString(16)
       .toUpperCase()
     this.status = status
