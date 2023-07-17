@@ -1,6 +1,6 @@
 const def = require('./def')
 const str = require('./str')
-const { Action } = require('../../models/Action')
+const { Action } = require('../../../models/Action')
 const { Alarms, generateAlarms } = require('../../../models/Alarm')
 const { generateBits, generateBytes } = require('../../../models/Bit')
 const { generateCards } = require('../../../models/Card')
