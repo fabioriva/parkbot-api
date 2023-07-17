@@ -81,7 +81,6 @@ const queue = generateQueue(def)
 exports.queue = queue
 
 exports.overview = {
-  // definitions: { cards: def.CARDS, stalls: def.STALLS },
   devices: [
     [device1.device, device2.device],
     [device3.device, device4.device, device5.device]

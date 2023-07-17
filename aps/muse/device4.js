@@ -6,8 +6,6 @@ const { Drive } = require('../../models/Drive')
 const { Hoisting, Lock, Traveling, Silomat } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
 
-// const device = new Device(4, 'EL4')
-
 const LV1 = new Position(9, 'LV1')
 const LV2 = new Position(10, 'LV2')
 const LH1 = new Position(11, 'LH1')
@@ -20,11 +18,6 @@ const lamps = [
   outputs.find(b => b.addr === 'A400.6')
 ]
 
-// const A0 = {
-//   conn: def.ROLLBACK_EL4,
-//   enable: merkers.find(b => b.addr === 'M4.2'),
-//   key: 'action-rollback'
-// }
 const A0 = new Action('action-rollback', merkers.find(b => b.addr === 'M4.3'), def.ROLLBACK_EL4)
 
 const EN1 = inputs.find(b => b.addr === 'E401.1')
@@ -111,12 +104,5 @@ const views = [
 ]
 
 const device = new Device(4, 'EL4', [A0], lamps, views)
-
-// const view = new DeviceView(
-//   device,
-//   [A0],
-//   lamps,
-//   views
-// )
 
 module.exports = { device, drives, motors, positions }

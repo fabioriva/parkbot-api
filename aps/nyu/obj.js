@@ -56,7 +56,6 @@ exports.positions = device1.positions.concat(device2.positions)
 exports.modes = str.MODES
 
 exports.overview = {
-  // definitions: { cards: def.CARDS, stalls: def.STALLS },
   devices: [[device1.device, device2.device]],
   exitQueue: {
     queueList: queue,

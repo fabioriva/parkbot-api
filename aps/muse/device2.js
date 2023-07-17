@@ -4,8 +4,6 @@ const { Drive } = require('../../models/Drive')
 const { Door, Flap, Garage, Panel, Lock, Hoisting, Rotation, Traveling } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
 
-// const device = new Device(2, 'EL2')
-
 const LV1 = new Position(1, 'LV1')
 const LV2 = new Position(2, 'LV2')
 const ENH = new Position(3, 'ENH')
@@ -157,12 +155,5 @@ const views = [
 ]
 
 const device = new Device(2, 'EL2', [], lamps, views)
-
-// const view = new DeviceView(
-//   device,
-//   [],
-//   lamps,
-//   views
-// )
 
 module.exports = { device, drives, motors, positions }
