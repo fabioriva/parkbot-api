@@ -54,10 +54,9 @@ exports.updateStalls = util.promisify(
     for (let i = min; i < max; i++) {
       stalls[i].update(buffer.slice(byte, byte + offset))
       byte += offset
-      // update card status
-      const card = stalls[i].status
-      if (card >= 1 && card <= cards.length) {
-        cards[card - 1].status = i + 1
+      const card = cards.find(card => card.nr === stalls[i].status)
+      if (card !== undefined) {
+        card.status = stalls[i].nr // update card status
       }
     }
     callback(null, stalls)
