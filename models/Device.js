@@ -6,7 +6,7 @@ class Device {
     name,
     actions = [], lamps = [], views = [],
     card = 0,
-    mode = { id: 0, mode: 'mode-no-func' },
+    mode = { id: 0, key: 'mode-no' },
     motor = 0,
     operation = 0,
     position = 0,
@@ -31,7 +31,7 @@ class Device {
 
   update (buffer, modes) {
     this.card = buffer.readInt16BE(0)
-    this.mode = modes.find(mode => mode.id === buffer.readInt16BE(2))
+    this.mode = modes.find(mode => mode.id === buffer.readInt16BE(2)) || { id: 0, key: 'mode-no' }
     this.motor = buffer.readInt16BE(4)
     this.operation = buffer.readInt16BE(6)
     this.position = buffer.readInt16BE(8)
