@@ -1,6 +1,6 @@
 class Action {
   // #writeArea
-  constructor (id, enable, writeArea, minTag, maxTag) {
+  constructor (id, enable, writeArea, minTag = 0, maxTag = 0) {
     this.key = id
     this.enable = enable
     this.writeArea = writeArea
