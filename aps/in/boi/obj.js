@@ -8,8 +8,8 @@ const { generateQueue } = require('../../../models/Queue')
 const { generateStalls } = require('../../../models/Stall')
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // 'EL1')
-const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 2) // 'ELA')
-const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 3) // 'EL2')
+const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // 'EL2')
+const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 3) // 'ELA')
 const al04 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 4) // 'ELB')
 exports.alarms = [al01, al02, al03, al04]
 
@@ -28,7 +28,7 @@ const outputs1 = generateBits('A', 0, 1, str.outputs1)
 const outputs2 = generateBits('A', 10, 17, str.outputs2)
 const outputs3 = generateBits('A', 30, 37, str.outputs3)
 const outputs4 = generateBits('A', 40, 47, str.outputs4)
-const outputs5 = generateBits('A', 67, 67, str.outputs5)
+const outputs5 = generateBits('A', 60, 67, str.outputs5)
 const outputs = outputs1.concat(outputs2, outputs3, outputs4, outputs5)
 exports.outputs = outputs
 
@@ -45,8 +45,8 @@ exports.racks = racks
 
 const device1 = require('./device1')
 const device2 = require('./device2')
-const device3 = require('./device1')
-const device4 = require('./device2')
+const device3 = require('./device3')
+const device4 = require('./device4')
 
 const queue = generateQueue(def)
 exports.queue = queue

@@ -12,16 +12,14 @@ const { Device } = require('../../../models/Device')
 // } = require('../../models/Motor')
 const { Position } = require('../../../models/Position')
 
-const LV1 = new Position(3, 'LV1')
-const LV2 = new Position(4, 'LV2')
-const LH1 = new Position(5, 'LH1')
-const LH2 = new Position(6, 'LH2')
-const positions = [LV1, LV2, LH1, LH2]
+const LV = new Position(3, 'LV')
+const ENR = new Position(4, 'ENR')
+const positions = [LV, ENR]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E30.1'),
-  outputs.find(b => b.addr === 'A30.5'),
-  outputs.find(b => b.addr === 'A30.4')
+  inputs.find(b => b.addr === 'E40.1'),
+  outputs.find(b => b.addr === 'A40.5'),
+  outputs.find(b => b.addr === 'A40.4')
 ]
 
 // const silomat = [
