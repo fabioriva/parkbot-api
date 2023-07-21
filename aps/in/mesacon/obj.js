@@ -69,9 +69,7 @@ exports.positions = device1.positions.concat(
 exports.modes = str.MODES
 
 exports.overview = {
-  devices: [
-    [[device1.device, device2.device, device3.device]]
-  ],
+  devices: [[device1.device, device2.device, device3.device]],
   exitQueue: {
     queueList: queue,
     exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)

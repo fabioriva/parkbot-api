@@ -1,10 +1,8 @@
 const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
 const { Device } = require('../../../models/Device')
-const { Position } = require('../../../models/Position')
 
-const ENR = new Position(1, 'ENR')
-const positions = [ENR]
+const positions = []
 
 const lamps = [
   inputs.find(b => b.addr === 'E1.3'),
