@@ -96,7 +96,7 @@ const silomat = new Silomat(
 
 const drives = [IV1, IV2]
 
-const motors = [M1, M2, M3]
+const motors = [M1, M2, M3, ...silomat.motors]
 
 const views = [
   { name: 'view-main', drives, motors: [M1, M2, M3] },
