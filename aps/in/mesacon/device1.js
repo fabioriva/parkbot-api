@@ -10,12 +10,7 @@ const {
 } = require('../../../models/Motor')
 const { Position } = require('../../../models/Position')
 
-// const EN1 = inputs.find(b => b.addr === 'E1.2')
-// const EN2 = inputs.find(b => b.addr === 'E15.2')
 const EN3 = inputs.find(b => b.addr === 'E2.4')
-
-// const IV1 = new Drive(1, 'IV1', EN1)
-// const IV2 = new Drive(2, 'IV2', EN2)
 const IV3 = new Drive(3, 'IV3', EN3)
 
 const ENR = new Position(1, 'ENR')
@@ -73,7 +68,7 @@ const M5 = new Door(
 const APB = inputs.find(b => b.addr === 'E1.7')
 const EZB = inputs.find(b => b.addr === 'E3.2')
 const EOB = inputs.find(b => b.addr === 'E3.3')
-const FBB = inputs.find(b => b.addr === 'E4.3')
+const FBB = inputs.find(b => b.addr === 'E4.1')
 const SZB = outputs.find(b => b.addr === 'A3.3')
 const SOB = outputs.find(b => b.addr === 'A3.2')
 const KXB = outputs.find(b => b.addr === 'A2.6')
