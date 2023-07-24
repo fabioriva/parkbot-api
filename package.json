@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/in/bmc",
+    "dev": "nodemon aps/in/boi",
     "start": "NODE_ENV=production pm2 start aps/muse/index.js --name aps-muse --max-memory-restart 128M",
     "test": "standard"
   },

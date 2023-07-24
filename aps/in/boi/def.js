@@ -42,7 +42,7 @@ exports.DATA_READ = {
   wordLen: 0x02
 }
 
-const STALLS = 224
+const STALLS = 225
 const STALL_LEN = 10
 exports.STALLS = STALLS
 exports.STALL_LEN = STALL_LEN

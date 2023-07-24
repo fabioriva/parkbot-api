@@ -168,17 +168,17 @@ exports.map = {
         { id: 'el-2', label: 'ELB' }
       ]
     },
-    // {
-    //   nr: 7,
-    //   label: 'Level 7',
-    //   min: 225,
-    //   max: 225,
-    //   stalls: stalls.slice(224),
-    //   elevators: [
-    //     { id: 'el-1', label: 'ELA' },
-    //     { id: 'el-2', label: 'ELB' }
-    //   ]
-    // },
+    {
+      nr: 7,
+      label: 'Level 7',
+      min: 225,
+      max: 225,
+      stalls: stalls.slice(224),
+      elevators: [
+        { id: 'el-1', label: 'ELA' },
+        { id: 'el-2', label: 'ELB' }
+      ]
+    },
     {
       nr: 8,
       label: 'Level 8',

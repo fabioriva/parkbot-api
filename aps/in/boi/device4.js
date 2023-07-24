@@ -1,21 +1,24 @@
 const { inputs, outputs } = require('./obj')
 const { Device } = require('../../../models/Device')
-// const { Drive } = require('../../models/Drive')
-// const {
-//   DoorVFD,
-//   Flap,
-//   Lock,
-//   Hoisting,
-//   Rotation,
-//   Silomat,
-//   Traveling
-// } = require('../../models/Motor')
+const { Drive } = require('../../../models/Drive')
+const {
+  Lock,
+  Hoisting,
+  Silomat,
+  Traveling
+} = require('../../../models/Motor')
 const { Position } = require('../../../models/Position')
 
-const LV1 = new Position(9, 'LV1')
-const LV2 = new Position(10, 'LV2')
-const LH1 = new Position(11, 'LH1')
-const LH2 = new Position(12, 'LH2')
+const EN1 = inputs.find(b => b.addr === 'E60.0')
+const EN2 = inputs.find(b => b.addr === 'E67.0')
+
+const IV1 = new Drive(5, 'IV1', EN1)
+const IV2 = new Drive(6, 'IV2', EN2)
+
+const LV1 = new Position(5, 'LV1')
+const LV2 = new Position(6, 'LV2')
+const LH1 = new Position(7, 'LH1')
+const LH2 = new Position(8, 'LH2')
 const positions = [LV1, LV2, LH1, LH2]
 
 const lamps = [
@@ -24,30 +27,80 @@ const lamps = [
   outputs.find(b => b.addr === 'A60.4')
 ]
 
-// const silomat = [
-//   inputs.find(b => b.addr === 'E116.0'),
-//   inputs.find(b => b.addr === 'E116.1'),
-//   inputs.find(b => b.addr === 'E116.2'),
-//   inputs.find(b => b.addr === 'E116.3'),
-//   inputs.find(b => b.addr === 'E116.4'),
-//   inputs.find(b => b.addr === 'E116.5'),
-//   inputs.find(b => b.addr === 'E116.6'),
-//   inputs.find(b => b.addr === 'E116.7'),
-//   outputs.find(b => b.addr === 'A115.5'),
-//   outputs.find(b => b.addr === 'A115.6'),
-//   outputs.find(b => b.addr === 'A115.7'),
-//   outputs.find(b => b.addr === 'A116.1'),
-//   outputs.find(b => b.addr === 'A116.2'),
-//   outputs.find(b => b.addr === 'A116.3')
-// ]
+const RTA = inputs.find(b => b.addr === 'E60.4')
+const ASBK = inputs.find(b => b.addr === 'E60.3')
+const FSBK = inputs.find(b => b.addr === 'E60.2')
+const SBK1 = outputs.find(b => b.addr === 'A60.0')
+const SBK2 = outputs.find(b => b.addr === 'A60.1')
 
-const drives = []
+const M1 = new Hoisting(
+  0,
+  IV1,
+  [LV1, LV2],
+  [RTA, ASBK, FSBK],
+  [SBK1, SBK2],
+  [],
+  FSBK
+)
 
-const motors = []
+const AMM = inputs.find(b => b.addr === 'E63.2')
+const EOM = inputs.find(b => b.addr === 'E63.3')
+const EZM = inputs.find(b => b.addr === 'E63.4')
+const SMA = outputs.find(b => b.addr === 'A62.0')
+const SMB = outputs.find(b => b.addr === 'A62.1')
+
+const M2 = new Lock(0, [EZM, EOM, AMM], [SMA, SMB])
+
+const ASH = inputs.find(b => b.addr === 'E62.0')
+const AH = inputs.find(b => b.addr === 'E68.6')
+const EMC = inputs.find(b => b.addr === 'E63.5')
+// const TLIV = outputs.find(b => b.addr === 'A7.6')
+const T101 = outputs.find(b => b.addr === 'A65.0')
+const T102 = outputs.find(b => b.addr === 'A66.4')
+const T10F = outputs.find(b => b.addr === 'A66.5')
+
+const M3 = new Traveling(
+  0,
+  IV2,
+  [LH1, LH2],
+  [AH, ASH, EMC],
+  [T101, T102, T10F],
+  [],
+  T10F
+)
+
+const RMV = inputs.find(b => b.addr === 'E66.0')
+const RMH = inputs.find(b => b.addr === 'E66.1')
+const RES = inputs.find(b => b.addr === 'E66.2')
+const REH = inputs.find(b => b.addr === 'E66.3')
+const RCV = inputs.find(b => b.addr === 'E66.4')
+const REAV = inputs.find(b => b.addr === 'E66.5')
+const REAH = inputs.find(b => b.addr === 'E66.6')
+const RCH = inputs.find(b => b.addr === 'E66.7')
+const T2 = outputs.find(b => b.addr === 'A65.1')
+const TRA = outputs.find(b => b.addr === 'A65.2')
+const TRB = outputs.find(b => b.addr === 'A65.3')
+const KCS = outputs.find(b => b.addr === 'A65.4')
+const KCV = outputs.find(b => b.addr === 'A65.5')
+const KCH = outputs.find(b => b.addr === 'A65.6')
+
+const AF8 = inputs.find(b => b.addr === 'E62.0')
+const MTC = inputs.find(b => b.addr === 'E68.7')
+
+const silomat = new Silomat(
+  IV2,
+  [],
+  [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH],
+  [AF8, MTC]
+)
+
+const drives = [IV1, IV2]
+
+const motors = [M1, M2, M3, ...silomat.motors]
 
 const views = [
-  // { name: 'view-main', drives, motors: [M1, M2, M3, M4, M5, M6, M7, M8, M9] },
-  // { name: 'view-sil', drives: [IV2], motors: [...silomat.motors] }
+  { name: 'view-main', drives, motors: [M1, M2, M3] },
+  { name: 'view-sil', drives: [IV2], motors: [...silomat.motors] }
 ]
 
 const device = new Device(4, 'ELB', [], lamps, views)
