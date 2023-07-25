@@ -120,8 +120,6 @@ const drives = [IV1]
 
 const motors = [M1, M2, M3, M4, M5, M6]
 
-// const silomat = undefined
-
 const L1 = outputs.find(b => b.addr === 'A201.0')
 const L2 = outputs.find(b => b.addr === 'A201.1')
 const L3 = outputs.find(b => b.addr === 'A201.2')
