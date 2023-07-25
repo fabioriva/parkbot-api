@@ -183,7 +183,7 @@ const bits = [
 const views = [
   { name: 'view-main', drives, motors: [M1, M2, M3, M4, M5, M6] },
   { name: 'view-garage', bits, motors: [M7, M8] },
-  { name: 'view-sil', drives: [IV1], motors: [...silomat.motors] }
+  silomat.view
 ]
 
 const device = new Device(2, 'EL2', [], lamps, views)

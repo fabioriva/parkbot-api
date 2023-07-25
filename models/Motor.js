@@ -180,13 +180,13 @@ class Silomat {
   constructor (drive, encoders = [], sensors = [], thermics = []) {
     const [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH] = sensors
     const [AF8, MTC] = thermics
-    this.drive = drive
-    this.encoders = encoders
+    // this.drive = drive
+    // this.encoders = encoders
     this.motors = [
       new SilomatTraveling(
         0,
         drive,
-        [],
+        encoders,
         [RMV, RMH, AF8],
         [T2, KCS, KCH],
         [],
@@ -207,6 +207,12 @@ class Silomat {
         [RCH, REAH, MTC],
         [TRA, TRB, KCH]
       )]
+    this.view = {
+      name: 'view-sil',
+      drives: [drive],
+      motors: this.motors,
+      sensors: [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH]
+    }
   }
 }
 

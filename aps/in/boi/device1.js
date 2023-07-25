@@ -131,7 +131,7 @@ const motors = [M1, M2, M3, M4, M5, M6, ...silomat.motors]
 
 const views = [
   { name: 'view-main', drives, motors: [M1, M2, M3, M4, M5, M6] },
-  { name: 'view-sil', drives: [IV2], motors: [...silomat.motors] }
+  silomat.view
 ]
 
 const device = new Device(1, 'EL1', [], lamps, views)

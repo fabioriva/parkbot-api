@@ -171,7 +171,8 @@ const bits = [
 
 const views = [
   { name: 'view-main', drives, motors: [M1, M2, M3] },
-  { name: 'view-garage', bits, motors: [M4, M5, M6] }
+  { name: 'view-garage', bits, motors: [M4, M5, M6] },
+  silomat.view
 ]
 
 const device = new Device(3, 'EVT3', [], lamps, views)
