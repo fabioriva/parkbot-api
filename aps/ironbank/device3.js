@@ -4,6 +4,7 @@ const { Action } = require('../../models/Action')
 const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
 const { Barrier, Door, Flap, Rotation } = require('../../models/Motor')
+const { Main } = require('../../models/View')
 
 const positions = []
 
@@ -82,10 +83,10 @@ const drives = [IV1]
 
 const motors = [M1, M2, M3, M4]
 
-const views = [
-  { name: 'view-main', drives, motors: [M1, M2, M3, M4] }
-]
+const main = new Main(drives, [M1, M2, M3])
 
-const device = new Device(3, 'A', [A0], lamps, views)
+const views = [main]
+
+const device = new Device(3, 'A', [A0], lamps, motors, views)
 
 module.exports = { device, drives, motors, positions }

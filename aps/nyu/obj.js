@@ -49,7 +49,7 @@ exports.devices = [device1.device, device2.device]
 
 exports.drives = device1.drives.concat(device2.drives)
 
-exports.motors = device1.motors.concat(device2.motors)
+// exports.motors = device1.motors.concat(device2.motors)
 
 exports.positions = device1.positions.concat(device2.positions)
 

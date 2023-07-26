@@ -1,10 +1,14 @@
 const util = require('util')
 
 class Device {
+  #motors
   constructor (
     id,
     name,
-    actions = [], lamps = [], views = [],
+    actions,
+    lamps,
+    motors,
+    views,
     card = 0,
     mode = { id: 0, key: 'mode-no' },
     motor = 0,
@@ -18,15 +22,16 @@ class Device {
     this.name = name
     this.card = card
     this.mode = mode
-    this.motor = motor
+    this.motor = motor // used to switch view
     this.operation = operation
-    this.position = position
+    this.position = position // not used
     this.size = size
     this.stall = stall
     this.step = step
     this.d = actions
     this.c = lamps
     this.views = views
+    this.#motors = motors // needed to update motor message
   }
 
   update (buffer, modes) {
@@ -38,6 +43,8 @@ class Device {
     this.size = buffer.readInt16BE(10)
     this.stall = buffer.readInt16BE(12)
     this.step = buffer.readInt16BE(14)
+    this.#motors.forEach(m => m.update()) // update motors message
+    // this.views.forEach((view) => view.bits !== undefined && view.bits.forEach(bit => bit.update()))
   }
 }
 

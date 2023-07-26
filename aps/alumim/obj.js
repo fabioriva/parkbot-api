@@ -39,10 +39,9 @@ exports.queue = queue
 
 exports.devices = [device1.device]
 
-const drives = device1.drives
-exports.drives = drives
+exports.drives = device1.drives
 
-exports.motors = device1.motors
+// exports.motors = device1.motors
 
 exports.positions = device1.positions
 

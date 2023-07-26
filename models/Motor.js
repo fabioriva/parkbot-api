@@ -176,45 +176,41 @@ class Traveling extends MotorVFD {
   }
 }
 
-class Silomat {
-  constructor (drive, encoders = [], sensors = [], thermics = []) {
-    const [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH] = sensors
-    const [AF8, MTC] = thermics
-    // this.drive = drive
-    // this.encoders = encoders
-    this.motors = [
-      new SilomatTraveling(
-        0,
-        drive,
-        encoders,
-        [RMV, RMH, AF8],
-        [T2, KCS, KCH],
-        [],
-        T2
-      ),
-      new SilomatHoisting(
-        0,
-        [RES, REH, MTC],
-        [TRA, TRB, KCS]
-      ),
-      new SilomatCentering(
-        'v',
-        [RCV, REAV, MTC],
-        [TRA, TRB, KCV]
-      ),
-      new SilomatCentering(
-        'h',
-        [RCH, REAH, MTC],
-        [TRA, TRB, KCH]
-      )]
-    this.view = {
-      name: 'view-sil',
-      drives: [drive],
-      motors: this.motors,
-      sensors: [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH]
-    }
-  }
-}
+// class Silomat {
+//   constructor (drive, encoders = [], sensors = [], thermics = []) {
+//     const [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH] = sensors
+//     const [AF8, MTC] = thermics
+//     this.drives = [drive]
+//     // this.encoders = encoders
+//     this.motors = [
+//       new SilomatTraveling(
+//         0,
+//         drive,
+//         encoders,
+//         [RMV, RMH, AF8],
+//         [T2, KCS, KCH],
+//         [],
+//         T2
+//       ),
+//       new SilomatHoisting(
+//         0,
+//         [RES, REH, MTC],
+//         [TRA, TRB, KCS]
+//       ),
+//       new SilomatCentering(
+//         'v',
+//         [RCV, REAV, MTC],
+//         [TRA, TRB, KCV]
+//       ),
+//       new SilomatCentering(
+//         'h',
+//         [RCH, REAH, MTC],
+//         [TRA, TRB, KCH]
+//       )]
+//     this.name = 'view-sil'
+//     this.sensors = sensors
+//   }
+// }
 
 class SilomatTraveling extends MotorVFD {
   static messages = ['sil-mov-stall', 'sil-mov-home']
@@ -252,53 +248,53 @@ class SilomatCentering extends Motor {
   }
 }
 
-class Garage {
-  static messages = ['vg-vacant', 'vg-busy', 'vg-car']
-  constructor (data = []) {
-    this.data = data
-    this.name = 'view-garage'
-  }
+// class Garage {
+//   static messages = ['vg-vacant', 'vg-busy', 'vg-car']
+//   constructor (data = []) {
+//     this.data = data
+//     this.name = 'view-garage'
+//   }
 
-  update () {
-    const [FPE, FRE, FLA, FLP, FDL, FDR] = this.data
-    const vacant = FPE.status && !FRE.status && FLA.status && FLP.status && FDL.status && FDR.status
-    const car = !FPE.status && FRE.status && FLA.status && FLP.status && FDL.status && FDR.status
-    if (vacant) {
-      this.message = Garage.messages[0]
-    } else if (car) {
-      this.message = Garage.messages[2]
-    } else {
-      this.message = Garage.messages[1]
-    }
-    // console.log(this.name, this.message)
-  }
-}
+//   update () {
+//     const [FPE, FRE, FLA, FLP, FDL, FDR] = this.data
+//     const vacant = FPE.status && !FRE.status && FLA.status && FLP.status && FDL.status && FDR.status
+//     const car = !FPE.status && FRE.status && FLA.status && FLP.status && FDL.status && FDR.status
+//     if (vacant) {
+//       this.message = Garage.messages[0]
+//     } else if (car) {
+//       this.message = Garage.messages[2]
+//     } else {
+//       this.message = Garage.messages[1]
+//     }
+//     // console.log(this.name, this.message)
+//   }
+// }
 
-class Panel {
-  static messages = ['lp-1', 'lp-2', 'lp-3', 'lp-4', 'lp-5']
-  constructor (data = []) {
-    this.data = data
-    this.name = 'view-panel'
-  }
+// class Panel {
+//   static messages = ['lp-1', 'lp-2', 'lp-3', 'lp-4', 'lp-5']
+//   constructor (data = []) {
+//     this.data = data
+//     this.name = 'view-panel'
+//   }
 
-  update () {
-    const [L1, L2, L3, L4, L5] = this.data
-    if (L1.status) {
-      this.message = Panel.messages[0]
-    } else if (L2.status) {
-      this.message = Panel.messages[1]
-    } else if (L3.status) {
-      this.message = Panel.messages[2]
-    } else if (L4.status) {
-      this.message = Panel.messages[3]
-    } else if (L5.status) {
-      this.message = Panel.messages[4]
-    } else {
-      this.message = 'lp-off'
-    }
-    // console.log(this.name, this.message)
-  }
-}
+//   update () {
+//     const [L1, L2, L3, L4, L5] = this.data
+//     if (L1.status) {
+//       this.message = Panel.messages[0]
+//     } else if (L2.status) {
+//       this.message = Panel.messages[1]
+//     } else if (L3.status) {
+//       this.message = Panel.messages[2]
+//     } else if (L4.status) {
+//       this.message = Panel.messages[3]
+//     } else if (L5.status) {
+//       this.message = Panel.messages[4]
+//     } else {
+//       this.message = 'lp-off'
+//     }
+//     console.log(this.name, this.message)
+//   }
+// }
 
 module.exports = {
   Barrier,
@@ -308,8 +304,10 @@ module.exports = {
   Hoisting,
   Lock,
   Rotation,
-  Silomat,
-  Traveling,
-  Garage,
-  Panel
+  SilomatCentering,
+  SilomatHoisting,
+  SilomatTraveling,
+  Traveling
+  // Garage,
+  // Panel
 }

@@ -1,8 +1,9 @@
 const { inputs, outputs } = require('./obj')
 const { Device } = require('../../models/Device')
 const { Drive } = require('../../models/Drive')
-const { Door, Flap, Garage, Panel, Lock, Hoisting, Rotation, Traveling } = require('../../models/Motor')
+const { Door, Flap, Lock, Hoisting, Rotation, Traveling } = require('../../models/Motor')
 const { Position } = require('../../models/Position')
+const { Main, Garage } = require('../../models/View')
 
 const LV1 = new Position(1, 'LV1')
 const LV2 = new Position(2, 'LV2')
@@ -138,22 +139,22 @@ const FDR = inputs.find(b => b.addr === 'E106.5')
 const FLA = inputs.find(b => b.addr === 'E107.2')
 const FLP = inputs.find(b => b.addr === 'E107.1')
 const FPE = inputs.find(b => b.addr === 'E106.3')
-const FRE = inputs.find(b => b.addr === 'E111.4')
-const FRER = inputs.find(b => b.addr === 'E111.5')
-const FT1 = inputs.find(b => b.addr === 'E106.6')
-const FT2 = inputs.find(b => b.addr === 'E106.7')
+const EPZ = inputs.find(b => b.addr === 'E111.4')
+// const FRER = inputs.find(b => b.addr === 'E111.5')
+const FTA1 = inputs.find(b => b.addr === 'E106.6')
+const FTA2 = inputs.find(b => b.addr === 'E106.7')
 
-const bits = [
-  new Garage([FPE, FRE, FLA, FLP, FDL, FDR, FT1, FT2]),
-  new Panel([L1, L2, L3, L4, L5])
-]
+const main = new Main(drives, [M1, M2, M3, M4, M5, M6, M7])
 
-const views = [
-  { name: 'view-main', drives, motors: [M1, M6, M7] },
-  { name: 'view-more', motors: [M2, M3, M4, M5] },
-  { name: 'view-garage', bits, motors: [M8, M9] }
-]
+const garage = new Garage(
+  [],
+  [M8, M9],
+  [L1, L2, L3, L4, L5],
+  [EPZ, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2]
+)
 
-const device = new Device(1, 'EL1', [], lamps, views)
+const views = [main, garage]
 
-module.exports = { device, drives, motors, positions }
+const device = new Device(1, 'EL1', [], lamps, motors, views)
+
+module.exports = { device, drives, positions }
