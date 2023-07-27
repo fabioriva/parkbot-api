@@ -3,6 +3,7 @@ const { inputs, merkers, outputs } = require('./obj')
 const { Action } = require('../../models/Action')
 const { Device } = require('../../models/Device')
 const { Barrier, Door, Flap } = require('../../models/Motor')
+const { Main } = require('../../models/View')
 
 const positions = []
 
@@ -65,6 +66,8 @@ const drives = []
 
 const motors = [Barrier1, Door1, Flap1]
 
-const device = new Device(1, 'EU1', [A0], lamps, [])
+const main = new Main(drives, motors)
 
-module.exports = { device, drives, motors, positions }
+const device = new Device(1, 'EU1', [A0], lamps, motors, [main])
+
+module.exports = { device, drives, positions }

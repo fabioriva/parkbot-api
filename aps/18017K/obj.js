@@ -52,10 +52,10 @@ const drives = device1.drives.concat(
 )
 exports.drives = drives
 
-exports.motors = device1.motors.concat(
-  device2.motors,
-  device3.motors
-)
+// exports.motors = device1.motors.concat(
+//   device2.motors,
+//   device3.motors
+// )
 
 exports.positions = device1.positions.concat(
   device2.positions,
