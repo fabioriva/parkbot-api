@@ -5,6 +5,7 @@ const {
   Barrier,
   Door
 } = require('../../../models/Motor')
+const { Main } = require('../../../models/View')
 
 const positions = []
 
@@ -53,10 +54,10 @@ const drives = []
 
 const motors = [M5, M6]
 
-const views = [
-  { name: 'view-main', drives, motors: [M5, M6] }
-]
+const main = new Main(drives, [M5, M6])
 
-const device = new Device(2, 'EU2', [A0], lamps, views)
+const views = [main]
 
-module.exports = { device, drives, motors, positions }
+const device = new Device(2, 'EU2', [A0], lamps, motors, views)
+
+module.exports = { device, drives, positions }

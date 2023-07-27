@@ -45,7 +45,7 @@ exports.devices = [device1.device, device2.device, device3.device]
 
 exports.drives = device1.drives.concat(device2.drives, device3.drives)
 
-exports.motors = device1.motors.concat(device2.motors, device3.motors)
+// exports.motors = device1.motors.concat(device2.motors, device3.motors)
 
 exports.positions = device1.positions.concat(device2.positions, device3.positions)
 

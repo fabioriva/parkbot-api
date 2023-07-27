@@ -4,6 +4,7 @@ const {
   Barrier,
   Door
 } = require('../../../models/Motor')
+const { Main } = require('../../../models/View')
 
 const lamps = [
   inputs.find(b => b.addr === 'E101.3'),
@@ -45,10 +46,10 @@ const motors = [M5, M6]
 
 const positions = []
 
-const views = [
-  { name: 'view-main', drives, motors: [M5, M6] }
-]
+const main = new Main(drives, [M5, M6])
 
-const device = new Device(4, 'U1', [], lamps, views)
+const views = [main]
 
-module.exports = { device, drives, motors, positions }
+const device = new Device(4, 'U1', [], lamps, motors, views)
+
+module.exports = { device, drives, positions }

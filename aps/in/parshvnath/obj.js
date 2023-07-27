@@ -68,7 +68,7 @@ exports.devices = [device1.device, device2.device, device3.device, device4.devic
 
 exports.drives = device1.drives.concat(device2.drives, device3.drives, device4.drives, device5.drives, device6.drives)
 
-exports.motors = device1.motors.concat(device2.motors, device3.motors, device4.motors, device5.motors, device6.motors)
+// exports.motors = device1.motors.concat(device2.motors, device3.motors, device4.motors, device5.motors, device6.motors)
 
 exports.positions = device1.positions.concat(device2.positions, device3.positions, device4.positions, device5.positions, device6.positions)
 

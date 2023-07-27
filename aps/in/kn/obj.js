@@ -49,7 +49,7 @@ exports.devices = [...el.devices_, ...sh.devices_]
 
 exports.drives = [...el.drives_, ...sh.drives_]
 
-exports.motors = [...el.motors_, ...sh.motors_]
+// exports.motors = [...el.motors_, ...sh.motors_]
 
 exports.positions = [...el.positions_, ...sh.positions_]
 

@@ -6,10 +6,10 @@ const {
   Flap,
   Lock,
   Hoisting,
-  Rotation,
-  Silomat
+  Rotation
 } = require('../../../models/Motor')
 const { Position } = require('../../../models/Position')
+const { Main, Silomat } = require('../../../models/View')
 
 const EN1 = inputs.find(b => b.addr === 'E10.0')
 const EN2 = inputs.find(b => b.addr === 'E18.7')
@@ -129,11 +129,10 @@ const drives = [IV1, IV2]
 
 const motors = [M1, M2, M3, M4, M5, M6, ...silomat.motors]
 
-const views = [
-  { name: 'view-main', drives, motors: [M1, M2, M3, M4, M5, M6] },
-  silomat.view
-]
+const main = new Main(drives, [M1, M2, M3, M4, M5, M6])
 
-const device = new Device(1, 'EL1', [], lamps, views)
+const views = [main, silomat]
 
-module.exports = { device, drives, motors, positions }
+const device = new Device(1, 'EL1', [], lamps, motors, views)
+
+module.exports = { device, drives, positions }

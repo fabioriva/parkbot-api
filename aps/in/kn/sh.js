@@ -93,7 +93,7 @@ for (let i = 4; i <= 15; i++) {
 
   const views = []
 
-  const device = new Device(i, 'SH' + (i - 3), [], lamps, views)
+  const device = new Device(i, 'SH' + (i - 3), [], lamps, motors_, views)
 
   devices_.push(device)
   drives_.push(IV)
@@ -115,4 +115,4 @@ for (let i = 4; i <= 15; i++) {
   AB += 3
 }
 
-module.exports = { devices_, drives_, motors_, positions_ }
+module.exports = { devices_, drives_, positions_ }

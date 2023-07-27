@@ -72,13 +72,13 @@ exports.drives = device1.drives.concat(
   device6.drives
 )
 
-exports.motors = device1.motors.concat(
-  device2.motors,
-  device3.motors,
-  device4.motors,
-  device5.motors,
-  device6.motors
-)
+// exports.motors = device1.motors.concat(
+//   device2.motors,
+//   device3.motors,
+//   device4.motors,
+//   device5.motors,
+//   device6.motors
+// )
 
 exports.positions = device1.positions.concat(
   device2.positions,

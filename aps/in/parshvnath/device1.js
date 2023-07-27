@@ -8,6 +8,7 @@ const {
   Hoisting
 } = require('../../../models/Motor')
 const { Position } = require('../../../models/Position')
+const { Main } = require('../../../models/View')
 
 const EN1 = inputs.find(b => b.addr === 'E101.1')
 const IV1 = new Drive(1, 'IV1', EN1)
@@ -77,10 +78,10 @@ const drives = [IV1]
 
 const motors = [M1, M2, M4, M5]
 
-const views = [
-  { name: 'view-main', drives, motors: [M1, M2, M4, M5] }
-]
+const main = new Main(drives, [M1, M2, M4, M5])
 
-const device = new Device(1, 'EL1', [], lamps, views)
+const views = [main]
 
-module.exports = { device, drives, motors, positions }
+const device = new Device(1, 'EL1', [], lamps, motors, views)
+
+module.exports = { device, drives, positions }
