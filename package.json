@@ -14,7 +14,7 @@
     "date-fns-tz": "^2.0.0",
     "dotenv": "^16.3.1",
     "mongodb": "^5.7.0",
-    "node-fetch": "^2.6.9",
+    "node-fetch": "^2.6.12",
     "node-snap7": "^1.0.6",
     "pino": "^8.14.1",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.24.0"
