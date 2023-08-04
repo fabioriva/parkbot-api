@@ -26,13 +26,14 @@ exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
 const DB_DATA = 505
-const DB_DATA_LEN = 260
+const DB_DATA_LEN = 300
 exports.DB_DATA_INIT_DEVICE = 32
-exports.DB_DATA_INIT_POS = 128
-exports.DB_DATA_INIT_QUEUE = 160
-exports.DB_DATA_INIT_AB = 180
-exports.DB_DATA_INIT_EB = 212
-exports.DB_DATA_INIT_MB = 252
+exports.DB_DATA_INIT_DRIVE = 128
+exports.DB_DATA_INIT_POS = 168
+exports.DB_DATA_INIT_QUEUE = 200
+exports.DB_DATA_INIT_AB = 220
+exports.DB_DATA_INIT_EB = 252
+exports.DB_DATA_INIT_MB = 292
 exports.DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,
@@ -62,7 +63,7 @@ exports.CARD_READ = {
 exports.CARD_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 268,
+  start: 208,
   amount: 4,
   wordLen: 0x02
 }
@@ -76,21 +77,21 @@ exports.MAP_READ = {
 exports.MAP_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 264,
+  start: 204,
   amount: 4,
   wordLen: 0x02
 }
 exports.QUEUE_DELETE = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 272,
+  start: 212,
   amount: 4,
   wordLen: 0x02
 }
 exports.REQ_0 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 276,
+  start: 216,
   amount: 2,
   wordLen: 0x02
 }
