@@ -1,7 +1,7 @@
 const { SilomatTraveling, SilomatHoisting, SilomatCentering } = require('./Motor')
 
 class Main {
-  constructor (drives, motors, panel, sensors) {
+  constructor (drives, motors) {
     this.drives = drives
     this.motors = motors
     this.name = 'view-main'
@@ -53,34 +53,5 @@ class Silomat {
     this.sensors = sensors
   }
 }
-
-// class DirectionalPanel {
-//   static messages = ['lp-1', 'lp-2', 'lp-3', 'lp-4', 'lp-5']
-//   constructor (L1, L2, L3, L4, L5) {
-//     this.L1 = L1
-//     this.L2 = L2
-//     this.L3 = L3
-//     this.L4 = L4
-//     this.L5 = L5
-//     this.name = 'directional-panel'
-//   }
-
-//   update () {
-//     const [L1, L2, L3, L4, L5] = this.data
-//     if (L1.status) {
-//       this.message = DirectionalPanel.messages[0]
-//     } else if (L2.status) {
-//       this.message = DirectionalPanel.messages[1]
-//     } else if (L3.status) {
-//       this.message = DirectionalPanel.messages[2]
-//     } else if (L4.status) {
-//       this.message = DirectionalPanel.messages[3]
-//     } else if (L5.status) {
-//       this.message = DirectionalPanel.messages[4]
-//     } else {
-//       this.message = 'lp-off'
-//     }
-//   }
-// }
 
 module.exports = { Main, Garage, Silomat }
