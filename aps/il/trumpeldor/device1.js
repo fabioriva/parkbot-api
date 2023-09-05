@@ -1,6 +1,6 @@
 const { inputs, outputs } = require('./obj')
-const { Device } = require('../../models/Device')
-const { Drive } = require('../../models/Drive')
+const { Device } = require('../../../models/Device')
+const { Drive } = require('../../../models/Drive')
 const {
   DoorVFD,
   Flap,
@@ -8,9 +8,9 @@ const {
   Hoisting,
   Rotation,
   Traveling
-} = require('../../models/Motor')
-const { Position } = require('../../models/Position')
-const { Main, Garage, Silomat } = require('../../models/View')
+} = require('../../../models/Motor')
+const { Position } = require('../../../models/Position')
+const { Main, Garage, Silomat } = require('../../../models/View')
 
 const EN1 = inputs.find(b => b.addr === 'E8.3')
 const EN2 = inputs.find(b => b.addr === 'E8.5')
