@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/il/trumpeldor",
-    "start": "NODE_ENV=production pm2 start aps/il/trumpeldor/index.js --name aps-trumpeldor --max-memory-restart 128M",
+    "dev": "nodemon aps/il/matalon",
+    "start": "NODE_ENV=production pm2 start aps/il/matalon/index.js --name aps-matalon --max-memory-restart 128M",
     "test": "standard"
   },
   "author": "f.riva@sotefin.ch",
