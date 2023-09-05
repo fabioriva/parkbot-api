@@ -1,14 +1,11 @@
 const { inputs, outputs } = require('./obj')
 const { Device } = require('../../../models/Device')
 const { Drive } = require('../../../models/Drive')
-// const {
-//   DoorVFD,
-//   Flap,
-//   Lock,
-//   Hoisting,
-//   Rotation,
-//   Traveling
-// } = require('../../../models/Motor')
+const {
+  Hoisting,
+  Rotation,
+  Traveling
+} = require('../../../models/Motor')
 const { Position } = require('../../../models/Position')
 const { Main, Silomat } = require('../../../models/View')
 
@@ -30,7 +27,54 @@ const lamps = [
   outputs.find(b => b.addr === 'A1.6')
 ]
 
-// ....
+const RTA = inputs.find(b => b.addr === 'E3.3')
+const ASBK = inputs.find(b => b.addr === 'E13.2')
+const FSBK = inputs.find(b => b.addr === 'E13.1')
+const SBK1 = outputs.find(b => b.addr === 'A11.4')
+const SBK2 = outputs.find(b => b.addr === 'A12.6')
+
+const M1 = new Hoisting(
+  0,
+  IV1,
+  [LV1, LV2],
+  [RTA, ASBK, FSBK],
+  [SBK1, SBK2],
+  [],
+  FSBK
+)
+
+const AIV = inputs.find(b => b.addr === 'E3.4')
+const AKKU = inputs.find(b => b.addr === 'E3.6')
+const ASBK2 = inputs.find(b => b.addr === 'E13.3')
+
+const AD = inputs.find(b => b.addr === 'E13.5')
+const EXD = inputs.find(b => b.addr === 'E11.1')
+const TD = outputs.find(b => b.addr === 'A11.2')
+
+const M2 = new Rotation(
+  0,
+  IV2,
+  [ENR],
+  [AD, ASBK2, AIV, AKKU, EXD],
+  [TD],
+  [],
+  TD
+)
+
+const AH = inputs.find(b => b.addr === 'E13.4')
+const EHP = inputs.find(b => b.addr === 'E11.2')
+const T10 = outputs.find(b => b.addr === 'A11.0')
+const T10F = outputs.find(b => b.addr === 'A12.7')
+
+const M3 = new Traveling(
+  0,
+  IV1,
+  [ENH],
+  [AH, ASBK2, AIV, AKKU, EHP],
+  [T10, T10F],
+  [],
+  T10
+)
 
 const RMV = inputs.find(b => b.addr === 'E14.0')
 const RMH = inputs.find(b => b.addr === 'E14.1')
@@ -59,11 +103,9 @@ const silomat = new Silomat(
 
 const drives = [IV1, IV2]
 
-// const motors = [M1, M2, M3, M4, M5, M6, M7, M8, M9, ...silomat.motors]
-const motors = [...silomat.motors]
+const motors = [M1, M2, M3, ...silomat.motors]
 
-// const main = new Main(drives, [M1, M2, M3, M4, M5, M6, M7])
-const main = new Main(drives, [])
+const main = new Main(drives, [M1, M2, M3])
 
 const views = [main, silomat]
 
