@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/il/matalon",
-    "start": "NODE_ENV=production pm2 start aps/il/matalon/index.js --name aps-matalon --max-memory-restart 128M",
+    "dev": "nodemon aps/us/muse",
+    "start": "NODE_ENV=production pm2 start aps/us/muse/index.js --name aps-muse --max-memory-restart 128M",
     "test": "standard"
   },
   "author": "f.riva@sotefin.ch",
