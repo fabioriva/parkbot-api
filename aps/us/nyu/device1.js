@@ -1,6 +1,6 @@
 const { inputs, outputs } = require('./obj')
-const { Device } = require('../../models/Device')
-const { Drive } = require('../../models/Drive')
+const { Device } = require('../../../models/Device')
+const { Drive } = require('../../../models/Drive')
 const {
   Door,
   Flap,
@@ -8,9 +8,9 @@ const {
   Hoisting,
   Rotation,
   Traveling
-} = require('../../models/Motor')
-const { Position } = require('../../models/Position')
-const { Main, Garage, Silomat } = require('../../models/View')
+} = require('../../../models/Motor')
+const { Position } = require('../../../models/Position')
+const { Main, Garage, Silomat } = require('../../../models/View')
 
 const LV1 = new Position(1, 'LV1')
 const LV2 = new Position(2, 'LV2')

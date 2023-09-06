@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/us/muse",
-    "start": "NODE_ENV=production pm2 start aps/us/muse/index.js --name aps-muse --max-memory-restart 128M",
+    "dev": "nodemon aps/us/nyu",
+    "start": "NODE_ENV=production pm2 start aps/us/nyu/index.js --name aps-nyu --max-memory-restart 128M",
     "test": "standard"
   },
   "author": "f.riva@sotefin.ch",
