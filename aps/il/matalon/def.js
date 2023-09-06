@@ -50,7 +50,7 @@ exports.STALL_STATUS = {
   FREE: 0,
   PAPA: 997,
   RSVD: 998,
-  LOCK: 100
+  LOCK: 999
 }
 
 exports.CARD_READ = {
