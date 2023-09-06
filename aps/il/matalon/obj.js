@@ -7,8 +7,10 @@ const { generateCards } = require('../../../models/Card')
 const { generateQueue } = require('../../../models/Queue')
 const { generateStalls } = require('../../../models/Stall')
 
-const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS), 1)
-exports.alarms = [al01]
+const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // T
+const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 2) // EL1
+const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 3) // EL2
+exports.alarms = [al01, al02, al03]
 
 const inputs1 = generateBits('E', 0, 3, str.inputs1)
 const inputs2 = generateBits('E', 10, 14, str.inputs2)
