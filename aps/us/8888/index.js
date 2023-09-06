@@ -3,11 +3,11 @@ const uWS = require('uWebSockets.js')
 const def = require('./def')
 const obj = require('./obj')
 const str = require('./str')
-const mongo = require('../../lib/db')
-const History = require('../../lib/History')
-const MailingList = require('../../lib/MailingList')
-const Plc = require('../../lib/Plc')
-const Router = require('../../lib/Router')
+const mongo = require('../../../lib/db')
+const History = require('../../../lib/History')
+const MailingList = require('../../../lib/MailingList')
+const Plc = require('../../../lib/Plc')
+const Router = require('../../../lib/Router')
 
 const main = async () => {
   try {

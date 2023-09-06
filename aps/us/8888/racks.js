@@ -4,7 +4,7 @@ const {
   S7_521_1BH00_0AB0,
   S7_522_1BH01_0AB0,
   S7_522_1BL01_0AB0
-} = require('../../models/Modules')
+} = require('../../../models/Modules')
 
 const rack1 = {
   nr: 1,
