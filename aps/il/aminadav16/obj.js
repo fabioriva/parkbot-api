@@ -82,10 +82,7 @@ exports.map = {
       min: 19,
       max: 36,
       stalls: stalls.slice(18, 36),
-      elevators: [
-        { id: 'el-1', label: 'EL1' },
-        { id: 'el-2', label: 'EL2' }
-      ]
+      elevators: []
     },
     {
       nr: 3,
@@ -94,8 +91,8 @@ exports.map = {
       max: 54,
       stalls: stalls.slice(36, 54),
       elevators: [
-        { id: 'el-1', label: 'EL1' },
-        { id: 'el-2', label: 'EL2' }
+        { id: 'eu-1', label: 'EU1' },
+        { id: 'eu-2', label: 'EU2' }
       ]
     }
   ],
