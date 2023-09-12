@@ -308,7 +308,9 @@ exports.ALARMS = [
 
 exports.DEVICES = [
   { id: 0, key: 'operator' },
-  { id: 1, key: 'T' }
+  { id: 1, key: 'T' },
+  { id: 2, key: 'EU1' },
+  { id: 3, key: 'EU2' }
 ]
 
 exports.MODES = [

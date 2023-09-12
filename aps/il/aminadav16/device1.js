@@ -2,6 +2,8 @@ const { inputs, outputs } = require('./obj')
 const { Device } = require('../../../models/Device')
 const { Drive } = require('../../../models/Drive')
 const {
+  Flap,
+  Lock,
   Hoisting,
   Rotation,
   Traveling
@@ -107,9 +109,36 @@ const silomat = new Silomat(
 
 const drives = [IV1, IV2]
 
-const motors = [M1, M2, M3, ...silomat.motors]
+const AMM1 = inputs.find(b => b.addr === 'E15.0')
+const EOM1 = inputs.find(b => b.addr === 'E12.0')
+const EZM1 = inputs.find(b => b.addr === 'E12.1')
+const SMA1 = outputs.find(b => b.addr === 'A13.0')
+const SMB1 = outputs.find(b => b.addr === 'A13.1')
+const M4 = new Lock(1, [EZM1, EOM1, AMM1], [SMA1, SMB1])
 
-const main = new Main(drives, [M1, M2, M3])
+const AMM2 = inputs.find(b => b.addr === 'E15.1')
+const EOM2 = inputs.find(b => b.addr === 'E12.2')
+const EZM2 = inputs.find(b => b.addr === 'E12.3')
+const SMA2 = outputs.find(b => b.addr === 'A13.2')
+const SMB2 = outputs.find(b => b.addr === 'A13.3')
+
+const M5 = new Lock(2, [EZM2, EOM2, AMM2], [SMA2, SMB2])
+
+const ECA = inputs.find(b => b.addr === 'E12.4')
+const ECB = inputs.find(b => b.addr === 'E12.5')
+const AMC = inputs.find(b => b.addr === 'E15.2')
+const SCA = outputs.find(b => b.addr === 'A13.4')
+const SCB = outputs.find(b => b.addr === 'A13.5')
+
+const M6 = new Flap(
+  0,
+  [ECA, ECB, AMC],
+  [SCA, SCB]
+)
+
+const motors = [M1, M2, M3, M4, M5, M6, ...silomat.motors]
+
+const main = new Main(drives, [M1, M2, M3, M4, M5, M6])
 
 const views = [main, silomat]
 

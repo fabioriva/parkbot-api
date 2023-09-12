@@ -33,20 +33,22 @@ const racks = require('./racks')
 exports.racks = racks
 
 const device1 = require('./device1')
+const device2 = require('./device2')
+const device3 = require('./device3')
 
 const queue = generateQueue(def)
 exports.queue = queue
 
-exports.devices = [device1.device]
+exports.devices = [device1.device, device2.device, device3.device]
 
-exports.drives = device1.drives
+exports.drives = device1.drives.concat(device2.drives, device3.drives)
 
-exports.positions = device1.positions
+exports.positions = device1.positions.concat(device2.positions, device3.positions)
 
 exports.modes = str.MODES
 
 exports.overview = {
-  devices: [[device1.device]],
+  devices: [[device1.device, device2.device, device3.device]],
   exitQueue: {
     queueList: queue,
     exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
