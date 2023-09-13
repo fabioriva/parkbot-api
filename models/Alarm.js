@@ -5,8 +5,8 @@ const { getPlcDateTime } = require('../lib/utils7')
 
 class Alarm {
   constructor (id, status, str) {
-    this.id = id
-    this.label = 'AL'.concat(str.id)
+    this.id = str.id // id
+    // this.label = 'AL'.concat(str.id)
     this.key = str.key
     this.query = str.query
     this.status = status
