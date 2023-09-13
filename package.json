@@ -4,7 +4,7 @@
   "description": "parkbot backend",
   "scripts": {
     "dev": "nodemon aps/il/aminadav16",
-    "start": "NODE_ENV=production pm2 start aps/il/aminadav16/index.js --name aps-aminadav16 --max-memory-restart 128M",
+    "start": "NODE_ENV=production pm2 start aps/nz/ironbank/index.js --name aps-ironbank --max-memory-restart 128M",
     "test": "standard"
   },
   "author": "f.riva@sotefin.ch",

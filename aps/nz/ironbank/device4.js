@@ -1,10 +1,10 @@
 const def = require('./def')
 const { inputs, merkers, outputs } = require('./obj')
-const { Action } = require('../../models/Action')
-const { Device } = require('../../models/Device')
-const { Drive } = require('../../models/Drive')
-const { Barrier, Door, Flap, Rotation } = require('../../models/Motor')
-const { Main } = require('../../models/View')
+const { Action } = require('../../../models/Action')
+const { Device } = require('../../../models/Device')
+const { Drive } = require('../../../models/Drive')
+const { Barrier, Door, Flap, Rotation } = require('../../../models/Motor')
+const { Main } = require('../../../models/View')
 
 const positions = []
 
