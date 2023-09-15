@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/il/aminadav16",
-    "start": "NODE_ENV=production pm2 start aps/nz/ironbank/index.js --name aps-ironbank --max-memory-restart 128M",
+    "dev": "nodemon aps/il/aminadav1820",
+    "start": "NODE_ENV=production pm2 start aps/il/aminadav1820/index.js --name aps-aminadav1820 --max-memory-restart 128M",
     "test": "standard"
   },
   "author": "f.riva@sotefin.ch",
