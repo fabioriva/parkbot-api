@@ -8,15 +8,15 @@ class Bit {
     this.status = status
   }
 
-  get _i18n () {
-    return this.i18n
-  }
+  // get _i18n () {
+  //   return this.i18n
+  // }
 
-  set _i18n (obj) {
-    if (obj) {
-      this.i18n = obj
-    }
-  }
+  // set _i18n (obj) {
+  //   if (obj) {
+  //     this.i18n = obj
+  //   }
+  // }
 }
 
 function generateBits (type, min, max, str) {
