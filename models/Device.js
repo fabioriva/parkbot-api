@@ -34,7 +34,7 @@ class Device {
     this.#motors = motors // needed to update motor message
   }
 
-  update (buffer, modes) {
+  update (buffer, alarms, modes) {
     this.card = buffer.readInt16BE(0)
     this.mode = modes.find(mode => mode.id === buffer.readInt16BE(2)) || { id: 0, key: 'mode-no' }
     this.motor = buffer.readInt16BE(4)
@@ -43,16 +43,16 @@ class Device {
     this.size = buffer.readInt16BE(10)
     this.stall = buffer.readInt16BE(12)
     this.step = buffer.readInt16BE(14)
+    this.alarms = alarms.find(a => a.id === this.id)._active // get active alarms
     this.#motors.forEach(m => m.update()) // update motors message
-    // this.views.forEach((view) => view.bits !== undefined && view.bits.forEach(bit => bit.update()))
   }
 }
 
 const updateDevices = util.promisify(
-  (start, buffer, offset, devices, modes, callback) => {
+  (start, buffer, offset, alarms, devices, modes, callback) => {
     let byte = start
     for (let i = 0; i < devices.length; i++) {
-      devices[i].update(buffer.slice(byte, byte + offset), modes)
+      devices[i].update(buffer.slice(byte, byte + offset), alarms, modes)
       byte += offset
     }
     callback(null, devices)
