@@ -53,9 +53,9 @@ class Alarms {
       .sort((a, b) => new Date(b.date) - new Date(a.date))
   }
 
-  set _active (alarms) {
-    this.active = alarms.filter(item => item.status !== false)
-  }
+  // set _active (alarms) {
+  //   this.active = alarms.filter(item => item.status !== false)
+  // }
 }
 
 const generateAlarms = (min, max, str) => {
