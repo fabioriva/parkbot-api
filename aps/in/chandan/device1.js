@@ -22,6 +22,6 @@ const views = [
   // { name: 'view-sil', drives: [IV2], motors: [...silomat.motors] }
 ]
 
-const device = new Device(1, 'EL1', [], lamps, views)
+const device = new Device(1, 'EL1', [], lamps, motors, views)
 
-module.exports = { device, drives, motors, positions }
+module.exports = { device, drives, positions }
