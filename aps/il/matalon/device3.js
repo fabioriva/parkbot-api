@@ -7,7 +7,7 @@ const { Main, Garage } = require('../../../models/View')
 const positions = []
 
 const lamps = [
-  inputs.find(b => b.addr === 'E201.3'),
+  inputs.find(b => b.addr === 'E201.4'),
   outputs.find(b => b.addr === 'A201.7'),
   outputs.find(b => b.addr === 'A201.6')
 ]
