@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon aps/in/chandan",
     "start": "NODE_ENV=production pm2 start aps/il/aminadav1820/index.js --name aps-aminadav1820 --max-memory-restart 128M",
-    "test": "standard"
+    "test": "standard",
+    "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.31.0"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
