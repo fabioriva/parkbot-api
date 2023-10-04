@@ -9,7 +9,7 @@ const {
 
 const rack1 = {
   nr: 1,
-  online: merkers.find(b => b.addr === 'M4.0'),
+  // online: merkers.find(b => b.addr === 'M4.0'),
   serie: 'et200m',
   title: 'LS',
   cards: [
