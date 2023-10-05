@@ -6,7 +6,6 @@ const {
   S7_131_6BH01_0BA0,
   S7_132_6BH01_0BA0
 } = require('../../models/Modules')
-// const { Pn } = require('../../models/Pn')
 
 const rack1 = {
   nr: 1,
@@ -38,18 +37,3 @@ const rack2 = {
 }
 
 module.exports = [rack1, rack2]
-
-// const pn00 = new Pn('PLC', 1, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
-// const pn01 = new Pn('KKP', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-6 PN ST', { key: 'im', query: {} })
-// const pn02 = new Pn('IV1', 2, merkers.find(b => b.addr === 'M4.1'), 'Unidrive M200-M400', { key: 'iv', query: { nr: 1 } })
-// const pn03 = new Pn('IV2', 3, merkers.find(b => b.addr === 'M4.2'), 'Unidrive M200-M400', { key: 'iv', query: { nr: 2 } })
-// const pn04 = new Pn('LV1', 4, merkers.find(b => b.addr === 'M4.3'), 'AMS 348i', { key: 'lv', query: { nr: 1 } })
-// const pn05 = new Pn('LV2', 5, merkers.find(b => b.addr === 'M4.4'), 'AMS 348i', { key: 'lv', query: { nr: 2 } })
-// const pn06 = new Pn('LH1', 6, merkers.find(b => b.addr === 'M4.5'), 'AMS 348i', { key: 'lh', query: { nr: 1 } })
-// const pn07 = new Pn('LH2', 7, merkers.find(b => b.addr === 'M4.6'), 'AMS 348i', { key: 'lh', query: { nr: 2 } })
-// const pn08 = new Pn('ENR', 8, merkers.find(b => b.addr === 'M4.7'), 'AMS 348i', { key: 'en', query: { axis: 'R' } })
-
-// pn00.rack = rack1
-// pn01.rack = rack2
-
-// module.exports = [pn00, pn01, pn02, pn03, pn04, pn05, pn06, pn07, pn08]
