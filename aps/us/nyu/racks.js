@@ -1,4 +1,4 @@
-const { ab, eb } = require('./obj')
+const { ab, eb, merkers } = require('./obj')
 const {
   S7_521_1BL00_0AB0,
   S7_522_1BH01_0AB0,
@@ -9,8 +9,6 @@ const {
 
 const rack1 = {
   nr: 1,
-  serie: 'et200m',
-  title: 'CPU',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(0, 4)),
     new S7_522_1BH01_0AB0(2, ab.slice(0, 2))
@@ -19,8 +17,6 @@ const rack1 = {
 
 const rack2 = {
   nr: 2,
-  serie: 'et200m',
-  title: 'LS1',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(4, 8)),
     new S7_521_1BL00_0AB0(2, eb.slice(8, 12)),
@@ -31,8 +27,6 @@ const rack2 = {
 
 const rack3 = {
   nr: 3,
-  serie: 'et200s',
-  title: 'KKP1',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[12]),
     new S7_131_6BF00_0BA0(2, eb[13]),
@@ -47,8 +41,6 @@ const rack3 = {
 
 const rack4 = {
   nr: 4,
-  serie: 'et200m',
-  title: 'LS2',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(17, 21)),
     new S7_521_1BL00_0AB0(2, eb.slice(21, 25)),
@@ -59,8 +51,6 @@ const rack4 = {
 
 const rack5 = {
   nr: 5,
-  serie: 'et200s',
-  title: 'KKP2',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[25]),
     new S7_131_6BF00_0BA0(2, eb[26]),
@@ -73,4 +63,18 @@ const rack5 = {
   ]
 }
 
-module.exports = [rack1, rack2, rack3, rack4, rack5]
+const { Pn } = require('../../../models/Pn')
+
+const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
+const pn01 = new Pn('LS1', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn02 = new Pn('KKP1', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn03 = new Pn('LS2', 3, merkers.find(b => b.addr === 'M4.2'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn04 = new Pn('KKP2', 4, merkers.find(b => b.addr === 'M4.3'), 'IM 155-6 PN', { key: 'im', query: {} })
+
+pn00.rack = rack1
+pn01.rack = rack2
+pn02.rack = rack3
+pn03.rack = rack4
+pn04.rack = rack5
+
+module.exports = [pn00, pn01, pn02, pn03, pn04]

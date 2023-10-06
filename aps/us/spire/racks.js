@@ -1,4 +1,4 @@
-const { ab, eb } = require('./obj')
+const { ab, eb, merkers } = require('./obj')
 const {
   S7_521_1BL00_0AB0,
   S7_521_1BH00_0AB0,
@@ -249,21 +249,59 @@ const rack16 = {
   ]
 }
 
-module.exports = [
-  rack1,
-  rack2,
-  rack3,
-  rack4,
-  rack5,
-  rack6,
-  rack7,
-  rack8,
-  rack9,
-  rack10,
-  rack11,
-  rack12,
-  rack13,
-  rack14,
-  rack15,
-  rack16
-]
+// module.exports = [
+//   rack1,
+//   rack2,
+//   rack3,
+//   rack4,
+//   rack5,
+//   rack6,
+//   rack7,
+//   rack8,
+//   rack9,
+//   rack10,
+//   rack11,
+//   rack12,
+//   rack13,
+//   rack14,
+//   rack15,
+//   rack16
+// ]
+
+const { Pn } = require('../../../models/Pn')
+
+const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
+const pn01 = new Pn('LS1', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn02 = new Pn('KKM1', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn03 = new Pn('LS2', 3, merkers.find(b => b.addr === 'M4.2'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn04 = new Pn('KKM2', 4, merkers.find(b => b.addr === 'M4.3'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn05 = new Pn('LS3', 5, merkers.find(b => b.addr === 'M4.4'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn06 = new Pn('KKM3', 6, merkers.find(b => b.addr === 'M4.5'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn07 = new Pn('LS4', 7, merkers.find(b => b.addr === 'M4.6'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn08 = new Pn('KKP4', 8, merkers.find(b => b.addr === 'M4.7'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn09 = new Pn('SH4', 9, merkers.find(b => b.addr === 'M5.0'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn10 = new Pn('LS5', 10, merkers.find(b => b.addr === 'M5.1'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn11 = new Pn('KKP5', 11, merkers.find(b => b.addr === 'M5.2'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn12 = new Pn('SH5', 12, merkers.find(b => b.addr === 'M5.3'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn13 = new Pn('LS6', 13, merkers.find(b => b.addr === 'M5.4'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn14 = new Pn('KKP6', 14, merkers.find(b => b.addr === 'M5.5'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn15 = new Pn('SH6', 15, merkers.find(b => b.addr === 'M5.6'), 'IM 155-6 PN', { key: 'im', query: {} })
+
+pn00.rack = rack1
+pn01.rack = rack2
+pn02.rack = rack3
+pn03.rack = rack4
+pn04.rack = rack5
+pn05.rack = rack6
+pn06.rack = rack7
+pn07.rack = rack8
+pn08.rack = rack9
+pn09.rack = rack10
+pn10.rack = rack11
+pn11.rack = rack12
+pn12.rack = rack13
+pn13.rack = rack14
+pn14.rack = rack15
+pn15.rack = rack16
+
+module.exports = [pn00, pn01, pn02, pn03, pn04, pn05, pn06, pn07, pn08, pn09, pn10, pn11, pn12, pn13, pn14, pn15]
