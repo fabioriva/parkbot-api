@@ -1,4 +1,4 @@
-const { ab, eb } = require('./obj')
+const { ab, eb, merkers } = require('./obj')
 const {
   S7_521_1BL00_0AB0,
   S7_522_1BL01_0AB0,
@@ -9,8 +9,8 @@ const {
 
 const rack1 = {
   nr: 1,
-  serie: 'et200m',
-  title: 'LS',
+  // serie: 'et200m',
+  // title: 'LS',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(0, 4)),
     new S7_521_1BL00_0AB0(2, eb.slice(4, 8)),
@@ -22,8 +22,8 @@ const rack1 = {
 
 const rack2 = {
   nr: 2,
-  serie: 'et200s',
-  title: 'KKP',
+  // serie: 'et200s',
+  // title: 'KKP',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[10]),
     new S7_131_6BF00_0BA0(2, eb[11]),
@@ -34,4 +34,14 @@ const rack2 = {
   ]
 }
 
-module.exports = [rack1, rack2]
+// module.exports = [rack1, rack2]
+
+const { Pn } = require('../../../models/Pn')
+
+const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
+const pn01 = new Pn('KKP', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-6 PN', { key: 'im', query: {} })
+
+pn00.rack = rack1
+pn01.rack = rack2
+
+module.exports = [pn00, pn01]
