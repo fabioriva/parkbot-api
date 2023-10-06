@@ -30,8 +30,8 @@ exports.merkers = merkers
 const mb = generateBytes(merkers)
 exports.mb = mb
 
-const pn = require('./pn') // PROFINET network
-exports.pn = pn
+// const pn = require('./pn') // PROFINET network
+// exports.pn = pn
 
 const racks = require('./racks')
 exports.racks = racks
