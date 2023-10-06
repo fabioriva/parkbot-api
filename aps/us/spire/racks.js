@@ -14,8 +14,6 @@ const {
 
 const rack1 = {
   nr: 1,
-  serie: 'et200m',
-  title: 'Main',
   cards: [
     new S7_526_1BH00_0AB0(1, eb.slice(72, 74)),
     new S7_526_1BH00_0AB0(2, eb.slice(74, 76)),
@@ -29,8 +27,6 @@ const rack1 = {
 
 const rack2 = {
   nr: 2,
-  serie: 'et200m',
-  title: 'LS1',
   cards: [
     new S7_526_1BH00_0AB0(1, eb.slice(76, 78)),
     new S7_526_2BF00_0AB0(2, ab.slice(43, 44)),
@@ -42,8 +38,6 @@ const rack2 = {
 
 const rack3 = {
   nr: 3,
-  serie: 'et200s',
-  title: 'KKM1',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[78]),
     new S7_136_6BD00_0CA0(2, ab[44]),
@@ -57,8 +51,6 @@ const rack3 = {
 
 const rack4 = {
   nr: 4,
-  serie: 'et200m',
-  title: 'LS2',
   cards: [
     new S7_526_1BH00_0AB0(1, eb.slice(79, 81)),
     new S7_526_2BF00_0AB0(2, ab.slice(45, 46)),
@@ -70,8 +62,6 @@ const rack4 = {
 
 const rack5 = {
   nr: 5,
-  serie: 'et200s',
-  title: 'KKM2',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[81]),
     new S7_136_6BD00_0CA0(2, ab[46]),
@@ -85,8 +75,6 @@ const rack5 = {
 
 const rack6 = {
   nr: 6,
-  serie: 'et200m',
-  title: 'LS3',
   cards: [
     new S7_526_1BH00_0AB0(1, eb.slice(82, 84)),
     new S7_526_2BF00_0AB0(2, ab.slice(47, 48)),
@@ -98,8 +86,6 @@ const rack6 = {
 
 const rack7 = {
   nr: 7,
-  serie: 'et200s',
-  title: 'KKM3',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[84]),
     new S7_136_6BD00_0CA0(2, ab[48]),
@@ -113,8 +99,6 @@ const rack7 = {
 
 const rack8 = {
   nr: 8,
-  serie: 'et200m',
-  title: 'LS4',
   cards: [
     new S7_526_1BH00_0AB0(1, eb.slice(85, 87)),
     new S7_526_2BF00_0AB0(2, ab.slice(49, 50)),
@@ -126,8 +110,6 @@ const rack8 = {
 
 const rack9 = {
   nr: 9,
-  serie: 'et200s',
-  title: 'KKP4',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[87]),
     new S7_136_6BD00_0CA0(2, ab[50]),
@@ -140,8 +122,6 @@ const rack9 = {
 
 const rack10 = {
   nr: 10,
-  serie: 'et200s',
-  title: 'SH4',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[88]),
     new S7_136_6BD00_0CA0(2, ab[51]),
@@ -159,8 +139,6 @@ const rack10 = {
 
 const rack11 = {
   nr: 11,
-  serie: 'et200m',
-  title: 'LS5',
   cards: [
     new S7_526_1BH00_0AB0(1, eb.slice(89, 91)),
     new S7_526_2BF00_0AB0(2, ab.slice(52, 53)),
@@ -172,8 +150,6 @@ const rack11 = {
 
 const rack12 = {
   nr: 12,
-  serie: 'et200s',
-  title: 'KKP5',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[91]),
     new S7_136_6BD00_0CA0(2, ab[53]),
@@ -186,8 +162,6 @@ const rack12 = {
 
 const rack13 = {
   nr: 13,
-  serie: 'et200s',
-  title: 'SH5',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[92]),
     new S7_136_6BD00_0CA0(2, ab[54]),
@@ -205,8 +179,6 @@ const rack13 = {
 
 const rack14 = {
   nr: 14,
-  serie: 'et200m',
-  title: 'LS6',
   cards: [
     new S7_526_1BH00_0AB0(1, eb.slice(93, 95)),
     new S7_526_2BF00_0AB0(2, ab.slice(55, 56)),
@@ -218,8 +190,6 @@ const rack14 = {
 
 const rack15 = {
   nr: 15,
-  serie: 'et200s',
-  title: 'KKP6',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[95]),
     new S7_136_6BD00_0CA0(2, ab[56]),
@@ -232,8 +202,6 @@ const rack15 = {
 
 const rack16 = {
   nr: 16,
-  serie: 'et200s',
-  title: 'SH6',
   cards: [
     new S7_136_6BA00_0CA0(1, eb[96]),
     new S7_136_6BD00_0CA0(2, ab[57]),
@@ -248,25 +216,6 @@ const rack16 = {
     new S7_132_6BF00_0BA0(10, ab[41])
   ]
 }
-
-// module.exports = [
-//   rack1,
-//   rack2,
-//   rack3,
-//   rack4,
-//   rack5,
-//   rack6,
-//   rack7,
-//   rack8,
-//   rack9,
-//   rack10,
-//   rack11,
-//   rack12,
-//   rack13,
-//   rack14,
-//   rack15,
-//   rack16
-// ]
 
 const { Pn } = require('../../../models/Pn')
 

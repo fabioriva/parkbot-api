@@ -10,8 +10,6 @@ const {
 
 const rack1 = {
   nr: 1,
-  serie: 'et200m',
-  title: 'CPU',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(0, 4)),
     new S7_521_1BH00_0AB0(2, eb.slice(4, 6)),
@@ -21,8 +19,6 @@ const rack1 = {
 
 const rack2 = {
   nr: 2,
-  serie: 'et200m',
-  title: 'LS1',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(6, 10)),
     new S7_521_1BL00_0AB0(2, eb.slice(10, 14)),
@@ -33,8 +29,6 @@ const rack2 = {
 
 const rack3 = {
   nr: 3,
-  serie: 'et200s',
-  title: 'KKP1',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[14]),
     new S7_131_6BF00_0BA0(2, eb[15]),
@@ -44,8 +38,6 @@ const rack3 = {
 
 const rack4 = {
   nr: 4,
-  serie: 'et200m',
-  title: 'LS2',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(16, 20)),
     new S7_521_1BL00_0AB0(2, eb.slice(20, 24)),
@@ -56,8 +48,6 @@ const rack4 = {
 
 const rack5 = {
   nr: 5,
-  serie: 'et200s',
-  title: 'KKP2',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[24]),
     new S7_131_6BF00_0BA0(2, eb[25]),
@@ -67,8 +57,6 @@ const rack5 = {
 
 const rack6 = {
   nr: 6,
-  serie: 'et200m',
-  title: 'LS3',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(26, 30)),
     new S7_522_1BH01_0AB0(2, ab.slice(18, 20))
@@ -77,8 +65,6 @@ const rack6 = {
 
 const rack7 = {
   nr: 7,
-  serie: 'et200s',
-  title: 'KKP3',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[30]),
     new S7_131_6BF00_0BA0(2, eb[31]),
@@ -88,8 +74,6 @@ const rack7 = {
 
 const rack8 = {
   nr: 8,
-  serie: 'et200s',
-  title: 'KKS3',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[32]),
     new S7_131_6BF00_0BA0(2, eb[33]),
@@ -104,8 +88,6 @@ const rack8 = {
 
 const rack9 = {
   nr: 9,
-  serie: 'et200m',
-  title: 'LS4',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(37, 41)),
     new S7_522_1BH01_0AB0(2, ab.slice(24, 26))
@@ -114,8 +96,6 @@ const rack9 = {
 
 const rack10 = {
   nr: 10,
-  // serie: 'et200s',
-  // title: 'KKP4',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[41]),
     new S7_131_6BF00_0BA0(2, eb[42]),
@@ -125,8 +105,6 @@ const rack10 = {
 
 const rack11 = {
   nr: 11,
-  // serie: 'et200s',
-  // title: 'KKS4',
   cards: [
     new S7_131_6BF00_0BA0(1, eb[43]),
     new S7_131_6BF00_0BA0(2, eb[44]),
@@ -138,20 +116,6 @@ const rack11 = {
     new S7_132_6BF00_0BA0(8, ab[29])
   ]
 }
-
-// module.exports = [
-//   rack1,
-//   rack2,
-//   rack3,
-//   rack4,
-//   rack5,
-//   rack6,
-//   rack7,
-//   rack8,
-//   rack9,
-//   rack10,
-//   rack11
-// ]
 
 const { Pn } = require('../../../models/Pn')
 
