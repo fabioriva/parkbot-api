@@ -9,9 +9,6 @@ const {
 
 const rack1 = {
   nr: 1,
-  // online: merkers.find(b => b.addr === 'M4.0'),
-  // serie: 'et200m',
-  // title: 'LS',
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(0, 4)),
     new S7_521_1BL00_0AB0(2, eb.slice(4, 8)),
@@ -24,9 +21,6 @@ const rack1 = {
 
 const rack2 = {
   nr: 2,
-  // online: merkers.find(b => b.addr === 'M4.1'),
-  // serie: 'et200s',
-  // title: 'KKP',
   cards: [
     new S7_131_6BH01_0BA0(1, eb.slice(12, 14)),
     new S7_131_6BH01_0BA0(2, eb.slice(14, 16)),
@@ -35,8 +29,6 @@ const rack2 = {
     new S7_132_6BH01_0BA0(5, ab.slice(12, 14))
   ]
 }
-
-// module.exports = [rack1, rack2]
 
 const { Pn } = require('../../models/Pn')
 
