@@ -29,7 +29,13 @@ function generateBits (type, min, max, str) {
   if (str === undefined) return bits
   bits.forEach((b, i) => {
     b.label = str[i].label
-    b._i18n = str[i].i18n
+    // b._i18n = str[i].i18n
+    // if (str[i].key) {
+    //   b.key = str[i].key
+    // }
+    // if (str[i].query) {
+    //   b.query = str[i].query
+    // }
   })
   return bits
 }
