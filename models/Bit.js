@@ -7,16 +7,6 @@ class Bit {
     this.addr = addr
     this.status = status
   }
-
-  // get _i18n () {
-  //   return this.i18n
-  // }
-
-  // set _i18n (obj) {
-  //   if (obj) {
-  //     this.i18n = obj
-  //   }
-  // }
 }
 
 function generateBits (type, min, max, str) {
@@ -26,17 +16,7 @@ function generateBits (type, min, max, str) {
       bits.push(new Bit(type + byte.toString() + '.' + bit.toString(), false))
     }
   }
-  if (str === undefined) return bits
-  bits.forEach((b, i) => {
-    b.label = str[i].label
-    // b._i18n = str[i].i18n
-    // if (str[i].key) {
-    //   b.key = str[i].key
-    // }
-    // if (str[i].query) {
-    //   b.query = str[i].query
-    // }
-  })
+  if (str !== undefined) bits.forEach((b, i) => { b.label = str[i].label })
   return bits
 }
 
