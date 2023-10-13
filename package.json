@@ -3,7 +3,7 @@
   "version": "0.9.0",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/18017K/",
+    "dev": "nodemon aps/us/spire/",
     "start": "NODE_ENV=production pm2 start aps/il/aminadav1820/index.js --name aps-aminadav1820 --max-memory-restart 128M",
     "test": "standard",
     "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.31.0"
