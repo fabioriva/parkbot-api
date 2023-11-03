@@ -18,7 +18,7 @@ const ALARM_LEN = 8
 exports.ALARM_LEN = ALARM_LEN
 exports.DB_ALARM_INIT = 6
 exports.DB_ALARM_LEN = 64 * ALARM_LEN
-exports.DBS_ALARM = [531, 532, 533, 534, 535, 536] // T1, T2, T3, EU1, EU2, EU3
+exports.DBS_ALARM = [531, 532, 533, 534, 535, 536] // EU1, EU2, EU3, T1, T2, T3
 
 const CARDS = 242
 const CARD_LEN = 10

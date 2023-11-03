@@ -5,9 +5,8 @@ const { Door, Flap, Lock, Hoisting, Rotation } = require('../../../models/Motor'
 const { Position } = require('../../../models/Position')
 const { Main, Garage } = require('../../../models/View')
 
-const LV = new Position(1, 'LV')
-const ENR = new Position(2, 'ENR')
-const positions = [LV, ENR]
+const ENR = new Position(1, 'ENR')
+const positions = [ENR]
 
 const lamps = [
   inputs.find(b => b.addr === 'E103.3'),

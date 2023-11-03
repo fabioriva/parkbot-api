@@ -7,10 +7,10 @@ const { generateCards } = require('../../../models/Card')
 const { generateQueue } = require('../../../models/Queue')
 const { generateStalls } = require('../../../models/Stall')
 
-const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // T1
+const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // EU1
 const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2)
 const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 3)
-const al04 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 4) // EU1
+const al04 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 4) // T1
 const al05 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 5)
 const al06 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 6)
 exports.alarms = [al01, al02, al03, al04, al05, al06]
