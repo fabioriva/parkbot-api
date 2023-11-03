@@ -17,7 +17,7 @@
     "mongodb": "^6.1.0",
     "node-fetch": "^2.7.0",
     "node-snap7": "^1.0.6",
-    "pino": "^8.15.7",
+    "pino": "^8.16.1",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.31.0"
   },
   "devDependencies": {
