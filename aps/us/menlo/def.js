@@ -12,6 +12,9 @@ exports.PLC = {
   polling_time: 500
 }
 
+exports.MQTT_TOPIC = 'aps/us/menlo/#'
+exports.MQTT_TZ = 'America/Los_Angeles'
+
 exports.QUEUE_LEN = 5
 
 const ALARM_LEN = 8
