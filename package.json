@@ -6,7 +6,7 @@
     "dev": "nodemon aps/us/menlo/",
     "start": "NODE_ENV=production pm2 start aps/us/menlo/index.js --name aps-menlo --max-memory-restart 128M",
     "test": "standard",
-    "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.31.0"
+    "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.34.0"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "node-fetch": "^2.7.0",
     "node-snap7": "^1.0.6",
     "pino": "^8.16.1",
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.31.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.34.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1",
