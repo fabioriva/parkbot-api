@@ -103,7 +103,7 @@ const silomat = new Silomat(
   IV2,
   [],
   [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH],
-  [MTC]
+  [MTC, MTC]
 )
 
 const drives = [IV1, IV2]
