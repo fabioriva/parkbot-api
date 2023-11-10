@@ -12,6 +12,9 @@ exports.PLC = {
   polling_time: 500
 }
 
+exports.MQTT_TOPIC = 'aps/in/mesacon/#'
+exports.MQTT_TZ = 'Asia/Kolkata'
+
 exports.QUEUE_LEN = 5
 
 const ALARM_LEN = 8
