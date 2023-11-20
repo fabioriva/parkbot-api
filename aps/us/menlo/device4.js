@@ -12,10 +12,10 @@ const LH2 = new Position(4, 'LH2')
 const positions = [LV1, LV2, LH1, LH2]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E100.2'),
+  inputs.find(b => b.addr === 'E200.2'),
   outputs.find(b => b.addr === 'A203.7'),
   outputs.find(b => b.addr === 'A203.6'),
-  inputs.find(b => b.addr === 'E412.3')
+  inputs.find(b => b.addr === 'E205.3')
 ]
 
 const EN1 = inputs.find(b => b.addr === 'E200.0')
@@ -24,7 +24,42 @@ const EN2 = inputs.find(b => b.addr === 'E200.1')
 const IV1 = new Drive(4, 'IV1', EN1)
 const IV2 = new Drive(5, 'IV2', EN2)
 
-// ...
+const AKKP = inputs.find(b => b.addr === 'E201.6')
+/**
+ * Hoisting
+ */
+const FSBK = inputs.find(b => b.addr === 'E201.1')
+const ASBK = inputs.find(b => b.addr === 'E201.2')
+const SBK1 = outputs.find(b => b.addr === 'A201.4')
+const SBK2 = outputs.find(b => b.addr === 'A200.6')
+
+const M1 = new Hoisting(
+  0,
+  IV1,
+  [LV1, LV2],
+  [ASBK, AKKP, FSBK],
+  [SBK1, SBK2],
+  [],
+  FSBK
+)
+
+/**
+ * Traveling
+ */
+const AH = inputs.find(b => b.addr === 'E201.4')
+const T101 = outputs.find(b => b.addr === 'A201.0')
+const T102 = outputs.find(b => b.addr === 'A201.1')
+const T10F = outputs.find(b => b.addr === 'A200.7')
+
+const M2 = new Traveling(
+  0,
+  IV2,
+  [LH1, LH2],
+  [AH, AKKP],
+  [T101, T102, T10F],
+  [],
+  T10F
+)
 
 /**
  * Silomat
@@ -56,11 +91,9 @@ const silomat = new Silomat(
 
 const drives = [IV1, IV2]
 
-// const motors = [M1, M2, ...silomat.motors]
-const motors = [...silomat.motors]
+const motors = [M1, M2, ...silomat.motors]
 
-// const main = new Main(drives, [M1, M2])
-const main = new Main(drives, [])
+const main = new Main(drives, [M1, M2])
 
 const views = [main, silomat]
 
