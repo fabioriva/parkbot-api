@@ -118,11 +118,11 @@ class MotorVFD {
     } else {
       this.message = 'mov-idle'
     }
-    // if (RA || RB) {
-    //   this.run.status = 1
-    // } else {
-    //   this.run.status = 0
-    // }
+    if (RA || RB) {
+      this.run.status = 1
+    } else {
+      this.run.status = 0
+    }
     // const { name, encoders, inputs, outputs, message } = this
     // return { name, encoders, io: inputs.concat(outputs), message }
   }
