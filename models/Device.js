@@ -21,6 +21,7 @@ class Device {
     this.id = id
     this.name = name
     this.card = card
+    this.messages = []
     this.mode = mode
     this.motor = motor // used to switch view
     this.operation = operation
