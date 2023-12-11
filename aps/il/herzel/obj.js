@@ -7,11 +7,11 @@ const { generateCards } = require('../../../models/Card')
 const { generateQueue } = require('../../../models/Queue')
 const { generateStalls } = require('../../../models/Stall')
 
-const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // SH1
-const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // SH2
-const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 3) // SH3
-const al04 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 4) // EL1
-const al05 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 5) // EL2
+const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 1) // EL1
+const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 2) // EL2
+const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 3) // SH1
+const al04 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 4) // SH2
+const al05 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 5) // SH3
 exports.alarms = [al01, al02, al03, al04, al05]
 
 const inputs1 = generateBits('E', 0, 3, str.inputs1)
