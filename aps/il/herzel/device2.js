@@ -76,7 +76,7 @@ const M4 = new Door(
   [SZ, SO, KX, SP]
 )
 
-const motors = [M1, M2]
+const motors = [M1, M2, M3, M4]
 
 const L1 = outputs.find(b => b.addr === 'A202.0')
 const L2 = outputs.find(b => b.addr === 'A202.1')

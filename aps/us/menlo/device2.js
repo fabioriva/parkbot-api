@@ -9,7 +9,7 @@ const ENR = new Position(1, 'ENR')
 const positions = [ENR]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E301.3'),
+  inputs.find(b => b.addr === 'E301.4'),
   outputs.find(b => b.addr === 'A301.7'),
   outputs.find(b => b.addr === 'A301.6')
 ]
