@@ -22,7 +22,7 @@ const IV1 = new Drive(1, 'IV1', EN1)
  */
 const ASBK3 = inputs.find(b => b.addr === 'E103.5')
 const EXD = inputs.find(b => b.addr === 'E105.1')
-const TDF = outputs.find(b => b.addr === 'A102.6')
+const TDF = outputs.find(b => b.addr === 'A101.1')
 
 const M1 = new Rotation(
   0,
