@@ -3,7 +3,8 @@ const str = require('./str')
 const { Action } = require('../../../models/Action')
 const { Alarms, generateAlarms } = require('../../../models/Alarm')
 const { generateBits, generateBytes } = require('../../../models/Bit')
-const { generateCards } = require('../../../models/Card')
+// const { generateCards } = require('../../../models/Card')
+const { generateTags } = require('../../../models/Card')
 const { generateQueue } = require('../../../models/Queue')
 const { generateStalls } = require('../../../models/Stall')
 
@@ -109,7 +110,8 @@ exports.overview = {
   }
 }
 
-const cards = generateCards(def)
+// const cards = generateCards(def)
+const cards = generateTags(def)
 exports.cards = cards
 
 const stalls = generateStalls(def)

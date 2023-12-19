@@ -58,3 +58,24 @@ exports.updateCards = util.promisify(
     callback(null, cards)
   }
 )
+
+class Tag {
+  constructor (nr, pin = '', uid = '') {
+    this.nr = nr
+    this.pin = pin
+    this.uid = uid
+  }
+
+  update (buffer) {
+    this.pin = buffer.readInt16BE(0).toString(16).toUpperCase()
+    this.uid = buffer.readInt32BE(2).toString(16)
+  }
+}
+
+exports.generateTags = def => {
+  const tags = []
+  for (let i = 0; i < def.CARDS; i++) {
+    tags.push(new Tag(i + 1))
+  }
+  return tags
+}

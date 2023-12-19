@@ -23,8 +23,13 @@ exports.DB_ALARM_INIT = 6
 exports.DB_ALARM_LEN = 64 * ALARM_LEN
 exports.DBS_ALARM = [531, 532, 533, 534, 535, 536] // EU1, EU2, EU3, T1, T2, T3
 
+// const CARDS = 242
+// const CARD_LEN = 10
+// exports.CARDS = CARDS
+// exports.CARD_LEN = CARD_LEN
+
 const CARDS = 242
-const CARD_LEN = 10
+const CARD_LEN = 6
 exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
@@ -56,9 +61,16 @@ exports.STALL_STATUS = {
   LOCK: 999
 }
 
-exports.CARD_READ = {
+// exports.CARD_READ = {
+//   area: 0x84,
+//   dbNumber: 511,
+//   start: 0,
+//   amount: CARDS * CARD_LEN,
+//   wordLen: 0x02
+// }
+exports.TAGS_READ = {
   area: 0x84,
-  dbNumber: 511,
+  dbNumber: 512,
   start: 0,
   amount: CARDS * CARD_LEN,
   wordLen: 0x02
