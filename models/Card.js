@@ -8,7 +8,7 @@ class Card {
   #rand
   constructor (
     nr,
-    code = '000',
+    code = '',
     from = format(startOfDay(new Date()), 'HH:mm:ss'),
     to = format(endOfDay(new Date()), 'HH:mm:ss'),
     status = 0 // 0=not used, stall=in use ...
@@ -60,10 +60,11 @@ exports.updateCards = util.promisify(
 )
 
 class Tag {
-  constructor (nr, pin = '', uid = '') {
+  constructor (nr, code = '', uid = '', status = 0) {
     this.nr = nr
-    this.pin = pin
+    this.code = code
     this.uid = uid
+    this.status = status
   }
 
   update (buffer) {
