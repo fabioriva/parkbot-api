@@ -70,7 +70,7 @@ const AF8 = inputs.find(b => b.addr === 'E303.2')
 const MTC = inputs.find(b => b.addr === 'E304.7')
 
 const silomat = new Silomat(
-  IV2,
+  IV1,
   [],
   [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH],
   [AF8, MTC]
