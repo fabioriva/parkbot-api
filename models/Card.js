@@ -63,12 +63,12 @@ class Tag {
   constructor (nr, code = '', uid = '', status = 0) {
     this.nr = nr
     this.code = code
-    this.uid = uid
     this.status = status
+    this.uid = uid
   }
 
   update (buffer) {
-    this.pin = buffer.readInt16BE(0).toString(16).toUpperCase()
+    this.code = buffer.readInt16BE(0).toString(16).toUpperCase()
     this.uid = buffer.readInt32BE(2).toString(16)
   }
 }
