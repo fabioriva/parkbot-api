@@ -68,7 +68,7 @@ exports.STALL_STATUS = {
 //   amount: CARDS * CARD_LEN,
 //   wordLen: 0x02
 // }
-exports.TAGS_READ = {
+exports.CARD_READ = {
   area: 0x84,
   dbNumber: 512,
   start: 0,
