@@ -68,8 +68,9 @@ class Tag {
   }
 
   update (buffer) {
-    this.code = buffer.readInt16BE(0).toString(16).toUpperCase()
-    this.uid = buffer.readInt32BE(2).toString(16)
+    // this.code = buffer.readInt16BE(0).toString(16).toUpperCase()
+    this.code = buffer.slice(0, 2).toString('hex').substring(1).toUpperCase()
+    this.uid = buffer.slice(2).toString('hex').toUpperCase()
   }
 }
 
