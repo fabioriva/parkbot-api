@@ -26,7 +26,7 @@ exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
 const DB_DATA = 505
-const DB_DATA_LEN = 332
+const DB_DATA_LEN = 348
 exports.DB_DATA_INIT_DEVICE = 32
 exports.DB_DATA_INIT_DRIVE = 128
 exports.DB_DATA_INIT_POS = 208
