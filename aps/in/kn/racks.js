@@ -1,4 +1,4 @@
-const { ab, eb, merkers } = require('./obj')
+const { ab, eb, inputs } = require('./obj')
 const {
   S7_521_1BL00_0AB0,
   S7_522_1BL01_0AB0,
@@ -28,11 +28,12 @@ for (let i = 1; i <= 3; i++) {
     ]
   }
   EL.push(rack)
-  offsetEB += 12
-  offsetAB += 6
-  const pn = new Pn('EL' + i, i, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+  // const pn = new Pn('EL' + i, i, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+  const pn = new Pn('EL' + i, i, inputs.find(b => b.addr === 'E' + (offsetEB + 1).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
   pn.rack = rack
   PN.push(pn)
+  offsetEB += 12
+  offsetAB += 6
 }
 
 // Racks SH
@@ -52,11 +53,12 @@ for (let i = 1; i <= 12; i++) {
     ]
   }
   SH.push(rack)
-  offsetEB += 5
-  offsetAB += 3
-  const pn = new Pn('SH' + i, i + 3, merkers.find(b => b.addr === 'M5.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+  // const pn = new Pn('SH' + i, i + 3, merkers.find(b => b.addr === 'M5.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+  const pn = new Pn('SH' + i, i + 3, inputs.find(b => b.addr === 'E' + (offsetEB + 39).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
   pn.rack = rack
   PN.push(pn)
+  offsetEB += 5
+  offsetAB += 3
 }
 
 // module.exports = [...EL, ...SH]
