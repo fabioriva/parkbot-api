@@ -1,4 +1,4 @@
-const { ab, eb, merkers } = require('./obj')
+const { ab, eb, inputs } = require('./obj')
 const { S7_131_6BH01_0BA0, S7_132_6BH01_0BA0 } = require('../../../models/Modules')
 
 const rack1 = {
@@ -36,8 +36,8 @@ const rack3 = {
 const { Pn } = require('../../../models/Pn')
 
 const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
-const pn01 = new Pn('KKP', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-6 PN ST', { key: 'im', query: {} })
-const pn02 = new Pn('SH', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-6 PN ST', { key: 'im', query: {} })
+const pn01 = new Pn('KKP', 1, inputs.find(b => b.addr === 'E1.3'), 'IM 155-6 PN ST', { key: 'im', query: {} })
+const pn02 = new Pn('SH', 2, inputs.find(b => b.addr === 'E1.3'), 'IM 155-6 PN ST', { key: 'im', query: {} })
 
 pn00.rack = rack1
 pn01.rack = rack2
