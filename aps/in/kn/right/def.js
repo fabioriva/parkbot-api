@@ -26,13 +26,14 @@ exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
 const DB_DATA = 505
-const DB_DATA_LEN = 530
+const DB_DATA_LEN = 680
 exports.DB_DATA_INIT_DEVICE = 32
-exports.DB_DATA_INIT_POS = 272
-exports.DB_DATA_INIT_QUEUE = 332
-exports.DB_DATA_INIT_AB = 372
-exports.DB_DATA_INIT_EB = 426
-exports.DB_DATA_INIT_MB = 522
+exports.DB_DATA_INIT_DRIVE = 272
+exports.DB_DATA_INIT_POS = 422
+exports.DB_DATA_INIT_QUEUE = 482
+exports.DB_DATA_INIT_AB = 522
+exports.DB_DATA_INIT_EB = 576
+exports.DB_DATA_INIT_MB = 672
 exports.DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,
@@ -62,34 +63,34 @@ exports.MAP_READ = {
 exports.MAP_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 530,
+  start: 680,
   amount: 4,
   wordLen: 0x02
 }
 exports.QUEUE_DELETE = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 538,
+  start: 688,
   amount: 4,
   wordLen: 0x02
 }
 exports.REQ_0 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 542,
+  start: 692,
   amount: 2,
   wordLen: 0x02
 }
 
-const DB_DIAG = 506
-const DB_DIAG_LEN = 306
-exports.DB_DIAG_INIT_MOT = 0
-exports.DB_DIAG_INIT_VFD = 36
-exports.DB_DIAG_INIT_SIL = 186
-exports.DIAG_READ = {
-  area: 0x84,
-  dbNumber: DB_DIAG,
-  start: 0,
-  amount: DB_DIAG_LEN,
-  wordLen: 0x02
-}
+// const DB_DIAG = 506
+// const DB_DIAG_LEN = 306
+// exports.DB_DIAG_INIT_MOT = 0
+// exports.DB_DIAG_INIT_VFD = 36
+// exports.DB_DIAG_INIT_SIL = 186
+// exports.DIAG_READ = {
+//   area: 0x84,
+//   dbNumber: DB_DIAG,
+//   start: 0,
+//   amount: DB_DIAG_LEN,
+//   wordLen: 0x02
+// }

@@ -3,8 +3,8 @@
   "version": "0.9.0",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/us/spire/",
-    "start": "NODE_ENV=production pm2 start aps/us/menlo/index.js --name aps-menlo --max-memory-restart 128M",
+    "dev": "nodemon aps/in/kn/left/",
+    "start": "NODE_ENV=production pm2 start aps/in/kn/left/index.js --name aps-knl --max-memory-restart 128M",
     "test": "standard",
     "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.34.0"
   },
