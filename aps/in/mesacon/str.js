@@ -51,7 +51,7 @@ exports.inputs1 = [
   { addr: 'E6.0', label: 'EXDE' },
   { addr: 'E6.1', label: 'EXHE' },
   { addr: 'E6.2', label: '' },
-  { addr: 'E6.3', label: '' },
+  { addr: 'E6.3', label: 'FTC' },
   { addr: 'E6.4', label: 'ATD' },
   { addr: 'E6.5', label: 'ASBKD' },
   { addr: 'E6.6', label: '' },
@@ -415,8 +415,8 @@ exports.ALARMS = [
 ]
 exports.DEVICES = [
   { id: 0, key: 'operator' },
-  { id: 1, key: 'EU1' },
-  { id: 2, key: 'EU2' },
+  { id: 1, key: 'E' },
+  { id: 2, key: 'U' },
   { id: 3, key: 'EL' }
 ]
 exports.MODES = [

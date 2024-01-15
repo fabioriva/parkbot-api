@@ -94,6 +94,6 @@ const main = new Main(drives, [M1, M4, M5, M6])
 
 const views = [main]
 
-const device = new Device(1, 'EU1', [A0], lamps, motors, views)
+const device = new Device(1, 'E', [A0], lamps, motors, views)
 
 module.exports = { device, drives, positions }
