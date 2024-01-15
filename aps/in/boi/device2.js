@@ -48,13 +48,13 @@ const EZM = inputs.find(b => b.addr === 'E49.7')
 const SMA = outputs.find(b => b.addr === 'A46.5')
 const SMB = outputs.find(b => b.addr === 'A46.6')
 
+const M2 = new Lock(0, [EZM, EOM, AMM], [SMA, SMB])
+
 const AD = inputs.find(b => b.addr === 'E48.0')
 const ASBK2 = inputs.find(b => b.addr === 'E50.0')
 const EXD = inputs.find(b => b.addr === 'E49.3')
 const TD = outputs.find(b => b.addr === 'A46.7')
 const TDF = outputs.find(b => b.addr === 'A46.2')
-
-const M2 = new Lock(0, [EZM, EOM, AMM], [SMA, SMB])
 
 const M3 = new Rotation(
   0,

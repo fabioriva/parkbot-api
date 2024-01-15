@@ -172,7 +172,7 @@ exports.inputs4 = [
   { addr: 'E32.4', label: '' },
   { addr: 'E32.5', label: '' },
   { addr: 'E32.6', label: '' },
-  { addr: 'E32.7', label: '' },
+  { addr: 'E32.7', label: 'FDBK' },
   { addr: 'E33.0', label: 'RMV' },
   { addr: 'E33.1', label: 'RMH' },
   { addr: 'E33.2', label: 'RES' },
