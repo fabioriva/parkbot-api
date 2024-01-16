@@ -213,7 +213,8 @@ class Traveling extends MotorVFD {
 // }
 
 class SilomatTraveling extends MotorVFD {
-  static messages = ['sil-mov-stall', 'sil-mov-home']
+  // static messages = ['sil-mov-stall', 'sil-mov-home']
+  static messages = ['sil-mov-fwd', 'sil-mov-bwd']
   constructor (id, drive, encoders = [], inputs = [], outputs = [], positions = [], run) {
     super(id, drive, encoders, inputs, outputs, positions, run)
     this.name = { key: 'mot-traveling', query: { id } }
