@@ -20,6 +20,7 @@ const main = async () => {
     const mailingList = new MailingList(db)
     const mqtt = new Mqtt(def.APS)
     mqtt.on('log', async log => {
+      // console.log('MQTT log', log)
       updateOnLog(def, log, obj, plc)
       const doc = await history.saveLog(log)
       mailingList.sendMail(def.APS, doc)
@@ -29,6 +30,7 @@ const main = async () => {
     mqtt.run(def, obj)
     const plc = new Plc(def.PLC)
     // plc.on('log', async log => {
+    //   console.log('TCP Log', log)
     //   updateOnLog(def, log, obj, plc)
     //   const doc = await history.saveLog(log)
     //   mailingList.sendMail(def.APS, doc)

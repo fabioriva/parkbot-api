@@ -60,17 +60,19 @@ exports.updateCards = util.promisify(
 )
 
 class Tag {
-  constructor (nr, code = '', uid = '', status = 0) {
+  constructor (nr, code = '', status = 0, type = 0, uid = '') {
     this.nr = nr
     this.code = code
-    this.status = status
-    this.uid = uid
+    this.status = status // 0=not parked or stall number
+    this.type = type // 0=standard, 1=EV type 1, 2=EV type 2, etc.
+    this.uid = uid // Tag UID
   }
 
   update (buffer) {
     // this.code = buffer.readInt16BE(0).toString(16).toUpperCase()
     this.code = buffer.slice(0, 2).toString('hex').substring(1).toUpperCase()
-    this.uid = buffer.slice(2).toString('hex').toUpperCase()
+    this.type = buffer.readInt16BE(2)
+    this.uid = buffer.slice(4).toString('hex').toUpperCase()
   }
 }
 

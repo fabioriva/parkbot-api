@@ -6,13 +6,13 @@ exports.HOST =
     : process.env.PRODUCTION_SERVER
 exports.HTTP = 9034
 exports.PLC = {
-  ip: '192.168.83.2',
+  ip: '192.168.20.55', // 83.2',
   rack: 0,
   slot: 1,
   polling_time: 500
 }
 
-exports.MQTT_TOPIC = 'aps/us/menlo/#'
+exports.MQTT_TOPIC = 'aps/ch/sotefin/#' // 'aps/us/menlo/#'
 exports.MQTT_TZ = 'America/Los_Angeles'
 
 exports.QUEUE_LEN = 5
@@ -29,11 +29,11 @@ exports.DBS_ALARM = [531, 532, 533, 534, 535, 536] // EU1, EU2, EU3, T1, T2, T3
 // exports.CARD_LEN = CARD_LEN
 
 const CARDS = 242
-const CARD_LEN = 6
+const CARD_LEN = 8 // 6
 exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
-const DB_DATA = 505
+const DB_DATA = 515 // 505
 const DB_DATA_LEN = 386
 exports.DB_DATA_INIT_DEVICE = 32
 exports.DB_DATA_INIT_DRIVE = 128
@@ -70,7 +70,7 @@ exports.STALL_STATUS = {
 // }
 exports.CARD_READ = {
   area: 0x84,
-  dbNumber: 512,
+  dbNumber: 516, // 512,
   start: 0,
   amount: CARDS * CARD_LEN,
   wordLen: 0x02

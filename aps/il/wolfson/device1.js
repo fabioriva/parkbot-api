@@ -17,12 +17,13 @@ const IV2 = new Drive(2, 'IV2', EN2)
 
 const LV1 = new Position(1, 'LV1')
 const LV2 = new Position(2, 'LV2')
-const ENH = new Position(3, 'ENH')
-const ENR = new Position(4, 'ENR')
-const positions = [LV1, LV2, ENH, ENR]
+const LH1 = new Position(3, 'LH1')
+const LH2 = new Position(4, 'LH2')
+const ENR = new Position(5, 'ENR')
+const positions = [LV1, LV2, LH1, LH2, ENR]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E1.3'),
+  inputs.find(b => b.addr === 'E1.4'),
   outputs.find(b => b.addr === 'A1.7'),
   outputs.find(b => b.addr === 'A1.6')
 ]
@@ -69,7 +70,7 @@ const T10F = outputs.find(b => b.addr === 'A12.7')
 const M3 = new Traveling(
   0,
   IV1,
-  [ENH],
+  [LH1, LH2],
   [AH, ASBK2, AIV, AKKU, EHP],
   [T10, T10F],
   [],

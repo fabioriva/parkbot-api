@@ -6,7 +6,7 @@ exports.HOST =
     : process.env.PRODUCTION_SERVER
 exports.HTTP = 9030
 exports.PLC = {
-  ip: '192.168.20.55', // 72.12',
+  ip: '192.168.72.2',
   rack: 0,
   slot: 1,
   polling_time: 500
@@ -25,7 +25,7 @@ const CARD_LEN = 10
 exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
-const DB_DATA = 508 // 505
+const DB_DATA = 505
 const DB_DATA_LEN = 222
 exports.DB_DATA_INIT_DEVICE = 32
 exports.DB_DATA_INIT_DRIVE = 80
