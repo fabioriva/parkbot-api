@@ -91,8 +91,8 @@ exports.map = {
       max: 42,
       stalls: stalls.slice(22, 42),
       elevators: [
-        { id: 'el-1', label: 'EL1' },
-        { id: 'el-2', label: 'EL2' }
+        { id: 'el-1', label: 'VT1' },
+        { id: 'el-2', label: 'VT2' }
       ]
     },
     {
@@ -100,8 +100,10 @@ exports.map = {
       label: '3rd Basement (P3)',
       min: 42,
       max: 62,
-      stalls: stalls.slice(43, 62),
+      stalls: stalls.slice(42, 62),
       elevators: [
+        { id: 'el-1', label: 'VT1' },
+        { id: 'el-2', label: 'VT2' }
       ]
     },
     {
@@ -111,7 +113,8 @@ exports.map = {
       max: 83,
       stalls: stalls.slice(62, 83),
       elevators: [
-
+        { id: 'el-1', label: 'VT1' },
+        { id: 'el-2', label: 'VT2' }
       ]
     }
   ],
