@@ -1,6 +1,6 @@
 const { inputs, outputs } = require('./obj')
 const { Device } = require('../../../models/Device')
-// const { Drive } = require('../../models/Drive')
+const { Drive } = require('../../../models/Drive')
 // const {
 //   DoorVFD,
 //   Flap,
@@ -11,6 +11,13 @@ const { Device } = require('../../../models/Device')
 //   Traveling
 // } = require('../../models/Motor')
 const { Position } = require('../../../models/Position')
+const { Main, Silomat } = require('../../../models/View')
+
+const EN1 = inputs.find(b => b.addr === 'E41.1')
+const EN2 = inputs.find(b => b.addr === 'E53.0')
+
+const IV1 = new Drive(1, 'IV1', EN1)
+const IV2 = new Drive(2, 'IV2', EN2)
 
 const LV1 = new Position(2, 'LV1')
 const LV2 = new Position(3, 'LV2')
@@ -24,32 +31,39 @@ const lamps = [
   outputs.find(b => b.addr === 'A40.6')
 ]
 
-// const silomat = [
-//   inputs.find(b => b.addr === 'E52.0'),
-//   inputs.find(b => b.addr === 'E52.1'),
-//   inputs.find(b => b.addr === 'E52.2'),
-//   inputs.find(b => b.addr === 'E52.3'),
-//   inputs.find(b => b.addr === 'E52.4'),
-//   inputs.find(b => b.addr === 'E52.5'),
-//   inputs.find(b => b.addr === 'E52.6'),
-//   inputs.find(b => b.addr === 'E52.7'),
-//   outputs.find(b => b.addr === 'A51.1'),
-//   outputs.find(b => b.addr === 'A51.2'),
-//   outputs.find(b => b.addr === 'A51.3'),
-//   outputs.find(b => b.addr === 'A51.4'),
-//   outputs.find(b => b.addr === 'A51.5'),
-//   outputs.find(b => b.addr === 'A51.6')
-// ]
+const RMV = inputs.find(b => b.addr === 'E52.0')
+const RMH = inputs.find(b => b.addr === 'E52.1')
+const RES = inputs.find(b => b.addr === 'E52.2')
+const REH = inputs.find(b => b.addr === 'E52.3')
+const RCV = inputs.find(b => b.addr === 'E52.4')
+const REAV = inputs.find(b => b.addr === 'E52.5')
+const REAH = inputs.find(b => b.addr === 'E52.6')
+const RCH = inputs.find(b => b.addr === 'E52.7')
+const T2 = outputs.find(b => b.addr === 'A51.1')
+const TRA = outputs.find(b => b.addr === 'A51.2')
+const TRB = outputs.find(b => b.addr === 'A51.3')
+const KCS = outputs.find(b => b.addr === 'A51.4')
+const KCV = outputs.find(b => b.addr === 'A51.5')
+const KCH = outputs.find(b => b.addr === 'A51.6')
 
-const drives = []
+const AF8 = inputs.find(b => b.addr === 'E51.1') // AF1
+const MTC = inputs.find(b => b.addr === 'E53.2')
+
+const silomat = new Silomat(
+  IV2,
+  [],
+  [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH],
+  [AF8, MTC]
+)
+
+const drives = [IV1, IV2]
 
 const motors = []
 
-const views = [
-  // { name: 'view-main', drives, motors: [M1, M2, M3, M4, M5, M6, M7, M8, M9] },
-  // { name: 'view-sil', drives: [IV2], motors: [...silomat.motors] }
-]
+const main = new Main(drives, [])
 
-const device = new Device(2, 'EL2', [], lamps, views)
+const views = [main, silomat]
 
-module.exports = { device, drives, motors, positions }
+const device = new Device(2, 'EL2', [], lamps, motors, views)
+
+module.exports = { device, drives, positions }
