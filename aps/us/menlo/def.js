@@ -29,7 +29,7 @@ exports.DBS_ALARM = [531, 532, 533, 534, 535, 536] // EU1, EU2, EU3, T1, T2, T3
 // exports.CARD_LEN = CARD_LEN
 
 const CARDS = 242
-const CARD_LEN = 8 // 6
+const CARD_LEN = 10 // 6
 exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
 
