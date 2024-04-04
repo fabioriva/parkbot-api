@@ -4,7 +4,7 @@
   "description": "parkbot backend",
   "scripts": {
     "dev": "nodemon aps/ch/hdante",
-    "start": "NODE_ENV=production pm2 start aps/us/menlo/index.js --name api-menlo --max-memory-restart 128M",
+    "start": "NODE_ENV=production pm2 start aps/ch/hdante/index.js --name api-hdante --max-memory-restart 128M",
     "test": "standard",
     "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.34.0"
   },

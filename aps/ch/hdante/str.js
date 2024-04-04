@@ -21,7 +21,7 @@ exports.inputs1 = [
   { addr: 'E6.2', label: 'AMC' },
   { addr: 'E6.3', label: 'EXD' },
   { addr: 'E6.4', label: 'AD' },
-  { addr: 'E6.5', label: 'ASKA' },
+  { addr: 'E6.5', label: 'ASKD' },
   { addr: 'E6.6', label: 'FE' },
   { addr: 'E6.7', label: '' },
   { addr: 'E7.0', label: 'IV1A' },
