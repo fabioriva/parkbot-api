@@ -90,7 +90,7 @@ class MotorVFD {
   #positions
   constructor (id, drive, encoders = [], inputs = [], outputs = [], positions = [], run) {
     if (run === undefined) {
-      throw new Error('id is undefined')
+      throw new Error('run is undefined')
     }
     this.id = id
     this.#drive = drive

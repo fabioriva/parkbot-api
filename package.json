@@ -3,8 +3,8 @@
   "version": "0.9.0",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/ch/hdante",
-    "start": "NODE_ENV=production pm2 start aps/ch/hdante/index.js --name api-hdante --max-memory-restart 128M",
+    "dev": "nodemon aps/ae/daman",
+    "start": "NODE_ENV=production pm2 start aps/ae/daman/index.js --name api-daman --max-memory-restart 128M",
     "test": "standard",
     "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.43.0"
   },
