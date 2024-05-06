@@ -49,7 +49,7 @@ const M2 = new Traveling(
 )
 
 const RMV = inputs.find(b => b.addr === 'E12.0')
-const RMH = inputs.find(b => b.addr === 'E132.1')
+const RMH = inputs.find(b => b.addr === 'E12.1')
 const RES = inputs.find(b => b.addr === 'E12.2')
 const REH = inputs.find(b => b.addr === 'E12.3')
 const RCV = inputs.find(b => b.addr === 'E12.4')
