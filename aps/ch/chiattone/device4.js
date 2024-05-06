@@ -25,7 +25,7 @@ const RTA = inputs.find(b => b.addr === 'E4.6')
 const ASBK = inputs.find(b => b.addr === 'E4.5')
 const FSBK = inputs.find(b => b.addr === 'E4.4')
 const SBK1 = outputs.find(b => b.addr === 'A0.2')
-const SBK2 = outputs.find(b => b.addr === 'A35')
+const SBK2 = outputs.find(b => b.addr === 'A3.5')
 
 const KEXPV1 = inputs.find(b => b.addr === 'E2.0')
 const KEXPV2 = inputs.find(b => b.addr === 'E2.4')
