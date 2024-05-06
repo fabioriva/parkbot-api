@@ -44,8 +44,8 @@ const rack3 = {
 const { Pn } = require('../../../models/Pn')
 
 const pn00 = new Pn('EL/SH1', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
-const pn01 = new Pn('SH1', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn02 = new Pn('SH2', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn01 = new Pn('SH2', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn02 = new Pn('SH3', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-5 PN', { key: 'im', query: {} })
 
 pn00.rack = rack1
 pn01.rack = rack2

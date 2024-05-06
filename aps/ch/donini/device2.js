@@ -51,7 +51,7 @@ const EZM1 = inputs.find(b => b.addr === 'E15.6')
 const SMA1 = outputs.find(b => b.addr === 'A10.0')
 const SMB1 = outputs.find(b => b.addr === 'A10.1')
 
-const M2 = new Lock(1, [EZM1, EOM1, AMM1], [SMA1, SMB1])
+const M2 = new Lock(0, [EZM1, EOM1, AMM1], [SMA1, SMB1])
 
 // const AIV = inputs.find(b => b.addr === 'E3.4')
 // const AKKU = inputs.find(b => b.addr === 'E3.6')
