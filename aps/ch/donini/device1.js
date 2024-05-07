@@ -95,9 +95,9 @@ const M6 = new Flap(
   [SCA, SCB]
 )
 
-const EZ = inputs.find(b => b.addr === 'E7.0')
-const EO = inputs.find(b => b.addr === 'E7.1')
-const FB = inputs.find(b => b.addr === 'E7.2')
+const EZ = inputs.find(b => b.addr === 'E6.0')
+const EO = inputs.find(b => b.addr === 'E6.1')
+const FB = inputs.find(b => b.addr === 'E6.2')
 const AP = inputs.find(b => b.addr === 'E2.5')
 const KX = outputs.find(b => b.addr === 'A0.2')
 const SP = outputs.find(b => b.addr === 'A3.2')
