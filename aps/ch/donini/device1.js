@@ -106,7 +106,7 @@ const M7 = new DoorVFD(
   0,
   IV1,
   [],
-  [EZ, EO, AP, FB, SP, KX],
+  [EZ, EO, AP, FB, SP],
   [KX],
   [EZ, EO],
   KX
