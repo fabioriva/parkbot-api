@@ -95,17 +95,18 @@ const M6 = new Flap(
   [SCA, SCB]
 )
 
-const EZ = inputs.find(b => b.addr === 'E9.1')
-const EO = inputs.find(b => b.addr === 'E9.1')
-const FB = inputs.find(b => b.addr === 'E9.1')
-const AP = inputs.find(b => b.addr === 'E9.1')
-const KX = outputs.find(b => b.addr === 'A3.5')
+const EZ = inputs.find(b => b.addr === 'E7.0')
+const EO = inputs.find(b => b.addr === 'E7.1')
+const FB = inputs.find(b => b.addr === 'E7.2')
+const AP = inputs.find(b => b.addr === 'E2.5')
+const KX = outputs.find(b => b.addr === 'A0.2')
+const SP = outputs.find(b => b.addr === 'A3.2')
 
 const M7 = new DoorVFD(
   0,
   IV1,
   [],
-  [EZ, EO, AP, FB], //, EX, FX],
+  [EZ, EO, AP, FB, SP, KX],
   [KX],
   [EZ, EO],
   KX
