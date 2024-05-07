@@ -195,7 +195,7 @@ exports.outputs1 = [
   { addr: 'A5.4', label: 'RST' },
   { addr: 'A5.5', label: 'SMA2' },
   { addr: 'A5.6', label: 'SMB2' },
-  { addr: 'A5.7', label: '' }
+  { addr: 'A5.7', label: 'SBK2' }
 ]
 exports.outputs2 = [
   { addr: 'A10.0', label: 'SMA' },

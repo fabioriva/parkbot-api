@@ -64,7 +64,7 @@ const T10F = outputs.find(b => b.addr === 'A13.6')
 
 const M3 = new Traveling(
   0,
-  IV1,
+  IV2,
   [LH1],
   [AH, ASBK2, EHP],
   [T10, T10F],
@@ -105,6 +105,6 @@ const main = new Main(drives, [M1, M2, M3])
 
 const views = [main, silomat]
 
-const device = new Device(1, 'T', [], lamps, motors, views)
+const device = new Device(2, 'T', [], lamps, motors, views)
 
 module.exports = { device, drives, positions }
