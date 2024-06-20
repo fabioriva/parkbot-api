@@ -764,7 +764,7 @@ exports.ALARMS = [
   { id: 98, key: 'al-sil-07', query: {} },
   { id: 99, key: 'al-sil-12', query: {} },
   { id: 100, key: 'al-sil-13', query: {} },
-  { id: 101, key: 'al-fc', query: { fc1: 'FDL', fc2: 'FDR' } },
+  { id: 101, key: 'al-fc', query: { name1: 'FDL', name2: 'FDR' } },
   { id: 102, key: 'al-sil-11', query: {} },
   { id: 103, key: '', query: {} },
   { id: 104, key: '', query: {} },
