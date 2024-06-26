@@ -1,12 +1,12 @@
-exports.APS = 'menlo'
-exports.PORT = 49037
+exports.APS = 'menlob'
+exports.PORT = 49040
 exports.HOST =
   process.env.NODE_ENV !== 'production'
     ? process.env.DEVELOPMENT_SERVER
     : process.env.PRODUCTION_SERVER
-exports.HTTP = 9034
+exports.HTTP = 9037
 exports.PLC = {
-  ip: '192.168.83.2',
+  ip: '192.168.183.102',
   rack: 0,
   slot: 1,
   polling_time: 500
@@ -28,7 +28,7 @@ exports.DBS_ALARM = [531, 532, 533, 534, 535, 536] // EU1, EU2, EU3, T1, T2, T3
 // exports.CARDS = CARDS
 // exports.CARD_LEN = CARD_LEN
 
-const CARDS = 242
+const CARDS = 228
 const CARD_LEN = 10 // 6
 exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
@@ -50,7 +50,7 @@ exports.DATA_READ = {
   wordLen: 0x02
 }
 
-const STALLS = 248
+const STALLS = 234
 const STALL_LEN = 10
 exports.STALLS = STALLS
 exports.STALL_LEN = STALL_LEN

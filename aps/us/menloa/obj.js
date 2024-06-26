@@ -143,9 +143,9 @@ exports.map = {
       max: 157,
       stalls: stalls.slice(65, 157),
       elevators: [
-        { id: 'el-1', label: 'EU1' },
-        { id: 'el-2', label: 'EU2' },
-        { id: 'el-3', label: 'EU3' }
+        // { id: 'el-1', label: 'EU1' },
+        // { id: 'el-2', label: 'EU2' },
+        // { id: 'el-3', label: 'EU3' }
       ]
     },
     {
@@ -155,9 +155,9 @@ exports.map = {
       max: 248,
       stalls: stalls.slice(157, 248),
       elevators: [
-        { id: 'el-1', label: 'EU1' },
-        { id: 'el-2', label: 'EU2' },
-        { id: 'el-3', label: 'EU3' }
+        // { id: 'el-1', label: 'EU1' },
+        // { id: 'el-2', label: 'EU2' },
+        // { id: 'el-3', label: 'EU3' }
       ]
     }
   ],
