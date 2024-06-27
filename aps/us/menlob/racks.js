@@ -92,15 +92,15 @@ const rack10 = {
 const { Pn } = require('../../../models/Pn')
 
 const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
-const pn01 = new Pn('LSE1', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn02 = new Pn('T1', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn03 = new Pn('KKP1', 3, merkers.find(b => b.addr === 'M4.2'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn04 = new Pn('LSE2', 4, merkers.find(b => b.addr === 'M4.3'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn05 = new Pn('T2', 5, merkers.find(b => b.addr === 'M4.4'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn06 = new Pn('KKP2', 6, merkers.find(b => b.addr === 'M4.5'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn07 = new Pn('LSE3', 7, merkers.find(b => b.addr === 'M4.6'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn08 = new Pn('T3', 8, merkers.find(b => b.addr === 'M4.7'), 'IM 155-5 PN', { key: 'im', query: {} })
-const pn09 = new Pn('KKP3', 9, merkers.find(b => b.addr === 'M5.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn01 = new Pn('LSE4', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn02 = new Pn('T4', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn03 = new Pn('KKP4', 3, merkers.find(b => b.addr === 'M4.2'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn04 = new Pn('LSE5', 4, merkers.find(b => b.addr === 'M4.3'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn05 = new Pn('T5', 5, merkers.find(b => b.addr === 'M4.4'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn06 = new Pn('KKP5', 6, merkers.find(b => b.addr === 'M4.5'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn07 = new Pn('LSE6', 7, merkers.find(b => b.addr === 'M4.6'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn08 = new Pn('T6', 8, merkers.find(b => b.addr === 'M4.7'), 'IM 155-5 PN', { key: 'im', query: {} })
+const pn09 = new Pn('KKP6', 9, merkers.find(b => b.addr === 'M5.0'), 'IM 155-5 PN', { key: 'im', query: {} })
 
 pn00.rack = rack1
 pn01.rack = rack2
