@@ -97,6 +97,6 @@ const main = new Main(drives, [M1, M2])
 
 const views = [main, silomat]
 
-const device = new Device(6, 'T3', [], lamps, motors, views)
+const device = new Device(6, 'T6', [], lamps, motors, views)
 
 module.exports = { device, drives, positions }

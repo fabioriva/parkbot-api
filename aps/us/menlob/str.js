@@ -799,12 +799,12 @@ exports.ALARMS = [
 ]
 exports.DEVICES = [
   { id: 0, key: 'operator' },
-  { id: 1, key: 'EU1' },
-  { id: 2, key: 'EU2' },
-  { id: 3, key: 'EU3' },
-  { id: 4, key: 'T1' },
-  { id: 5, key: 'T2' },
-  { id: 6, key: 'T3' }
+  { id: 1, key: 'EU4' },
+  { id: 2, key: 'EU5' },
+  { id: 3, key: 'EU6' },
+  { id: 4, key: 'T4' },
+  { id: 5, key: 'T5' },
+  { id: 6, key: 'T6' }
 ]
 exports.MODES = [
   { id: 0, key: 'mode-no' },

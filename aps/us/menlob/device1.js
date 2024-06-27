@@ -103,6 +103,6 @@ const garage = new Garage(
 
 const views = [main, garage]
 
-const device = new Device(1, 'EU1', [], lamps, motors, views)
+const device = new Device(1, 'EU4', [], lamps, motors, views)
 
 module.exports = { device, drives, positions }
