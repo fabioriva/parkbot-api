@@ -36,7 +36,7 @@ exports.racks = racks
 
 const device1 = require('./device1')
 const device2 = require('./device2')
-const device3 = require('./device2')
+const device3 = require('./device3')
 
 const queue = generateQueue(def)
 exports.queue = queue
