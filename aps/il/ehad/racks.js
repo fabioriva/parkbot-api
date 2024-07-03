@@ -39,7 +39,7 @@ const rack3 = {
     new S7_521_1BL00_0AB0(2, eb.slice(13, 17)),
     new S7_521_1BH00_0AB0(3, eb.slice(17, 19)),
     new S7_521_1BH00_0AB0(4, eb.slice(19, 21)),
-    new S7_521_1BL00_0AB0(5, eb.slice(21, 23)),
+    new S7_521_1BL00_0AB0(5, eb.slice(21, 25)),
     new S7_522_1BH01_0AB0(6, ab.slice(7, 9)),
     new S7_522_1BH01_0AB0(7, ab.slice(9, 11)),
     new S7_522_1BH01_0AB0(8, ab.slice(11, 13)),
