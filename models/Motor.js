@@ -238,7 +238,7 @@ class SilomatHoisting extends Motor {
 }
 
 class SilomatCentering extends Motor {
-  static messages = ['sil-mov-close', 'sil-mov-open', 'sil-pos-closed', 'sil-pos-opened']
+  static messages = ['sil-mov-open', 'sil-mov-close', 'sil-pos-closed', 'sil-pos-opened']
   constructor (id, inputs, outputs, run) {
     super(id, inputs, outputs, run)
     this.name = id === 'h' ? { key: 'mot-center-h' } : { key: 'mot-center-v' }
