@@ -70,7 +70,7 @@ const T10F = outputs.find(b => b.addr === 'A6.7')
 
 const M3 = new Traveling(
   0,
-  IV1,
+  IV2,
   [LH1, LH2],
   [AH, ASBK2, AIV, AKKU, EHP],
   [T101, T102, T10F],
