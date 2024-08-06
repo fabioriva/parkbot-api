@@ -188,7 +188,7 @@ const garage = new Garage(
   [EPZ, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2]
 )
 
-const views = [main, garage, silomat]
+const views = [main, silomat, garage]
 
 const device = new Device(1, 'EL1', [], lamps, motors, views)
 
