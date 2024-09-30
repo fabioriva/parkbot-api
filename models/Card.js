@@ -80,8 +80,8 @@ class Tag {
 
 exports.generateTags = def => {
   const tags = []
-  for (let i = 0; i < def.CARDS; i++) {
-    tags.push(new Tag(i + 1))
+  for (let i = def.MIN_CARD; i <= def.MAX_CARD; i++) {
+    tags.push(new Tag(i))
   }
   return tags
 }

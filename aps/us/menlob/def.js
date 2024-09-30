@@ -32,6 +32,8 @@ const CARDS = 228
 const CARD_LEN = 10 // 6
 exports.CARDS = CARDS
 exports.CARD_LEN = CARD_LEN
+exports.MIN_CARD = 243
+exports.MAX_CARD = 471
 
 const DB_DATA = 505
 const DB_DATA_LEN = 386
