@@ -1,6 +1,6 @@
 const { inputs, outputs } = require('./obj')
 const { Device } = require('../../../models/Device')
-const { Door } = require('../../../models/Motor')
+const { Barrier, Door } = require('../../../models/Motor')
 const { Garage } = require('../../../models/View')
 
 const positions = []
@@ -29,7 +29,21 @@ const M5 = new Door(
   [SZ, SO, SP, KX]
 )
 
-const motors = [M5]
+const APB = inputs.find(b => b.addr === 'E27.6')
+const EZB = inputs.find(b => b.addr === 'E26.2')
+const EOB = inputs.find(b => b.addr === 'E26.3')
+// const FBB = inputs.find(b => b.addr === 'E4.3')
+const SZB = outputs.find(b => b.addr === 'A24.6')
+const SOB = outputs.find(b => b.addr === 'A24.5')
+const KXB = outputs.find(b => b.addr === 'A24.7')
+
+const M6 = new Barrier(
+  0,
+  [EZB, EOB, APB], // FBB],
+  [SZB, SOB, KXB]
+)
+
+const motors = [M5, M6]
 
 const L1 = outputs.find(b => b.addr === 'A22.0')
 const L2 = outputs.find(b => b.addr === 'A22.1')
