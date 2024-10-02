@@ -108,7 +108,7 @@ exports.map = {
     },
     {
       nr: 4,
-      label: '2nd Basement (P3)',
+      label: '2nd Basement (P4)',
       min: 63,
       max: 83,
       stalls: stalls.slice(62, 83),
