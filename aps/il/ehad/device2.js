@@ -69,7 +69,7 @@ const FTA3 = inputs.find(b => b.addr === 'E26.7')
 
 const garage = new Garage(
   [],
-  [M5],
+  [M5, M6],
   [L1, L2, L3, L4, L5],
   [EPZ, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FTA3, FDL1, FDR1]
 )
