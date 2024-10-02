@@ -120,6 +120,8 @@ exports.stalls = stalls
 exports.map = {
   definitions: {
     cards: def.CARDS,
+    minCard: def.MIN_CARD,
+    maxCard: def.MAX_CARD,
     stalls: def.STALLS,
     stallStatus: def.STALL_STATUS
   },
