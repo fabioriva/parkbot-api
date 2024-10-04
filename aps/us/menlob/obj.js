@@ -106,7 +106,7 @@ exports.overview = {
   ],
   exitQueue: {
     queueList: queue,
-    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
+    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, def.MIN_CARD, def.MAX_CARD)
   }
 }
 
