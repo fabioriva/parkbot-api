@@ -804,7 +804,8 @@ exports.DEVICES = [
   { id: 3, key: 'EU3' },
   { id: 4, key: 'T1' },
   { id: 5, key: 'T2' },
-  { id: 6, key: 'T3' }
+  { id: 6, key: 'T3' },
+  { id: 7, key: 'APP' }
 ]
 exports.MODES = [
   { id: 0, key: 'mode-no' },
