@@ -831,8 +831,8 @@ exports.OPERATIONS = [
   { id: 9, key: 'op-stall-rsv' },
   { id: 10, key: 'op-req-exit' },
   { id: 11, key: 'op-req-entry' },
-  { id: 12, key: 'op-no' },
-  { id: 13, key: 'op-no' },
+  { id: 12, key: 'op-req-swap' },
+  { id: 13, key: 'op-card-issued' },
   { id: 14, key: 'op-no' },
   { id: 15, key: 'op-no' }
 ]
