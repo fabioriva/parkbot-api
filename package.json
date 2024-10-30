@@ -4,7 +4,7 @@
   "description": "parkbot backend",
   "scripts": {
     "dev": "nodemon aps/il/bugrashov",
-    "start": "NODE_ENV=production pm2 start aps/ae/daman/index.js --name api-daman --max-memory-restart 128M",
+    "start": "NODE_ENV=production pm2 start aps/il/bugrashov/index.js --name api-bugrashov --max-memory-restart 128M",
     "test": "standard",
     "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.43.0"
   },
