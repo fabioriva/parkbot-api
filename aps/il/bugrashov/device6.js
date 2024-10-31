@@ -5,7 +5,7 @@ const { Traveling } = require('../../../models/Motor')
 const { Position } = require('../../../models/Position')
 const { Main, Silomat } = require('../../../models/View')
 
-const EN1 = inputs.find(b => b.addr === 'E1101.3')
+const EN1 = inputs.find(b => b.addr === 'E1103.0')
 
 const IV1 = new Drive(1, 'IV1', EN1)
 
