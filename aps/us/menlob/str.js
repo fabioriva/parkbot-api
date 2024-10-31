@@ -832,7 +832,7 @@ exports.OPERATIONS = [
   { id: 10, key: 'op-req-exit' },
   { id: 11, key: 'op-req-entry' },
   { id: 12, key: 'op-req-swap' },
-  { id: 13, key: 'op-card-issued' },
-  { id: 14, key: 'op-no' },
+  { id: 13, key: 'op-req-repark' },
+  { id: 14, key: 'op-card-issued' },
   { id: 15, key: 'op-no' }
 ]
