@@ -360,7 +360,7 @@ exports.ALARMS = [
   { id: 23, key: 'al-v-lck-to', query: {} },
   { id: 24, key: 'al-v-lck-fc', query: {} },
   { id: 25, key: 'al-r-to', query: {} },
-  { id: 26, key: 'al-r-fc', query: {} },
+  { id: 26, key: 'al-enr', query: {} },
   { id: 27, key: 'al-r-to', query: {} },
   { id: 28, key: 'al-r-fc', query: {} },
   { id: 29, key: 'al-r-to', query: {} },
