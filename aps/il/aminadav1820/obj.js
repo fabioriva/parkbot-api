@@ -9,9 +9,9 @@ const { generateStalls } = require('../../../models/Stall')
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // T1
 const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // T2
-// const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64)), 3) // EU1
-// const al04 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64)), 4) // EU2
-exports.alarms = [al01, al02] // , al03, al04]
+const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64)), 3) // EU1
+const al04 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64)), 4) // EU2
+exports.alarms = [al01, al02, al03, al04]
 
 const inputs1 = generateBits('E', 0, 7, str.inputs1)
 const inputs2 = generateBits('E', 10, 16, str.inputs2)
@@ -110,8 +110,8 @@ exports.map = {
       max: 96,
       stalls: stalls.slice(72, 96),
       elevators: [
-        { id: 'eu-1', label: 'EU1' },
-        { id: 'eu-2', label: 'EU2' }
+        { id: 'eu-1', label: 'EU2' },
+        { id: 'eu-2', label: 'EU1' }
       ]
     }
   ],
