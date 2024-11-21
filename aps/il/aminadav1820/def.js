@@ -18,7 +18,7 @@ const ALARM_LEN = 8
 exports.ALARM_LEN = ALARM_LEN
 exports.DB_ALARM_INIT = 6
 exports.DB_ALARM_LEN = 64 * ALARM_LEN
-exports.DBS_ALARM = [531, 532, 533, 534] // T1, T2, EU1, EU2
+exports.DBS_ALARM = [531, 532] // , 533, 534] // T1, T2, EU1, EU2
 
 const CARDS = 96
 const CARD_LEN = 10
@@ -63,7 +63,7 @@ exports.CARD_READ = {
 exports.CARD_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 266,
+  start: 274,
   amount: 4,
   wordLen: 0x02
 }
@@ -77,35 +77,35 @@ exports.MAP_READ = {
 exports.MAP_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 262,
+  start: 270,
   amount: 4,
   wordLen: 0x02
 }
 exports.QUEUE_DELETE = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 270,
+  start: 278,
   amount: 4,
   wordLen: 0x02
 }
 exports.REQ_0 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 274,
+  start: 282,
   amount: 2,
   wordLen: 0x02
 }
 exports.REQ_1 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 276,
+  start: 284,
   amount: 2,
   wordLen: 0x02
 }
 exports.REQ_2 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 278,
+  start: 286,
   amount: 2,
   wordLen: 0x02
 }
