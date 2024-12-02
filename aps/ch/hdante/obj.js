@@ -90,7 +90,7 @@ exports.map = {
   levels: [
     {
       nr: 1,
-      label: 'Pano -4 (P1)',
+      label: 'Piano -4 (P1)',
       min: 1,
       max: 9,
       stalls: stalls.slice(0, 9),
@@ -100,7 +100,7 @@ exports.map = {
     },
     {
       nr: 2,
-      label: 'Pano -3 (P2)',
+      label: 'Piano -3 (P2)',
       min: 10,
       max: 18,
       stalls: stalls.slice(9, 18),
@@ -110,7 +110,7 @@ exports.map = {
     },
     {
       nr: 3,
-      label: 'Pano -2 (P3)',
+      label: 'Piano -2 (P3)',
       min: 19,
       max: 27,
       stalls: stalls.slice(18, 27),
@@ -120,7 +120,7 @@ exports.map = {
     },
     {
       nr: 4,
-      label: 'Pano -1 (P4)',
+      label: 'Piano -1 (P4)',
       min: 28,
       max: 34,
       stalls: stalls.slice(27, 34),
@@ -130,7 +130,7 @@ exports.map = {
     },
     {
       nr: 5,
-      label: 'Pano +1 (P6)',
+      label: 'Piano +1 (P6)',
       min: 35,
       max: 43,
       stalls: stalls.slice(34, 43),
@@ -140,7 +140,7 @@ exports.map = {
     },
     {
       nr: 6,
-      label: 'Pano +2 (P7)',
+      label: 'Piano +2 (P7)',
       min: 44,
       max: 52,
       stalls: stalls.slice(43, 52),
