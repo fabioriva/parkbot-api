@@ -3,7 +3,7 @@ exports.HOST =
   process.env.NODE_ENV !== 'production'
     ? process.env.DEVELOPMENT_SERVER
     : process.env.PRODUCTION_SERVER
-exports.HTTP = 5001
+exports.HTTP = 9100
 exports.PLC = {
   // ip: '192.168.20.55',
   ip: '192.168.85.2',
@@ -49,7 +49,7 @@ exports.STALL_STATUS = {
 
 exports.MAP_READ = {
   area: 0x84,
-  dbNumber: 512, // 510,
+  dbNumber: 510,
   start: 0,
   amount: STALLS * STALL_LEN,
   wordLen: 0x02

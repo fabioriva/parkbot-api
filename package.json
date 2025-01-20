@@ -6,7 +6,8 @@
     "dev": "nodemon aps/il/aminadav1820",
     "start": "NODE_ENV=production pm2 start aps/il/aminadav1820/index.js --name api-aminadav1820 --max-memory-restart 128M",
     "test": "standard",
-    "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.43.0"
+    "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.43.0",
+    "api": "nodemon aps/il/bugrashov/api/index.js"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
