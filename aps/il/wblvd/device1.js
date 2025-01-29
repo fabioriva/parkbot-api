@@ -66,8 +66,8 @@ const M4 = new Lock(3, [EZM3, EOM3, AMM3], [SMA3, SMB3])
 const M5 = new Lock(4, [EZM4, EOM4, AMM4], [SMA4, SMB4])
 
 const AKKP = inputs.find(b => b.addr === 'E4.5')
+const AIV = inputs.find(b => b.addr === 'E4.3')
 const AH = inputs.find(b => b.addr === 'E17.4')
-// const AIV = inputs.find(b => b.addr === 'E9.4')
 const EMC = inputs.find(b => b.addr === 'E12.1')
 const MNR = inputs.find(b => b.addr === 'E12.2')
 const MNL = inputs.find(b => b.addr === 'E12.3')
@@ -79,7 +79,7 @@ const M6 = new Traveling(
   0,
   IV2,
   [LH],
-  [AKKP, AH, EMC, MNR, MNL, EFLR],
+  [AKKP, AIV, AH, EMC, MNR, MNL, EFLR],
   [T10],
   [],
   T10
@@ -151,8 +151,8 @@ const KCS = outputs.find(b => b.addr === 'A8.5')
 const KCV = outputs.find(b => b.addr === 'A8.6')
 const KCH = outputs.find(b => b.addr === 'A8.7')
 
-const AF8 = inputs.find(b => b.addr === 'E9.2')
-const MTC = inputs.find(b => b.addr === 'E15.2')
+const AF8 = inputs.find(b => b.addr === 'E4.4')
+const MTC = inputs.find(b => b.addr === 'E17.7')
 
 const silomat = new Silomat(
   IV2,
