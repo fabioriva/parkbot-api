@@ -181,15 +181,15 @@ const FRE1 = inputs.find(b => b.addr === 'E16.6')
 const FRE2 = inputs.find(b => b.addr === 'E16.7')
 const FTA1 = inputs.find(b => b.addr === 'E7.0')
 const FTA2 = inputs.find(b => b.addr === 'E7.1')
-const FDL2 = inputs.find(b => b.addr === 'E7.6')
-const FDR2 = inputs.find(b => b.addr === 'E7.7')
+const FDL2 = inputs.find(b => b.addr === 'E6.6')
+const FDR2 = inputs.find(b => b.addr === 'E6.7')
 // const FTA3 = inputs.find(b => b.addr === 'E108.3')
 
-const main = new Main(drives, [M1, M2, M3])
+const main = new Main(drives, [M1, M6, M7, M8])
 
 const garage = new Garage(
   [],
-  [M4, M5],
+  [M2, M3, M4, M5, M9, M10],
   [L1, L2, L3, L4, L5],
   [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FDL2, FDR2, FRE2]
 )
