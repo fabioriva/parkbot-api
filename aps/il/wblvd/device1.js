@@ -106,7 +106,7 @@ const EZMD = inputs.find(b => b.addr === 'E12.7')
 const SMAD = outputs.find(b => b.addr === 'A9.0')
 const SMBD = outputs.find(b => b.addr === 'A9.1')
 
-const M8 = new Lock('R', [EZMD, EOMD, AMMD], [SMAD, SMBD])
+const M8 = new Lock(0, [EZMD, EOMD, AMMD], [SMAD, SMBD])
 
 const ECA = inputs.find(b => b.addr === 'E16.4')
 const ECB = inputs.find(b => b.addr === 'E16.5')

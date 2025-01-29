@@ -13,8 +13,8 @@ const rack1 = {
     new S7_521_1BL00_0AB0(1, eb.slice(0, 4)),
     new S7_521_1BL00_0AB0(2, eb.slice(4, 8)),
     new S7_521_1BL00_0AB0(3, eb.slice(8, 12)),
-    new S7_522_1BL01_0AB0(1, ab.slice(0, 4)),
-    new S7_522_1BL01_0AB0(2, ab.slice(4, 8))
+    new S7_522_1BL01_0AB0(4, ab.slice(0, 4)),
+    new S7_522_1BL01_0AB0(5, ab.slice(4, 8))
   ]
 }
 
@@ -25,8 +25,8 @@ const rack2 = {
     new S7_131_6BF00_0BA0(2, eb[13]),
     new S7_131_6BF00_0BA0(3, eb[14]),
     new S7_131_6BF00_0BA0(4, eb[15]),
-    new S7_132_6BF00_0BA0(6, ab[8]),
-    new S7_132_6BF00_0BA0(7, ab[9])
+    new S7_132_6BF00_0BA0(5, ab[8]),
+    new S7_132_6BF00_0BA0(6, ab[9])
   ]
 }
 
