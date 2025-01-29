@@ -32,20 +32,16 @@ const racks = require('./racks')
 exports.racks = racks
 
 const device1 = require('./device1')
-const device2 = require('./device1')
+// const device2 = require('./device1')
 
 const queue = generateQueue(def)
 exports.queue = queue
 
-exports.devices = [device1.device, device2.device]
+exports.devices = [device1.device]
 
-exports.drives = device1.drives.concat(
-  device2.drives
-)
+exports.drives = device1.drives // .concat(device2.drives)
 
-exports.positions = device1.positions.concat(
-  device2.positions
-)
+exports.positions = device1.positions // .concat(device2.positions)
 
 exports.modes = str.MODES
 
