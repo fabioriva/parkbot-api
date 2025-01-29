@@ -106,7 +106,7 @@ const EZMD = inputs.find(b => b.addr === 'E12.7')
 const SMAD = outputs.find(b => b.addr === 'A9.0')
 const SMBD = outputs.find(b => b.addr === 'A9.1')
 
-const M8 = new Lock(1, [EZMD, EOMD, AMMD], [SMAD, SMBD])
+const M8 = new Lock('R', [EZMD, EOMD, AMMD], [SMAD, SMBD])
 
 const ECA = inputs.find(b => b.addr === 'E16.4')
 const ECB = inputs.find(b => b.addr === 'E16.5')
@@ -196,6 +196,6 @@ const garage = new Garage(
 
 const views = [main, garage, silomat]
 
-const device = new Device(2, 'EL1', [], lamps, motors, views)
+const device = new Device(1, 'EL', [], lamps, motors, views)
 
 module.exports = { device, drives, positions }
