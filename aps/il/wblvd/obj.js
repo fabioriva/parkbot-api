@@ -83,7 +83,7 @@ exports.map = {
       max: 33,
       stalls: stalls.slice(17, 33),
       elevators: [
-        { id: 'el-1', label: 'EL' },
+        { id: 'el-1', label: 'EL' }
       ]
     }
   ],
