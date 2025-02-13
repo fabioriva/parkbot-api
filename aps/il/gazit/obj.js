@@ -75,24 +75,55 @@ exports.map = {
   levels: [
     {
       nr: 1,
-      label: 'Piano 1 (P1)',
+      label: 'Level -5 (P1)',
       min: 1,
-      max: 25,
-      stalls: stalls.slice(0, 25),
+      max: 12,
+      stalls: stalls.slice(0, 12),
       elevators: [
         { id: 'el', label: 'EL' }
       ]
     },
     {
       nr: 2,
-      label: 'Piano 2 (P2)',
-      min: 26,
+      label: 'Level -4 (P2)',
+      min: 13,
+      max: 24,
+      stalls: stalls.slice(12, 24),
+      elevators: [
+        { id: 'el', label: 'EL' }
+      ]
+    },
+    {
+      nr: 3,
+      label: 'Level -3 (P3)',
+      min: 25,
+      max: 36,
+      stalls: stalls.slice(24, 36),
+      elevators: [
+        { id: 'el', label: 'EL' }
+      ]
+    },
+    {
+      nr: 4,
+      label: 'Level -2 (P2)',
+      min: 37,
+      max: 48,
+      stalls: stalls.slice(36, 48),
+      elevators: [
+        { id: 'el', label: 'EL' }
+      ]
+    },
+    {
+      nr: 5,
+      label: 'Level -1 (P4)',
+      min: 49,
       max: 50,
-      stalls: stalls.slice(25, 50),
+      stalls: stalls.slice(48, 50),
       elevators: [
         { id: 'el', label: 'EL' }
       ]
     }
+
   ],
   occupancy: [
     { id: 'busy', value: 0 },
