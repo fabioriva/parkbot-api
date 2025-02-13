@@ -1,7 +1,7 @@
 const { inputs, outputs } = require('./obj')
 const { Device } = require('../../../models/Device')
-const { Drive } = require('../../../models/Drive')
-const { Door, DoorVFD, Flap, Rotation } = require('../../../models/Motor')
+// const { Drive } = require('../../../models/Drive')
+const { Door, Flap } = require('../../../models/Motor')
 const { Position } = require('../../../models/Position')
 const { Garage } = require('../../../models/View')
 
@@ -21,21 +21,6 @@ const lamps = [
   // inputs.find(b => b.addr === 'E6.3') // ???
 ]
 
-// const AD = inputs.find(b => b.addr === 'E6.4')
-// const ASBKD = inputs.find(b => b.addr === 'E6.5')
-// const EXD = inputs.find(b => b.addr === 'E6.3')
-// const TD = outputs.find(b => b.addr === 'A4.6')
-
-// const M1 = new Rotation(
-//   0,
-//   IV2,
-//   [ENR],
-//   [AD, ASBKD, EXD],
-//   [TD],
-//   [],
-//   TD
-// )
-
 const ECA = inputs.find(b => b.addr === 'E15.4')
 const ECB = inputs.find(b => b.addr === 'E15.5')
 const AMC = inputs.find(b => b.addr === 'E15.6')
@@ -47,42 +32,6 @@ const M2 = new Flap(
   [ECA, ECB, AMC],
   [SCA, SCB]
 )
-
-// // const FX = inputs.find(b => b.addr === 'E8.1')
-// // const EX = inputs.find(b => b.addr === 'E8.4')
-// const EZL = inputs.find(b => b.addr === 'E8.1')
-// const EOL = inputs.find(b => b.addr === 'E8.2')
-// const FBL = inputs.find(b => b.addr === 'E10.3')
-// const APL = inputs.find(b => b.addr === 'E8.0')
-// const KXL = outputs.find(b => b.addr === 'A4.7')
-
-// const M3 = new DoorVFD(
-//   1,
-//   IV2,
-//   [],
-//   [EZL, EOL, APL, FBL], //, EX, FX],
-//   [KXL],
-//   [EZL, EOL],
-//   KXL
-// )
-
-// // const FX = inputs.find(b => b.addr === 'E8.1')
-// // const EX = inputs.find(b => b.addr === 'E8.4')
-// const EZR = inputs.find(b => b.addr === 'E10.1')
-// const EOR = inputs.find(b => b.addr === 'E10.2')
-// const FBR = inputs.find(b => b.addr === 'E10.3')
-// const APR = inputs.find(b => b.addr === 'E10.0')
-// const KXR = outputs.find(b => b.addr === 'A4.7')
-
-// const M4 = new DoorVFD(
-//   2,
-//   IV2,
-//   [],
-//   [EZR, EOR, APR, FBR], //, EX, FX],
-//   [KXR],
-//   [EZR, EOR],
-//   KXR
-// )
 
 // const FX = inputs.find(b => b.addr === 'E108.0')
 const EZ = inputs.find(b => b.addr === 'E10.0')
@@ -100,8 +49,24 @@ const M5 = new Door(
   [SZ, SO, SP]
 )
 
+// const FX = inputs.find(b => b.addr === 'E108.0')
+const EZA = inputs.find(b => b.addr === 'E7.0')
+const EOA = inputs.find(b => b.addr === 'E7.1')
+// const FBA = inputs.find(b => b.addr === 'E7.2')
+const APA = inputs.find(b => b.addr === 'E7.2')
+// const KX = outputs.find(b => b.addr === 'A4.7')
+const SPA = outputs.find(b => b.addr === 'A12.7')
+const SZA = outputs.find(b => b.addr === 'A12.5')
+const SOA = outputs.find(b => b.addr === 'A12.6')
+
+const M6 = new Door(
+  0,
+  [EZA, EOA, APA],
+  [SZA, SOA, SPA]
+)
+
 // const motors = [M1, M2, M3, M4, M5]
-const motors = [M2, M5]
+const motors = [M2, M5, M6]
 
 const L1 = outputs.find(b => b.addr === 'A5.0')
 const L2 = outputs.find(b => b.addr === 'A5.1')

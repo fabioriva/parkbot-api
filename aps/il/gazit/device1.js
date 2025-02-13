@@ -22,8 +22,8 @@ const positions = [LV1, LV2, ENH]
 
 const lamps = [
   inputs.find(b => b.addr === 'E7.3'),
-  outputs.find(b => b.addr === 'A14.7'),
-  outputs.find(b => b.addr === 'A14.6')
+  outputs.find(b => b.addr === 'A4.7'),
+  outputs.find(b => b.addr === 'A4.6')
 ]
 
 const RTA = inputs.find(b => b.addr === 'E8.6')
@@ -47,7 +47,10 @@ const M1 = new Hoisting(
 )
 
 const AH = inputs.find(b => b.addr === 'E9.3')
-const FTCR = inputs.find(b => b.addr === 'E16.7')
+const AHIV = inputs.find(b => b.addr === 'E9.4')
+const AKKS = inputs.find(b => b.addr === 'E16.5')
+const EMC = inputs.find(b => b.addr === 'E16.2')
+const FTCR = inputs.find(b => b.addr === 'E16.6')
 const T10 = outputs.find(b => b.addr === 'A15.0')
 // const T10F = outputs.find(b => b.addr === 'A0.5')
 
@@ -55,7 +58,7 @@ const M2 = new Traveling(
   0,
   IV1,
   [ENH],
-  [AH, FTCR],
+  [AH, AHIV, AKKS, EMC, FTCR],
   [T10],
   [],
   T10
@@ -92,8 +95,8 @@ const KCS = outputs.find(b => b.addr === 'A16.0')
 const KCV = outputs.find(b => b.addr === 'A16.1')
 const KCH = outputs.find(b => b.addr === 'A16.2')
 
-const AF8 = inputs.find(b => b.addr === 'E4.6')
-const MTC = inputs.find(b => b.addr === 'E4.7')
+const AF8 = inputs.find(b => b.addr === 'E9.2')
+const MTC = inputs.find(b => b.addr === 'E16.7')
 
 const silomat = new Silomat(
   IV1,
