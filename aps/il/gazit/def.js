@@ -69,7 +69,7 @@ exports.CARD_EDIT = {
 }
 exports.MAP_READ = {
   area: 0x84,
-  dbNumber: 440,
+  dbNumber: 510,
   start: 0,
   amount: STALLS * STALL_LEN,
   wordLen: 0x02
