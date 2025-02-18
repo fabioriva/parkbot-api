@@ -1,8 +1,8 @@
-const format = require('date-fns/format')
-const endOfDay = require('date-fns/endOfDay')
-const startOfDay = require('date-fns/startOfDay')
-const util = require('util')
-const { getPlcDateTime } = require('../lib/utils7')
+import { format, endOfDay, startOfDay } from 'date-fns'
+// const endOfDay = require('date-fns/endOfDay')
+// const startOfDay = require('date-fns/startOfDay')
+import util from 'util'
+import { getPlcDateTime } from '../lib/utils7.js'
 
 class Card {
   #rand
@@ -38,7 +38,7 @@ class Card {
   }
 }
 
-exports.generateCards = def => {
+export const generateCards = def => {
   const cards = []
   for (let i = 0; i < def.CARDS; i++) {
     cards.push(new Card(i + 1))
@@ -46,7 +46,7 @@ exports.generateCards = def => {
   return cards
 }
 
-exports.updateCards = util.promisify(
+export const updateCards = util.promisify(
   (start, buffer, offset, cards, callback) => {
     let byte = start
     const min = 0
@@ -78,7 +78,7 @@ class Tag {
   }
 }
 
-exports.generateTags = def => {
+export const generateTags = def => {
   const tags = []
   for (let i = def.MIN_CARD; i <= def.MAX_CARD; i++) {
     tags.push(new Tag(i))

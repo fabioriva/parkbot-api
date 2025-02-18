@@ -17,4 +17,4 @@ class Action {
   // }
 }
 
-module.exports = { Action }
+export { Action }

@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Exit {
   constructor (id, name, card = 0, status = 0) {
@@ -106,4 +106,4 @@ const updateOccupancy = util.promisify(
   }
 )
 
-module.exports = { Exit, updateExits, ExitScreen, GarageScreen, updateGarageScreens, Occupancy, updateOccupancy }
+export { Exit, updateExits, ExitScreen, GarageScreen, updateGarageScreens, Occupancy, updateOccupancy }

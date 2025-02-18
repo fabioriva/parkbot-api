@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Queue {
   constructor (id, card = 0, stall = 0) {

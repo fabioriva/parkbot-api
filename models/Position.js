@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Position {
   constructor (id, name, destination = 0, position = 0) {
@@ -33,4 +33,4 @@ const updatePositions = util.promisify(
   }
 )
 
-module.exports = { generatePositions, updatePositions, Position }
+export { generatePositions, updatePositions, Position }

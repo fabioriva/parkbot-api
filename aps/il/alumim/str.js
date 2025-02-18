@@ -1,4 +1,4 @@
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E4.0', label: 'A' },
   { addr: 'E4.1', label: 'B' },
   { addr: 'E4.2', label: 'C' },
@@ -80,7 +80,7 @@ exports.inputs1 = [
   { addr: 'E13.6', label: 'BDAT' },
   { addr: 'E13.7', label: '' }
 ]
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E14.0', label: 'RMV' },
   { addr: 'E14.1', label: 'RMH' },
   { addr: 'E14.2', label: 'RES' },
@@ -114,7 +114,7 @@ exports.inputs2 = [
   { addr: 'E17.6', label: 'MNR' },
   { addr: 'E17.7', label: 'MNL' }
 ]
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A4.0', label: 'KBA1' },
   { addr: 'A4.1', label: 'BLE' },
   { addr: 'A4.2', label: 'BLB' },
@@ -164,7 +164,7 @@ exports.outputs1 = [
   { addr: 'A9.6', label: '' },
   { addr: 'A9.7', label: '' }
 ]
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A14.0', label: 'TD' },
   { addr: 'A14.1', label: 'TCR' },
   { addr: 'A14.2', label: '' },
@@ -182,7 +182,7 @@ exports.outputs2 = [
   { addr: 'A15.6', label: 'SCB' },
   { addr: 'A15.7', label: 'SBK1' }
 ]
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: 'al-v-to', query: {} },
   { id: 2, key: 'al-h-to', query: {} },
   { id: 3, key: 'al-sil-01', query: {} },
@@ -249,12 +249,12 @@ exports.ALARMS = [
   { id: 64, key: '', query: {} }
 ]
 
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL' }
 ]
 
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -266,7 +266,7 @@ exports.MODES = [
   { id: 8, key: 'mode-auto' }
 ]
 
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

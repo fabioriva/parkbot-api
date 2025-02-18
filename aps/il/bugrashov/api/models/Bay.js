@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Bay {
   constructor (id, name, barrier = 0, gate = 0, sensors = 0, status = 0) {

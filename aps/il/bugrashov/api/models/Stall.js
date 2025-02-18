@@ -1,6 +1,6 @@
-const format = require('date-fns/format')
-const util = require('util')
-const { getPlcDateTime } = require('../lib/utils7')
+import { format } from 'date-fns'
+import util from 'util'
+import { getPlcDateTime } from './utils7.js'
 
 // getting a random number between 2 values, inclusive
 function randomNumber (min, max) {

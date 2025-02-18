@@ -297,7 +297,7 @@ class SilomatCentering extends Motor {
 //   }
 // }
 
-module.exports = {
+export {
   Barrier,
   Door,
   DoorVFD,

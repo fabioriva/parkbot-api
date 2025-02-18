@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Device {
   #motors
@@ -60,4 +60,4 @@ const updateDevices = util.promisify(
   }
 )
 
-module.exports = { updateDevices, Device }
+export { updateDevices, Device }

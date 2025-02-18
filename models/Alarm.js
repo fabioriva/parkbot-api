@@ -1,6 +1,6 @@
-const format = require('date-fns/format')
-const util = require('util')
-const { getPlcDateTime } = require('../lib/utils7')
+import { format } from 'date-fns'
+import util from 'util'
+import { getPlcDateTime } from '../lib/utils7.js'
 // const i18next = require('i18next')
 
 class Alarm {
@@ -86,4 +86,4 @@ const countAlarms = alarms => {
   return count
 }
 
-module.exports = { Alarms, countAlarms, generateAlarms, updateAlarms }
+export { Alarms, countAlarms, generateAlarms, updateAlarms }
