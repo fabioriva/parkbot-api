@@ -31,6 +31,5 @@
       "/node_modules/**",
       "/public"
     ]
-  },
-  "type": "module"
+  }
 }
