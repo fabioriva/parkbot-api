@@ -33,8 +33,8 @@ const APB = inputs.find(b => b.addr === 'E27.6')
 const EZB = inputs.find(b => b.addr === 'E26.2')
 const EOB = inputs.find(b => b.addr === 'E26.3')
 // const FBB = inputs.find(b => b.addr === 'E4.3')
-const SZB = outputs.find(b => b.addr === 'A24.6')
-const SOB = outputs.find(b => b.addr === 'A24.5')
+const SZB = outputs.find(b => b.addr === 'A24.5')
+const SOB = outputs.find(b => b.addr === 'A24.6')
 const KXB = outputs.find(b => b.addr === 'A24.7')
 
 const M6 = new Barrier(
