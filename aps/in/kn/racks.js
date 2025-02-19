@@ -1,11 +1,11 @@
-const { ab, eb, inputs } = require('./obj')
-const {
+import { ab, eb, inputs } from './io.js'
+import {
   S7_521_1BL00_0AB0,
   S7_522_1BL01_0AB0,
   S7_522_1BH01_0AB0,
   S7_523_1BL00_0AA0
-} = require('../../../models/Modules')
-const { Pn } = require('../../../models/Pn')
+} from '../../../models/Modules.js'
+import { Pn } from '../../../models/Pn.js'
 
 const PN = []
 
@@ -61,5 +61,5 @@ for (let i = 1; i <= 12; i++) {
   offsetAB += 3
 }
 
-// module.exports = [...EL, ...SH]
-module.exports = PN
+// export default [...EL, ...SH]
+export default PN

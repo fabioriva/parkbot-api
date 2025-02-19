@@ -1,7 +1,7 @@
 const logger = require('pino')()
 const querystring = require('querystring')
-const { /* readJson, */ sendJson, Message, MESG, SEVERITY } = require('./json')
-const { writeArea } = require('./utils7')
+import { /* readJson, */ sendJson, Message, MESG, SEVERITY } = require('./json')
+import { writeArea } = require('./utils7')
 
 class Router {
   constructor (app, plc) {
@@ -94,7 +94,7 @@ class Router {
       if (obj.overview.bays[bay - 1].status !== 2) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
       }
-      const { area, dbNumber, start, amount, wordLen } = write
+      import { area, dbNumber, start, amount, wordLen } = write
       const buffer = Buffer.allocUnsafe(amount)
       buffer.writeUInt16BE(card, 0)
       const response = await writeArea(
@@ -150,7 +150,7 @@ class Router {
       if (obj.overview.bays[bay - 1].status !== 2) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
       }
-      const { area, dbNumber, start, amount, wordLen } = write
+      import { area, dbNumber, start, amount, wordLen } = write
       const response = await writeArea(
         this.plc.client,
         area,
@@ -204,7 +204,7 @@ class Router {
       if (obj.overview.bays[bay - 1].status !== 2) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
       }
-      const { area, dbNumber, start, amount, wordLen } = write
+      import { area, dbNumber, start, amount, wordLen } = write
       const response = await writeArea(
         this.plc.client,
         area,
@@ -261,7 +261,7 @@ class Router {
       if (obj.overview.queue.some((item) => item.card === card)) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.QUEUE_BUSY))
       }
-      const { area, dbNumber, start, amount, wordLen } = def.REQ_0
+      import { area, dbNumber, start, amount, wordLen } = def.REQ_0
       const buffer = Buffer.allocUnsafe(amount)
       buffer.writeUInt16BE(card, 0)
       const response = await writeArea(
@@ -285,4 +285,4 @@ class Router {
   }
 }
 
-module.exports = Router
+export default Router

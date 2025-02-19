@@ -1,13 +1,13 @@
-const { generateBits } = require('../../../models/Bit')
-const { ab, eb, inputs } = require('./obj')
-const {
+import { generateBits } = require('../../../models/Bit')
+import { ab, eb, inputs } from './io.js'
+import {
   S7_521_1BH00_0AB0,
   S7_521_1BL00_0AB0,
   S7_522_1BL01_0AB0,
   S7_522_1BH01_0AB0,
   S7_523_1BL00_0AA0
-} = require('../../../models/Modules')
-const { Pn } = require('../../../models/Pn')
+} from '../../../models/Modules.js'
+import { Pn } from '../../../models/Pn.js'
 
 const str = [
   { addr: 'E19.0', label: '' },
@@ -78,7 +78,7 @@ for (let i = 1; i <= 14; i++) {
 
 // console.log(PN)
 
-module.exports = PN
+export default PN
 
 // const rack1 = {
 //   nr: 1,

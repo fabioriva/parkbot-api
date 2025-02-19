@@ -1,11 +1,14 @@
-const def = require('./def')
-const str = require('./str')
-const { Action } = require('../../../models/Action')
-const { Alarms, generateAlarms } = require('../../../models/Alarm')
-const { generateBits, generateBytes } = require('../../../models/Bit')
-const { generateCards } = require('../../../models/Card')
-const { generateQueue } = require('../../../models/Queue')
-const { generateStalls } = require('../../../models/Stall')
+import * as def from './def.js'
+import * as str from './str.js'
+import * as io from './io.js'
+import racks from './racks.js'
+import { Action } from '../../../models/Action.js'
+import { Alarms, generateAlarms } from '../../../models/Alarm.js'
+import { generateCards } from '../../../models/Card.js'
+import { generateQueue } from '../../../models/Queue.js'
+import { generateStalls } from '../../../models/Stall.js'
+import el from './el.js'
+import sh from './sh.js'
 
 const al01 = new Alarms(generateAlarms(1, 32, str.ALARMS.slice(0, 32)), 1)
 const al02 = new Alarms(generateAlarms(1, 32, str.ALARMS.slice(0, 32)), 2)
@@ -22,42 +25,42 @@ const al12 = new Alarms(generateAlarms(1, 32, str.ALARMS.slice(32, 64)), 12)
 const al13 = new Alarms(generateAlarms(1, 32, str.ALARMS.slice(32, 64)), 13)
 const al14 = new Alarms(generateAlarms(1, 32, str.ALARMS.slice(32, 64)), 14)
 const al15 = new Alarms(generateAlarms(1, 32, str.ALARMS.slice(32, 64)), 15)
-exports.alarms = [al01, al02, al03, al04, al05, al06, al07, al08, al09, al10, al11, al12, al13, al14, al15]
+export const alarms = [al01, al02, al03, al04, al05, al06, al07, al08, al09, al10, al11, al12, al13, al14, al15]
 
-const inputs1 = generateBits('E', 0, 95, str.inputs1)
-exports.inputs = inputs1
-const eb = generateBytes(inputs1)
-exports.eb = eb
+// const inputs1 = generateBits('E', 0, 95, str.inputs1)
+// export const inputs_ = inputs1
+// const eb = generateBytes(inputs1)
+// export const eb = eb
 
-const outputs1 = generateBits('A', 0, 53, str.outputs1)
-exports.outputs = outputs1
-const ab = generateBytes(outputs1)
-exports.ab = ab
+// const outputs1 = generateBits('A', 0, 53, str.outputs1)
+// export const outputs = outputs1
+// const ab = generateBytes(outputs1)
+// export const ab = ab
 
-const merkers = generateBits('M', 0, 7)
-exports.merkers = merkers
-const mb = generateBytes(merkers)
-exports.mb = mb
+// const merkers = generateBits('M', 0, 7)
+// export const merkers = merkers
+// const mb = generateBytes(merkers)
+// export const mb = mb
 
-const racks = require('./racks')
-exports.racks = racks
+// const racks = require('./racks')
+// export const racks = racks
 
-const el = require('./el.js')
-const sh = require('./sh.js')
+// const el = require('./el.js')
+// const sh = require('./sh.js')
 
-exports.devices = [...el.devices_, ...sh.devices_]
+export const devices = [...el.devices_, ...sh.devices_]
 
-exports.drives = [...el.drives_, ...sh.drives_]
+export const drives = [...el.drives_, ...sh.drives_]
 
-// exports.motors = [...el.motors_, ...sh.motors_]
+// export const motors = [...el.motors_, ...sh.motors_]
 
-exports.positions = [...el.positions_, ...sh.positions_]
+export const positions = [...el.positions_, ...sh.positions_]
 
 // console.log([...el.positions_, ...sh.positions_])
 
-// exports.silomats = [...el.silomats_, ...sh.silomats_]
+// export const silomats = [...el.silomats_, ...sh.silomats_]
 
-// exports.diagnostic = [...el.diagnostic_, ...sh.diagnostic_]
+// export const diagnostic = [...el.diagnostic_, ...sh.diagnostic_]
 
 // const device1 = require('./el1')
 // const device2 = require('./el2')
@@ -75,10 +78,9 @@ exports.positions = [...el.positions_, ...sh.positions_]
 // const device14 = require('./sh11')
 // const device15 = require('./sh12')
 
-const queue = generateQueue(def)
-exports.queue = queue
+export const queue = generateQueue(def)
 
-// exports.devices = [
+// export const devices = [
 //   device1.device,
 //   device2.device,
 //   device3.device,
@@ -96,7 +98,7 @@ exports.queue = queue
 //   device15.device
 // ]
 
-// exports.inverters = device1.inverters.concat(
+// export const inverters = device1.inverters.concat(
 //   device2.inverters,
 //   device3.inverters,
 //   device4.inverters,
@@ -113,7 +115,7 @@ exports.queue = queue
 //   device15.inverters
 // )
 
-// exports.motors = device1.motors.concat(
+// export const motors = device1.motors.concat(
 //   device2.motors,
 //   device3.motors,
 //   device4.motors,
@@ -130,7 +132,7 @@ exports.queue = queue
 //   device15.motors
 // )
 
-// exports.positions = device1.positions.concat(
+// export const positions = device1.positions.concat(
 //   device2.positions,
 //   device3.positions,
 //   device4.positions,
@@ -147,7 +149,7 @@ exports.queue = queue
 //   device15.positions
 // )
 
-// exports.silomats = device1.silomat.motors.concat(
+// export const silomats = device1.silomat.motors.concat(
 //   device2.silomat.motors,
 //   device3.silomat.motors,
 //   device4.silomat.motors,
@@ -163,7 +165,7 @@ exports.queue = queue
 //   device15.silomat.motors
 // )
 
-// exports.diagnostic = [
+// export const diagnostic = [
 //   device1,
 //   device2,
 //   device3,
@@ -181,9 +183,9 @@ exports.queue = queue
 //   device15
 // ]
 
-exports.modes = str.MODES
+export const modes = str.MODES
 
-exports.overview = {
+export const overview = {
   // definitions: { cards: def.CARDS, stalls: def.STALLS },
   devices: [
     [...el.devices_],
@@ -206,15 +208,13 @@ exports.overview = {
   ],
   exitQueue: {
     queueList: queue,
-    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
+    exitButton: new Action('action-exit', io.merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
   }
 }
 
-const cards = generateCards(def)
-exports.cards = cards
+export const cards = generateCards(def)
 
-const stalls = generateStalls(def)
-exports.stalls = stalls
+export const stalls = generateStalls(def)
 
 const elevators = [
   { id: 'el-1', label: 'EL1' },
@@ -229,7 +229,7 @@ const elevators = [
   { id: 'sh-2R', label: 'SH2R' }
 ]
 
-exports.map = {
+export const map = {
   definitions: {
     cards: def.CARDS,
     stalls: def.STALLS,
@@ -290,4 +290,19 @@ exports.map = {
     { id: 'free', value: 0 },
     { id: 'lock', value: 0 }
   ]
+}
+
+export default {
+  ...io,
+  alarms,
+  cards,
+  devices,
+  drives,
+  map,
+  modes,
+  overview,
+  positions,
+  queue,
+  racks,
+  stalls
 }

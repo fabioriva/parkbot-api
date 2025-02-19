@@ -1,69 +1,68 @@
-const def = require('./def')
-const str = require('./str')
-const { Action } = require('../../../models/Action')
-const { Alarms, generateAlarms } = require('../../../models/Alarm')
-const { generateBits, generateBytes } = require('../../../models/Bit')
-const { generateCards } = require('../../../models/Card')
-const { generateQueue } = require('../../../models/Queue')
-const { generateStalls } = require('../../../models/Stall')
+import * as def from './def.js'
+import * as str from './str.js'
+import * as io from './io.js'
+import device1 from './device1.js'
+import racks from './racks.js'
+import { Action } from '../../../models/Action.js'
+import { Alarms, generateAlarms } from '../../../models/Alarm.js'
+import { generateCards } from '../../../models/Card.js'
+import { generateQueue } from '../../../models/Queue.js'
+import { generateStalls } from '../../../models/Stall.js'
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS), 1)
-exports.alarms = [al01]
+export const alarms = [al01]
 
-const inputs1 = generateBits('E', 0, 7, str.inputs1)
-const inputs2 = generateBits('E', 8, 9, str.inputs2)
-const inputs3 = generateBits('E', 10, 15, str.inputs3)
-const inputs = inputs1.concat(inputs2, inputs3)
-exports.inputs = inputs
-const eb = generateBytes(inputs)
-exports.eb = eb
+// const inputs1 = generateBits('E', 0, 7, str.inputs1)
+// const inputs2 = generateBits('E', 8, 9, str.inputs2)
+// const inputs3 = generateBits('E', 10, 15, str.inputs3)
+// const inputs = inputs1.concat(inputs2, inputs3)
+// export const inputs_ = inputs
+// const eb = generateBytes(inputs)
+// export const eb = eb
 
-const outputs1 = generateBits('A', 0, 5, str.outputs1)
-const outputs2 = generateBits('A', 6, 7, str.outputs2)
-const outputs3 = generateBits('A', 8, 11, str.outputs3)
-const outputs = outputs1.concat(outputs2, outputs3)
-exports.outputs = outputs
-const ab = generateBytes(outputs)
-exports.ab = ab
+// const outputs1 = generateBits('A', 0, 5, str.outputs1)
+// const outputs2 = generateBits('A', 6, 7, str.outputs2)
+// const outputs3 = generateBits('A', 8, 11, str.outputs3)
+// const outputs = outputs1.concat(outputs2, outputs3)
+// export const outputs = outputs
+// const ab = generateBytes(outputs)
+// export const ab = ab
 
-const merkers = generateBits('M', 0, 7)
-exports.merkers = merkers
-const mb = generateBytes(merkers)
-exports.mb = mb
+// const merkers = generateBits('M', 0, 7)
+// export const merkers = merkers
+// const mb = generateBytes(merkers)
+// export const mb = mb
 
-const racks = require('./racks')
-exports.racks = racks
+// const racks = require('./racks')
+// export const racks = racks
 
-const device1 = require('./device1')
+// const device1 = require('./device1')
 
-const queue = generateQueue(def)
-exports.queue = queue
+export const queue = generateQueue(def)
 
-exports.devices = [device1.device]
+export const devices = [device1.device]
 
-exports.drives = device1.drives
+export const drives = device1.drives
 
-// exports.motors = device1.motors
+// export const motors = device1.motors
 
-exports.positions = device1.positions
+export const positions = device1.positions
 
-exports.modes = str.MODES
+export const modes = str.MODES
 
-exports.overview = {
+export const overview = {
   devices: [[device1.device]],
   exitQueue: {
     queueList: queue,
-    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
+    exitButton: new Action('action-exit', io.merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
   }
 }
 
-const cards = generateCards(def)
-exports.cards = cards
+export const cards = generateCards(def)
 
-const stalls = generateStalls(def)
-exports.stalls = stalls
+export const stalls = generateStalls(def)
 
-exports.map = {
+export const map = {
   definitions: {
     cards: def.CARDS,
     stalls: def.STALLS,
@@ -132,4 +131,19 @@ exports.map = {
     { id: 'free', value: 0 },
     { id: 'lock', value: 0 }
   ]
+}
+
+export default {
+  ...io,
+  alarms,
+  cards,
+  devices,
+  drives,
+  map,
+  modes,
+  overview,
+  positions,
+  queue,
+  racks,
+  stalls
 }

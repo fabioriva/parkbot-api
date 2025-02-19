@@ -1,75 +1,78 @@
-const def = require('./def')
-const str = require('./str')
-const { Alarms, generateAlarms } = require('../../models/Alarm')
-const { generateBits, generateBytes } = require('../../models/Bit')
-const { generateCards } = require('../../models/Card')
-const { generateQueue } = require('../../models/Queue')
-const { generateStalls } = require('../../models/Stall')
+import * as def from './def.js'
+import * as str from './str.js'
+import * as io from './io.js'
+import device1 from './device1.js'
+import device2 from './device2.js'
+import device3 from './device3.js'
+import racks from './racks.js'
+import { Alarms, generateAlarms } from '../../models/Alarm.js'
+import { generateCards } from '../../models/Card.js'
+import { generateQueue } from '../../models/Queue.js'
+import { generateStalls } from '../../models/Stall.js'
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // 'E1')
 const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // 'U1')
 const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 3) // 'T')
-exports.alarms = [al01, al02, al03]
+export const alarms = [al01, al02, al03]
 
-const inputs1 = generateBits('E', 0, 19, str.inputs1)
-const inputs = inputs1
-exports.inputs = inputs
+// const inputs1 = generateBits('E', 0, 19, str.inputs1)
+// const inputs = inputs1
+// export const inputs_ = inputs
 
-const eb = generateBytes(inputs)
-exports.eb = eb
+// const eb = generateBytes(inputs)
+// export const eb = eb
 
-const outputs1 = generateBits('A', 0, 13, str.outputs1)
-const outputs = outputs1
-exports.outputs = outputs
+// const outputs1 = generateBits('A', 0, 13, str.outputs1)
+// const outputs = outputs1
+// export const outputs = outputs
 
-const ab = generateBytes(outputs)
-exports.ab = ab
+// const ab = generateBytes(outputs)
+// export const ab = ab
 
-const merkers = generateBits('M', 0, 7)
-exports.merkers = merkers
-const mb = generateBytes(merkers)
-exports.mb = mb
+// const merkers = generateBits('M', 0, 7)
+// export const merkers = merkers
+// const mb = generateBytes(merkers)
+// export const mb = mb
 
-const racks = require('./racks')
-exports.racks = racks
+// const racks = require('./racks')
+// export const racks = racks
 
-const device1 = require('./device1')
-const device2 = require('./device2')
-const device3 = require('./device3')
+// const device1 = require('./device1')
+// const device2 = require('./device2')
+// const device3 = require('./device3')
 
-const queue = generateQueue(def)
-exports.queue = queue
+export const queue = generateQueue(def)
 
-exports.devices = [
+export const devices = [
   device1.device,
   device2.device,
   device3.device
 ]
 
-// exports.inverters = device1.inverters.concat(
-//   device2.inverters,
-//   device3.inverters
-// )
+export const drives = device1.drives.concat(
+  device2.drives,
+  device3.drives
+)
 
-// exports.motors = device1.motors.concat(
+// export const motors = device1.motors.concat(
 //   device2.motors,
 //   device3.motors
 // )
 
-exports.positions = device1.positions.concat(
+export const positions = device1.positions.concat(
   device2.positions,
   device3.positions
 )
 
-// exports.diagnostic = [
+// export const diagnostic = [
 //   device1,
 //   device2,
 //   device3
 // ]
 
-exports.modes = str.MODES
+export const modes = str.MODES
 
-exports.overview = {
+export const overview = {
   definitions: { cards: def.CARDS, stalls: def.STALLS },
   devices: [
     device1.view,
@@ -80,7 +83,7 @@ exports.overview = {
     queueList: queue,
     exitButton: {
       // conn: def.REQ_0,
-      enable: merkers.find(b => b.addr === 'M3.0'),
+      enable: io.merkers.find(b => b.addr === 'M3.0'),
       key: 'action-exit',
       min: 1,
       max: def.CARDS
@@ -88,13 +91,11 @@ exports.overview = {
   }
 }
 
-const cards = generateCards(def)
-exports.cards = cards
+export const cards = generateCards(def)
 
-const stalls = generateStalls(def)
-exports.stalls = stalls
+export const stalls = generateStalls(def)
 
-exports.map = {
+export const map = {
   definitions: {
     cards: def.CARDS,
     stalls: def.STALLS,
@@ -137,4 +138,19 @@ exports.map = {
     { id: 'free', value: 0 },
     { id: 'lock', value: 0 }
   ]
+}
+
+export default {
+  ...io,
+  alarms,
+  cards,
+  devices,
+  drives,
+  map,
+  modes,
+  overview,
+  positions,
+  queue,
+  racks,
+  stalls
 }

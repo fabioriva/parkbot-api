@@ -1,5 +1,6 @@
-const { ab, eb, inputs } = require('./obj')
-const { S7_131_6BH01_0BA0, S7_132_6BH01_0BA0 } = require('../../../models/Modules')
+import { ab, eb, inputs } from './io.js'
+import { S7_131_6BH01_0BA0, S7_132_6BH01_0BA0 } from '../../../models/Modules.js'
+import { Pn } from '../../../models/Pn.js'
 
 const rack1 = {
   nr: 1,
@@ -33,8 +34,6 @@ const rack3 = {
   ]
 }
 
-const { Pn } = require('../../../models/Pn')
-
 const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
 const pn01 = new Pn('KKP', 1, inputs.find(b => b.addr === 'E1.3'), 'IM 155-6 PN ST', { key: 'im', query: {} })
 const pn02 = new Pn('SH', 2, inputs.find(b => b.addr === 'E1.3'), 'IM 155-6 PN ST', { key: 'im', query: {} })
@@ -43,4 +42,4 @@ pn00.rack = rack1
 pn01.rack = rack2
 pn02.rack = rack3
 
-module.exports = [pn00, pn01, pn02]
+export default [pn00, pn01, pn02]

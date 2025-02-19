@@ -1,4 +1,4 @@
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E0.0', label: 'A' },
   { addr: 'E0.1', label: 'B' },
   { addr: 'E0.2', label: 'C' },
@@ -48,7 +48,7 @@ exports.inputs1 = [
   { addr: 'E5.6', label: '' },
   { addr: 'E5.7', label: '' }
 ]
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E100.0', label: 'A' },
   { addr: 'E100.1', label: 'B' },
   { addr: 'E100.2', label: 'C' },
@@ -114,7 +114,7 @@ exports.inputs2 = [
   { addr: 'E107.6', label: 'RXL' },
   { addr: 'E107.7', label: 'RXR' }
 ]
-exports.inputs3 = [
+export const inputs3 = [
   { addr: 'E110.0', label: 'ECA' },
   { addr: 'E110.1', label: 'ECB' },
   { addr: 'E110.2', label: 'AMC' },
@@ -132,7 +132,7 @@ exports.inputs3 = [
   { addr: 'E111.6', label: 'FTXV' },
   { addr: 'E111.7', label: 'FTXH' }
 ]
-exports.inputs4 = [
+export const inputs4 = [
   { addr: 'E200.0', label: 'A' },
   { addr: 'E200.1', label: 'B' },
   { addr: 'E200.2', label: 'C' },
@@ -198,7 +198,7 @@ exports.inputs4 = [
   { addr: 'E207.6', label: 'RXL' },
   { addr: 'E207.7', label: 'RXR' }
 ]
-exports.inputs5 = [
+export const inputs5 = [
   { addr: 'E210.0', label: 'ECA' },
   { addr: 'E210.1', label: 'ECB' },
   { addr: 'E210.2', label: 'AMC' },
@@ -216,7 +216,7 @@ exports.inputs5 = [
   { addr: 'E211.6', label: 'FTXV' },
   { addr: 'E211.7', label: 'FTXH' }
 ]
-exports.inputs6 = [
+export const inputs6 = [
   { addr: 'E300.0', label: 'A' },
   { addr: 'E300.1', label: 'B' },
   { addr: 'E300.2', label: 'C' },
@@ -266,7 +266,7 @@ exports.inputs6 = [
   { addr: 'E305.6', label: '' },
   { addr: 'E305.7', label: '' }
 ]
-exports.inputs7 = [
+export const inputs7 = [
   { addr: 'E310.0', label: 'A' },
   { addr: 'E310.1', label: 'B' },
   { addr: 'E310.2', label: 'C' },
@@ -308,7 +308,7 @@ exports.inputs7 = [
   { addr: 'E314.6', label: 'AH' },
   { addr: 'E314.7', label: 'MTC' }
 ]
-exports.inputs8 = [
+export const inputs8 = [
   { addr: 'E400.0', label: 'A' },
   { addr: 'E400.1', label: 'B' },
   { addr: 'E400.2', label: 'C' },
@@ -358,7 +358,7 @@ exports.inputs8 = [
   { addr: 'E405.6', label: '' },
   { addr: 'E405.7', label: '' }
 ]
-exports.inputs9 = [
+export const inputs9 = [
   { addr: 'E410.0', label: 'A' },
   { addr: 'E410.1', label: 'B' },
   { addr: 'E410.2', label: 'C' },
@@ -400,7 +400,7 @@ exports.inputs9 = [
   { addr: 'E414.6', label: 'AH' },
   { addr: 'E414.7', label: 'MTC' }
 ]
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A0.0', label: 'LK' },
   { addr: 'A0.1', label: 'LE' },
   { addr: 'A0.2', label: 'LB' },
@@ -434,7 +434,7 @@ exports.outputs1 = [
   { addr: 'A3.6', label: '' },
   { addr: 'A3.7', label: '' }
 ]
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A100.0', label: 'SBK1' },
   { addr: 'A100.1', label: 'KBA1' },
   { addr: 'A100.2', label: 'KBA2' },
@@ -484,7 +484,7 @@ exports.outputs2 = [
   { addr: 'A105.6', label: 'SZE' },
   { addr: 'A105.7', label: 'SOE' }
 ]
-exports.outputs3 = [
+export const outputs3 = [
   { addr: 'A110.0', label: 'SCA' },
   { addr: 'A110.1', label: 'SCB' },
   { addr: 'A110.2', label: 'T10F' },
@@ -494,7 +494,7 @@ exports.outputs3 = [
   { addr: 'A110.6', label: '' },
   { addr: 'A110.7', label: '' }
 ]
-exports.outputs4 = [
+export const outputs4 = [
   { addr: 'A200.0', label: 'SBK1' },
   { addr: 'A200.1', label: 'KBA1' },
   { addr: 'A200.2', label: 'KBA2' },
@@ -544,7 +544,7 @@ exports.outputs4 = [
   { addr: 'A205.6', label: 'SZE' },
   { addr: 'A205.7', label: 'SOE' }
 ]
-exports.outputs5 = [
+export const outputs5 = [
   { addr: 'A210.0', label: 'SCA' },
   { addr: 'A210.1', label: 'SCB' },
   { addr: 'A210.2', label: 'T10F' },
@@ -554,7 +554,7 @@ exports.outputs5 = [
   { addr: 'A210.6', label: '' },
   { addr: 'A210.7', label: '' }
 ]
-exports.outputs6 = [
+export const outputs6 = [
   { addr: 'A300.0', label: 'SBK1' },
   { addr: 'A300.1', label: 'KBA' },
   { addr: 'A300.2', label: '' },
@@ -572,7 +572,7 @@ exports.outputs6 = [
   { addr: 'A301.6', label: 'AD3' },
   { addr: 'A301.7', label: 'STR' }
 ]
-exports.outputs7 = [
+export const outputs7 = [
   { addr: 'A304.0', label: 'SMA' },
   { addr: 'A304.1', label: 'SMB' },
   { addr: 'A304.2', label: 'TCR' },
@@ -582,7 +582,7 @@ exports.outputs7 = [
   { addr: 'A304.6', label: 'LA' },
   { addr: 'A304.7', label: '' }
 ]
-exports.outputs8 = [
+export const outputs8 = [
   { addr: 'A310.0', label: 'A' },
   { addr: 'A310.1', label: 'B' },
   { addr: 'A310.2', label: 'C' },
@@ -608,7 +608,7 @@ exports.outputs8 = [
   { addr: 'A312.6', label: 'LA' },
   { addr: 'A312.7', label: 'LC' }
 ]
-exports.outputs9 = [
+export const outputs9 = [
   { addr: 'A400.0', label: 'SBK1' },
   { addr: 'A400.1', label: 'KBA' },
   { addr: 'A400.2', label: '' },
@@ -626,7 +626,7 @@ exports.outputs9 = [
   { addr: 'A401.6', label: 'AD3' },
   { addr: 'A401.7', label: 'STR' }
 ]
-exports.outputs10 = [
+export const outputs10 = [
   { addr: 'A404.0', label: 'SMA' },
   { addr: 'A404.1', label: 'SMB' },
   { addr: 'A404.2', label: 'TCR' },
@@ -636,7 +636,7 @@ exports.outputs10 = [
   { addr: 'A404.6', label: 'LA' },
   { addr: 'A404.7', label: '' }
 ]
-exports.outputs11 = [
+export const outputs11 = [
   { addr: 'A410.0', label: 'A' },
   { addr: 'A410.1', label: 'B' },
   { addr: 'A410.2', label: 'C' },
@@ -663,7 +663,7 @@ exports.outputs11 = [
   { addr: 'A412.7', label: 'LC' }
 ]
 
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: 'al-v-to', query: {} },
   { id: 2, key: 'al-h-to', query: {} },
   { id: 3, key: 'al-r-to', query: {} },
@@ -794,7 +794,7 @@ exports.ALARMS = [
   { id: 128, key: '', query: {} }
 ]
 
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL1' },
   { id: 2, key: 'EL2' },
@@ -802,7 +802,7 @@ exports.DEVICES = [
   { id: 4, key: 'EL4' }
 ]
 
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -814,7 +814,7 @@ exports.MODES = [
   { id: 8, key: 'mode-auto' }
 ]
 
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

@@ -1,9 +1,9 @@
-const { inputs, outputs } = require('./obj')
-const { Device } = require('../../../models/Device')
-const { Drive } = require('../../../models/Drive')
-const { Lock, Hoisting, Traveling } = require('../../../models/Motor')
-const { Position } = require('../../../models/Position')
-const { Main, Silomat } = require('../../../models/View')
+import { inputs, outputs } from './io.js'
+import { Device } from '../../../models/Device.js'
+import { Drive } from '../../../models/Drive.js'
+import { Lock, Hoisting, Traveling } from '../../../models/Motor.js'
+import { Position } from '../../../models/Position.js'
+import { Main, Silomat } from '../../../models/View.js'
 
 const LV1 = new Position(5, 'LV1')
 const LV2 = new Position(6, 'LV2')
@@ -116,4 +116,4 @@ const views = [main, silomat]
 
 const device = new Device(2, 'T2', [], lamps, motors, views)
 
-module.exports = { device, drives, positions }
+export default { device, drives, positions }

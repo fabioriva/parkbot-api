@@ -1,11 +1,13 @@
-const def = require('./def')
-const str = require('./str')
-const { Action } = require('../../../models/Action')
-const { Alarms, generateAlarms } = require('../../../models/Alarm')
-const { generateBits, generateBytes } = require('../../../models/Bit')
-const { generateCards } = require('../../../models/Card')
-const { generateQueue } = require('../../../models/Queue')
-const { generateStalls } = require('../../../models/Stall')
+import * as def from './def.js'
+import * as str from './str.js'
+import * as io from './io.js'
+import device1 from './device1.js'
+import racks from './racks.js'
+import { Action } from '../../../models/Action.js'
+import { Alarms, generateAlarms } from '../../../models/Alarm.js'
+import { generateCards } from '../../../models/Card.js'
+import { generateQueue } from '../../../models/Queue.js'
+import { generateStalls } from '../../../models/Stall.js'
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // EL
 const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // EL
@@ -26,7 +28,7 @@ const al16 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 16) //
 const al17 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 17) // SH
 const al18 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 18) // SH
 const al19 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 19) // SH
-exports.alarms = [al01, al02, al03, al04, al05, al06, al07, al08, al09, al10, al11, al12, al13, al14, al15, al16, al17, al18, al19]
+export const alarms = [al01, al02, al03, al04, al05, al06, al07, al08, al09, al10, al11, al12, al13, al14, al15, al16, al17, al18, al19]
 // console.log(al01._active)
 
 const inputs1 = generateBits('E', 16, 18, str.inputs1) // EL
@@ -55,9 +57,9 @@ const inputs = [
   ...inputs3, ...inputs4, // SH13
   ...inputs3, ...inputs4 // SH14
 ]
-exports.inputs = inputs
+export const inputs_ = inputs
 const eb = generateBytes(inputs)
-exports.eb = eb
+export const eb = eb
 // console.log(eb.length, eb[0], eb.slice(0,2))
 // console.log(inputs.slice(0, 96))
 // console.log(eb[10], eb[10].find(b => b.addr === 'E27.0'))
@@ -87,36 +89,35 @@ const outputs = [
   ...outputs3, ...outputs4, // SH13
   ...outputs3, ...outputs4 // SH14
 ]
-exports.outputs = outputs
+export const outputs = outputs
 const ab = generateBytes(outputs)
-exports.ab = ab
+export const ab = ab
 console.log(ab.length)
 
 const merkers = generateBits('M', 0, 7)
-exports.merkers = merkers
+export const merkers = merkers
 const mb = generateBytes(merkers)
-exports.mb = mb
+export const mb = mb
 
 const racks = require('./racks')
-exports.racks = racks
+export const racks = racks
 
 const el = require('./el.js')
 const sh = require('./sh.js')
 
 const devices = [...el.devices_, ...sh.devices_]
 console.log(devices.length)
-exports.devices = devices
+export const devices = devices
 
-exports.drives = [...el.drives_, ...sh.drives_]
+export const drives = [...el.drives_, ...sh.drives_]
 
-exports.positions = [...el.positions_, ...sh.positions_]
+export const positions = [...el.positions_, ...sh.positions_]
 
-const queue = generateQueue(def)
-exports.queue = queue
+export const queue = generateQueue(def)
 
-exports.modes = str.MODES
+export const modes = str.MODES
 
-exports.overview = {
+export const overview = {
   devices: [
     [...el.devices_],
     [...sh.devices_]
@@ -127,11 +128,9 @@ exports.overview = {
   }
 }
 
-const cards = generateCards(def)
-exports.cards = cards
+export const cards = generateCards(def)
 
-const stalls = generateStalls(def)
-exports.stalls = stalls
+export const stalls = generateStalls(def)
 
 const elevators = [
   { id: 'el-1', label: 'EL1' },
@@ -141,7 +140,7 @@ const elevators = [
   { id: 'el-5', label: 'EL5' }
 ]
 
-exports.map = {
+export const map = {
   definitions: {
     cards: def.CARDS,
     stalls: def.STALLS,

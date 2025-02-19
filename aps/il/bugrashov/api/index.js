@@ -1,7 +1,7 @@
-require('dotenv').config()
-const uWS = require('uWebSockets.js')
-const def = require('./def')
-const obj = require('./obj')
+import 'dotenv/config.js'
+import * as uWS from 'uWebSockets.js'
+import * as def from './def.js'
+const obj from './io.js'
 const Plc = require('./lib/Plc')
 const Router = require('./lib/Router')
 

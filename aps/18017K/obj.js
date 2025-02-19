@@ -1,79 +1,81 @@
-const def = require('./def')
-const str = require('./str')
-const { Action } = require('../../models/Action')
-const { Alarms, generateAlarms } = require('../../models/Alarm')
-const { generateBits, generateBytes } = require('../../models/Bit')
-const { generateCards } = require('../../models/Card')
-// const { Exit, ExitScreen, GarageScreen/*, Occupancy */ } = require('../../models/Dss')
-const { generateQueue } = require('../../models/Queue')
-const { generateStalls } = require('../../models/Stall')
+import * as def from './def.js'
+import * as str from './str.js'
+import * as io from './io.js'
+import device1 from './device1.js'
+import device2 from './device2.js'
+import device3 from './device3.js'
+import racks from './racks.js'
+import { Action } from '../../models/Action.js'
+import { Alarms, generateAlarms } from '../../models/Alarm.js'
+import { generateCards } from '../../models/Card.js'
+import { generateQueue } from '../../models/Queue.js'
+import { generateStalls } from '../../models/Stall.js'
+// import { Exit, ExitScreen, GarageScreen/*, Occupancy */ } = require('../../models/Dss')
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // EU1
 const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // EU2
 const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 3) // EL
-exports.alarms = [al01, al02, al03]
+export const alarms = [al01, al02, al03]
 
-const inputs1 = generateBits('E', 0, 17, str.inputs1)
-const inputs = inputs1
-exports.inputs = inputs
-const eb = generateBytes(inputs)
-exports.eb = eb
+// const inputs1 = generateBits('E', 0, 17, str.inputs1)
+// const inputs = inputs1
+// export const inputs_ = inputs
+// const eb = generateBytes(inputs)
+// export const eb = eb
 
-const outputs1 = generateBits('A', 0, 13, str.outputs1)
-const outputs = outputs1
-exports.outputs = outputs
-const ab = generateBytes(outputs)
-exports.ab = ab
+// const outputs1 = generateBits('A', 0, 13, str.outputs1)
+// const outputs = outputs1
+// export const outputs = outputs
+// const ab = generateBytes(outputs)
+// export const ab = ab
 
-const merkers = generateBits('M', 0, 7)
-exports.merkers = merkers
-const mb = generateBytes(merkers)
-exports.mb = mb
+// const merkers = generateBits('M', 0, 7)
+// export const merkers = merkers
+// const mb = generateBytes(merkers)
+// export const mb = mb
 
 // const pn = require('./pn') // PROFINET network
-// exports.pn = pn
+// export const pn = pn
 
-const racks = require('./racks')
-exports.racks = racks
+// const racks = require('./racks')
+// export const racks = racks
 
-const device1 = require('./device1') // EU1
-const device2 = require('./device2') // EU2
-const device3 = require('./device3') // EL
+// const device1 = require('./device1') // EU1
+// const device2 = require('./device2') // EU2
+// const device3 = require('./device3') // EL
 
-const queue = generateQueue(def)
-exports.queue = queue
+export const queue = generateQueue(def)
 
-exports.devices = [
+export const devices = [
   device1.device,
   device2.device,
   device3.device
 ]
 
-const drives = device1.drives.concat(
+export const drives = device1.drives.concat(
   device2.drives,
   device3.drives
 )
-exports.drives = drives
 
-// exports.motors = device1.motors.concat(
+// export const motors = device1.motors.concat(
 //   device2.motors,
 //   device3.motors
 // )
 
-exports.positions = device1.positions.concat(
+export const positions = device1.positions.concat(
   device2.positions,
   device3.positions
 )
 
-exports.modes = str.MODES
+export const modes = str.MODES
 
-exports.overview = {
+export const overview = {
   // definitions: { cards: def.CARDS, stalls: def.STALLS },
   devices: [[device1.device, device2.device, device3.device]],
   // drives,
   exitQueue: {
     queueList: queue,
-    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
+    exitButton: new Action('action-exit', io.merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
     // exitButton: {
     //   // conn: def.REQ_0,
     //   enable: merkers.find(b => b.addr === 'M3.0'),
@@ -84,13 +86,11 @@ exports.overview = {
   }
 }
 
-const cards = generateCards(def)
-exports.cards = cards
+export const cards = generateCards(def)
 
-const stalls = generateStalls(def)
-exports.stalls = stalls
+export const stalls = generateStalls(def)
 
-exports.map = {
+export const map = {
   definitions: {
     cards: def.CARDS,
     stalls: def.STALLS,
@@ -172,14 +172,29 @@ exports.map = {
 // const exit1 = new Exit(1, 'EXIT 1')
 // const exit2 = new Exit(2, 'EXIT 2')
 // const exits = [exit1, exit2]
-// exports.exits = exits
+// export const exits = exits
 
 // const exitScreen = new ExitScreen(1, 'EXIT SCREEN')
-// exports.exitScreen = exitScreen
+// export const exitScreen = exitScreen
 
 // const screen1 = new GarageScreen(1, 'GARAGE 1')
 // const screen2 = new GarageScreen(2, 'GARAGE 2')
 // const screens = [screen1, screen2]
-// exports.screens = screens
+// export const screens = screens
 
-// exports.dss = { screens, exitScreen }
+// export const dss = { screens, exitScreen }
+
+export default {
+  ...io,
+  alarms,
+  cards,
+  devices,
+  drives,
+  map,
+  modes,
+  overview,
+  positions,
+  queue,
+  racks,
+  stalls
+}

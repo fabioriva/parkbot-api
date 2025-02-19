@@ -1,5 +1,5 @@
 // generate I/O
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E0.0', label: 'A' },
   { addr: 'E0.1', label: 'B' },
   { addr: 'E0.2', label: 'C' },
@@ -769,7 +769,7 @@ exports.inputs1 = [
   { addr: 'E95.6', label: 'AH' },
   { addr: 'E95.7', label: 'MTC' }
 ]
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A0.0', label: 'DYA' },
   { addr: 'A0.1', label: 'DYB' },
   { addr: 'A0.2', label: 'DYC' },
@@ -1203,7 +1203,7 @@ exports.outputs1 = [
   { addr: 'A53.6', label: 'KCH' },
   { addr: 'A53.7', label: 'TCR' }
 ]
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: 'al-v-to', query: {} },
   { id: 2, key: 'al-lv', query: {} },
   { id: 3, key: 'al-fs', query: { name: 'EFA/B speed check' } },
@@ -1269,7 +1269,7 @@ exports.ALARMS = [
   { id: 63, key: '', query: {} },
   { id: 64, key: '', query: {} }
 ]
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL1' },
   { id: 2, key: 'EL2' },
@@ -1302,7 +1302,7 @@ exports.DEVICES = [
   { id: 29, key: 'SH11R' },
   { id: 30, key: 'SH12R' }
 ]
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -1313,7 +1313,7 @@ exports.MODES = [
   { id: 7, key: 'mode-preset' },
   { id: 8, key: 'mode-auto' }
 ]
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

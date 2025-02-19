@@ -1,5 +1,5 @@
 // CPU
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E0.0', label: '' },
   { addr: 'E0.1', label: '' },
   { addr: 'E0.2', label: '' },
@@ -34,7 +34,7 @@ exports.inputs1 = [
   { addr: 'E3.7', label: '' }
 ]
 // VT
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E100.0', label: 'A' },
   { addr: 'E100.1', label: 'B' },
   { addr: 'E100.2', label: 'C' },
@@ -149,7 +149,7 @@ exports.inputs2 = [
   { addr: 'E113.7', label: '' }
 ]
 // SH
-exports.inputs3 = [
+export const inputs3 = [
   { addr: 'E1000.0', label: 'A' },
   { addr: 'E1000.1', label: 'B' },
   { addr: 'E1000.2', label: 'C' },
@@ -200,7 +200,7 @@ exports.inputs3 = [
   { addr: 'E1005.7', label: 'RCH' }
 ]
 // CPU
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A0.0', label: 'LSE' },
   { addr: 'A0.1', label: 'LSL1' },
   { addr: 'A0.2', label: 'LSL1' },
@@ -234,7 +234,7 @@ exports.outputs1 = [
   { addr: 'A3.6', label: '' },
   { addr: 'A3.7', label: '' }
 ]
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A100.0', label: 'A' },
   { addr: 'A100.1', label: 'B' },
   { addr: 'A100.2', label: 'C' },
@@ -300,7 +300,7 @@ exports.outputs2 = [
   { addr: 'A107.6', label: 'SMAH' },
   { addr: 'A107.7', label: 'SMBH' }
 ]
-exports.outputs3 = [
+export const outputs3 = [
   { addr: 'A1000.0', label: 'A' },
   { addr: 'A1000.1', label: 'B' },
   { addr: 'A1000.2', label: 'C' },
@@ -334,7 +334,7 @@ exports.outputs3 = [
   { addr: 'A1003.6', label: '' },
   { addr: 'A1003.7', label: '' }
 ]
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: '', query: {} },
   { id: 2, key: '', query: {} },
   { id: 3, key: '', query: {} },
@@ -464,7 +464,7 @@ exports.ALARMS = [
   { id: 127, key: '', query: {} },
   { id: 128, key: '', query: {} }
 ]
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'VT1' },
   { id: 2, key: 'VT2' },
@@ -478,7 +478,7 @@ exports.DEVICES = [
   { id: 5, key: 'SH6' },
   { id: 5, key: 'SH7' }
 ]
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -489,7 +489,7 @@ exports.MODES = [
   { id: 7, key: 'mode-preset' },
   { id: 8, key: 'mode-auto' }
 ]
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

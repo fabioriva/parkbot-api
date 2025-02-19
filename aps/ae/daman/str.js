@@ -1,4 +1,4 @@
-exports.inputsEL = [
+export const inputsEL = [
   { addr: 'E16.0', label: 'BA' },
   { addr: 'E16.1', label: 'BB' },
   { addr: 'E16.2', label: 'BC' },
@@ -89,7 +89,7 @@ exports.inputsEL = [
   { addr: 'E27.7', label: 'ECB1' }
 ]
 
-exports.inputsSH = [
+export const inputsSH = [
   { addr: 'E16.0', label: 'A' },
   { addr: 'E16.1', label: 'B' },
   { addr: 'E16.2', label: 'C' },
@@ -132,7 +132,7 @@ exports.inputsSH = [
   { addr: 'E21.7', label: 'FTXH' }
 ]
 
-exports.outputsEL = [
+export const outputsEL = [
   { addr: 'A16.0', label: 'DYA' },
   { addr: 'A16.1', label: 'DYB' },
   { addr: 'A16.2', label: 'DYC' },
@@ -199,7 +199,7 @@ exports.outputsEL = [
   { addr: 'A25.7', label: 'TCR' }
 ]
 
-exports.outputsSH = [
+export const outputsSH = [
   { addr: 'A16.0', label: 'DYA' },
   { addr: 'A16.1', label: 'DYB' },
   { addr: 'A16.2', label: 'DYC' },
@@ -234,7 +234,7 @@ exports.outputsSH = [
   { addr: 'A21.7', label: 'TCR' }
 ]
 
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: '', query: '' },
   { id: 2, key: '', query: '' },
   { id: 3, key: '', query: '' },
@@ -365,7 +365,7 @@ exports.ALARMS = [
   { id: 128, key: '', query: '' }
 ]
 
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL1' },
   { id: 2, key: 'EL2' },
@@ -387,7 +387,7 @@ exports.DEVICES = [
   { id: 6, key: 'SH13' },
   { id: 6, key: 'SH14' }
 ]
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -398,7 +398,7 @@ exports.MODES = [
   { id: 7, key: 'mode-preset' },
   { id: 8, key: 'mode-auto' }
 ]
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

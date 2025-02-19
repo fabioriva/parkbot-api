@@ -29,4 +29,4 @@ const updateDevices = util.promisify(
   }
 )
 
-module.exports = { updateDevices, Device }
+export default { updateDevices, Device }

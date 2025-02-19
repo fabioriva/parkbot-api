@@ -1,5 +1,5 @@
 // generate I/O
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E4.0', label: 'A' },
   { addr: 'E4.1', label: 'B' },
   { addr: 'E4.2', label: 'C' },
@@ -65,7 +65,7 @@ exports.inputs1 = [
   { addr: 'E11.6', label: 'FTA3' },
   { addr: 'E11.7', label: 'RXE' }
 ]
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E12.0', label: 'EV32' },
   { addr: 'E12.1', label: 'EV33' },
   { addr: 'E12.2', label: 'EV48' },
@@ -75,7 +75,7 @@ exports.inputs2 = [
   { addr: 'E12.6', label: '' },
   { addr: 'E12.7', label: '' }
 ]
-exports.inputs3 = [
+export const inputs3 = [
   { addr: 'E24.0', label: 'AGL' },
   { addr: 'E24.1', label: 'ACR1' },
   { addr: 'E24.2', label: 'TCR1' },
@@ -93,7 +93,7 @@ exports.inputs3 = [
   { addr: 'E25.6', label: 'FTXV' },
   { addr: 'E25.7', label: 'FTXH' }
 ]
-exports.inputs4 = [
+export const inputs4 = [
   { addr: 'E0.0', label: 'A' },
   { addr: 'E0.1', label: 'B' },
   { addr: 'E0.2', label: 'C' },
@@ -135,7 +135,7 @@ exports.inputs4 = [
   { addr: 'E4.6', label: 'AH' },
   { addr: 'E4.7', label: 'MTC' }
 ]
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A4.0', label: 'SBK1' },
   { addr: 'A4.1', label: 'KBAA' },
   { addr: 'A4.2', label: 'SPR' },
@@ -169,7 +169,7 @@ exports.outputs1 = [
   { addr: 'A7.6', label: 'AD3' },
   { addr: 'A7.7', label: 'STR' }
 ]
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A12.0', label: 'LKE' },
   { addr: 'A12.1', label: 'LEE' },
   { addr: 'A12.2', label: 'LBE' },
@@ -179,7 +179,7 @@ exports.outputs2 = [
   { addr: 'A12.6', label: '' },
   { addr: 'A12.7', label: 'RBE' }
 ]
-exports.outputs3 = [
+export const outputs3 = [
   { addr: 'A24.0', label: 'SMA' },
   { addr: 'A24.1', label: 'SMB' },
   { addr: 'A24.2', label: 'TCR1' },
@@ -197,7 +197,7 @@ exports.outputs3 = [
   { addr: 'A25.6', label: '' },
   { addr: 'A25.7', label: '' }
 ]
-exports.outputs4 = [
+export const outputs4 = [
   { addr: 'A0.0', label: 'KBA' },
   { addr: 'A0.1', label: 'TCRE' },
   { addr: 'A0.2', label: 'TCVE' },
@@ -223,7 +223,7 @@ exports.outputs4 = [
   { addr: 'A2.6', label: 'KCH' },
   { addr: 'A2.7', label: 'TCR' }
 ]
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: 'al-v-to', query: {} },
   { id: 2, key: 'al-lv', query: {} },
   { id: 3, key: 'al-fc', query: { fc1: 'EFA', fc2: 'EFB' } },
@@ -354,13 +354,13 @@ exports.ALARMS = [
   { id: 128, key: '', query: {} }
 ]
 
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL' },
   { id: 2, key: 'EU' }
 ]
 
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -372,7 +372,7 @@ exports.MODES = [
   { id: 8, key: 'mode-auto' }
 ]
 
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

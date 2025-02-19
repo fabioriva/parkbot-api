@@ -1,5 +1,5 @@
 // generate I/O
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E0.0', label: 'SFA' },
   { addr: 'E0.1', label: 'SFB' },
   { addr: 'E0.2', label: 'SF1' },
@@ -17,7 +17,7 @@ exports.inputs1 = [
   { addr: 'E1.6', label: '' },
   { addr: 'E1.7', label: '' }
 ]
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E10.0', label: 'IV1' },
   { addr: 'E10.1', label: 'RSI' },
   { addr: 'E10.2', label: 'FDBK' },
@@ -115,7 +115,7 @@ exports.inputs2 = [
   { addr: 'E21.6', label: 'REAH' },
   { addr: 'E21.7', label: 'RCH' }
 ]
-exports.inputs3 = [
+export const inputs3 = [
   { addr: 'E30.0', label: 'IV1' },
   { addr: 'E30.1', label: 'RSI' },
   { addr: 'E30.2', label: 'FDBK' },
@@ -197,7 +197,7 @@ exports.inputs3 = [
   { addr: 'E39.6', label: '' },
   { addr: 'E39.7', label: '' }
 ]
-exports.inputs4 = [
+export const inputs4 = [
   { addr: 'E40.0', label: 'IV1' },
   { addr: 'E40.1', label: 'RSI' },
   { addr: 'E40.2', label: 'FDBK' },
@@ -295,7 +295,7 @@ exports.inputs4 = [
   { addr: 'E51.6', label: '' },
   { addr: 'E51.7', label: '' }
 ]
-exports.inputs5 = [
+export const inputs5 = [
   { addr: 'E60.0', label: 'IV1' },
   { addr: 'E60.1', label: 'RSI' },
   { addr: 'E60.2', label: 'FDBK' },
@@ -377,7 +377,7 @@ exports.inputs5 = [
   { addr: 'E69.6', label: '' },
   { addr: 'E69.7', label: '' }
 ]
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A0.0', label: 'LSA' },
   { addr: 'A0.1', label: 'LSB' },
   { addr: 'A0.2', label: 'LS1' },
@@ -395,7 +395,7 @@ exports.outputs1 = [
   { addr: 'A1.6', label: '' },
   { addr: 'A1.7', label: '' }
 ]
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A10.0', label: 'SBK1' },
   { addr: 'A10.1', label: 'SBK2' },
   { addr: 'A10.2', label: 'KBA1' },
@@ -461,7 +461,7 @@ exports.outputs2 = [
   { addr: 'A17.6', label: 'KBA2' },
   { addr: 'A17.7', label: '' }
 ]
-exports.outputs3 = [
+export const outputs3 = [
   { addr: 'A30.0', label: 'SBK1' },
   { addr: 'A30.1', label: 'SBK2' },
   { addr: 'A30.2', label: 'KBA1' },
@@ -527,7 +527,7 @@ exports.outputs3 = [
   { addr: 'A37.6', label: '' },
   { addr: 'A37.7', label: '' }
 ]
-exports.outputs4 = [
+export const outputs4 = [
   { addr: 'A40.0', label: 'SBK1' },
   { addr: 'A40.1', label: 'SBK2' },
   { addr: 'A40.2', label: 'KBA1' },
@@ -593,7 +593,7 @@ exports.outputs4 = [
   { addr: 'A47.6', label: 'KBA2' },
   { addr: 'A47.7', label: '' }
 ]
-exports.outputs5 = [
+export const outputs5 = [
   { addr: 'A60.0', label: 'SBK1' },
   { addr: 'A60.1', label: 'SBK2' },
   { addr: 'A60.2', label: 'KBA1' },
@@ -659,7 +659,7 @@ exports.outputs5 = [
   { addr: 'A67.6', label: '' },
   { addr: 'A67.7', label: '' }
 ]
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: 'al-sil-01', query: {} },
   { id: 2, key: 'al-sil-02', query: {} },
   { id: 3, key: 'al-sil-03', query: {} },
@@ -789,7 +789,7 @@ exports.ALARMS = [
   { id: 127, key: '', query: {} },
   { id: 128, key: '', query: {} }
 ]
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL1' },
   { id: 2, key: 'EL2' },
@@ -797,7 +797,7 @@ exports.DEVICES = [
   { id: 4, key: 'ELB' }
 ]
 
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -809,7 +809,7 @@ exports.MODES = [
   { id: 8, key: 'mode-auto' }
 ]
 
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

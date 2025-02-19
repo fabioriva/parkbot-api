@@ -34,4 +34,4 @@ const updateBays = util.promisify((start, buffer, offset, bays, callback) => {
   callback(null, bays)
 })
 
-module.exports = { updateBays, Bay }
+export default { updateBays, Bay }

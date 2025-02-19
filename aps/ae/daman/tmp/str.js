@@ -1,4 +1,4 @@
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E16.0', label: 'BA' },
   { addr: 'E16.1', label: 'BB' },
   { addr: 'E16.2', label: 'BC' },
@@ -25,7 +25,7 @@ exports.inputs1 = [
   { addr: 'E18.7', label: 'REP' }
 ]
 
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E20.0', label: 'A' },
   { addr: 'E20.1', label: 'B' },
   { addr: 'E20.2', label: 'C' },
@@ -92,7 +92,7 @@ exports.inputs2 = [
   { addr: 'E27.7', label: 'ECB1' }
 ]
 
-exports.inputs3 = [
+export const inputs3 = [
   { addr: 'E16.0', label: 'A' },
   { addr: 'E16.1', label: 'B' },
   { addr: 'E16.2', label: 'C' },
@@ -119,7 +119,7 @@ exports.inputs3 = [
   { addr: 'E18.7', label: 'REP' }
 ]
 
-exports.inputs4 = [
+export const inputs4 = [
   { addr: 'E20.0', label: 'EFR' },
   { addr: 'E20.1', label: 'EFL' },
   { addr: 'E20.2', label: 'EHP1' },
@@ -138,7 +138,7 @@ exports.inputs4 = [
   { addr: 'E21.7', label: 'FTXH' }
 ]
 
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A16.0', label: 'DYA' },
   { addr: 'A16.1', label: 'DYB' },
   { addr: 'A16.2', label: 'DYC' },
@@ -157,7 +157,7 @@ exports.outputs1 = [
   { addr: 'A17.7', label: 'RBE' }
 ]
 
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A20.0', label: 'RA1' },
   { addr: 'A20.1', label: 'RB1' },
   { addr: 'A20.2', label: 'RD1' },
@@ -208,7 +208,7 @@ exports.outputs2 = [
   { addr: 'A25.7', label: 'TCR' }
 ]
 
-exports.outputs3 = [
+export const outputs3 = [
   { addr: 'A16.0', label: 'DYA' },
   { addr: 'A16.1', label: 'DYB' },
   { addr: 'A16.2', label: 'DYC' },
@@ -227,7 +227,7 @@ exports.outputs3 = [
   { addr: 'A17.7', label: '' }
 ]
 
-exports.outputs4 = [
+export const outputs4 = [
   { addr: 'A20.0', label: 'RA1' },
   { addr: 'A20.1', label: 'RB1' },
   { addr: 'A20.2', label: 'RD1' },
@@ -246,7 +246,7 @@ exports.outputs4 = [
   { addr: 'A21.7', label: 'TCR' }
 ]
 
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: '', query: '' },
   { id: 2, key: '', query: '' },
   { id: 3, key: '', query: '' },
@@ -377,7 +377,7 @@ exports.ALARMS = [
   { id: 128, key: '', query: '' }
 ]
 
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL1' },
   { id: 2, key: 'EL2' },
@@ -399,7 +399,7 @@ exports.DEVICES = [
   { id: 6, key: 'SH13' },
   { id: 6, key: 'SH14' }
 ]
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -410,7 +410,7 @@ exports.MODES = [
   { id: 7, key: 'mode-preset' },
   { id: 8, key: 'mode-auto' }
 ]
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

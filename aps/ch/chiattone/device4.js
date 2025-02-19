@@ -1,9 +1,9 @@
-const { inputs, outputs } = require('./obj')
-const { Device } = require('../../../models/Device')
-const { Drive } = require('../../../models/Drive')
-const { Door, Flap, Lock, Hoisting } = require('../../../models/Motor')
-const { Position } = require('../../../models/Position')
-const { Main, Garage } = require('../../../models/View')
+import { inputs, outputs } from './io.js'
+import { Device } from '../../../models/Device.js'
+import { Drive } from '../../../models/Drive.js'
+import { Door, Flap, Lock, Hoisting } from '../../../models/Motor.js'
+import { Position } from '../../../models/Position.js'
+import { Main, Garage } from '../../../models/View.js'
 
 const EN1 = inputs.find(b => b.addr === 'E4.3')
 
@@ -121,4 +121,4 @@ const views = [main, garage]
 
 const device = new Device(4, 'EL', [], lamps, motors, views)
 
-module.exports = { device, drives, positions }
+export default { device, drives, positions }

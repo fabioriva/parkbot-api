@@ -1,14 +1,14 @@
-const { inputs, outputs } = require('./obj')
-const { Device } = require('../../../models/Device')
-const { Drive } = require('../../../models/Drive')
-const {
+import { inputs, outputs } from './io.js'
+import { Device } from '../../../models/Device.js'
+import { Drive } from '../../../models/Drive.js'
+import {
   Barrier,
   Door,
   Flap,
   Rotation
-} = require('../../../models/Motor')
-const { Position } = require('../../../models/Position')
-const { Main } = require('../../../models/View')
+} from '../../../models/Motor.js'
+import { Position } from '../../../models/Position.js'
+import { Main } from '../../../models/View.js'
 
 const EN3 = inputs.find(b => b.addr === 'E102.0')
 const IV3 = new Drive(5, 'IV3', EN3)
@@ -88,4 +88,4 @@ const views = [main]
 
 const device = new Device(3, 'E1', [], lamps, motors, views)
 
-module.exports = { device, drives, positions }
+export default { device, drives, positions }

@@ -33,7 +33,7 @@ export const generateStalls = def => {
   return stalls
 }
 
-// exports.updateStalls = util.promisify(
+// export const updateStalls = util.promisify(
 //   (start, buffer, offset, stalls, callback) => {
 //     let byte = start
 //     const min = 0

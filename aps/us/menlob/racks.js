@@ -1,10 +1,11 @@
-const { ab, eb, merkers } = require('./obj')
-const {
+import { ab, eb, merkers } from './io.js'
+import {
   S7_521_1BL00_0AB0,
   S7_521_1BH00_0AB0,
   S7_522_1BH01_0AB0,
   S7_522_1BL01_0AB0
-} = require('../../../models/Modules')
+} from '../../../models/Modules.js'
+import { Pn } from '../../../models/Pn.js'
 
 const rack1 = {
   nr: 1,
@@ -89,8 +90,6 @@ const rack10 = {
   ]
 }
 
-const { Pn } = require('../../../models/Pn')
-
 const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
 const pn01 = new Pn('LSE4', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
 const pn02 = new Pn('T4', 2, merkers.find(b => b.addr === 'M4.1'), 'IM 155-5 PN', { key: 'im', query: {} })
@@ -113,4 +112,4 @@ pn07.rack = rack8
 pn08.rack = rack9
 pn09.rack = rack10
 
-module.exports = [pn00, pn01, pn02, pn03, pn04, pn05, pn06, pn07, pn08, pn09]
+export default [pn00, pn01, pn02, pn03, pn04, pn05, pn06, pn07, pn08, pn09]

@@ -33,7 +33,7 @@ class Stall {
   }
 }
 
-exports.generateStalls = (def) => {
+export const generateStalls = (def) => {
   const stalls = []
   for (let i = 0; i < def.STALLS; i++) {
     stalls.push(new Stall(i + 1))
@@ -41,7 +41,7 @@ exports.generateStalls = (def) => {
   return stalls
 }
 
-exports.updateStalls = util.promisify(
+export const updateStalls = util.promisify(
   (start, buffer, offset, stalls, callback) => {
     let byte = start
     const min = 0
@@ -54,7 +54,7 @@ exports.updateStalls = util.promisify(
   }
 )
 
-// exports.updateStalls = util.promisify(
+// export const updateStalls = util.promisify(
 //   (start, buffer, offset, cards, stalls, callback) => {
 //     let byte = start
 //     const min = 0
@@ -71,7 +71,7 @@ exports.updateStalls = util.promisify(
 //   }
 // )
 
-exports.occupancy = (size, stalls, stallStatus) => {
+export const occupancy = (size, stalls, stallStatus) => {
   // console.log(stalls)
   const occupancy = {
     total: 225,
@@ -97,7 +97,7 @@ exports.occupancy = (size, stalls, stallStatus) => {
   return occupancy
 }
 
-// exports.occupancy = (size, stalls, stallStatus) => {
+// export const occupancy = (size, stalls, stallStatus) => {
 //   // const occupancy = { free: 0, busy: 0, locked: 0 }
 //   const occupancy = [
 //     { id: 'busy', value: 0 },
