@@ -1,7 +1,7 @@
-const { inputs, outputs } = require('./obj')
-const { Device } = require('../../../models/Device')
-const { Barrier, Door } = require('../../../models/Motor')
-const { Garage } = require('../../../models/View')
+import { inputs, outputs } from './io.js'
+import { Device } from '../../../models/Device.js'
+import { Barrier, Door } from '../../../models/Motor.js'
+import { Garage } from '../../../models/View.js'
 
 const positions = []
 
@@ -78,4 +78,4 @@ const views = [garage]
 
 const device = new Device(2, 'EU1', [], lamps, motors, views)
 
-module.exports = { device, drives, positions }
+export default { device, drives, positions }

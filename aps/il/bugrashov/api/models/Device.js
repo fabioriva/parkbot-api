@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Device {
   constructor (id, name, card = 0, size = 0, stall = 0, status = 0) {
@@ -29,4 +29,4 @@ const updateDevices = util.promisify(
   }
 )
 
-module.exports = { updateDevices, Device }
+export default { updateDevices, Device }

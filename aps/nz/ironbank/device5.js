@@ -1,10 +1,10 @@
-const def = require('./def')
-const { inputs, merkers, outputs } = require('./obj')
-const { Action } = require('../../../models/Action')
-const { Device } = require('../../../models/Device')
-const { Drive } = require('../../../models/Drive')
-const { Barrier, Door, Flap, Rotation } = require('../../../models/Motor')
-const { Main } = require('../../../models/View')
+import * as def from './def.js'
+import { inputs, merkers, outputs } from './io.js'
+import { Action } from '../../../models/Action.js'
+import { Device } from '../../../models/Device.js'
+import { Drive } from '../../../models/Drive.js'
+import { Barrier, Door, Flap, Rotation } from '../../../models/Motor.js'
+import { Main } from '../../../models/View.js'
 
 const positions = []
 
@@ -89,4 +89,4 @@ const views = [main]
 
 const device = new Device(3, 'C', [A0], lamps, motors, views)
 
-module.exports = { device, drives, positions }
+export default { device, drives, positions }

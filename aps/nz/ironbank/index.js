@@ -1,7 +1,7 @@
-const def = require('./def')
-const obj = require('./obj')
-const str = require('./str')
+import * as def from './def.js'
+import * as str from './str.js'
+import obj from './obj.js'
 
-const main = require('../../../lib/main')
+import main from '../../../lib/main.js'
 
 main(def, obj, str)

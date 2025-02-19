@@ -10,14 +10,14 @@ class Message {
 // const SEVERITY_WARNING = 2
 // const SEVERITY_ERROR = 3
 
-exports.SEVERITY = {
+export const SEVERITY = {
   UNKNOWN: 0,
   SUCCESS: 1,
   WARNING: 2,
   ERROR: 3
 }
 
-exports.MESG = {
+export const MESG = {
   UNKNOWN: 0,
   BAY_NOT_VALID: 1,
   BAY_NOT_READY: 2,
@@ -33,9 +33,9 @@ exports.MESG = {
   WRITE_ERROR: 12
 }
 
-exports.Message = Message
+export const Message = Message
 
-exports.readJson = function readJson (res, cb, err) {
+export const readJson = function readJson (res, cb, err) {
   let buffer
   /* Register data cb */
   res.onData((ab, isLast) => {
@@ -73,7 +73,7 @@ exports.readJson = function readJson (res, cb, err) {
   res.onAborted(err)
 }
 
-// exports.sendJson = function sendJson(res, data) {
+// export const sendJson = function sendJson(res, data) {
 //   /* If we were aborted, you cannot respond */
 //   if (!res.aborted) {
 //     res.writeHeader("Content-Type", "application/json");
@@ -81,7 +81,7 @@ exports.readJson = function readJson (res, cb, err) {
 //   }
 // };
 
-exports.sendJson = function sendJson (res, data) {
+export const sendJson = function sendJson (res, data) {
   res.cork(() => {
     res
       .writeStatus('200 OK')

@@ -1,7 +1,7 @@
-const def = require('./def')
-const { inputs, merkers, outputs } = require('./obj')
-const { Action } = require('../../models/Action')
-const { Device } = require('../../models/Device')
+import * as def from './def.js'
+import { inputs, merkers, outputs } from './io.js'
+import { Action } from '../../models/Action.js'
+import { Device } from '../../models/Device.js'
 
 const device = new Device(1, 'E1')
 
@@ -27,4 +27,4 @@ const inverters = []
 
 const motors = []
 
-module.exports = { device, inverters, motors, positions, view }
+export default { device, inverters, motors, positions, view }

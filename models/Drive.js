@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Drive {
   constructor (
@@ -45,4 +45,4 @@ const updateDrives = util.promisify(
   }
 )
 
-module.exports = { updateDrives, Drive }
+export { updateDrives, Drive }

@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Queue {
   constructor (id, card = 0, stall = 0) {
@@ -17,7 +17,7 @@ class Queue {
   }
 }
 
-exports.generateQueue = (def) => {
+export const generateQueue = (def) => {
   const queue = []
   for (let i = 0; i < def.QUEUE_LEN; i++) {
     queue.push(new Queue(i + 1))
@@ -25,7 +25,7 @@ exports.generateQueue = (def) => {
   return queue
 }
 
-exports.updateQueue = util.promisify(
+export const updateQueue = util.promisify(
   (start, buffer, offset, data, callback) => {
     let byte = start
     for (let i = 0; i < data.length; i++) {

@@ -1,8 +1,10 @@
-const EventEmitter = require('events')
-const logger = require('pino')()
-const snap7 = require('node-snap7')
-const { ReadArea } = require('../../../lib/utils7')
-const { updateBits } = require('../../../models/Bit')
+import { EventEmitter } from 'events'
+import pino from 'pino'
+import snap7 from 'node-snap7'
+import { ReadArea } from '../../../lib/utils7.js'
+import { updateBits } from '../../../models/Bit.js'
+
+const logger = pino()
 
 class PLC extends EventEmitter {
   constructor (plc) {
@@ -66,4 +68,4 @@ class PLC extends EventEmitter {
   }
 }
 
-module.exports = PLC
+export default PLC

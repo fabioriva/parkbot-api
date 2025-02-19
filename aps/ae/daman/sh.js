@@ -1,9 +1,9 @@
-const { inputs, outputs } = require('./obj')
-const { Device } = require('../../../models/Device')
-const { Drive } = require('../../../models/Drive')
-const { Traveling } = require('../../../models/Motor')
-const { Position } = require('../../../models/Position')
-const { Main, Silomat } = require('../../../models/View')
+import { inputs, outputs } from './io.js'
+import { Device } from '../../../models/Device.js'
+import { Drive } from '../../../models/Drive.js'
+import { Traveling } from '../../../models/Motor.js'
+import { Position } from '../../../models/Position.js'
+import { Main, Silomat } from '../../../models/View.js'
 
 let EB = 55
 let AB = 40
@@ -83,4 +83,4 @@ for (let i = 1; i <= 14; i++) {
   AB += 4
 }
 
-module.exports = { devices_, drives_, positions_ }
+export default { devices_, drives_, positions_ }

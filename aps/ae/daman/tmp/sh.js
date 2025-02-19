@@ -1,7 +1,7 @@
-const { inputs, outputs } = require('./obj')
-const { Device } = require('../../../models/Device')
-const { Drive } = require('../../../models/Drive')
-const {
+import { inputs, outputs } from './io.js'
+import { Device } from '../../../models/Device.js'
+import { Drive } from '../../../models/Drive.js'
+import {
 //   Barrier,
 //   Door,
 //   Flap,
@@ -11,9 +11,9 @@ const {
 //   Panel,
   // Silomat,
   Traveling
-} = require('../../../models/Motor')
-const { Position } = require('../../../models/Position')
-const { Main, Silomat } = require('../../../models/View')
+} from '../../../models/Motor.js'
+import { Position } from '../../../models/Position.js'
+import { Main, Silomat } from '../../../models/View.js'
 
 let EB = 0
 let AB = 0
@@ -128,4 +128,4 @@ for (let i = 1; i <= 14; i++) {
   AB += 0 // 4
 }
 
-module.exports = { devices_, drives_, positions_ }
+export default { devices_, drives_, positions_ }

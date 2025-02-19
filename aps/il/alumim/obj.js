@@ -1,67 +1,32 @@
-const def = require('./def')
-const str = require('./str')
-const { Action } = require('../../../models/Action')
-const { Alarms, generateAlarms } = require('../../../models/Alarm')
-const { generateBits, generateBytes } = require('../../../models/Bit')
-const { generateCards } = require('../../../models/Card')
-const { generateQueue } = require('../../../models/Queue')
-const { generateStalls } = require('../../../models/Stall')
+import * as def from './def.js'
+import * as str from './str.js'
+import * as io from './io.js'
+import device1 from './device1.js'
+import racks from './racks.js'
+import { Action } from '../../../models/Action.js'
+import { Alarms, generateAlarms } from '../../../models/Alarm.js'
+import { generateCards } from '../../../models/Card.js'
+import { generateQueue } from '../../../models/Queue.js'
+import { generateStalls } from '../../../models/Stall.js'
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS), 1)
-exports.alarms = [al01]
+export const alarms = [al01]
 
-const inputs1 = generateBits('E', 4, 13, str.inputs1)
-const inputs2 = generateBits('E', 14, 17, str.inputs2)
-const inputs = inputs1.concat(inputs2)
-exports.inputs = inputs
-const eb = generateBytes(inputs)
-exports.eb = eb
+export const cards = generateCards(def)
 
-const outputs1 = generateBits('A', 4, 9, str.outputs1)
-const outputs2 = generateBits('A', 14, 15, str.outputs2)
-const outputs = outputs1.concat(outputs2)
-exports.outputs = outputs
-const ab = generateBytes(outputs)
-exports.ab = ab
+export const devices = [device1.device]
 
-const merkers = generateBits('M', 0, 7)
-exports.merkers = merkers
-const mb = generateBytes(merkers)
-exports.mb = mb
+export const drives = device1.drives
 
-const racks = require('./racks')
-exports.racks = racks
+export const positions = device1.positions
 
-const device1 = require('./device1')
+export const modes = str.MODES
 
-const queue = generateQueue(def)
-exports.queue = queue
+export const queue = generateQueue(def)
 
-exports.devices = [device1.device]
+export const stalls = generateStalls(def)
 
-exports.drives = device1.drives
-
-// exports.motors = device1.motors
-
-exports.positions = device1.positions
-
-exports.modes = str.MODES
-
-exports.overview = {
-  devices: [[device1.device]],
-  exitQueue: {
-    queueList: queue,
-    exitButton: new Action('action-exit', merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
-  }
-}
-
-const cards = generateCards(def)
-exports.cards = cards
-
-const stalls = generateStalls(def)
-exports.stalls = stalls
-
-exports.map = {
+const map = {
   definitions: {
     cards: def.CARDS,
     stalls: def.STALLS,
@@ -98,4 +63,27 @@ exports.map = {
     { id: 'free', value: 0 },
     { id: 'lock', value: 0 }
   ]
+}
+
+const overview = {
+  devices: [[device1.device]],
+  exitQueue: {
+    queueList: queue,
+    exitButton: new Action('action-exit', io.merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
+  }
+}
+
+export default {
+  ...io,
+  alarms,
+  cards,
+  devices,
+  drives,
+  map,
+  modes,
+  overview,
+  positions,
+  queue,
+  racks,
+  stalls
 }

@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 /**
  * Parameters:
@@ -8,7 +8,7 @@ const util = require('util')
  * The number of milliseconds between 1 January 1970 00:00:00 UTC and the given date
  */
 
-exports.getPlcDateTime = function getPlcDateTime (days, msec) {
+export const getPlcDateTime = function getPlcDateTime (days, msec) {
   const h = Math.floor(msec / 3600000)
   const m = Math.floor((msec % 3600000) / 60000)
   const s = Math.floor(((msec % 3600000) % 60000) / 1000)
@@ -19,7 +19,7 @@ exports.getPlcDateTime = function getPlcDateTime (days, msec) {
 
 /** promisify snap7 I/O functions */
 
-exports.readArea = util.promisify(
+export const readArea = util.promisify(
   (client, area, dbNumber, start, amount, wordLen, callback) => {
     client.ReadArea(
       area,
@@ -35,7 +35,7 @@ exports.readArea = util.promisify(
   }
 )
 
-exports.writeArea = util.promisify(
+export const writeArea = util.promisify(
   (client, area, dbNumber, start, amount, wordLen, buffer, callback) => {
     client.WriteArea(
       area,

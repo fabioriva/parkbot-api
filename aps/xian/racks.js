@@ -1,10 +1,10 @@
-const { ab, eb } = require('./obj')
-const {
+import { ab, eb } from './io.js'
+import {
   S7_521_1BL00_0AB0,
   S7_521_1BH00_0AB0,
   S7_522_1BH01_0AB0,
   S7_522_1BL01_0AB0
-} = require('../../models/Modules')
+} from '../../models/Modules.js'
 
 const rack1 = {
   nr: 1,
@@ -32,4 +32,4 @@ const rack2 = {
   ]
 }
 
-module.exports = [rack1, rack2]
+export default [rack1, rack2]

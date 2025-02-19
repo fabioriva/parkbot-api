@@ -1,4 +1,4 @@
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E0.0', label: 'A', info: 'A' },
   { addr: 'E0.1', label: 'B', info: 'B' },
   { addr: 'E0.2', label: 'C', info: 'C' },
@@ -64,7 +64,7 @@ exports.inputs1 = [
   { addr: 'E7.6', label: 'EPZV', info: '' },
   { addr: 'E7.7', label: 'EPZH', info: '' }
 ]
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E8.0', label: 'AGK', info: '' },
   { addr: 'E8.1', label: 'TL', info: '' },
   { addr: 'E8.2', label: 'AMM', info: '' },
@@ -82,7 +82,7 @@ exports.inputs2 = [
   { addr: 'E9.6', label: '', info: '' },
   { addr: 'E9.7', label: '', info: '' }
 ]
-exports.inputs3 = [
+export const inputs3 = [
   { addr: 'E10.0', label: 'A', info: '' },
   { addr: 'E10.1', label: 'B', info: '' },
   { addr: 'E10.2', label: 'C', info: '' },
@@ -132,7 +132,7 @@ exports.inputs3 = [
   { addr: 'E15.6', label: '', info: '' },
   { addr: 'E15.7', label: '', info: '' }
 ]
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A0.0', label: 'SBK1', info: '' },
   { addr: 'A0.1', label: 'SBK2', info: '' },
   { addr: 'A0.2', label: '', info: '' },
@@ -182,7 +182,7 @@ exports.outputs1 = [
   { addr: 'A5.6', label: '', info: '' },
   { addr: 'A5.7', label: '', info: '' }
 ]
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A6.0', label: 'SMA', info: '' },
   { addr: 'A6.1', label: 'SMB', info: '' },
   { addr: 'A6.2', label: 'LA', info: '' },
@@ -200,7 +200,7 @@ exports.outputs2 = [
   { addr: 'A7.6', label: '', info: '' },
   { addr: 'A7.7', label: '', info: '' }
 ]
-exports.outputs3 = [
+export const outputs3 = [
   { addr: 'A8.0', label: 'DYA', info: '' },
   { addr: 'A8.1', label: 'DYB', info: '' },
   { addr: 'A8.2', label: 'DYC', info: '' },
@@ -235,7 +235,7 @@ exports.outputs3 = [
   { addr: 'A11.7', label: '', info: '' }
 ]
 
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: 'al-sil-01', query: {} },
   { id: 2, key: 'al-sil-02', query: {} },
   { id: 3, key: 'al-sil-03', query: {} },
@@ -302,12 +302,12 @@ exports.ALARMS = [
   { id: 64, key: 'al-th', query: { name: 'FE2' } }
 ]
 
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EL' }
 ]
 
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -319,7 +319,7 @@ exports.MODES = [
   { id: 8, key: 'mode-auto' }
 ]
 
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

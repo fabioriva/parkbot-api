@@ -1,4 +1,4 @@
-const { SilomatTraveling, SilomatHoisting, SilomatCentering } = require('./Motor')
+import { SilomatTraveling, SilomatHoisting, SilomatCentering } from './Motor.js'
 
 class Main {
   constructor (drives, motors) {
@@ -54,4 +54,4 @@ class Silomat {
   }
 }
 
-module.exports = { Main, Garage, Silomat }
+export { Main, Garage, Silomat }

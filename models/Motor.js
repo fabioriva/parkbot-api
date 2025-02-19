@@ -30,7 +30,7 @@ class Motor {
     } else {
       this.run.status = 0
     }
-    // const { name, inputs, outputs, message } = this
+    // import { name, inputs, outputs, message } = this
     // return { name, io: inputs.concat(outputs), message }
   }
 }
@@ -123,7 +123,7 @@ class MotorVFD {
     } else {
       this.run.status = 0
     }
-    // const { name, encoders, inputs, outputs, message } = this
+    // import { name, encoders, inputs, outputs, message } = this
     // return { name, encoders, io: inputs.concat(outputs), message }
   }
 }
@@ -297,7 +297,7 @@ class SilomatCentering extends Motor {
 //   }
 // }
 
-module.exports = {
+export {
   Barrier,
   Door,
   DoorVFD,

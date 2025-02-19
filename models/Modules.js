@@ -165,7 +165,7 @@ class S7_136_6BD00_0CA0 {
   }
 }
 
-module.exports = {
+export {
   S7_521_1BL00_0AB0,
   S7_521_1BH00_0AB0,
   S7_522_1BL01_0AB0,

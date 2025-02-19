@@ -2,12 +2,12 @@ const EventEmitter = require('events')
 const net = require('net')
 const logger = require('pino')()
 const snap7 = require('node-snap7')
-const { getPlcDateTime, readArea } = require('./utils7')
-const { updateBays } = require('../models/Bay')
-const { updateBits } = require('../models/Bit')
-const { updateDevices } = require('../models/Device')
-const { updateQueue } = require('../models/Queue')
-const { updateStalls, occupancy } = require('../models/Stall')
+import { getPlcDateTime, readArea } = require('./utils7')
+import { updateBays } = require('../models/Bay')
+import { updateBits } = require('../models/Bit')
+import { updateDevices } = require('../models/Device')
+import { updateQueue } = require('../models/Queue')
+import { updateStalls, occupancy } = require('../models/Stall')
 
 const LOG_LEN = 32
 
@@ -44,7 +44,7 @@ class PLC extends EventEmitter {
 
   async data (def, obj) {
     try {
-      const { area, dbNumber, start, amount, wordLen } = def.DATA_READ
+      import { area, dbNumber, start, amount, wordLen } = def.DATA_READ
       const buffer = await readArea(
         this.client,
         area,
@@ -79,7 +79,7 @@ class PLC extends EventEmitter {
   async map (def, obj) {
     if (def.MAP_READ !== undefined) {
       try {
-        const { area, dbNumber, start, amount, wordLen } = def.MAP_READ
+        import { area, dbNumber, start, amount, wordLen } = def.MAP_READ
         const buffer = await readArea(
           this.client,
           area,
@@ -182,4 +182,4 @@ class PLC extends EventEmitter {
   }
 }
 
-module.exports = PLC
+export default PLC

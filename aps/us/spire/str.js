@@ -1,4 +1,4 @@
-exports.inputs1 = [
+export const inputs1 = [
   { addr: 'E0.0', label: 'A' },
   { addr: 'E0.1', label: 'B' },
   { addr: 'E0.2', label: 'C' },
@@ -48,7 +48,7 @@ exports.inputs1 = [
   { addr: 'E5.6', label: 'FA1' },
   { addr: 'E5.7', label: 'FE12' }
 ]
-exports.inputs2 = [
+export const inputs2 = [
   { addr: 'E100.0', label: 'A' },
   { addr: 'E100.1', label: 'B' },
   { addr: 'E100.2', label: 'C' },
@@ -114,7 +114,7 @@ exports.inputs2 = [
   { addr: 'E107.6', label: 'RX1' },
   { addr: 'E107.7', label: 'RX2' }
 ]
-exports.inputs3 = [
+export const inputs3 = [
   { addr: 'E110.0', label: 'ECA' },
   { addr: 'E110.1', label: 'ECB' },
   { addr: 'E110.2', label: 'AMC' },
@@ -141,7 +141,7 @@ exports.inputs3 = [
   { addr: 'E112.7', label: 'RCH' }
 ]
 // ...
-exports.inputs8 = [
+export const inputs8 = [
   { addr: 'E400.0', label: 'A' },
   { addr: 'E400.1', label: 'B' },
   { addr: 'E400.2', label: 'C' },
@@ -175,7 +175,7 @@ exports.inputs8 = [
   { addr: 'E403.6', label: '' },
   { addr: 'E403.7', label: '' }
 ]
-exports.inputs9 = [
+export const inputs9 = [
   { addr: 'E404.0', label: '' },
   { addr: 'E404.1', label: 'ACR' },
   { addr: 'E404.2', label: 'FTCR' },
@@ -193,7 +193,7 @@ exports.inputs9 = [
   { addr: 'E405.6', label: '' },
   { addr: 'E405.7', label: '' }
 ]
-exports.inputs10 = [
+export const inputs10 = [
   { addr: 'E410.0', label: 'A' },
   { addr: 'E410.1', label: 'B' },
   { addr: 'E410.2', label: 'C' },
@@ -236,7 +236,7 @@ exports.inputs10 = [
   { addr: 'E414.7', label: 'MTC' }
 ]
 // ...
-exports.outputs1 = [
+export const outputs1 = [
   { addr: 'A0.0', label: 'LK' },
   { addr: 'A0.1', label: 'LE' },
   { addr: 'A0.2', label: 'LB' },
@@ -286,7 +286,7 @@ exports.outputs1 = [
   { addr: 'A5.6', label: '' },
   { addr: 'A5.7', label: '' }
 ]
-exports.outputs2 = [
+export const outputs2 = [
   { addr: 'A100.0', label: 'T2' },
   { addr: 'A100.1', label: 'KBA1' },
   { addr: 'A100.2', label: 'SBK1' },
@@ -320,7 +320,7 @@ exports.outputs2 = [
   { addr: 'A103.6', label: 'AD3' },
   { addr: 'A103.7', label: 'STR' }
 ]
-exports.outputs3 = [
+export const outputs3 = [
   { addr: 'A110.0', label: '' },
   { addr: 'A110.1', label: '' },
   { addr: 'A110.2', label: 'TRA' },
@@ -339,7 +339,7 @@ exports.outputs3 = [
   { addr: 'A111.7', label: '' }
 ]
 // ...
-exports.outputs8 = [
+export const outputs8 = [
   { addr: 'A400.0', label: 'SBK2' },
   { addr: 'A400.1', label: 'KBA' },
   { addr: 'A400.2', label: '' },
@@ -357,7 +357,7 @@ exports.outputs8 = [
   { addr: 'A401.6', label: 'AD3' },
   { addr: 'A401.7', label: 'STR' }
 ]
-exports.outputs9 = [
+export const outputs9 = [
   { addr: 'A404.0', label: 'SMA' },
   { addr: 'A404.1', label: 'SMB' },
   { addr: 'A404.2', label: 'FTCR' },
@@ -367,7 +367,7 @@ exports.outputs9 = [
   { addr: 'A404.6', label: 'LA' },
   { addr: 'A404.7', label: '' }
 ]
-exports.outputs10 = [
+export const outputs10 = [
   { addr: 'A410.0', label: 'A' },
   { addr: 'A410.1', label: 'B' },
   { addr: 'A410.2', label: 'C' },
@@ -394,7 +394,7 @@ exports.outputs10 = [
   { addr: 'A412.7', label: 'LC' }
 ]
 // Failsafe I/O
-exports.inputs17 = [
+export const inputs17 = [
   { addr: 'E10.0', label: 'UG_BBL' },
   { addr: 'E10.1', label: 'FDBK' },
   { addr: 'E10.2', label: 'PS' },
@@ -412,7 +412,7 @@ exports.inputs17 = [
   { addr: 'E11.6', label: 'SF6' },
   { addr: 'E11.7', label: 'BBL6' }
 ]
-exports.inputs18 = [
+export const inputs18 = [
   { addr: 'E20.0', label: 'WAL' },
   { addr: 'E20.1', label: 'FAL' },
   { addr: 'E20.2', label: 'EZD' },
@@ -431,7 +431,7 @@ exports.inputs18 = [
   { addr: 'E21.7', label: '' }
 ]
 // LS1
-exports.inputs19 = [
+export const inputs19 = [
   { addr: 'E1000.0', label: 'UG_BBL' },
   { addr: 'E1000.1', label: 'FDBK' },
   { addr: 'E1000.2', label: 'SA' },
@@ -450,7 +450,7 @@ exports.inputs19 = [
   { addr: 'E1001.7', label: '' }
 ]
 // KKM1
-exports.inputs20 = [
+export const inputs20 = [
   { addr: 'E1020.0', label: 'FDBK' },
   { addr: 'E1020.1', label: 'ETAB' },
   { addr: 'E1020.2', label: 'BBM' },
@@ -461,7 +461,7 @@ exports.inputs20 = [
   { addr: 'E1020.7', label: '' }
 ]
 // LS4
-exports.inputs21 = [
+export const inputs21 = [
   { addr: 'E4000.0', label: 'UG_BBL' },
   { addr: 'E4000.1', label: 'FDBK' },
   { addr: 'E4000.2', label: 'SA' },
@@ -480,7 +480,7 @@ exports.inputs21 = [
   { addr: 'E4001.7', label: 'FTS2' }
 ]
 // KKP4
-exports.inputs22 = [
+export const inputs22 = [
   { addr: 'E4020.0', label: 'BBP' },
   { addr: 'E4020.1', label: 'FDBK' },
   { addr: 'E4020.2', label: 'ETAB' },
@@ -491,7 +491,7 @@ exports.inputs22 = [
   { addr: 'E4020.7', label: '' }
 ]
 // SH4
-exports.inputs23 = [
+export const inputs23 = [
   { addr: 'E4040.0', label: 'BBH' },
   { addr: 'E4040.1', label: 'FDBK' },
   { addr: 'E4040.2', label: 'SA' },
@@ -502,7 +502,7 @@ exports.inputs23 = [
   { addr: 'E4040.7', label: 'ETLR' }
 ]
 // CPU
-exports.outputs17 = [
+export const outputs17 = [
   { addr: 'A30.0', label: 'K1' },
   { addr: 'A30.1', label: 'K2' },
   { addr: 'A30.2', label: '' },
@@ -513,7 +513,7 @@ exports.outputs17 = [
   { addr: 'A30.7', label: '' }
 ]
 // LS1
-exports.outputs18 = [
+export const outputs18 = [
   { addr: 'A1010.0', label: 'K1' },
   { addr: 'A1010.1', label: 'K2' },
   { addr: 'A1010.2', label: 'KBA1' },
@@ -524,7 +524,7 @@ exports.outputs18 = [
   { addr: 'A1010.7', label: 'SBK1' }
 ]
 // KKM1
-exports.outputs19 = [
+export const outputs19 = [
   { addr: 'A1030.0', label: 'K1' },
   { addr: 'A1030.1', label: 'K2' },
   { addr: 'A1030.2', label: '' },
@@ -535,7 +535,7 @@ exports.outputs19 = [
   { addr: 'A1030.7', label: '' }
 ]
 // LS4
-exports.outputs20 = [
+export const outputs20 = [
   { addr: 'A4010.0', label: 'UG_BBL' },
   { addr: 'A4010.1', label: 'FDBK' },
   { addr: 'A4010.2', label: 'SA' },
@@ -546,7 +546,7 @@ exports.outputs20 = [
   { addr: 'A4010.7', label: 'ETLR' }
 ]
 // KKP4
-exports.outputs21 = [
+export const outputs21 = [
   { addr: 'A4030.0', label: 'K1' },
   { addr: 'A4030.1', label: 'K2' },
   { addr: 'A4030.2', label: '' },
@@ -557,7 +557,7 @@ exports.outputs21 = [
   { addr: 'A4030.7', label: '' }
 ]
 // SH4
-exports.outputs22 = [
+export const outputs22 = [
   { addr: 'A4050.0', label: 'K1' },
   { addr: 'A4050.1', label: 'K2' },
   { addr: 'A4050.2', label: '' },
@@ -568,7 +568,7 @@ exports.outputs22 = [
   { addr: 'A4050.7', label: '' }
 ]
 
-exports.ALARMS = [
+export const ALARMS = [
   { id: 1, key: 'al-sil-01', query: {} },
   { id: 2, key: 'al-sil-02', query: {} },
   { id: 3, key: 'al-sil-03', query: {} },
@@ -699,7 +699,7 @@ exports.ALARMS = [
   { id: 128, key: '', query: {} }
 ]
 
-exports.DEVICES = [
+export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'EVT1' },
   { id: 2, key: 'EVT2' },
@@ -709,7 +709,7 @@ exports.DEVICES = [
   { id: 6, key: 'IVT6' }
 ]
 
-exports.MODES = [
+export const MODES = [
   { id: 0, key: 'mode-no' },
   { id: 1, key: 'mode-data-edit' },
   { id: 2, key: 'mode-data-read' },
@@ -721,7 +721,7 @@ exports.MODES = [
   { id: 8, key: 'mode-auto' }
 ]
 
-exports.OPERATIONS = [
+export const OPERATIONS = [
   { id: 0, key: 'op-no' },
   { id: 1, key: 'op-alarm-on' },
   { id: 2, key: 'op-alarm-off' },

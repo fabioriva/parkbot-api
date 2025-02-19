@@ -1,6 +1,6 @@
-const { inputs, outputs } = require('./obj')
-const { Device } = require('../../models/Device')
-const { Position } = require('../../models/Position')
+import { inputs, outputs } from './io.js'
+import { Device } from '../../models/Device.js'
+import { Position } from '../../models/Position.js'
 
 const device = new Device(3, 'T')
 
@@ -28,4 +28,4 @@ const inverters = []
 
 const motors = []
 
-module.exports = { device, inverters, motors, positions, view }
+export default { device, inverters, motors, positions, view }

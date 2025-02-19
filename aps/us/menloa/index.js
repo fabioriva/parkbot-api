@@ -1,16 +1,15 @@
-require('dotenv').config()
-const uWS = require('uWebSockets.js')
-const def = require('./def')
-const obj = require('./obj')
-const str = require('./str')
-// const main = require('../../../lib/main')
-const mongo = require('../../../lib/db')
-const History = require('../../../lib/History')
-const MailingList = require('../../../lib/MailingList')
-const Mqtt = require('../../../lib/Mqtt')
-const Plc = require('../../../lib/Plc')
-const Router = require('../../../lib/Router')
-const { updateOnLog } = require('../../../lib/Log')
+import 'dotenv/config.js'
+import * as uWS from 'uWebSockets.js'
+import * as def from './def.js'
+import * as str from './str.js'
+import obj from './obj.js'
+import mongo from '../../../lib/db.js'
+import History from '../../../lib/History.js'
+import MailingList from '../../../lib/MailingList.js'
+import Mqtt from '../../../lib/Mqtt.js'
+import Plc from '../../../lib/Plc.js'
+import Router from '../../../lib/Router.js'
+import { updateOnLog } from '../../../lib/Log.js'
 
 const main = async () => {
   try {

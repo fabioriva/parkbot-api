@@ -1,6 +1,6 @@
-const format = require('date-fns/format')
-const util = require('util')
-const { getPlcDateTime } = require('../lib/utils7')
+import { format } from 'date-fns'
+import util from 'util'
+import { getPlcDateTime } from '../lib/utils7.js'
 
 class Stall {
   constructor (
@@ -25,7 +25,7 @@ class Stall {
   }
 }
 
-exports.generateStalls = def => {
+export const generateStalls = def => {
   const stalls = []
   for (let i = 0; i < def.STALLS; i++) {
     stalls.push(new Stall(i + 1))
@@ -33,7 +33,7 @@ exports.generateStalls = def => {
   return stalls
 }
 
-// exports.updateStalls = util.promisify(
+// export const updateStalls = util.promisify(
 //   (start, buffer, offset, stalls, callback) => {
 //     let byte = start
 //     const min = 0
@@ -46,7 +46,7 @@ exports.generateStalls = def => {
 //   }
 // )
 
-exports.updateStalls = util.promisify(
+export const updateStalls = util.promisify(
   (start, buffer, offset, cards, stalls, callback) => {
     let byte = start
     const min = 0
@@ -63,7 +63,7 @@ exports.updateStalls = util.promisify(
   }
 )
 
-exports.occupancy = (size, stalls, stallStatus) => {
+export const occupancy = (size, stalls, stallStatus) => {
   // const occupancy = { free: 0, busy: 0, locked: 0 }
   const occupancy = [
     { id: 'busy', value: 0 },

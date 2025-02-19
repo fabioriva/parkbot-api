@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 class Bay {
   constructor (id, name, barrier = 0, gate = 0, sensors = 0, status = 0) {
@@ -34,4 +34,4 @@ const updateBays = util.promisify((start, buffer, offset, bays, callback) => {
   callback(null, bays)
 })
 
-module.exports = { updateBays, Bay }
+export default { updateBays, Bay }

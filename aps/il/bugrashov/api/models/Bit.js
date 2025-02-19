@@ -1,4 +1,4 @@
-const util = require('util')
+import util from 'util'
 
 const BYTE_LEN = 8
 
@@ -60,7 +60,7 @@ const updateBits = util.promisify((start, buffer, bytes, callback) => {
   callback(null, bytes)
 })
 
-module.exports = {
+export default {
   generateBits,
   generateBytes,
   updateBits

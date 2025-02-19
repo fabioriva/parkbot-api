@@ -9,4 +9,4 @@ class Pn {
   }
 }
 
-module.exports = { Pn }
+export { Pn }
