@@ -6,8 +6,8 @@
     "dev": "nodemon aps/il/alumim",
     "start": "NODE_ENV=production pm2 start aps/il/gazit/index.js --name api-gazit --max-memory-restart 128M",
     "test": "standard",
-    "uws": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.43.0",
-    "api": "nodemon aps/il/bugrashov/api/index.js"
+    "api": "nodemon aps/il/bugrashov/api/index.js",
+    "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.51.0"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
@@ -19,8 +19,7 @@
     "mqtt": "^5.10.3",
     "node-fetch": "^3.3.2",
     "node-snap7": "^1.0.8",
-    "pino": "^9.6.0",
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.51.0"
+    "pino": "^9.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
