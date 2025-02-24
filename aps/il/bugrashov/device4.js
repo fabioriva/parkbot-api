@@ -155,12 +155,12 @@ const M9 = new Barrier(0, [EBZE, EBOE, FBBE, APBE], [SBZE, SBOE, SPBE])
 /**
  * Door A
  */
-const EZA = inputs.find(b => b.addr === 'E408.2')
-const EOA = inputs.find(b => b.addr === 'E408.3')
-const FBA = inputs.find(b => b.addr === 'E408.4')
+const EZA = inputs.find(b => b.addr === 'E410.0')
+const EOA = inputs.find(b => b.addr === 'E410.1')
+const FBA = inputs.find(b => b.addr === 'E410.2')
 const APA = inputs.find(b => b.addr === 'E411.1')
-const SZA = outputs.find(b => b.addr === 'A406.5')
-const SOA = outputs.find(b => b.addr === 'A406.6')
+const SZA = outputs.find(b => b.addr === 'A407.1')
+const SOA = outputs.find(b => b.addr === 'A407.2')
 const SPA = outputs.find(b => b.addr === 'A407.0')
 const KXPA = outputs.find(b => b.addr === 'A407.3')
 
