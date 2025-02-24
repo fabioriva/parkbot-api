@@ -1,7 +1,7 @@
 import { inputs, outputs } from './io.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
-import { Door, Flap, Lock, Hoisting, Rotation } from '../../../models/Motor.js'
+import { Barrier, Door, Flap, Lock, Hoisting, Rotation } from '../../../models/Motor.js'
 import { Position } from '../../../models/Position.js'
 import { Main, Garage } from '../../../models/View.js'
 
@@ -126,7 +126,7 @@ const M7 = new Flap(
 )
 
 /**
- * Door
+ * Door E
  */
 const EZE = inputs.find(b => b.addr === 'E406.0')
 const EOE = inputs.find(b => b.addr === 'E406.1')
@@ -134,11 +134,26 @@ const FBE = inputs.find(b => b.addr === 'E406.2')
 const APE = inputs.find(b => b.addr === 'E411.0')
 const SZE = outputs.find(b => b.addr === 'A406.1')
 const SOE = outputs.find(b => b.addr === 'A406.2')
+const SPE = outputs.find(b => b.addr === 'A406.0')
+const KXPE = outputs.find(b => b.addr === 'A406.3')
 
-const M8 = new Door(0, [EZE, EOE, FBE, APE], [SZE, SOE])
+const M8 = new Door(0, [EZE, EOE, FBE, APE], [SZE, SOE, SPE, KXPE])
 
 /**
- * Barrier
+ * Barrier E
+ */
+const EBZE = inputs.find(b => b.addr === 'E408.2')
+const EBOE = inputs.find(b => b.addr === 'E408.3')
+const FBBE = inputs.find(b => b.addr === 'E408.4')
+const APBE = inputs.find(b => b.addr === 'E411.1')
+const SBZE = outputs.find(b => b.addr === 'A406.5')
+const SBOE = outputs.find(b => b.addr === 'A406.6')
+const SPBE = outputs.find(b => b.addr === 'A406.4')
+
+const M9 = new Barrier(0, [EBZE, EBOE, FBBE, APBE], [SBZE, SBOE, SPBE])
+
+/**
+ * Door A
  */
 const EZA = inputs.find(b => b.addr === 'E408.2')
 const EOA = inputs.find(b => b.addr === 'E408.3')
@@ -146,12 +161,14 @@ const FBA = inputs.find(b => b.addr === 'E408.4')
 const APA = inputs.find(b => b.addr === 'E411.1')
 const SZA = outputs.find(b => b.addr === 'A406.5')
 const SOA = outputs.find(b => b.addr === 'A406.6')
+const SPA = outputs.find(b => b.addr === 'A407.0')
+const KXPA = outputs.find(b => b.addr === 'A407.3')
 
-const M9 = new Door(0, [EZA, EOA, FBA, APA], [SZA, SOA])
+const M10 = new Door(0, [EZA, EOA, FBA, APA], [SZA, SOA, SPA, KXPA])
 
 const drives = [IV1, IV2]
 
-const motors = [M1, M2, M3, M4, M5, M6, M7, M8, M9]
+const motors = [M1, M2, M3, M4, M5, M6, M7, M8, M9, M10]
 
 const L1 = outputs.find(b => b.addr === 'A402.0')
 const L2 = outputs.find(b => b.addr === 'A402.1')
@@ -170,11 +187,11 @@ const FTA1 = inputs.find(b => b.addr === 'E406.6')
 const FTA2 = inputs.find(b => b.addr === 'E406.7')
 const FTA4 = inputs.find(b => b.addr === 'E408.7')
 
-const main = new Main(drives, [M1, M2, M3])
+const main = new Main(drives, [M1, M3, M4, M2, M5, M6])
 
 const garage = new Garage(
   [],
-  [M1, M3, M4, M2, M5, M6],
+  [M7, M8, M9, M10],
   [L1, L2, L3, L4, L5],
   [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FTA4, FRE4]
 )

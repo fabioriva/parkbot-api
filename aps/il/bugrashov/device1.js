@@ -1,7 +1,7 @@
 import { inputs, outputs } from './io.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
-import { Door, Flap, Lock, Hoisting, Rotation } from '../../../models/Motor.js'
+import { Barrier, Door, Flap, Lock, Hoisting, Rotation } from '../../../models/Motor.js'
 import { Position } from '../../../models/Position.js'
 import { Main, Garage } from '../../../models/View.js'
 
@@ -134,20 +134,23 @@ const FBE = inputs.find(b => b.addr === 'E106.2')
 const APE = inputs.find(b => b.addr === 'E111.0')
 const SZE = outputs.find(b => b.addr === 'A106.1')
 const SOE = outputs.find(b => b.addr === 'A106.2')
+const SPE = outputs.find(b => b.addr === 'A106.0')
+const KXPE = outputs.find(b => b.addr === 'A106.3')
 
-const M8 = new Door(0, [EZE, EOE, FBE, APE], [SZE, SOE])
+const M8 = new Door(0, [EZE, EOE, FBE, APE], [SZE, SOE, SPE, KXPE])
 
 /**
  * Barrier
  */
-const EZA = inputs.find(b => b.addr === 'E108.2')
-const EOA = inputs.find(b => b.addr === 'E108.3')
-const FBA = inputs.find(b => b.addr === 'E108.4')
-const APA = inputs.find(b => b.addr === 'E111.1')
-const SZA = outputs.find(b => b.addr === 'A106.5')
-const SOA = outputs.find(b => b.addr === 'A106.6')
+const EBZE = inputs.find(b => b.addr === 'E108.2')
+const EBOE = inputs.find(b => b.addr === 'E108.3')
+const FBBE = inputs.find(b => b.addr === 'E108.4')
+const APBE = inputs.find(b => b.addr === 'E111.1')
+const SBZE = outputs.find(b => b.addr === 'A106.5')
+const SBOE = outputs.find(b => b.addr === 'A106.6')
+const SPBE = outputs.find(b => b.addr === 'A106.4')
 
-const M9 = new Door(0, [EZA, EOA, FBA, APA], [SZA, SOA])
+const M9 = new Barrier(0, [EBZE, EBOE, FBBE, APBE], [SBZE, SBOE, SPBE])
 
 const drives = [IV1, IV2]
 
