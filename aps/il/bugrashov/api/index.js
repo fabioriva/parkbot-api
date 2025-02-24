@@ -1,9 +1,9 @@
 import 'dotenv/config.js'
 import * as uWS from 'uWebSockets.js'
 import * as def from './def.js'
-const obj from './io.js'
-const Plc = require('./lib/Plc')
-const Router = require('./lib/Router')
+import * as obj from './obj.js'
+import Plc from './lib/Plc.js'
+import Router from './lib/Router.js'
 
 const main = async () => {
   try {

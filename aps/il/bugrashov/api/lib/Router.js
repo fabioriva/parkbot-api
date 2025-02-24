@@ -1,7 +1,9 @@
-const logger = require('pino')()
-const querystring = require('querystring')
-import { /* readJson, */ sendJson, Message, MESG, SEVERITY } = require('./json')
-import { writeArea } = require('./utils7')
+import pino from 'pino'
+import querystring from 'querystring'
+import { /* readJson, */ sendJson, Message, MESG, SEVERITY } from './json.js'
+import { writeArea } from './utils7.js'
+
+const logger = pino()
 
 class Router {
   constructor (app, plc) {
@@ -94,7 +96,7 @@ class Router {
       if (obj.overview.bays[bay - 1].status !== 2) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
       }
-      import { area, dbNumber, start, amount, wordLen } = write
+      const { area, dbNumber, start, amount, wordLen } = write
       const buffer = Buffer.allocUnsafe(amount)
       buffer.writeUInt16BE(card, 0)
       const response = await writeArea(
@@ -150,7 +152,7 @@ class Router {
       if (obj.overview.bays[bay - 1].status !== 2) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
       }
-      import { area, dbNumber, start, amount, wordLen } = write
+      const { area, dbNumber, start, amount, wordLen } = write
       const response = await writeArea(
         this.plc.client,
         area,
@@ -204,7 +206,7 @@ class Router {
       if (obj.overview.bays[bay - 1].status !== 2) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
       }
-      import { area, dbNumber, start, amount, wordLen } = write
+      const { area, dbNumber, start, amount, wordLen } = write
       const response = await writeArea(
         this.plc.client,
         area,
@@ -261,7 +263,7 @@ class Router {
       if (obj.overview.queue.some((item) => item.card === card)) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.QUEUE_BUSY))
       }
-      import { area, dbNumber, start, amount, wordLen } = def.REQ_0
+      const { area, dbNumber, start, amount, wordLen } = def.REQ_0
       const buffer = Buffer.allocUnsafe(amount)
       buffer.writeUInt16BE(card, 0)
       const response = await writeArea(

@@ -1,6 +1,6 @@
 import util from 'util'
 
-class Device {
+export class Device {
   constructor (id, name, card = 0, size = 0, stall = 0, status = 0) {
     this.id = id
     this.name = name
@@ -18,7 +18,7 @@ class Device {
   }
 }
 
-const updateDevices = util.promisify(
+export const updateDevices = util.promisify(
   (start, buffer, offset, devices, callback) => {
     let byte = start
     for (let i = 0; i < devices.length; i++) {
@@ -28,5 +28,3 @@ const updateDevices = util.promisify(
     callback(null, devices)
   }
 )
-
-export default { updateDevices, Device }

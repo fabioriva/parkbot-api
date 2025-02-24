@@ -1,21 +1,18 @@
 import * as def from './def.js'
-import { generateBits, generateBytes } = require('./models/Bit')
-import { Bay } = require('./models/Bay')
-import { Device } = require('./models/Device')
-import { generateQueue } = require('./models/Queue')
-import { generateStalls } = require('./models/Stall')
+import { generateBits, generateBytes } from './models/Bit.js'
+import { Bay } from './models/Bay.js'
+import { Device } from './models/Device.js'
+import { generateQueue } from './models/Queue.js'
+import { generateStalls } from './models/Stall.js'
 
-const merkers = generateBits('M', 0, 7)
-export const merkers = merkers
-const mb = generateBytes(merkers)
-export const mb = mb
+export const merkers = generateBits('M', 0, 7)
+export const mb = generateBytes(merkers)
 
 const EU1 = new Bay(1, 'EU1')
 const EU2 = new Bay(2, 'EU2')
 const EU3 = new Bay(3, 'EU3')
 const EU4 = new Bay(4, 'EU4')
-const bays = [EU1, EU2, EU3, EU4]
-export const bays = bays
+export const bays = [EU1, EU2, EU3, EU4]
 
 const VT1 = new Device(1, 'VT1')
 const VT2 = new Device(2, 'VT2')
@@ -29,8 +26,7 @@ const SH5 = new Device(9, 'SH5')
 const SH6 = new Device(10, 'SH6')
 const SH7 = new Device(11, 'SH7')
 
-const devices = [VT1, VT2, VT3, VT4, SH1, SH2, SH3, SH4, SH5, SH6, SH7]
-export const devices = devices
+export const devices = [VT1, VT2, VT3, VT4, SH1, SH2, SH3, SH4, SH5, SH6, SH7]
 
 export const queue = generateQueue(def)
 

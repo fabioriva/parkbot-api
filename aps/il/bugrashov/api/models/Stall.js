@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import util from 'util'
-import { getPlcDateTime } from './utils7.js'
+import { getPlcDateTime } from '../lib/utils7.js'
 
 // getting a random number between 2 values, inclusive
 function randomNumber (min, max) {

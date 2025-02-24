@@ -1,6 +1,6 @@
 import util from 'util'
 
-class Bay {
+export class Bay {
   constructor (id, name, barrier = 0, gate = 0, sensors = 0, status = 0) {
     this.id = id
     this.name = name
@@ -25,7 +25,7 @@ class Bay {
   }
 }
 
-const updateBays = util.promisify((start, buffer, offset, bays, callback) => {
+export const updateBays = util.promisify((start, buffer, offset, bays, callback) => {
   let byte = start
   for (let i = 0; i < bays.length; i++) {
     bays[i].update(buffer.slice(byte, byte + offset))
@@ -33,5 +33,3 @@ const updateBays = util.promisify((start, buffer, offset, bays, callback) => {
   }
   callback(null, bays)
 })
-
-export default { updateBays, Bay }

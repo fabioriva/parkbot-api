@@ -1,4 +1,4 @@
-class Message {
+export class Message {
   constructor (severity, message) {
     this.severity = severity
     this.message = message
@@ -32,8 +32,6 @@ export const MESG = {
   QUEUE_BUSY: 11,
   WRITE_ERROR: 12
 }
-
-export const Message = Message
 
 export const readJson = function readJson (res, cb, err) {
   let buffer

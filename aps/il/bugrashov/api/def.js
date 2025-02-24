@@ -17,8 +17,7 @@ const DB_DATA_LEN = 188
 export const DB_DATA_INIT_BAY = 32
 export const DB_DATA_INIT_DEVICE = 72
 export const DB_DATA_INIT_QUEUE = 160
-const DB_DATA_INIT_MB = 180
-export const DB_DATA_INIT_MB = DB_DATA_INIT_MB
+export const DB_DATA_INIT_MB = 180
 export const DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,
@@ -33,12 +32,9 @@ export const QUEUE_OFFSET = 4
 
 export const QUEUE_LEN = 5
 
-const CARDS = 225
-export const CARDS = CARDS
+export const CARDS = 225
 
-const STALLS = 225
-const STALL_LEN = 10
-export const STALLS = STALLS
+export const STALLS = 225
 export const STALL_LEN = 10
 export const STALL_STATUS = {
   FREE: 0,
