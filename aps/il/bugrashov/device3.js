@@ -174,7 +174,7 @@ const main = new Main(drives, [M1, M3, M4, M2, M5, M6])
 
 const garage = new Garage(
   [],
-  [M8, M9],
+  [M7, M8, M9],
   [L1, L2, L3, L4, L5],
   [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FTA3, FRE3]
 )
