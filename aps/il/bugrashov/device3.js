@@ -78,7 +78,7 @@ const SMA2 = outputs.find(b => b.addr === 'A303.2')
 const SMB2 = outputs.find(b => b.addr === 'A303.3')
 
 const M4 = new Lock(
-  02
+  2,
   [EZM2, EOM2, AMM2],
   [SMA2, SMB2]
 )
