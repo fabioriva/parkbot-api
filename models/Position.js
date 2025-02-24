@@ -1,6 +1,6 @@
 import util from 'util'
 
-class Position {
+export class Position {
   constructor (id, name, destination = 0, position = 0) {
     this.id = id
     this.name = name
@@ -14,7 +14,7 @@ class Position {
   }
 }
 
-const generatePositions = names => {
+export const generatePositions = names => {
   const positions = []
   for (let i = 0; i < names.length; i++) {
     positions.push(new Position(i + 1, names[i]))
@@ -22,7 +22,7 @@ const generatePositions = names => {
   return positions
 }
 
-const updatePositions = util.promisify(
+export const updatePositions = util.promisify(
   (start, buffer, offset, data, callback) => {
     let byte = start
     for (let i = 0; i < data.length; i++) {
@@ -32,5 +32,3 @@ const updatePositions = util.promisify(
     callback(null, data)
   }
 )
-
-export { generatePositions, updatePositions, Position }

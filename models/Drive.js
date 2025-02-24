@@ -1,6 +1,6 @@
 import util from 'util'
 
-class Drive {
+export class Drive {
   constructor (
     id,
     name,
@@ -31,7 +31,7 @@ class Drive {
   }
 }
 
-const updateDrives = util.promisify(
+export const updateDrives = util.promisify(
   (start, buffer, offset, drives, callback) => {
     if (!isNaN(start)) {
       let byte = start
@@ -44,5 +44,3 @@ const updateDrives = util.promisify(
     callback(null, drives)
   }
 )
-
-export { updateDrives, Drive }

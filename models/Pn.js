@@ -1,4 +1,4 @@
-class Pn {
+export class Pn {
   constructor (name, nr, online, type, i18n) {
     this.deviceName = name
     this.deviceNr = nr
@@ -8,5 +8,3 @@ class Pn {
     this.query = i18n.query
   }
 }
-
-export { Pn }

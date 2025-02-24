@@ -1,5 +1,4 @@
-class Action {
-  // #writeArea
+export class Action {
   constructor (id, enable, writeArea, minTag = 0, maxTag = 0) {
     this.key = id
     this.enable = enable
@@ -7,14 +6,4 @@ class Action {
     this.min = minTag
     this.max = maxTag
   }
-
-  // getWriteArea () {
-  //   return this.#writeArea
-  // }
-
-  // static _getWriteArea (obj) {
-  //   return obj.#writeArea
-  // }
 }
-
-export { Action }

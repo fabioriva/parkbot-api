@@ -1,6 +1,6 @@
 import { SilomatTraveling, SilomatHoisting, SilomatCentering } from './Motor.js'
 
-class Main {
+export class Main {
   constructor (drives, motors) {
     this.drives = drives
     this.motors = motors
@@ -8,7 +8,7 @@ class Main {
   }
 }
 
-class Garage {
+export class Garage {
   constructor (drives, motors, panel, sensors) {
     this.drives = drives
     this.motors = motors
@@ -18,7 +18,7 @@ class Garage {
   }
 }
 
-class Silomat {
+export class Silomat {
   constructor (drive, encoders = [], sensors = [], thermics = []) {
     const [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH] = sensors
     const [AF8, MTC] = thermics
@@ -53,5 +53,3 @@ class Silomat {
     this.sensors = sensors
   }
 }
-
-export { Main, Garage, Silomat }

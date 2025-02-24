@@ -9,7 +9,7 @@ class Bit {
   }
 }
 
-function generateBits (type, min, max, str) {
+export function generateBits (type, min, max, str) {
   const bits = []
   for (let byte = min; byte <= max; byte++) {
     for (let bit = 0; bit < BYTE_LEN; bit++) {
@@ -20,7 +20,7 @@ function generateBits (type, min, max, str) {
   return bits
 }
 
-function generateBytes (bits) {
+export function generateBytes (bits) {
   const bytes = []
   let byte = []
   bits.forEach((bit, i) => {
@@ -34,7 +34,7 @@ function generateBytes (bits) {
   return bytes
 }
 
-const updateBits = util.promisify((start, buffer, bytes, callback) => {
+export const updateBits = util.promisify((start, buffer, bytes, callback) => {
   for (let b = 0; b < bytes.length; b++) {
     let mask = 1
     for (let i = 0; i < bytes[b].length; i++) {
@@ -45,9 +45,3 @@ const updateBits = util.promisify((start, buffer, bytes, callback) => {
   }
   callback(null, bytes)
 })
-
-export {
-  generateBits,
-  generateBytes,
-  updateBits
-}

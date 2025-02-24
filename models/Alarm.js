@@ -41,7 +41,7 @@ class Alarm {
   // }
 }
 
-class Alarms {
+export class Alarms {
   constructor (alarms = [], id) {
     this.alarms = alarms
     this.id = id
@@ -58,7 +58,15 @@ class Alarms {
   // }
 }
 
-const generateAlarms = (min, max, str) => {
+export const countAlarms = alarms => {
+  let count = 0
+  alarms.forEach(group => {
+    count += group._active.length
+  })
+  return count
+}
+
+export const generateAlarms = (min, max, str) => {
   const alarms = []
   for (let i = min; i <= max; i++) {
     alarms.push(new Alarm(i, false, str[i - 1]))
@@ -66,7 +74,7 @@ const generateAlarms = (min, max, str) => {
   return alarms
 }
 
-const updateAlarms = util.promisify(
+export const updateAlarms = util.promisify(
   (start, buffer, offset, alarms, callback) => {
     let byte = start
     for (let i = 0; i < alarms.length; i++) {
@@ -77,13 +85,3 @@ const updateAlarms = util.promisify(
     callback(null, alarms)
   }
 )
-
-const countAlarms = alarms => {
-  let count = 0
-  alarms.forEach(group => {
-    count += group._active.length
-  })
-  return count
-}
-
-export { Alarms, countAlarms, generateAlarms, updateAlarms }

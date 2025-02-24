@@ -1,6 +1,6 @@
 import util from 'util'
 
-class Device {
+export class Device {
   #motors
   constructor (
     id,
@@ -49,7 +49,7 @@ class Device {
   }
 }
 
-const updateDevices = util.promisify(
+export const updateDevices = util.promisify(
   (start, buffer, offset, alarms, devices, modes, callback) => {
     let byte = start
     for (let i = 0; i < devices.length; i++) {
@@ -59,5 +59,3 @@ const updateDevices = util.promisify(
     callback(null, devices)
   }
 )
-
-export { updateDevices, Device }
