@@ -66,7 +66,7 @@ const SMA1 = outputs.find(b => b.addr === 'A103.0')
 const SMB1 = outputs.find(b => b.addr === 'A103.1')
 
 const M3 = new Lock(
-  0,
+  1,
   [EZM1, EOM1, AMM1],
   [SMA1, SMB1]
 )
@@ -78,7 +78,7 @@ const SMA2 = outputs.find(b => b.addr === 'A103.2')
 const SMB2 = outputs.find(b => b.addr === 'A103.3')
 
 const M4 = new Lock(
-  0,
+  2,
   [EZM2, EOM2, AMM2],
   [SMA2, SMB2]
 )
@@ -93,7 +93,7 @@ const SMA3 = outputs.find(b => b.addr === 'A107.4')
 const SMB3 = outputs.find(b => b.addr === 'A107.5')
 
 const M5 = new Lock(
-  0,
+  3,
   [EZM3, EOM3, AMM3],
   [SMA3, SMB3]
 )
@@ -105,7 +105,7 @@ const SMA4 = outputs.find(b => b.addr === 'A107.6')
 const SMB4 = outputs.find(b => b.addr === 'A107.7')
 
 const M6 = new Lock(
-  0,
+  4,
   [EZM4, EOM4, AMM4],
   [SMA4, SMB4]
 )
@@ -170,11 +170,11 @@ const FTA1 = inputs.find(b => b.addr === 'E106.6')
 const FTA2 = inputs.find(b => b.addr === 'E106.7')
 const FTA3 = inputs.find(b => b.addr === 'E108.7')
 
-const main = new Main(drives, [M1, M2, M3])
+const main = new Main(drives, [M1, M3, M4, M2, M5, M6])
 
 const garage = new Garage(
   [],
-  [M4, M5, M6],
+  [M8, M9],
   [L1, L2, L3, L4, L5],
   [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FTA3, FRE2]
 )
