@@ -471,12 +471,12 @@ export const DEVICES = [
   { id: 3, key: 'VT3' },
   { id: 4, key: 'VT4' },
   { id: 5, key: 'SH1' },
-  { id: 5, key: 'SH2' },
-  { id: 5, key: 'SH3' },
-  { id: 5, key: 'SH4' },
-  { id: 5, key: 'SH5' },
-  { id: 5, key: 'SH6' },
-  { id: 5, key: 'SH7' }
+  { id: 6, key: 'SH2' },
+  { id: 7, key: 'SH3' },
+  { id: 8, key: 'SH4' },
+  { id: 9, key: 'SH5' },
+  { id: 10, key: 'SH6' },
+  { id: 11, key: 'SH7' }
 ]
 export const MODES = [
   { id: 0, key: 'mode-no' },
