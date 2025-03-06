@@ -72,7 +72,6 @@ class PLC extends EventEmitter {
         )
       ])
       obj.next.bay = buffer.readInt16BE(buffer.length - 2)
-      console.log(obj.next)
     } catch (e) {
       this.error(e)
     } finally {
