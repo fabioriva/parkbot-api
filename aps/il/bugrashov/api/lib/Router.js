@@ -26,8 +26,21 @@ class Router {
     this.app.get(prefix + '/bay', (res, req) => {
       this.log(req)
       // const bay = Math.floor(Math.random() * 5) // Expected output: 0, 1, 2, 3 or 4
-      const bay = 1 // force Bay 1 for now
-      sendJson(res, { bay })
+      // const bay = 1 // force Bay 1 for now
+      // sendJson(res, { bay })
+      if (obj.overview.bays[0].status === 2) {
+        return sendJson(res, { bay: 1 })
+      }
+      if (obj.overview.bays[1].status === 2) {
+        return sendJson(res, { bay: 2 })
+      }
+      if (obj.overview.bays[2].status === 2) {
+        return sendJson(res, { bay: 3 })
+      }
+      if (obj.overview.bays[3].status === 2) {
+        return sendJson(res, { bay: 4 })
+      }
+      return sendJson(res, { bay: 0 })
     })
     /* Endpoint /overview */
     this.app.get(prefix + '/overview', (res, req) => {
