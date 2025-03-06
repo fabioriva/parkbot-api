@@ -86,6 +86,13 @@ export const REQ_4 = {
   amount: 2,
   wordLen: 0x02
 }
+export const REQ_BAY = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: 198,
+  amount: 2,
+  wordLen: 0x02
+}
 // E1 gate close command
 export const E1_CLS = {
   area: 0x84,

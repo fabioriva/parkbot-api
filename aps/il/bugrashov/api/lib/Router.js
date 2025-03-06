@@ -25,7 +25,8 @@ class Router {
     /* Endpoint /bay */
     this.app.get(prefix + '/bay', (res, req) => {
       this.log(req)
-      const bay = Math.floor(Math.random() * 5) // Expected output: 0, 1, 2, 3 or 4
+      // const bay = Math.floor(Math.random() * 5) // Expected output: 0, 1, 2, 3 or 4
+      const bay = 1 // force Bay 1 for now
       sendJson(res, { bay })
     })
     /* Endpoint /overview */
