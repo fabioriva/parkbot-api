@@ -3,11 +3,11 @@ import util from 'util'
 import { getPlcDateTime } from '../lib/utils7.js'
 
 // getting a random number between 2 values, inclusive
-function randomNumber (min, max) {
-  min = Math.ceil(min)
-  max = Math.ceil(max)
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
+// function randomNumber (min, max) {
+//   min = Math.ceil(min)
+//   max = Math.ceil(max)
+//   return Math.floor(Math.random() * (max - min + 1) + min)
+// }
 
 class Stall {
   constructor (
@@ -23,14 +23,23 @@ class Stall {
   }
 
   update (buffer) {
-    const rand = randomNumber(0, 225)
-    this.status = this.nr === 1 ? 999 : rand // buffer.readInt16BE(0)
+    this.status = buffer.readInt16BE(0)
     this.date = format(
       getPlcDateTime(buffer.readInt16BE(2), buffer.readInt32BE(4)),
       'yyyy-MM-dd HH:mm:ss'
     )
-    this.size = this.nr === 1 ? 211 : rand === 0 ? 0 : 111 // buffer.readInt16BE(8)
+    this.size = buffer.readInt16BE(8)
   }
+
+  // update (buffer) {
+  //   const rand = randomNumber(0, 225)
+  //   this.status = this.nr === 1 ? 999 : rand // buffer.readInt16BE(0)
+  //   this.date = format(
+  //     getPlcDateTime(buffer.readInt16BE(2), buffer.readInt32BE(4)),
+  //     'yyyy-MM-dd HH:mm:ss'
+  //   )
+  //   this.size = this.nr === 1 ? 211 : rand === 0 ? 0 : 111 // buffer.readInt16BE(8)
+  // }
 }
 
 export const generateStalls = (def) => {

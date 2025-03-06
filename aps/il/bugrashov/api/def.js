@@ -34,7 +34,7 @@ export const QUEUE_LEN = 5
 
 export const CARDS = 225
 
-export const STALLS = 225
+export const STALLS = 229
 export const STALL_LEN = 10
 export const STALL_STATUS = {
   FREE: 0,
