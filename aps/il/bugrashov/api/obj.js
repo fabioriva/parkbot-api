@@ -36,7 +36,7 @@ export const overview = {
   queue
 }
 
-export const next = 0
+export const next = { bay: 0 }
 
 const occupancy = [
   // { id: "busy", value: 0 },
