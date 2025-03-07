@@ -60,7 +60,7 @@ class Router {
       } else {
         return sendJson(
           res,
-          new Message(SEVERITY.WARNING, MESG.BAY_NOT_VALID)
+          new Message(SEVERITY.WARNING, MESG.WRITE_ERROR)
         )
       }
     })
