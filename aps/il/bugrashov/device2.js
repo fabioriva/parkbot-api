@@ -137,7 +137,7 @@ const SOE = outputs.find(b => b.addr === 'A206.2')
 const SPE = outputs.find(b => b.addr === 'A206.0')
 const KXPE = outputs.find(b => b.addr === 'A206.3')
 
-const M8 = new Door(0, [EZE, EOE, FBE, APE], [SZE, SOE, SPE, KXPE])
+const M8 = new Door(5, [EZE, EOE, FBE, APE], [SZE, SOE, SPE, KXPE])
 
 /**
  * Barrier
@@ -150,11 +150,25 @@ const SBZE = outputs.find(b => b.addr === 'A206.5')
 const SBOE = outputs.find(b => b.addr === 'A206.6')
 const SPBE = outputs.find(b => b.addr === 'A206.4')
 
-const M9 = new Barrier(0, [EBZE, EBOE, FBBE, APBE], [SBZE, SBOE, SPBE])
+const M9 = new Barrier(3, [EBZE, EBOE, FBBE, APBE], [SBZE, SBOE, SPBE])
+
+/**
+ * Door
+ */
+const EZA = inputs.find(b => b.addr === 'E210.0')
+const EOA = inputs.find(b => b.addr === 'E210.1')
+const FBA = inputs.find(b => b.addr === 'E210.2')
+const APA = inputs.find(b => b.addr === 'E211.2')
+const SZA = outputs.find(b => b.addr === 'A207.1')
+const SOA = outputs.find(b => b.addr === 'A207.2')
+const SPA = outputs.find(b => b.addr === 'A207.0')
+// const KXPA = outputs.find(b => b.addr === 'A206.3')
+
+const M10 = new Door(7, [EZA, EOA, FBA, APA], [SZA, SOA, SPA])
 
 const drives = [IV1, IV2]
 
-const motors = [M1, M2, M3, M4, M5, M6, M7, M8, M9]
+const motors = [M1, M2, M3, M4, M5, M6, M7, M8, M9, M10]
 
 const L1 = outputs.find(b => b.addr === 'A202.0')
 const L2 = outputs.find(b => b.addr === 'A202.1')
@@ -177,7 +191,7 @@ const main = new Main(drives, [M1, M3, M4, M2, M5, M6])
 
 const garage = new Garage(
   [],
-  [M7, M8, M9],
+  [M7, M8, M9, M10],
   [L1, L2, L3, L4, L5],
   [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FTA3, FRE2]
 )

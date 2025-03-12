@@ -137,7 +137,7 @@ const SOE = outputs.find(b => b.addr === 'A406.2')
 const SPE = outputs.find(b => b.addr === 'A406.0')
 const KXPE = outputs.find(b => b.addr === 'A406.3')
 
-const M8 = new Door(0, [EZE, EOE, FBE, APE], [SZE, SOE, SPE, KXPE])
+const M8 = new Door(2, [EZE, EOE, FBE, APE], [SZE, SOE, SPE, KXPE])
 
 /**
  * Barrier E
@@ -150,7 +150,7 @@ const SBZE = outputs.find(b => b.addr === 'A406.5')
 const SBOE = outputs.find(b => b.addr === 'A406.6')
 const SPBE = outputs.find(b => b.addr === 'A406.4')
 
-const M9 = new Barrier(0, [EBZE, EBOE, FBBE, APBE], [SBZE, SBOE, SPBE])
+const M9 = new Barrier(1, [EBZE, EBOE, FBBE, APBE], [SBZE, SBOE, SPBE])
 
 /**
  * Door A
@@ -164,7 +164,7 @@ const SOA = outputs.find(b => b.addr === 'A407.2')
 const SPA = outputs.find(b => b.addr === 'A407.0')
 const KXPA = outputs.find(b => b.addr === 'A407.3')
 
-const M10 = new Door(0, [EZA, EOA, FBA, APA], [SZA, SOA, SPA, KXPA])
+const M10 = new Door(1, [EZA, EOA, FBA, APA], [SZA, SOA, SPA, KXPA])
 
 const drives = [IV1, IV2]
 
