@@ -113,7 +113,7 @@ export const E1_OPN = {
 export const E2_CLS = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 2, // Offset 180.0 (M0.2)
+  start: DB_DATA_INIT_MB * 8 + 2, // Offset 180.2 (M0.2)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -121,7 +121,7 @@ export const E2_CLS = {
 export const E2_OPN = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 3, // Offset 180.1 (M0.3)
+  start: DB_DATA_INIT_MB * 8 + 3, // Offset 180.3 (M0.3)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -129,7 +129,7 @@ export const E2_OPN = {
 export const E3_CLS = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 4, // Offset 180.0 (M0.4)
+  start: DB_DATA_INIT_MB * 8 + 4, // Offset 180.4 (M0.4)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -137,7 +137,7 @@ export const E3_CLS = {
 export const E3_OPN = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 5, // Offset 180.1 (M0.5)
+  start: DB_DATA_INIT_MB * 8 + 5, // Offset 180.5 (M0.5)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -145,7 +145,7 @@ export const E3_OPN = {
 export const E4_CLS = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 6, // Offset 180.0 (M0.6)
+  start: DB_DATA_INIT_MB * 8 + 6, // Offset 180.6 (M0.6)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -153,7 +153,7 @@ export const E4_CLS = {
 export const E4_OPN = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 7, // Offset 180.1 (M0.7)
+  start: DB_DATA_INIT_MB * 8 + 7, // Offset 180.7 (M0.7)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
