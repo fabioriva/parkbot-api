@@ -6,6 +6,7 @@ export class Bay {
     this.name = name
     this.barrier = barrier
     this.gate = gate
+    this.gate2 = 0
     this.sensors = sensors
     this.status = status
   }
@@ -13,15 +14,16 @@ export class Bay {
   update (buffer) {
     this.barrier = buffer.readInt16BE(0)
     this.gate = buffer.readInt16BE(2)
-    const LP = buffer.readUInt8(4)
+    this.gate2 = buffer.readInt16BE(4)
+    const LP = buffer.readUInt16BE(6)
     this.front = Boolean(LP & 1 ? 1 : 0)
     this.rear = Boolean(LP & 2 ? 1 : 0)
     this.left = Boolean(LP & 4 ? 1 : 0)
     this.right = Boolean(LP & 8 ? 1 : 0)
     this.stop = Boolean(LP & 16 ? 1 : 0)
     // this.sensors = buffer.slice(6).toString('hex')
-    this.sensors = (buffer.readUInt16BE(6) >>> 0).toString(2)
-    this.status = buffer.readUInt16BE(8)
+    this.sensors = (buffer.readUInt16BE(8) >>> 0).toString(2)
+    this.status = buffer.readUInt16BE(10)
   }
 }
 
