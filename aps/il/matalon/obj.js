@@ -95,10 +95,7 @@ export const map = {
       min: 25,
       max: 43,
       stalls: stalls.slice(24, 43),
-      elevators: [
-        { id: 'el-1', label: 'EL1' },
-        { id: 'el-2', label: 'EL2' }
-      ]
+      elevators: []
     },
     {
       nr: 3,
