@@ -2,10 +2,11 @@ import { inputs, outputs } from './io.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
 import { Door, Lock, Hoisting } from '../../../models/Motor.js'
-import { Main, Silomat } from '../../../models/View.js'
+import { Main, Garage, Silomat } from '../../../models/View.js'
 
 const EN1 = inputs.find(b => b.addr === 'E7.0')
 const IV1 = new Drive(1, 'IV1', EN1)
+const drives = [IV1]
 
 const lamps = [
   inputs.find(b => b.addr === 'E7.3'),
@@ -74,13 +75,47 @@ const silomat = new Silomat(
   [AF8, MTC]
 )
 
-const drives = [IV1]
+const FX = inputs.find(b => b.addr === 'E6.1')
+const EZ = inputs.find(b => b.addr === 'E10.0')
+const EO = inputs.find(b => b.addr === 'E10.1')
+const FB = inputs.find(b => b.addr === 'E10.2')
+const AP = inputs.find(b => b.addr === 'E6.1')
+const KX = outputs.find(b => b.addr === 'A10.6')
+const SZ = outputs.find(b => b.addr === 'A4.6')
+const SO = outputs.find(b => b.addr === 'A4.7')
 
-const motors = [M1, M2, M3, ...silomat.motors]
+const M5 = new Door(
+  0,
+  [EZ, EO, AP, FB, FX],
+  [SZ, SO, KX]
+)
+
+const motors = [M1, M2, M3, M5, ...silomat.motors]
+
+const L1 = outputs.find(b => b.addr === 'A7.0')
+const L2 = outputs.find(b => b.addr === 'A7.1')
+const L3 = outputs.find(b => b.addr === 'A7.2')
+const L4 = outputs.find(b => b.addr === 'A7.3')
+const L5 = outputs.find(b => b.addr === 'A7.4')
+
+const FDR = inputs.find(b => b.addr === 'E10.4')
+const FDL = inputs.find(b => b.addr === 'E10.5')
+const FLA = inputs.find(b => b.addr === 'E10.6')
+const FLP = inputs.find(b => b.addr === 'E11.0')
+const FPE = inputs.find(b => b.addr === 'E10.3')
+const EPZ = inputs.find(b => b.addr === 'E11.1')
+const FTA = inputs.find(b => b.addr === 'E10.7')
 
 const main = new Main(drives, [M1, M2, M3])
 
-const views = [main, silomat]
+const garage = new Garage(
+  [],
+  [M5],
+  [L1, L2, L3, L4, L5],
+  [EPZ, FPE, FLA, FLP, FDL, FDR, FTA]
+)
+
+const views = [main, garage, silomat]
 
 const device = new Device(1, 'EL', [], lamps, motors, views)
 
