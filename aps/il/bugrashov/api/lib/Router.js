@@ -226,7 +226,7 @@ class Router {
             new Message(SEVERITY.WARNING, MESG.BAY_NOT_VALID)
           )
       }
-      if (obj.overview.bays[bay - 1].status !== 4) {
+      if (obj.overview.bays[bay - 1].status !== 5) {
         return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
       }
       const { area, dbNumber, start, amount, wordLen } = write
