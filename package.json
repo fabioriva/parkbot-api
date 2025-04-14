@@ -3,7 +3,7 @@
   "version": "0.10.0",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/il/alumim",
+    "dev": "nodemon aps/ch/smoritz",
     "start": "NODE_ENV=production pm2 start aps/il/gazit/index.js --name api-gazit --max-memory-restart 128M",
     "test": "standard",
     "api": "nodemon aps/il/bugrashov/api/index.js",
