@@ -92,11 +92,14 @@ export const REQ_BAY = {
   amount: 2,
   wordLen: 0x02
 }
+
+// Gate commands (CE)
+const MB0 = 196 // entry
 // E1 gate close command
 export const E1_CLS = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 0, // Offset 196.0 (M0.0)
+  start: MB0 * 8 + 0, // Offset 196.0 (M0.0)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -104,7 +107,7 @@ export const E1_CLS = {
 export const E1_OPN = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 1, // Offset 196.1 (M0.1)
+  start: MB0 * 8 + 1, // Offset 196.1 (M0.1)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -112,7 +115,7 @@ export const E1_OPN = {
 export const E2_CLS = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 2, // Offset 196.2 (M0.2)
+  start: MB0 * 8 + 2, // Offset 196.2 (M0.2)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -120,7 +123,7 @@ export const E2_CLS = {
 export const E2_OPN = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 3, // Offset 196.3 (M0.3)
+  start: MB0 * 8 + 3, // Offset 196.3 (M0.3)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -128,7 +131,7 @@ export const E2_OPN = {
 export const E3_CLS = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 4, // Offset 196.4 (M0.4)
+  start: MB0 * 8 + 4, // Offset 196.4 (M0.4)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -136,7 +139,7 @@ export const E3_CLS = {
 export const E3_OPN = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 5, // Offset 196.5 (M0.5)
+  start: MB0 * 8 + 5, // Offset 196.5 (M0.5)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -144,7 +147,7 @@ export const E3_OPN = {
 export const E4_CLS = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 6, // Offset 196.6 (M0.6)
+  start: MB0 * 8 + 6, // Offset 196.6 (M0.6)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
@@ -152,7 +155,106 @@ export const E4_CLS = {
 export const E4_OPN = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: DB_DATA_INIT_MB * 8 + 7, // Offset 196.7 (M0.7)
+  start: MB0 * 8 + 7, // Offset 196.7 (M0.7)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+
+// Gate commands (CU)
+const MB1 = 197 // exit
+// U1 gate close command
+export const U1_CLS = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 0, // Offset 197.0 (M1.0)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+// U1 gate open command
+export const U1_OPN = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 1, // Offset 197.1 (M1.1)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+// U2 gate close command
+export const U2_CLS = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 2, // Offset 197.2 (M1.2)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+// U2 gate open command
+export const U2_OPN = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 3, // Offset 197.3 (M1.3)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+// U3 gate close command
+export const U3_CLS = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 4, // Offset 197.4 (M1.4)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+// U3 gate open command
+export const U3_OPN = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 5, // Offset 197.5 (M1.5)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+// U4 gate close command
+export const U4_CLS = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 6, // Offset 197.6 (M1.6)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+// U4 gate open command
+export const U4_OPN = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB1 * 8 + 7, // Offset 197.7 (M1.7)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+
+// Rollback commands (CU)
+const MB2 = 198 // rollback
+// U1 rollback command
+export const ROLLBACK_1 = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB2 * 8 + 0, // Offset 198.0 (M2.0)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+export const ROLLBACK_2 = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB2 * 8 + 0, // Offset 198.1 (M2.1)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+export const ROLLBACK_3 = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB2 * 8 + 0, // Offset 198.2 (M2.2)
+  amount: 1,
+  wordLen: 0x01 // Bit (inside a word)
+}
+export const ROLLBACK_4 = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: MB2 * 8 + 0, // Offset 198.3 (M2.3)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }

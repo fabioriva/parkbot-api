@@ -30,7 +30,8 @@ export const MESG = {
   GATE_OK: 9,
   QUEUE_FULL: 10,
   QUEUE_BUSY: 11,
-  WRITE_ERROR: 12
+  WRITE_ERROR: 12,
+  ROLLBACK_OK: 13
 }
 
 export const readJson = function readJson (res, cb, err) {

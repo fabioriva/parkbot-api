@@ -306,6 +306,168 @@ class Router {
         )
       )
     })
+    /* Endpoint /exit/close?bay=x */
+    this.app.get(prefix + '/exit/close', async (res, req) => {
+      this.log(req)
+      res.onAborted(() => {
+        res.aborted = true
+      })
+      /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
+      const query = querystring.parse(req.getQuery())
+      const bay = parseInt(query.bay)
+      let write
+      switch (bay) {
+        case 1:
+          write = def.U1_CLS
+          break
+
+        case 2:
+          write = def.U2_CLS
+          break
+
+        case 3:
+          write = def.U3_CLS
+          break
+
+        case 4:
+          write = def.U4_CLS
+          break
+
+        default:
+          return sendJson(
+            res,
+            new Message(SEVERITY.WARNING, MESG.BAY_NOT_VALID)
+          )
+      }
+      if (obj.overview.bays[bay - 1].status !== 10) {
+        return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
+      }
+      const { area, dbNumber, start, amount, wordLen } = write
+      const response = await writeArea(
+        this.plc.client,
+        area,
+        dbNumber,
+        start,
+        amount,
+        wordLen,
+        Buffer.from('0x01')
+      )
+      return sendJson(
+        res,
+        new Message(
+          response ? SEVERITY.SUCCESS : SEVERITY.ERROR,
+          response ? MESG.GATE_OK : MESG.WRITE_ERROR
+        )
+      )
+    })
+    /* Endpoint /exit/open?bay=x */
+    this.app.get(prefix + '/exit/open', async (res, req) => {
+      this.log(req)
+      res.onAborted(() => {
+        res.aborted = true
+      })
+      /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
+      const query = querystring.parse(req.getQuery())
+      const bay = parseInt(query.bay)
+      let write
+      switch (bay) {
+        case 1:
+          write = def.U1_OPN
+          break
+
+        case 2:
+          write = def.U2_OPN
+          break
+
+        case 3:
+          write = def.U3_OPN
+          break
+
+        case 4:
+          write = def.U4_OPN
+          break
+
+        default:
+          return sendJson(
+            res,
+            new Message(SEVERITY.WARNING, MESG.BAY_NOT_VALID)
+          )
+      }
+      if (obj.overview.bays[bay - 1].status !== 13) {
+        return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
+      }
+      const { area, dbNumber, start, amount, wordLen } = write
+      const response = await writeArea(
+        this.plc.client,
+        area,
+        dbNumber,
+        start,
+        amount,
+        wordLen,
+        Buffer.from('0x01')
+      )
+      return sendJson(
+        res,
+        new Message(
+          response ? SEVERITY.SUCCESS : SEVERITY.ERROR,
+          response ? MESG.GATE_OK : MESG.WRITE_ERROR
+        )
+      )
+    })
+    /* Endpoint /rollback?bay=x */
+    this.app.get(prefix + '/rollback', async (res, req) => {
+      this.log(req)
+      res.onAborted(() => {
+        res.aborted = true
+      })
+      /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
+      const query = querystring.parse(req.getQuery())
+      const bay = parseInt(query.bay)
+      let write
+      switch (bay) {
+        case 1:
+          write = def.ROLLBACK_1
+          break
+
+        case 2:
+          write = def.ROLLBACK_2
+          break
+
+        case 3:
+          write = def.ROLLBACK_3
+          break
+
+        case 4:
+          write = def.ROLLBACK_4
+          break
+
+        default:
+          return sendJson(
+            res,
+            new Message(SEVERITY.WARNING, MESG.BAY_NOT_VALID)
+          )
+      }
+      if (obj.overview.bays[bay - 1].status !== 13) {
+        return sendJson(res, new Message(SEVERITY.WARNING, MESG.BAY_NOT_READY))
+      }
+      const { area, dbNumber, start, amount, wordLen } = write
+      const response = await writeArea(
+        this.plc.client,
+        area,
+        dbNumber,
+        start,
+        amount,
+        wordLen,
+        Buffer.from('0x01')
+      )
+      return sendJson(
+        res,
+        new Message(
+          response ? SEVERITY.SUCCESS : SEVERITY.ERROR,
+          response ? MESG.ROLLBACK_OK : MESG.WRITE_ERROR
+        )
+      )
+    })
     this.app.get('/*', (res /*, req */) => res.end('Resource not found'))
   }
 }
