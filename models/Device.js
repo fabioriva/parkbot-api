@@ -44,7 +44,7 @@ export class Device {
     this.size = buffer.readInt16BE(10)
     this.stall = buffer.readInt16BE(12)
     this.step = buffer.readInt16BE(14)
-    this.alarms = alarms.find(a => a.id === this.id)._active // get active alarms
+    this.alarms = alarms.find(a => a.id === this.id)?._active || [] // get active alarms
     this.#motors.forEach(m => m.update()) // update motors message
   }
 }
