@@ -240,21 +240,21 @@ export const ROLLBACK_1 = {
 export const ROLLBACK_2 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: MB2 * 8 + 0, // Offset 198.1 (M2.1)
+  start: MB2 * 8 + 1, // Offset 198.1 (M2.1)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
 export const ROLLBACK_3 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: MB2 * 8 + 0, // Offset 198.2 (M2.2)
+  start: MB2 * 8 + 2, // Offset 198.2 (M2.2)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
 export const ROLLBACK_4 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: MB2 * 8 + 0, // Offset 198.3 (M2.3)
+  start: MB2 * 8 + 3, // Offset 198.3 (M2.3)
   amount: 1,
   wordLen: 0x01 // Bit (inside a word)
 }
