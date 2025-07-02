@@ -230,7 +230,7 @@ export const map = {
       max: 229,
       stalls: stalls.slice(210, 229),
       elevators: [
-        { id: 'el-2', label: 'VT2' }
+        { id: 'el-2-p4', label: 'VT2' }
       ]
     }
   ],

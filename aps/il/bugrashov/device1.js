@@ -166,9 +166,11 @@ const FDL = inputs.find(b => b.addr === 'E106.5')
 const FDR = inputs.find(b => b.addr === 'E106.4')
 const FLA = inputs.find(b => b.addr === 'E107.2')
 const FLP = inputs.find(b => b.addr === 'E107.0')
+const FLP2 = inputs.find(b => b.addr === 'E107.1')
+const FLP3 = inputs.find(b => b.addr === 'E109.0')
 const FPE = inputs.find(b => b.addr === 'E106.3')
 const FRE1 = inputs.find(b => b.addr === 'E104.6')
-const FRE2 = inputs.find(b => b.addr === 'E104.6')
+const FRE2 = inputs.find(b => b.addr === 'E104.7')
 const FTA1 = inputs.find(b => b.addr === 'E106.6')
 const FTA2 = inputs.find(b => b.addr === 'E106.7')
 const FTA3 = inputs.find(b => b.addr === 'E108.7')
@@ -179,7 +181,7 @@ const garage = new Garage(
   [],
   [M7, M8, M9],
   [L1, L2, L3, L4, L5],
-  [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FTA3, FRE2]
+  [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FTA3, FRE1, FRE2, FLP2, FLP3]
 )
 const views = [main, garage]
 
