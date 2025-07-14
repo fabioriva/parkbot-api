@@ -33,6 +33,8 @@ export const QUEUE_LEN = 5
 
 export const CARDS = 225
 
+export const HEIGHTS = 3
+
 export const STALLS = 229
 export const STALL_LEN = 10
 export const STALL_STATUS = {
@@ -92,7 +94,13 @@ export const REQ_BAY = {
   amount: 2,
   wordLen: 0x02
 }
-
+export const REQ_HEIGHT = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: 218,
+  amount: 2,
+  wordLen: 0x02
+}
 // Gate commands (CE)
 const MB0 = 196 // entry
 // E1 gate close command

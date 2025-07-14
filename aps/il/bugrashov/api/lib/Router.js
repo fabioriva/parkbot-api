@@ -22,14 +22,37 @@ class Router {
   run (def, obj) {
     // const prefix = "/interface/" + def.APS;
     const prefix = '/api'
-    /* Endpoint /bay */
+    /* Endpoint /bay?nr=x */
     this.app.get(prefix + '/bay', async (res, req) => {
       this.log(req)
       // const bay = Math.floor(Math.random() * 5) // Expected output: 0, 1, 2, 3 or 4
       res.onAborted(() => {
         res.aborted = true
       })
-      const bay = obj.next.bay
+      const query = querystring.parse(req.getQuery())
+      const nr = parseInt(query.nr)
+      // const bay = obj.next.bay
+      let bay
+      switch (nr) {
+        case 1:
+          bay = 11
+          break
+
+        case 2:
+          bay = 12
+          break
+
+        case 3:
+          bay = 13
+          break
+
+        case 4:
+          bay = 14
+          break
+
+        default:
+          bay = obj.next.bay
+      }
       const { area, dbNumber, start, amount, wordLen } = def.REQ_BAY
       const buffer = Buffer.allocUnsafe(amount)
       buffer.writeUInt16BE(bay, 0)
@@ -50,6 +73,46 @@ class Router {
           new Message(SEVERITY.WARNING, MESG.WRITE_ERROR)
         )
       }
+    })
+    /* Endpoint /height?id=x */
+    this.app.get(prefix + '/height', async (res, req) => {
+      this.log(req)
+      res.onAborted(() => {
+        res.aborted = true
+      })
+      const query = querystring.parse(req.getQuery())
+      const id = parseInt(query.id)
+      if (!Number.isInteger(id)) {
+        return sendJson(
+          res,
+          new Message(SEVERITY.WARNING, MESG.HEIGHT_NOT_VALID)
+        )
+      }
+      if (id < 1 || id > def.HEIGHTS) {
+        return sendJson(
+          res,
+          new Message(SEVERITY.WARNING, MESG.HEIGHT_NOT_VALID)
+        )
+      }
+      const { area, dbNumber, start, amount, wordLen } = def.REQ_HEIGHT
+      const buffer = Buffer.allocUnsafe(amount)
+      buffer.writeUInt16BE(id, 0)
+      const response = await writeArea(
+        this.plc.client,
+        area,
+        dbNumber,
+        start,
+        amount,
+        wordLen,
+        buffer
+      )
+      return sendJson(
+        res,
+        new Message(
+          response ? SEVERITY.SUCCESS : SEVERITY.ERROR,
+          response ? MESG.ENTRY_OK : MESG.WRITE_ERROR
+        )
+      )
     })
     /* Endpoint /overview */
     this.app.get(prefix + '/overview', (res, req) => {
