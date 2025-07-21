@@ -43,7 +43,7 @@ const rack2 = {
 // export default [rack1, rack2]
 
 const pn00 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
-const pn01 = new Pn('KKP', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-6 PN', { key: 'im', query: {} })
+const pn01 = new Pn('KKU', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-6 PN', { key: 'im', query: {} })
 
 pn00.rack = rack1
 pn01.rack = rack2

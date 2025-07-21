@@ -3,7 +3,6 @@ import * as str from './str.js'
 import * as io from './io.js'
 import device1 from './device1.js'
 import device2 from './device2.js'
-import device3 from './device3.js'
 import racks from './racks.js'
 import { Action } from '../../../models/Action.js'
 import { Alarms, generateAlarms } from '../../../models/Alarm.js'
@@ -13,8 +12,7 @@ import { generateStalls } from '../../../models/Stall.js'
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // T
 const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64)), 2) // EU1
-const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64)), 3) // EU2
-export const alarms = [al01, al02, al03]
+export const alarms = [al01, al02]
 
 // const inputs1 = generateBits('E', 0, 9, str.inputs1)
 // const inputs2 = generateBits('E', 10, 16, str.inputs2)
@@ -44,16 +42,16 @@ export const alarms = [al01, al02, al03]
 
 export const queue = generateQueue(def)
 
-export const devices = [device1.device, device2.device, device3.device]
+export const devices = [device1.device, device2.device]
 
-export const drives = device1.drives.concat(device2.drives, device3.drives)
+export const drives = device1.drives.concat(device2.drives)
 
-export const positions = device1.positions.concat(device2.positions, device3.positions)
+export const positions = device1.positions.concat(device2.positions)
 
 export const modes = str.MODES
 
 export const overview = {
-  devices: [[device1.device, device2.device, device3.device]],
+  devices: [[device1.device, device2.device]],
   exitQueue: {
     queueList: queue,
     exitButton: new Action('action-exit', io.merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)

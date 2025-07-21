@@ -373,8 +373,7 @@ export const ALARMS = [
 export const DEVICES = [
   { id: 0, key: 'operator' },
   { id: 1, key: 'T' },
-  { id: 2, key: 'EU1' },
-  { id: 3, key: 'EU2' }
+  { id: 2, key: 'EU1' }
 ]
 
 export const MODES = [

@@ -3,8 +3,8 @@
   "version": "0.10.0",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/il/bugrashov",
-    "start": "NODE_ENV=production pm2 start aps/il/gazit/index.js --name api-gazit --max-memory-restart 128M",
+    "dev": "nodemon aps/il/aminadav16",
+    "start": "NODE_ENV=production pm2 start aps/il/aminadav16/index.js --name api-aminadav16 --max-memory-restart 128M",
     "test": "standard",
     "api": "nodemon aps/il/bugrashov/api/index.js",
     "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.51.0"

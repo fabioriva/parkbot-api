@@ -17,22 +17,22 @@ export const QUEUE_LEN = 5
 export const ALARM_LEN = 8
 export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
-export const DBS_ALARM = [531, 532, 533] // T, EU1, EU2
+export const DBS_ALARM = [531, 532] // T, EU1
 
 // const CARDS = 54
 // const CARD_LEN = 10
 export const CARDS = 54
 export const CARD_LEN = 10
 
-const DB_DATA = 513 // 505
-const DB_DATA_LEN = 178
+const DB_DATA = 505
+const DB_DATA_LEN = 162
 export const DB_DATA_INIT_DEVICE = 32
-export const DB_DATA_INIT_DRIVE = 80
-export const DB_DATA_INIT_POS = 100
-export const DB_DATA_INIT_QUEUE = 120
-export const DB_DATA_INIT_AB = 140
-export const DB_DATA_INIT_EB = 152
-export const DB_DATA_INIT_MB = 170
+export const DB_DATA_INIT_DRIVE = 64
+export const DB_DATA_INIT_POS = 84
+export const DB_DATA_INIT_QUEUE = 104
+export const DB_DATA_INIT_AB = 124
+export const DB_DATA_INIT_EB = 136
+export const DB_DATA_INIT_MB = 154
 export const DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,
