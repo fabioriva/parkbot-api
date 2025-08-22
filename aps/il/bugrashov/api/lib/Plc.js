@@ -71,7 +71,8 @@ class PLC extends EventEmitter {
           obj.queue
         )
       ])
-      obj.next.bay = buffer.readInt16BE(buffer.length - 2)
+      obj.next.bay = buffer.readInt16BE(buffer.length - 4)
+      obj.next.message = buffer.readInt16BE(buffer.length - 2)
     } catch (e) {
       this.error(e)
     } finally {

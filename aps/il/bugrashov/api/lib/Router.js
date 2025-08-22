@@ -31,28 +31,29 @@ class Router {
       })
       const query = querystring.parse(req.getQuery())
       const nr = parseInt(query.nr)
+      const bay = isNaN(nr) ? 5 : nr
       // const bay = obj.next.bay
-      let bay
-      switch (nr) {
-        case 1:
-          bay = 11
-          break
+      // let bay
+      // switch (nr) {
+      //   case 1:
+      //     bay = 11
+      //     break
 
-        case 2:
-          bay = 12
-          break
+      //   case 2:
+      //     bay = 12
+      //     break
 
-        case 3:
-          bay = 13
-          break
+      //   case 3:
+      //     bay = 13
+      //     break
 
-        case 4:
-          bay = 14
-          break
+      //   case 4:
+      //     bay = 14
+      //     break
 
-        default:
-          bay = obj.next.bay
-      }
+      //   default:
+      //     bay = obj.next.bay
+      // }
       const { area, dbNumber, start, amount, wordLen } = def.REQ_BAY
       const buffer = Buffer.allocUnsafe(amount)
       buffer.writeUInt16BE(bay, 0)
@@ -65,14 +66,19 @@ class Router {
         wordLen,
         buffer
       )
-      if (response) {
-        return sendJson(res, { bay })
-      } else {
-        return sendJson(
-          res,
-          new Message(SEVERITY.WARNING, MESG.WRITE_ERROR)
-        )
-      }
+      return sendJson(res, {
+        severity: response ? 1 : 3,
+        bay: obj.next.bay,
+        message: obj.next.message
+      })
+      // if (response) {
+      //   return sendJson(res, { bay })
+      // } else {
+      //   return sendJson(
+      //     res,
+      //     new Message(SEVERITY.WARNING, MESG.WRITE_ERROR)
+      //   )
+      // }
     })
     /* Endpoint /height?id=x */
     this.app.get(prefix + '/height', async (res, req) => {
