@@ -4,7 +4,7 @@ import { Door } from '../../../models/Motor.js'
 import { Garage } from '../../../models/View.js'
 
 const lamps = [
-  inputs.find(b => b.addr === 'E1.3'),
+  inputs.find(b => b.addr === 'E1.4'),
   outputs.find(b => b.addr === 'A1.7'),
   outputs.find(b => b.addr === 'A1.6')
 ]

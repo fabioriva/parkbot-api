@@ -25,7 +25,7 @@ const ENR = new Position(5, 'ENR')
 const positions = [LV1, LV2, LH1, LH2, ENR]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E1.3'),
+  inputs.find(b => b.addr === 'E1.4'),
   outputs.find(b => b.addr === 'A1.7'),
   outputs.find(b => b.addr === 'A1.6')
 ]
