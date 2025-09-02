@@ -25,14 +25,14 @@ export const CARDS = 54
 export const CARD_LEN = 10
 
 const DB_DATA = 505
-const DB_DATA_LEN = 162
+const DB_DATA_LEN = 222
 export const DB_DATA_INIT_DEVICE = 32
-export const DB_DATA_INIT_DRIVE = 64
-export const DB_DATA_INIT_POS = 84
-export const DB_DATA_INIT_QUEUE = 104
-export const DB_DATA_INIT_AB = 124
-export const DB_DATA_INIT_EB = 136
-export const DB_DATA_INIT_MB = 154
+export const DB_DATA_INIT_DRIVE = 96
+export const DB_DATA_INIT_POS = 116
+export const DB_DATA_INIT_QUEUE = 136
+export const DB_DATA_INIT_AB = 156
+export const DB_DATA_INIT_EB = 178
+export const DB_DATA_INIT_MB = 214
 export const DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,
