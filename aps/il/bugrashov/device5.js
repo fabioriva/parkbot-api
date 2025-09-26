@@ -10,7 +10,7 @@ import { Main, Silomat } from '../../../models/View.js'
 /**
  * Action for step by step
  */
-const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M7.0'), def.REQ_PP, 1, def.STALLS, [
+const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M7.0'), 5, 1, def.STALLS, [
   { id: 1, key: 'E', value: '0', tooltip: 'send SH to stall' },
   { id: 2, key: 'D', value: '0', tooltip: 'send SH to stall + Silomat cycle' }
 ])

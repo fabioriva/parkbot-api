@@ -21,7 +21,7 @@ const lamps = [
 /**
  * Action for step by step
  */
-const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.1'), def.REQ_PP, 1, 5, [
+const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.1'), 2, 1, 5, [
   { id: 1, key: 'B', value: '1', tooltip: 'open barrier' },
   { id: 2, key: 'B', value: '2', tooltip: 'close barrier' },
   { id: 3, key: 'B', value: '3', tooltip: 'open door 1 for entry' },
