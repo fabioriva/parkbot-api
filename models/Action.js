@@ -7,3 +7,23 @@ export class Action {
     this.max = maxTag
   }
 }
+
+export class ActionPP {
+  constructor (id, enable, dest = 0, min = 0, max = 0, buttons = []) {
+    this.key = id
+    this.enable = enable // disable if B, D, E, F is ON
+    this.dest = dest // destination for PP D, E, F
+    this.min = min // destination min
+    this.max = max // destination max
+    this.buttons = buttons.map((b, i) => new ButtonPP(i, b.key, b.tooltip, b.value))
+  }
+}
+
+class ButtonPP {
+  constructor (id, key, tooltip, value) {
+    this.id = id
+    this.key = key
+    this.tooltip = tooltip
+    this.value = value
+  }
+}

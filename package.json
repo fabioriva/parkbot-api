@@ -3,7 +3,7 @@
   "version": "0.10.0",
   "description": "parkbot backend",
   "scripts": {
-    "dev": "nodemon aps/il/aminadav16",
+    "dev": "nodemon aps/il/bugrashov",
     "start": "NODE_ENV=production pm2 start aps/il/aminadav16/index.js --name api-aminadav16 --max-memory-restart 128M",
     "test": "standard",
     "api": "nodemon aps/il/bugrashov/api/index.js",

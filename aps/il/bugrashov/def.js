@@ -94,3 +94,18 @@ export const REQ_0 = {
   amount: 2,
   wordLen: 0x02
 }
+// PP
+// export const PP1B = {
+//   area: 0x84,
+//   dbNumber: DB_DATA,
+//   start: 999 * 8 + 0, // Offset 197.0 (M1.0)
+//   amount: 1,
+//   wordLen: 0x01 // Bit (inside a word)
+// }
+export const REQ_PP = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: 670,
+  amount: 4,
+  wordLen: 0x02
+}
