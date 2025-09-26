@@ -21,13 +21,13 @@ const lamps = [
 /**
  * Action for step by step
  */
-
-const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.0'), def.REQ_1, 1, def.STALLS, [
-  { id: 1, key: 'B', tooltip: 'open barrier', value: '1' },
-  { id: 2, key: 'B', tooltip: 'close barrier', value: '2' },
-  { id: 3, key: 'B', tooltip: 'open door', value: '3' },
-  { id: 4, key: 'B', tooltip: 'close door', value: '4' },
-  { id: 4, key: 'F', tooltip: 'send VT', value: '0' }
+const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.0'), def.REQ_PP, 1, 5, [
+  { id: 1, key: 'B', value: '1', tooltip: 'open barrier' },
+  { id: 2, key: 'B', value: '2', tooltip: 'close barrier' },
+  { id: 3, key: 'B', value: '3', tooltip: 'open door for entry' },
+  { id: 4, key: 'B', value: '4', tooltip: 'open door for exit' },
+  { id: 5, key: 'B', value: '5', tooltip: 'close door' },
+  { id: 6, key: 'F', value: '0', tooltip: 'send VT to level' }
 ])
 
 const EN1 = inputs.find(b => b.addr === 'E102.0')

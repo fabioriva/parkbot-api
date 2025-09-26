@@ -15,12 +15,12 @@ export class ActionPP {
     this.dest = dest // destination for PP D, E, F
     this.min = min // destination min
     this.max = max // destination max
-    this.buttons = buttons.map((b, i) => new ButtonPP(i, b.key, b.tooltip, b.value))
+    this.buttons = buttons.map((b, i) => new ButtonPP(i, b.key, b.value, b.tooltip))
   }
 }
 
 class ButtonPP {
-  constructor (id, key, tooltip, value) {
+  constructor (id, key, value, tooltip) {
     this.id = id
     this.key = key
     this.tooltip = tooltip

@@ -1,4 +1,6 @@
-import { inputs, outputs } from './io.js'
+import * as def from './def.js'
+import { inputs, merkers, outputs } from './io.js'
+import { ActionPP } from '../../../models/Action.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
 import { Barrier, Door, Flap, Lock, Hoisting, Rotation } from '../../../models/Motor.js'
@@ -15,6 +17,20 @@ const lamps = [
   outputs.find(b => b.addr === 'A201.7'),
   outputs.find(b => b.addr === 'A201.6')
 ]
+
+/**
+ * Action for step by step
+ */
+const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.1'), def.REQ_PP, 1, 5, [
+  { id: 1, key: 'B', value: '1', tooltip: 'open barrier' },
+  { id: 2, key: 'B', value: '2', tooltip: 'close barrier' },
+  { id: 3, key: 'B', value: '3', tooltip: 'open door 1 for entry' },
+  { id: 4, key: 'B', value: '4', tooltip: 'open door 1 for exit' },
+  { id: 5, key: 'B', value: '5', tooltip: 'close door 1' },
+  { id: 6, key: 'B', value: '8', tooltip: 'open door 2' },
+  { id: 7, key: 'B', value: '9', tooltip: 'close door 2' },
+  { id: 8, key: 'F', value: '0', tooltip: 'send VT to level' }
+])
 
 const EN1 = inputs.find(b => b.addr === 'E202.0')
 const EN2 = inputs.find(b => b.addr === 'E202.1')
@@ -199,6 +215,6 @@ const garage = new Garage(
 )
 const views = [main, garage]
 
-const device = new Device(2, 'VT2', [], lamps, motors, views)
+const device = new Device(2, 'VT2', [A0], lamps, motors, views)
 
 export default { device, drives, positions }
