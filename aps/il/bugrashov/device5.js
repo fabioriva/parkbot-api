@@ -15,6 +15,10 @@ const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M7.0'), 5, 1,
   { id: 2, key: 'D', value: '0', tooltip: 'send SH to stall + Silomat cycle' }
 ])
 
+const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M2.0'), 1, 1, 7, [
+  { id: 1, key: 'A', value: '0', tooltip: 'reset PP' }
+])
+
 const EN1 = inputs.find(b => b.addr === 'E1003.0')
 
 const IV1 = new Drive(1, 'IV1', EN1)
@@ -78,6 +82,6 @@ const main = new Main(drives, [M1])
 
 const views = [main, silomat]
 
-const device = new Device(5, 'SH1', [A0], lamps, motors, views)
+const device = new Device(5, 'SH1', [A0, A1], lamps, motors, views)
 
 export default { device, drives, positions }

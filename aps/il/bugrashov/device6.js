@@ -1,9 +1,23 @@
-import { inputs, outputs } from './io.js'
+import * as def from './def.js'
+import { inputs, merkers, outputs } from './io.js'
+import { ActionPP } from '../../../models/Action.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
 import { Traveling } from '../../../models/Motor.js'
 import { Position } from '../../../models/Position.js'
 import { Main, Silomat } from '../../../models/View.js'
+
+/**
+ * Action for step by step
+ */
+const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M7.1'), 5, 1, def.STALLS, [
+  { id: 1, key: 'E', value: '0', tooltip: 'send SH to stall' },
+  { id: 2, key: 'D', value: '0', tooltip: 'send SH to stall + Silomat cycle' }
+])
+
+const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M2.1'), 1, 1, 7, [
+  { id: 1, key: 'A', value: '0', tooltip: 'reset PP' }
+])
 
 const EN1 = inputs.find(b => b.addr === 'E1103.0')
 
@@ -68,6 +82,6 @@ const main = new Main(drives, [M1])
 
 const views = [main, silomat]
 
-const device = new Device(6, 'SH2', [], lamps, motors, views)
+const device = new Device(6, 'SH2', [A0, A1], lamps, motors, views)
 
 export default { device, drives, positions }
