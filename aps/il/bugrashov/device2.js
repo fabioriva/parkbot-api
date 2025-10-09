@@ -32,6 +32,10 @@ const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.1'), 2, 1,
   { id: 8, key: 'F', value: '0', tooltip: 'send VT to level' }
 ])
 
+const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M6.5'), 1, 1, 7, [
+  { id: 1, key: 'A', value: '0', tooltip: 'reset PP' }
+])
+
 const EN1 = inputs.find(b => b.addr === 'E202.0')
 const EN2 = inputs.find(b => b.addr === 'E202.1')
 
@@ -215,6 +219,6 @@ const garage = new Garage(
 )
 const views = [main, garage]
 
-const device = new Device(2, 'VT2', [A0], lamps, motors, views)
+const device = new Device(2, 'VT2', [A0, A1], lamps, motors, views)
 
 export default { device, drives, positions }
