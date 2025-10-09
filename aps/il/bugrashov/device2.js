@@ -1,4 +1,4 @@
-import * as def from './def.js'
+// import * as def from './def.js'
 import { inputs, merkers, outputs } from './io.js'
 import { ActionPP } from '../../../models/Action.js'
 import { Device } from '../../../models/Device.js'

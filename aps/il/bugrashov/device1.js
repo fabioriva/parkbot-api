@@ -1,4 +1,4 @@
-import * as def from './def.js'
+// import * as def from './def.js'
 import { inputs, merkers, outputs } from './io.js'
 import { ActionPP } from '../../../models/Action.js'
 import { Device } from '../../../models/Device.js'
@@ -28,6 +28,10 @@ const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.0'), 1, 1,
   { id: 4, key: 'B', value: '4', tooltip: 'open door for exit' },
   { id: 5, key: 'B', value: '5', tooltip: 'close door' },
   { id: 6, key: 'F', value: '0', tooltip: 'send VT to level' }
+])
+
+const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M6.4'), 1, 1, 7, [
+  { id: 1, key: 'A', value: '0', tooltip: 'reset PP' }
 ])
 
 const EN1 = inputs.find(b => b.addr === 'E102.0')
@@ -199,6 +203,6 @@ const garage = new Garage(
 )
 const views = [main, garage]
 
-const device = new Device(1, 'VT1', [A0], lamps, motors, views)
+const device = new Device(1, 'VT1', [A0, A1], lamps, motors, views)
 
 export default { device, drives, positions }
