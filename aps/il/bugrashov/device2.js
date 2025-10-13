@@ -32,7 +32,7 @@ const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.1'), 2, 1,
   { id: 8, key: 'F', value: '0', tooltip: 'send VT to level' }
 ])
 
-const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M6.5'), 1, 1, 7, [
+const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M6.5'), 2, 1, 7, [
   { id: 1, key: 'A', value: '0', tooltip: 'reset PP' }
 ])
 
