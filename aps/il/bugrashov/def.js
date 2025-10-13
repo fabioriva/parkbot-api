@@ -109,3 +109,5 @@ export const REQ_PP = {
   amount: 4,
   wordLen: 0x02
 }
+
+export const STALLS_PP = 242

@@ -10,12 +10,12 @@ import { Main, Silomat } from '../../../models/View.js'
 /**
  * Action for step by step
  */
-const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M7.3'), 5, 1, def.STALLS, [
+const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M7.3'), 8, 1, def.STALLS_PP, [
   { id: 1, key: 'E', value: '0', tooltip: 'send SH to stall' },
   { id: 2, key: 'D', value: '0', tooltip: 'send SH to stall + Silomat cycle' }
 ])
 
-const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M2.3'), 1, 1, 7, [
+const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M2.3'), 8, 1, def.STALLS_PP, [
   { id: 1, key: 'A', value: '0', tooltip: 'reset PP' }
 ])
 
