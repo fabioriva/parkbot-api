@@ -122,12 +122,12 @@ class Router {
     })
     /* Endpoint /overview */
     this.app.get(prefix + '/overview', (res, req) => {
-      this.log(req)
+      // this.log(req)
       sendJson(res, obj.overview)
     })
     /* Endpoint /map */
     this.app.get(prefix + '/map', (res, req) => {
-      this.log(req)
+      // this.log(req)
       sendJson(res, obj.map)
     })
     /* Endpoint /entry?bay=x&card=y */
