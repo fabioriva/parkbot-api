@@ -10,7 +10,7 @@ import {
   Rotation
 } from '../../../models/Motor.js'
 import { Position } from '../../../models/Position.js'
-import { Main, Silomat, Garage } from '../../../models/View'.js)
+import { Main, Silomat, Garage } from '../../../models/View.js'
 
 let EB = 0
 let AB = 0

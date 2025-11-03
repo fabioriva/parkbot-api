@@ -3,13 +3,12 @@ import * as uWS from 'uWebSockets.js'
 import * as def from './def.js'
 import * as str from './str.js'
 import obj from './obj.js'
-import mongo from './db.js'
-import History from './History.js'
-import MailingList from './MailingList.js'
-import Plc from './Plc.js'
-import Router from './Router.js'
-import { updateOnLog } from './Log.js'
-import { updateOnLog } = require('../../../lib/Log.js')
+import mongo from '../../../lib/db.js'
+import History from '../../../lib/History.js'
+import MailingList from '../../../lib/MailingList.js'
+import Plc from '../../../lib/Plc.js'
+import Router from '../../../lib/Router.js'
+import { updateOnLog } from '../../../lib/Log.js'
 
 const main = async () => {
   try {

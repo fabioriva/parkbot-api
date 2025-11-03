@@ -1,4 +1,4 @@
-import { generateBits } = require('../../../models/Bit')
+import { generateBits } from '../../../models/Bit.js'
 import { ab, eb, inputs } from './io.js'
 import {
   S7_521_1BH00_0AB0,
