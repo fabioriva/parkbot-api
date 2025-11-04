@@ -144,7 +144,7 @@ export const map = {
   levels: [
     {
       nr: 1,
-      label: 'P1 (-3)',
+      label: 'Basement (-3)',
       min: 1,
       max: 88,
       stalls: stalls.slice(0, 88),
@@ -152,7 +152,7 @@ export const map = {
     },
     {
       nr: 2,
-      label: 'P2 (-2)',
+      label: 'Basement (-2)',
       min: 89,
       max: 176,
       stalls: stalls.slice(88, 176),
@@ -160,10 +160,42 @@ export const map = {
     },
     {
       nr: 3,
-      label: 'P3 (-1)',
+      label: 'Basement (-1)',
       min: 177,
       max: 264,
       stalls: stalls.slice(176, 264),
+      elevators
+    },
+    {
+      nr: 4,
+      label: 'Level (+1)',
+      min: 265,
+      max: 329,
+      stalls: stalls.slice(264, 329),
+      elevators
+    },
+    {
+      nr: 5,
+      label: 'Level (+2)',
+      min: 330,
+      max: 395,
+      stalls: stalls.slice(329, 395),
+      elevators
+    },
+    {
+      nr: 6,
+      label: 'Level (+3)',
+      min: 396,
+      max: 473,
+      stalls: stalls.slice(395, 473),
+      elevators
+    },
+    {
+      nr: 7,
+      label: 'Level (+4)',
+      min: 474,
+      max: 558,
+      stalls: stalls.slice(473, 558),
       elevators
     }
   ],
