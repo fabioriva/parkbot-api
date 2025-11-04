@@ -172,7 +172,7 @@ export const map = {
       min: 265,
       max: 329,
       stalls: stalls.slice(264, 329),
-      elevators
+      elevators: elevators.filter(el => el.id !== 'EL5')
     },
     {
       nr: 5,
@@ -180,7 +180,7 @@ export const map = {
       min: 330,
       max: 395,
       stalls: stalls.slice(329, 395),
-      elevators
+      elevators: elevators.filter(el => el.id !== 'EL2' || el.id !== 'EL5')
     },
     {
       nr: 6,
@@ -188,7 +188,7 @@ export const map = {
       min: 396,
       max: 473,
       stalls: stalls.slice(395, 473),
-      elevators
+      elevators: elevators.filter(el => el.id !== 'EL2' || el.id !== 'EL5')
     },
     {
       nr: 7,
@@ -196,7 +196,7 @@ export const map = {
       min: 474,
       max: 558,
       stalls: stalls.slice(473, 558),
-      elevators
+      elevators: elevators.filter(el => el.id !== 'EL2' || el.id !== 'EL5')
     }
   ],
   occupancy: [
