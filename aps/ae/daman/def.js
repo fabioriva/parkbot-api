@@ -9,7 +9,7 @@ export const PLC = {
   ip: '192.168.24.2',
   rack: 0,
   slot: 1,
-  polling_time: 500
+  polling_time: 750
 }
 
 export const MQTT_TOPIC = 'aps/ae/daman/#'
@@ -42,6 +42,13 @@ export const DATA_READ = {
   start: 0,
   amount: DB_DATA_LEN,
   wordLen: 0x02
+}
+
+export const PLC_MAP = {
+  ip: '192.168.24.2',
+  rack: 0,
+  slot: 1,
+  polling_time: 750
 }
 
 // const STALLS = 558
@@ -79,7 +86,7 @@ export const MAP_READ = {
 export const MAP_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 924,
+  start: 922,
   amount: 4,
   wordLen: 0x02
 }
