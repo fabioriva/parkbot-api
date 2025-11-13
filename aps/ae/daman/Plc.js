@@ -104,6 +104,10 @@ class PLC extends EventEmitter {
   //   }
   // }
 
+  async stall (def, obj, stallNr) {
+    console.log(stallNr)
+  }
+
   // async stall (def, obj, stallNr) {
   //   try {
   //     const stall = obj.stalls.find(stall => stall.nr === stallNr)
