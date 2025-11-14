@@ -9,7 +9,7 @@ export const PLC = {
   ip: '192.168.24.2',
   rack: 0,
   slot: 1,
-  polling_time: 750
+  polling_time: 999
 }
 
 export const MQTT_TOPIC = 'aps/ae/daman/#'

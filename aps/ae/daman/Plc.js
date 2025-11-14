@@ -30,8 +30,10 @@ class PLC extends EventEmitter {
 
   async alarms (def, obj, opts = {}) {
     try {
+      // console.log('0', opts)
       await Promise.all(
         obj.alarms.filter(a => opts.id ? a.id === opts.id : a.id).map(async item => {
+          // console.log('1', item.id)
           const buffer = this.online
             ? await ReadArea(
               this.client,
@@ -42,6 +44,7 @@ class PLC extends EventEmitter {
               0x02
             )
             : Buffer.alloc(def.DB_ALARM_LEN)
+          // console.log('2', item.id, buffer)
           await updateAlarms(
             0,
             buffer,
@@ -105,7 +108,7 @@ class PLC extends EventEmitter {
   // }
 
   async stall (def, obj, stallNr) {
-    console.log(stallNr)
+    console.log('Updated stall', stallNr)
   }
 
   // async stall (def, obj, stallNr) {

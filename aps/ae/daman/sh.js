@@ -72,7 +72,7 @@ for (let i = 1; i <= 14; i++) {
 
   const views = [main, silomat]
 
-  const device = new Device(i, 'SH' + i, [], lamps, motors_, views)
+  const device = new Device(i + 5, 'SH' + i, [], lamps, motors_, views)
 
   devices_.push(device)
   drives_.push(IV)

@@ -291,7 +291,6 @@ export const ALARMS = [
   { id: 54, key: 'al-th', query: { name: 'APE' } },
   { id: 55, key: 'al-th', query: { name: 'AMC' } },
   { id: 56, key: '', query: {} },
-  { id: 56, key: '', query: {} },
   { id: 57, key: '', query: {} },
   { id: 58, key: '', query: {} },
   { id: 59, key: '', query: {} },
