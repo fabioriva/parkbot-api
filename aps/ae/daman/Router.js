@@ -2,7 +2,7 @@ import { parseISO/*, subDays */ } from 'date-fns'
 import { format/*, toZonedTime */ } from 'date-fns-tz'
 import pino from 'pino'
 import querystring from 'querystring'
-import checkAuth, { checkSession } from '../../../lib/auth.js'
+import checkAuth from '../../../lib/auth.js'
 import { readJson, sendJson, Message } from '../../../lib/json.js'
 import { /* getPlcDateTime, ReadArea, */WriteArea } from '../../../lib/utils7.js'
 
@@ -623,7 +623,7 @@ class Router {
     //   // })
     //   // sendJson(res, { api: prefix + '/app/map/edit', authorization })
     // })
-    this.app.ws(prefix + '/map', { open: ws => ws.subscribe('aps/map') })
+    // this.app.ws(prefix + '/map', { open: ws => ws.subscribe('aps/map') })
   }
 }
 
