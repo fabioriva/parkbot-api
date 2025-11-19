@@ -115,6 +115,7 @@ class Router {
         buffer.writeInt16BE(parseInt(code, 16), 2) // string to hex
         const { area, dbNumber, start, amount, wordLen } = def.CARD_EDIT
         const written = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
+        if (written) this.plc.cards(def, obj)
         sendJson(res, { severity: written ? 'success' : 'error', message: written ? 'updated card ' + card : 'write error' })
       } catch (e) {
         sendError(res, e)

@@ -2,6 +2,7 @@ import { EventEmitter } from 'events'
 import pino from 'pino'
 import snap7 from 'node-snap7'
 import { ReadArea } from '../../../lib/utils7.js'
+import { updateCards } from '../../../models/Card.js'
 import { occupancy, updateStalls } from '../../../models/Stall.js'
 
 const logger = pino()
@@ -12,6 +13,19 @@ class PLC extends EventEmitter {
     this.client = new snap7.S7Client()
     this.online = false
     this.params = plc
+  }
+
+  async cards (def, obj) {
+    if (def.CARD_READ !== undefined) {
+      try {
+        const { area, dbNumber, start, amount, wordLen } = def.CARD_READ
+        const buffer = this.online ? await ReadArea(this.client, area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
+        const cards = await updateCards(0, buffer, def.CARD_LEN, obj.cards)
+        this.publish('aps/cards', cards)
+      } catch (e) {
+        this.error(e)
+      }
+    }
   }
 
   async error (e) {
@@ -75,6 +89,7 @@ class PLC extends EventEmitter {
         this.online ? logger.info('Connected to PLC %s', this.params.ip) : logger.info('Connecting to PLC %s ...', this.params.ip)
       }
       if (this.online_ !== this.online) {
+        this.cards(def, obj)
         this.map(def, obj)
         this.online_ = this.online
       }

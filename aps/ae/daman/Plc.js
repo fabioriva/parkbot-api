@@ -6,7 +6,7 @@ import { Log, LOG_LEN } from '../../../lib/Log.js'
 import { ReadArea } from '../../../lib/utils7.js'
 import { countAlarms, updateAlarms } from '../../../models/Alarm.js'
 import { updateBits } from '../../../models/Bit.js'
-import { updateCards } from '../../../models/Card.js'
+// import { updateCards } from '../../../models/Card.js'
 import { updateDevices } from '../../../models/Device.js'
 import { updateDrives } from '../../../models/Drive.js'
 import { updatePositions } from '../../../models/Position.js'
@@ -60,17 +60,20 @@ class PLC extends EventEmitter {
   }
 
   async cards (def, obj) {
-    if (def.CARD_READ !== undefined) {
-      try {
-        const { area, dbNumber, start, amount, wordLen } = def.CARD_READ
-        const buffer = this.online ? await ReadArea(this.client, area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
-        const cards = await updateCards(0, buffer, def.CARD_LEN, obj.cards)
-        this.publish('aps/cards', cards)
-      } catch (e) {
-        this.error(e)
-      }
-    }
+    console.log('Updated card')
   }
+  // async cards (def, obj) {
+  //   if (def.CARD_READ !== undefined) {
+  //     try {
+  //       const { area, dbNumber, start, amount, wordLen } = def.CARD_READ
+  //       const buffer = this.online ? await ReadArea(this.client, area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
+  //       const cards = await updateCards(0, buffer, def.CARD_LEN, obj.cards)
+  //       this.publish('aps/cards', cards)
+  //     } catch (e) {
+  //       this.error(e)
+  //     }
+  //   }
+  // }
 
   // async dss (def, obj, buffer) {
   //   try {
@@ -110,7 +113,6 @@ class PLC extends EventEmitter {
   async stall (def, obj, stallNr) {
     console.log('Updated stall', stallNr)
   }
-
   // async stall (def, obj, stallNr) {
   //   try {
   //     const stall = obj.stalls.find(stall => stall.nr === stallNr)
@@ -187,7 +189,7 @@ class PLC extends EventEmitter {
       }
       if (this.online_ !== this.online) {
         this.alarms(def, obj)
-        this.cards(def, obj)
+        // this.cards(def, obj)
         this.main(def, obj)
         // this.map(def, obj)
         this.online_ = this.online
