@@ -6,7 +6,8 @@ import obj from './obj.js'
 // import Plc from '../../../lib/Plc.js'
 import Plc from './PlcMap.js'
 // import Router from '../../../lib/Router.js'
-import Router from './RouterMap.js'
+// import Router from './RouterMap.js'
+import Router from './ApiMap.js'
 
 const main = async () => {
   try {
