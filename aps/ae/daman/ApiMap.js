@@ -16,8 +16,9 @@ async function checkAuth (res, aps, authorization) {
       'Content-Type': 'application/json'
     }
   })
+  console.log(response)
   if (!response.ok) {
-    throw new Error('fetch error')
+    throw new Error(response.statusText)
   }
   const session = await response.json()
   const { aps: { ns }, user } = session
@@ -95,9 +96,9 @@ class Router {
       try {
         const json = await readJson(res)
         await checkAuth(res, def.APS, authorization)
-        const card = parseInt(json.card)
-        const code = parseInt(json.code)
-        if (!Number.isInteger(card) || !Number.isInteger(code)) {
+        const card = parseInt(json.nr)
+        const code = json.code
+        if (!Number.isInteger(card)) {
           throw new Error('parameters not valid')
         }
         const minCard = def.MIN_CARD !== undefined ? def.MIN_CARD : 1
