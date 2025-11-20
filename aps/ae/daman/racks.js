@@ -43,7 +43,7 @@ for (let i = 1; i <= 5; i++) {
   }
   EL.push(rack)
   // const pn = new Pn('EL' + i, i, merkers.find(b => b.addr === 'M4.0'), 'IM 155-5 PN', { key: 'im', query: {} })
-  const pn = new Pn('EL' + i, i, inputs.find(b => b.addr === 'E' + (offsetEB + 1).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
+  const pn = new Pn('EL' + i, i, inputs.find(b => b.addr === 'E' + (offsetEB + 6).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
   pn.rack = rack
   PN.push(pn)
   offsetEB += 11
@@ -74,6 +74,6 @@ for (let i = 1; i <= 14; i++) {
   offsetAB += 4
 }
 
-// console.log(PN)
+console.log(PN)
 
 export default PN
