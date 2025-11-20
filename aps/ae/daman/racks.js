@@ -74,6 +74,4 @@ for (let i = 1; i <= 14; i++) {
   offsetAB += 4
 }
 
-console.log(PN)
-
 export default PN

@@ -520,7 +520,7 @@ class Router {
     this.app.get('/*', (res/*, req */) => res.end('Resource not found'))
     this.app.ws(prefix + '/info', { open: ws => ws.subscribe('aps/info') })
     this.app.ws(prefix + '/mqtt', { open: ws => ws.subscribe('aps/mqtt') })
-    this.cards(def, obj, prefix)
+    // this.cards(def, obj, prefix)
     this.dashboard(def, obj, prefix)
     this.dss(def, obj, prefix)
     this.history_(def, obj, prefix)
