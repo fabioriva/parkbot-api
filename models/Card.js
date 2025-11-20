@@ -2,6 +2,8 @@ import { format, endOfDay, startOfDay } from 'date-fns'
 import util from 'util'
 import { getPlcDateTime } from '../lib/utils7.js'
 
+const PIN_LEN = 3
+
 class Card {
   #rand
   constructor (
@@ -26,10 +28,12 @@ class Card {
   }
 
   update (buffer) {
-    this.code = buffer
-      .readInt16BE(0)
-      .toString(16)
-      .toUpperCase()
+    // this.code = buffer
+    //   .readInt16BE(0)
+    //   .toString(16)
+    //   .toUpperCase()
+    const pin = buffer.readInt16BE(0).toString(16).toUpperCase()
+    this.code = '0'.repeat(PIN_LEN - pin.length) + pin
     this.from = format(getPlcDateTime(0, buffer.readInt32BE(2)), 'HH:mm:ss')
     this.to = format(getPlcDateTime(0, buffer.readInt32BE(6)), 'HH:mm:ss')
     // this.status = buffer.length === 12 && buffer.readInt16BE(10)
