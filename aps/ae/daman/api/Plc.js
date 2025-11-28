@@ -46,7 +46,12 @@ class PLC extends EventEmitter {
           amount,
           wordLen
         )
-        console.log(buffer)
+        // this.update(buffer, obj)
+        let offset = 0
+        for (let i = 0; i < obj.length; i++) {
+          obj[i] = buffer.readInt16BE(offset)
+          offset += 2
+        }
       } else {
         this.online = this.client.Connect()
         this.online
@@ -64,8 +69,17 @@ class PLC extends EventEmitter {
         this.params.rack,
         this.params.slot
       )
+      this.forever(def, obj)
     } catch (e) {
       this.error(e)
+    }
+  }
+
+  async update (buffer, data) {
+    let offset = 0
+    for (let i = 0; i < data.length; i++) {
+      data[i] = buffer.readInt16BE(offset)
+      offset += 2
     }
   }
 }
