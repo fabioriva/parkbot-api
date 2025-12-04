@@ -4,6 +4,7 @@ module.exports = {
       name: 'daman-n',
       script: './aps/ae/daman/index.js',
       cwd: './',
+      max_memory_restart: '150M',
       node_args: '-r dotenv/config',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       out_file: '/dev/null' // send logs to /dev/null
@@ -12,6 +13,7 @@ module.exports = {
       name: 'daman-n-map',
       script: './aps/ae/daman/map.js',
       cwd: './',
+      max_memory_restart: '150M',
       node_args: '-r dotenv/config',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       out_file: '/dev/null'
@@ -20,6 +22,7 @@ module.exports = {
       name: 'menlo-a',
       script: './aps/us/menloa/index.js',
       cwd: './',
+      max_memory_restart: '150M',
       node_args: '-r dotenv/config',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       out_file: '/dev/null'
@@ -28,6 +31,7 @@ module.exports = {
       name: 'menlo-b',
       script: './aps/us/menlob/index.js',
       cwd: './',
+      max_memory_restart: '150M',
       node_args: '-r dotenv/config',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       out_file: '/dev/null'
