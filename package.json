@@ -19,7 +19,7 @@
     "mqtt": "^5.10.3",
     "node-fetch": "^3.3.2",
     "node-snap7": "^1.0.8",
-    "pino": "^9.6.0",
+    "pino": "^10.1.0",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.52.0"
   },
   "devDependencies": {
