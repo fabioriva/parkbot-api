@@ -18,7 +18,7 @@
     "mongodb": "^7.0.0",
     "mqtt": "^5.10.3",
     "node-fetch": "^3.3.2",
-    "node-snap7": "^1.0.8",
+    "node-snap7": "^1.0.9",
     "pino": "^10.1.0",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.52.0"
   },
@@ -31,6 +31,9 @@
       "/node_modules/**",
       "/public"
     ]
+  },
+  "engines": {
+    "node": ">=22.0.0"
   },
   "type": "module"
 }
