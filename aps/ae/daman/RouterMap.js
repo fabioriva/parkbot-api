@@ -69,6 +69,7 @@ class Router {
                 const { area, dbNumber, start, amount, wordLen } = def.CARD_EDIT
                 // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, buffer)
                 const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
+                if (response) this.plc.cards(def, obj)
                 sendJson(
                   res,
                   new Message(

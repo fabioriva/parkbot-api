@@ -111,7 +111,15 @@ class PLC extends EventEmitter {
   // }
 
   async stall (def, obj, stallNr) {
-    console.log('Updated stall', stallNr)
+    try {
+      const res = await fetch('http://localhost:9136/aps/daman/stalls')
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      obj.stalls = await res.json()
+    } catch (error) {
+      console.error(error)
+    }
   }
   // async stall (def, obj, stallNr) {
   //   try {
