@@ -9,10 +9,10 @@ import { /* getPlcDateTime, ReadArea, */WriteArea } from '../../../lib/utils7.js
 const logger = pino()
 
 class Router {
-  constructor (app, history, mailingList, plc) {
+  constructor (app, plc) {
     this.app = app
-    this.history = history
-    this.mailingList = mailingList
+    // this.history = history
+    // this.mailingList = mailingList
     this.plc = plc
     // this.map = map
   }
@@ -91,90 +91,90 @@ class Router {
     this.app.ws(prefix + '/cards', { open: ws => ws.subscribe('aps/cards') })
   }
 
-  dashboard (def, obj, prefix) {
-    this.app.get(prefix + '/dashboard', async (res, req) => {
-      this.log(req)
-      res.onAborted(() => {
-        res.aborted = true
-      })
-      /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
-      // let ping = process.hrtime()
-      const activity = await this.history.getRecentActivity(5)
-      // this.exec_time(ping, '[activity]')
+  // dashboard (def, obj, prefix) {
+  //   this.app.get(prefix + '/dashboard', async (res, req) => {
+  //     this.log(req)
+  //     res.onAborted(() => {
+  //       res.aborted = true
+  //     })
+  //     /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
+  //     // let ping = process.hrtime()
+  //     const activity = await this.history.getRecentActivity(5)
+  //     // this.exec_time(ping, '[activity]')
 
-      // ping = process.hrtime()
-      const occupancy = obj.map.occupancy
-      // this.exec_time(ping, '[occupancy]')
+  //     // ping = process.hrtime()
+  //     const occupancy = obj.map.occupancy
+  //     // this.exec_time(ping, '[occupancy]')
 
-      // ping = process.hrtime()
-      // const operations = await this.history.getOperations({ dateString: format(new Date(), 'yyyy-MM-dd') })
-      const operations = await this.history.getOperations({ dateFrom: format(new Date(), 'yyyy-MM-dd'), dateTo: format(new Date(), 'yyyy-MM-dd') })
-      // this.exec_time(ping, '[operations]')
+  //     // ping = process.hrtime()
+  //     // const operations = await this.history.getOperations({ dateString: format(new Date(), 'yyyy-MM-dd') })
+  //     const operations = await this.history.getOperations({ dateFrom: format(new Date(), 'yyyy-MM-dd'), dateTo: format(new Date(), 'yyyy-MM-dd') })
+  //     // this.exec_time(ping, '[operations]')
 
-      // ping = process.hrtime()
-      const system = obj.devices.map((device) => {
-        const clone = Object.assign({}, device)
-        delete clone.views
-        return clone
-      })
-      // this.exec_time(ping, '[system]')
-      sendJson(res, {
-        activity,
-        occupancy,
-        operations: [operations],
-        exitQueue: obj.overview.exitQueue,
-        system
-      })
-    })
-  }
+  //     // ping = process.hrtime()
+  //     const system = obj.devices.map((device) => {
+  //       const clone = Object.assign({}, device)
+  //       delete clone.views
+  //       return clone
+  //     })
+  //     // this.exec_time(ping, '[system]')
+  //     sendJson(res, {
+  //       activity,
+  //       occupancy,
+  //       operations: [operations],
+  //       exitQueue: obj.overview.exitQueue,
+  //       system
+  //     })
+  //   })
+  // }
 
-  dss (def, obj, prefix) {
-    this.app.get(prefix + '/dss', (res, req) => {
-      this.log(req)
-      sendJson(res, obj.dss)
-    })
-    this.app.get(prefix + '/dss/exit', (res, req) => {
-      this.log(req)
-      sendJson(res, obj.dss.exitScreen)
-    })
-    this.app.get(prefix + '/dss/garage/:id', (res, req) => {
-      this.log(req)
-      sendJson(res, obj.screens[req.getParameter(0)])
-    })
-  }
+  // dss (def, obj, prefix) {
+  //   this.app.get(prefix + '/dss', (res, req) => {
+  //     this.log(req)
+  //     sendJson(res, obj.dss)
+  //   })
+  //   this.app.get(prefix + '/dss/exit', (res, req) => {
+  //     this.log(req)
+  //     sendJson(res, obj.dss.exitScreen)
+  //   })
+  //   this.app.get(prefix + '/dss/garage/:id', (res, req) => {
+  //     this.log(req)
+  //     sendJson(res, obj.screens[req.getParameter(0)])
+  //   })
+  // }
 
-  history_ (def, obj, prefix) {
-    this.app.get(prefix + '/history', async (res, req) => {
-      this.log(req)
-      res.onAborted(() => {
-        res.aborted = true
-      })
-      /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
-      const query = querystring.parse(req.getQuery())
-      const docs = await this.history.get(query)
-      const result = {
-        count: docs.length,
-        dateFrom: format(parseISO(query.dateFrom), 'yyyy-MM-dd HH:mm'),
-        dateTo: format(parseISO(query.dateTo), 'yyyy-MM-dd HH:mm'),
-        // dateFrom: format(utcToZonedTime(parseISO(query.dateFrom), 'UTC'), 'yyyy-MM-dd HH:mm', {
-        //   timeZone: 'UTC'
-        // }),
-        // dateTo: format(utcToZonedTime(parseISO(query.dateTo), 'UTC'), 'yyyy-MM-dd HH:mm', {
-        //   timeZone: 'UTC'
-        // }),
-        query: docs
-      }
-      sendJson(res, result) // docs)
-    })
-    this.app.get(prefix + '/history/:id', async (res, req) => {
-      this.log(req)
-      res.onAborted(() => {
-        res.aborted = true
-      })
-      const docs = await this.history.getLog(req.getParameter(0))
-      sendJson(res, docs)
-    })
-  }
+  // history_ (def, obj, prefix) {
+  //   this.app.get(prefix + '/history', async (res, req) => {
+  //     this.log(req)
+  //     res.onAborted(() => {
+  //       res.aborted = true
+  //     })
+  //     /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
+  //     const query = querystring.parse(req.getQuery())
+  //     const docs = await this.history.get(query)
+  //     const result = {
+  //       count: docs.length,
+  //       dateFrom: format(parseISO(query.dateFrom), 'yyyy-MM-dd HH:mm'),
+  //       dateTo: format(parseISO(query.dateTo), 'yyyy-MM-dd HH:mm'),
+  //       // dateFrom: format(utcToZonedTime(parseISO(query.dateFrom), 'UTC'), 'yyyy-MM-dd HH:mm', {
+  //       //   timeZone: 'UTC'
+  //       // }),
+  //       // dateTo: format(utcToZonedTime(parseISO(query.dateTo), 'UTC'), 'yyyy-MM-dd HH:mm', {
+  //       //   timeZone: 'UTC'
+  //       // }),
+  //       query: docs
+  //     }
+  //     sendJson(res, result) // docs)
+  //   })
+  //   this.app.get(prefix + '/history/:id', async (res, req) => {
+  //     this.log(req)
+  //     res.onAborted(() => {
+  //       res.aborted = true
+  //     })
+  //     const docs = await this.history.getLog(req.getParameter(0))
+  //     sendJson(res, docs)
+  //   })
+  // }
 
   map_ (def, obj, prefix) {
     this.app.get(prefix + '/map', (res, req) => {
@@ -243,277 +243,277 @@ class Router {
     this.app.ws(prefix + '/map', { open: ws => ws.subscribe('aps/map') })
   }
 
-  mailingList_ (def, obj, prefix) {
-    this.app.get(prefix + '/mailingList', async (res, req) => {
-      this.log(req)
-      res.onAborted(() => {
-        res.aborted = true
-      })
-      const docs = await this.mailingList.get()
-      sendJson(res, docs)
-    })
-    this.app.post(prefix + '/mailingList/add', (res, req) => {
-      this.log(req)
-      readJson(
-        res,
-        async json => {
-          // console.log(json)
-          const result = await this.mailingList.insertListItem(json)
-          sendJson(res, result)
-        },
-        () => {
-          sendJson(res, {
-            type: 'error',
-            info: 'Invalid JSON!'
-          })
-        }
-      )
-    })
-    this.app.post(prefix + '/mailingList/remove', (res, req) => {
-      this.log(req)
-      readJson(
-        res,
-        async json => {
-          // console.log(json)
-          const result = await this.mailingList.deleteListItem(json)
-          sendJson(res, result)
-        },
-        () => {
-          sendJson(res, {
-            type: 'error',
-            info: 'Invalid JSON!'
-          })
-        }
-      )
-    })
-  }
+  // mailingList_ (def, obj, prefix) {
+  //   this.app.get(prefix + '/mailingList', async (res, req) => {
+  //     this.log(req)
+  //     res.onAborted(() => {
+  //       res.aborted = true
+  //     })
+  //     const docs = await this.mailingList.get()
+  //     sendJson(res, docs)
+  //   })
+  //   this.app.post(prefix + '/mailingList/add', (res, req) => {
+  //     this.log(req)
+  //     readJson(
+  //       res,
+  //       async json => {
+  //         // console.log(json)
+  //         const result = await this.mailingList.insertListItem(json)
+  //         sendJson(res, result)
+  //       },
+  //       () => {
+  //         sendJson(res, {
+  //           type: 'error',
+  //           info: 'Invalid JSON!'
+  //         })
+  //       }
+  //     )
+  //   })
+  //   this.app.post(prefix + '/mailingList/remove', (res, req) => {
+  //     this.log(req)
+  //     readJson(
+  //       res,
+  //       async json => {
+  //         // console.log(json)
+  //         const result = await this.mailingList.deleteListItem(json)
+  //         sendJson(res, result)
+  //       },
+  //       () => {
+  //         sendJson(res, {
+  //           type: 'error',
+  //           info: 'Invalid JSON!'
+  //         })
+  //       }
+  //     )
+  //   })
+  // }
 
-  operations_ (def, obj, prefix) {
-    this.app.get(prefix + '/statistics', async (res, req) => {
-      this.log(req)
-      res.onAborted(() => {
-        res.aborted = true
-      })
-      /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
-      const query = querystring.parse(req.getQuery())
-      const devices = await this.history.getDevices(query, obj.devices)
-      const operations = await this.history.getOperations(query)
-      sendJson(res, { devices, operations })
-    })
-  }
+  // operations_ (def, obj, prefix) {
+  //   this.app.get(prefix + '/statistics', async (res, req) => {
+  //     this.log(req)
+  //     res.onAborted(() => {
+  //       res.aborted = true
+  //     })
+  //     /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
+  //     const query = querystring.parse(req.getQuery())
+  //     const devices = await this.history.getDevices(query, obj.devices)
+  //     const operations = await this.history.getOperations(query)
+  //     sendJson(res, { devices, operations })
+  //   })
+  // }
 
-  overview (def, obj, prefix) {
-    this.app.get(prefix + '/overview', (res, req) => {
-      this.log(req)
-      sendJson(res, obj.overview)
-    })
-    this.app.post(prefix + '/operation/entry', (res, req) => {
-      this.log(req)
-      const authorization = req.getHeader('authorization')
-      readJson(
-        res,
-        async json => {
-          checkAuth(res, authorization, async (err, user) => {
-            if (err) {
-              res.writeStatus(err.statusCode.toString()).end(err.message)
-            } else {
-              const card = parseInt(json.card)
-              if (!Number.isInteger(card)) {
-                return sendJson(
-                  res,
-                  new Message('warning', 'Parameters not valid')
-                )
-              }
-              const minCard = def.MIN_CARD !== undefined ? def.MIN_CARD : 1
-              const maxCard = def.MAX_CARD !== undefined ? def.MAX_CARD : def.CARDS
-              if (card < minCard || card > maxCard) {
-                return sendJson(res, new Message('warning', 'Card not valid'))
-              }
-              if (obj.stalls.some(stall => stall.status === card)) {
-                return sendJson(res, new Message('warning', 'Card in use'))
-              }
-              const { area, dbNumber, start, amount, wordLen } = json.writeArea
-              const buffer = Buffer.allocUnsafe(amount)
-              buffer.writeUInt16BE(card, 0)
-              // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, buffer)
-              const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
-              sendJson(
-                res,
-                new Message(
-                  response ? 'success' : 'error',
-                  response ? 'Sent request for card ' + card : 'Write error!'
-                )
-              )
-            }
-          })
-        },
-        () => sendJson(res, new Message('error', 'Invalid JSON'))
-      )
-    })
-    this.app.post(prefix + '/operation/exit', (res, req) => {
-      this.log(req)
-      const authorization = req.getHeader('authorization')
-      readJson(
-        res,
-        async json => {
-          checkAuth(res, authorization, async (err, user) => {
-            if (err) {
-              res.writeStatus(err.statusCode.toString()).end(err.message)
-            } else {
-              const card = parseInt(json.card)
-              if (!Number.isInteger(card)) {
-                return sendJson(
-                  res,
-                  new Message('warning', 'Parameters not valid')
-                )
-              }
-              const minCard = def.MIN_CARD !== undefined ? def.MIN_CARD : 1
-              const maxCard = def.MAX_CARD !== undefined ? def.MAX_CARD : def.CARDS
-              if (card < minCard || card > maxCard) {
-                return sendJson(res, new Message('warning', 'Card not valid'))
-              }
-              if (!obj.stalls.some(stall => stall.status === card)) {
-                return sendJson(res, new Message('warning', 'Card not found'))
-              }
-              const { area, dbNumber, start, amount, wordLen } = json.writeArea
-              const buffer = Buffer.allocUnsafe(amount)
-              buffer.writeUInt16BE(card, 0)
-              // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, buffer)
-              const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
-              sendJson(
-                res,
-                new Message(
-                  response ? 'success' : 'error',
-                  response ? 'Sent request for card ' + card : 'Write error!'
-                )
-              )
-            }
-          })
-        },
-        () => sendJson(res, new Message('error', 'Invalid JSON'))
-      )
-    })
-    this.app.post(prefix + '/operation/rollback', (res, req) => {
-      this.log(req)
-      readJson(
-        res,
-        async json => {
-          const { buffer, writeArea } = json
-          // console.log(typeof buffer, buffer, writeArea)
-          const { area, dbNumber, start, amount, wordLen } = writeArea
-          // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, Buffer.from(buffer))
-          const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, Buffer.from(buffer))
-          sendJson(
-            res,
-            new Message(
-              response ? 'success' : 'error',
-              response ? 'Written' : 'Write error!'
-            )
-          )
-        },
-        () => sendJson(res, new Message('error', 'Invalid JSON'))
-      )
-    })
-    this.app.get(prefix + '/operation/pp', async (res, req) => {
-      this.log(req)
-      res.onAborted(() => {
-        res.aborted = true
-      })
-      /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
-      const { device, key, value } = querystring.parse(req.getQuery())
-      const buffer = Buffer.allocUnsafe(4)
-      buffer.writeUInt16BE(value, 0)
-      buffer.writeUInt8(parseInt(key, 16), 2)
-      buffer.writeUInt8(device, 3)
-      const { area, dbNumber, start, amount, wordLen } = def.REQ_PP
-      const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
-      console.log(buffer, response)
-      sendJson(res, { device, key, value })
-    })
-    this.app.post(prefix + '/operation/pp', async (res, req) => {
-      this.log(req)
-      const authorization = req.getHeader('authorization')
-      readJson(
-        res,
-        async json => {
-          checkAuth(res, authorization, async (err, user) => {
-            if (err) {
-              res.writeStatus(err.statusCode.toString()).end(err.message)
-            } else {
-              const { device, key, value } = json
-              const buffer = Buffer.allocUnsafe(4)
-              buffer.writeUInt16BE(value, 0)
-              buffer.writeUInt8(parseInt(key, 16), 2)
-              buffer.writeUInt8(device, 3)
-              const { area, dbNumber, start, amount, wordLen } = def.REQ_PP
-              const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
-              // console.log(buffer, response)
-              sendJson(
-                res,
-                new Message(
-                  response ? 'success' : 'error',
-                  response ? `Sent PP request ${value} + ${key}` : 'Write error!'
-                )
-              )
-            }
-          })
-        },
-        () => sendJson(res, new Message('error', 'Invalid JSON'))
-      )
-    })
-    this.app.post(prefix + '/queue/delete', (res, req) => {
-      this.log(req)
-      const authorization = req.getHeader('authorization')
-      readJson(
-        res,
-        async json => {
-          checkAuth(res, authorization, async (err, user) => {
-            if (err) {
-              res.writeStatus(err.statusCode.toString()).end(err.message)
-            } else {
-              const { card, index } = json
-              const buffer = Buffer.alloc(def.QUEUE_DELETE.amount).fill(0)
-              buffer.writeUInt16BE(index, 0)
-              buffer.writeUInt16BE(card, 2)
-              const { area, dbNumber, start, amount, wordLen } = def.QUEUE_DELETE
-              // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, buffer)
-              const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
-              sendJson(
-                res,
-                new Message(
-                  response ? 'success' : 'error',
-                  response ? 'Deleted card ' + card : 'Write error!'
-                )
-              )
-            }
-          })
-        },
-        () => sendJson(res, new Message('error', 'Invalid JSON'))
-      )
-    })
-    this.app.ws(prefix + '/overview', { open: ws => ws.subscribe('aps/overview') })
-  }
+  // overview (def, obj, prefix) {
+  //   this.app.get(prefix + '/overview', (res, req) => {
+  //     this.log(req)
+  //     sendJson(res, obj.overview)
+  //   })
+  //   this.app.post(prefix + '/operation/entry', (res, req) => {
+  //     this.log(req)
+  //     const authorization = req.getHeader('authorization')
+  //     readJson(
+  //       res,
+  //       async json => {
+  //         checkAuth(res, authorization, async (err, user) => {
+  //           if (err) {
+  //             res.writeStatus(err.statusCode.toString()).end(err.message)
+  //           } else {
+  //             const card = parseInt(json.card)
+  //             if (!Number.isInteger(card)) {
+  //               return sendJson(
+  //                 res,
+  //                 new Message('warning', 'Parameters not valid')
+  //               )
+  //             }
+  //             const minCard = def.MIN_CARD !== undefined ? def.MIN_CARD : 1
+  //             const maxCard = def.MAX_CARD !== undefined ? def.MAX_CARD : def.CARDS
+  //             if (card < minCard || card > maxCard) {
+  //               return sendJson(res, new Message('warning', 'Card not valid'))
+  //             }
+  //             if (obj.stalls.some(stall => stall.status === card)) {
+  //               return sendJson(res, new Message('warning', 'Card in use'))
+  //             }
+  //             const { area, dbNumber, start, amount, wordLen } = json.writeArea
+  //             const buffer = Buffer.allocUnsafe(amount)
+  //             buffer.writeUInt16BE(card, 0)
+  //             // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, buffer)
+  //             const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
+  //             sendJson(
+  //               res,
+  //               new Message(
+  //                 response ? 'success' : 'error',
+  //                 response ? 'Sent request for card ' + card : 'Write error!'
+  //               )
+  //             )
+  //           }
+  //         })
+  //       },
+  //       () => sendJson(res, new Message('error', 'Invalid JSON'))
+  //     )
+  //   })
+  //   this.app.post(prefix + '/operation/exit', (res, req) => {
+  //     this.log(req)
+  //     const authorization = req.getHeader('authorization')
+  //     readJson(
+  //       res,
+  //       async json => {
+  //         checkAuth(res, authorization, async (err, user) => {
+  //           if (err) {
+  //             res.writeStatus(err.statusCode.toString()).end(err.message)
+  //           } else {
+  //             const card = parseInt(json.card)
+  //             if (!Number.isInteger(card)) {
+  //               return sendJson(
+  //                 res,
+  //                 new Message('warning', 'Parameters not valid')
+  //               )
+  //             }
+  //             const minCard = def.MIN_CARD !== undefined ? def.MIN_CARD : 1
+  //             const maxCard = def.MAX_CARD !== undefined ? def.MAX_CARD : def.CARDS
+  //             if (card < minCard || card > maxCard) {
+  //               return sendJson(res, new Message('warning', 'Card not valid'))
+  //             }
+  //             if (!obj.stalls.some(stall => stall.status === card)) {
+  //               return sendJson(res, new Message('warning', 'Card not found'))
+  //             }
+  //             const { area, dbNumber, start, amount, wordLen } = json.writeArea
+  //             const buffer = Buffer.allocUnsafe(amount)
+  //             buffer.writeUInt16BE(card, 0)
+  //             // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, buffer)
+  //             const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
+  //             sendJson(
+  //               res,
+  //               new Message(
+  //                 response ? 'success' : 'error',
+  //                 response ? 'Sent request for card ' + card : 'Write error!'
+  //               )
+  //             )
+  //           }
+  //         })
+  //       },
+  //       () => sendJson(res, new Message('error', 'Invalid JSON'))
+  //     )
+  //   })
+  //   this.app.post(prefix + '/operation/rollback', (res, req) => {
+  //     this.log(req)
+  //     readJson(
+  //       res,
+  //       async json => {
+  //         const { buffer, writeArea } = json
+  //         // console.log(typeof buffer, buffer, writeArea)
+  //         const { area, dbNumber, start, amount, wordLen } = writeArea
+  //         // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, Buffer.from(buffer))
+  //         const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, Buffer.from(buffer))
+  //         sendJson(
+  //           res,
+  //           new Message(
+  //             response ? 'success' : 'error',
+  //             response ? 'Written' : 'Write error!'
+  //           )
+  //         )
+  //       },
+  //       () => sendJson(res, new Message('error', 'Invalid JSON'))
+  //     )
+  //   })
+  //   this.app.get(prefix + '/operation/pp', async (res, req) => {
+  //     this.log(req)
+  //     res.onAborted(() => {
+  //       res.aborted = true
+  //     })
+  //     /* Awaiting will yield and effectively return to C++, so you need to have called onAborted */
+  //     const { device, key, value } = querystring.parse(req.getQuery())
+  //     const buffer = Buffer.allocUnsafe(4)
+  //     buffer.writeUInt16BE(value, 0)
+  //     buffer.writeUInt8(parseInt(key, 16), 2)
+  //     buffer.writeUInt8(device, 3)
+  //     const { area, dbNumber, start, amount, wordLen } = def.REQ_PP
+  //     const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
+  //     console.log(buffer, response)
+  //     sendJson(res, { device, key, value })
+  //   })
+  //   this.app.post(prefix + '/operation/pp', async (res, req) => {
+  //     this.log(req)
+  //     const authorization = req.getHeader('authorization')
+  //     readJson(
+  //       res,
+  //       async json => {
+  //         checkAuth(res, authorization, async (err, user) => {
+  //           if (err) {
+  //             res.writeStatus(err.statusCode.toString()).end(err.message)
+  //           } else {
+  //             const { device, key, value } = json
+  //             const buffer = Buffer.allocUnsafe(4)
+  //             buffer.writeUInt16BE(value, 0)
+  //             buffer.writeUInt8(parseInt(key, 16), 2)
+  //             buffer.writeUInt8(device, 3)
+  //             const { area, dbNumber, start, amount, wordLen } = def.REQ_PP
+  //             const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
+  //             // console.log(buffer, response)
+  //             sendJson(
+  //               res,
+  //               new Message(
+  //                 response ? 'success' : 'error',
+  //                 response ? `Sent PP request ${value} + ${key}` : 'Write error!'
+  //               )
+  //             )
+  //           }
+  //         })
+  //       },
+  //       () => sendJson(res, new Message('error', 'Invalid JSON'))
+  //     )
+  //   })
+  //   this.app.post(prefix + '/queue/delete', (res, req) => {
+  //     this.log(req)
+  //     const authorization = req.getHeader('authorization')
+  //     readJson(
+  //       res,
+  //       async json => {
+  //         checkAuth(res, authorization, async (err, user) => {
+  //           if (err) {
+  //             res.writeStatus(err.statusCode.toString()).end(err.message)
+  //           } else {
+  //             const { card, index } = json
+  //             const buffer = Buffer.alloc(def.QUEUE_DELETE.amount).fill(0)
+  //             buffer.writeUInt16BE(index, 0)
+  //             buffer.writeUInt16BE(card, 2)
+  //             const { area, dbNumber, start, amount, wordLen } = def.QUEUE_DELETE
+  //             // const response = await this.plc.client.WriteArea(area, dbNumber, start, amount, wordLen, buffer)
+  //             const response = await WriteArea(this.plc.client, area, dbNumber, start, amount, wordLen, buffer)
+  //             sendJson(
+  //               res,
+  //               new Message(
+  //                 response ? 'success' : 'error',
+  //                 response ? 'Deleted card ' + card : 'Write error!'
+  //               )
+  //             )
+  //           }
+  //         })
+  //       },
+  //       () => sendJson(res, new Message('error', 'Invalid JSON'))
+  //     )
+  //   })
+  //   this.app.ws(prefix + '/overview', { open: ws => ws.subscribe('aps/overview') })
+  // }
 
-  racks (def, obj, prefix) {
-    this.app.get(prefix + '/racks', (res, req) => {
-      this.log(req)
-      // sendJson(res, obj.racks)
-      sendJson(res, obj.racks.map(({ rack, ...rest }) => {
-        return rack ? { ...rest, rack: { nr: rack.nr } } : rest
-      }))
-    })
-    this.app.get(prefix + '/racks/:id', (res, req) => {
-      this.log(req)
-      sendJson(res, obj.racks[req.getParameter(0)]?.rack)
-    })
-    obj.racks.forEach((e, index) =>
-      this.app.ws(prefix + '/racks/' + index, {
-        open: ws => {
-          ws.subscribe('aps/racks/' + index)
-        }
-      })
-    )
-  }
+  // racks (def, obj, prefix) {
+  //   this.app.get(prefix + '/racks', (res, req) => {
+  //     this.log(req)
+  //     // sendJson(res, obj.racks)
+  //     sendJson(res, obj.racks.map(({ rack, ...rest }) => {
+  //       return rack ? { ...rest, rack: { nr: rack.nr } } : rest
+  //     }))
+  //   })
+  //   this.app.get(prefix + '/racks/:id', (res, req) => {
+  //     this.log(req)
+  //     sendJson(res, obj.racks[req.getParameter(0)]?.rack)
+  //   })
+  //   obj.racks.forEach((e, index) =>
+  //     this.app.ws(prefix + '/racks/' + index, {
+  //       open: ws => {
+  //         ws.subscribe('aps/racks/' + index)
+  //       }
+  //     })
+  //   )
+  // }
 
   run (def, obj) {
     const prefix = '/aps/' + def.APS
