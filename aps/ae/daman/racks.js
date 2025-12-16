@@ -19,7 +19,7 @@ const str = [
   { addr: 'E19.6', label: '' },
   { addr: 'E19.7', label: '' }
 ]
-const dummy = generateBits('E', 19, 19, str)
+const dummy = generateBits('E', 3, 3, str)
 
 const PN = []
 
@@ -35,8 +35,8 @@ for (let i = 1; i <= 5; i++) {
     cards: [
       new S7_521_1BH00_0AB0(1, [eb[2 + offsetEB], dummy]),
       new S7_523_1BL00_0AA0(2, eb.slice(0 + offsetEB, 2 + offsetEB).concat(ab.slice(0 + offsetAB, 2 + offsetAB))), // 16 DI + 16 DO
-      new S7_521_1BL00_0AB0(3, eb.slice(3 + offsetEB, 7 + offsetEB)),
-      new S7_521_1BL00_0AB0(4, eb.slice(7 + offsetEB, 11 + offsetEB)),
+      new S7_521_1BL00_0AB0(3, eb.slice(4 + offsetEB, 8 + offsetEB)),
+      new S7_521_1BL00_0AB0(4, eb.slice(8 + offsetEB, 12 + offsetEB)),
       new S7_522_1BL01_0AB0(5, ab.slice(2 + offsetAB, 6 + offsetAB)),
       new S7_522_1BH01_0AB0(6, ab.slice(6 + offsetAB, 8 + offsetAB))
     ]
@@ -46,7 +46,7 @@ for (let i = 1; i <= 5; i++) {
   const pn = new Pn('EL' + i, i, inputs.find(b => b.addr === 'E' + (offsetEB + 6).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
   pn.rack = rack
   PN.push(pn)
-  offsetEB += 11
+  offsetEB += 12
   offsetAB += 8
 }
 
@@ -60,9 +60,9 @@ for (let i = 1; i <= 14; i++) {
   const rack = {
     nr: i + 5,
     cards: [
-      new S7_521_1BH00_0AB0(1, [eb[57 + offsetEB], dummy]),
-      new S7_523_1BL00_0AA0(2, eb.slice(55 + offsetEB, 57 + offsetEB).concat(ab.slice(40 + offsetAB, 42 + offsetAB))), // 16 DI + 16 DO
-      new S7_523_1BL00_0AA0(3, eb.slice(58 + offsetEB, 60 + offsetEB).concat(ab.slice(42 + offsetAB, 44 + offsetAB))) // 16 DI + 16 DO
+      new S7_521_1BH00_0AB0(1, [eb[62 + offsetEB], dummy]),
+      new S7_523_1BL00_0AA0(2, eb.slice(60 + offsetEB, 62 + offsetEB).concat(ab.slice(40 + offsetAB, 42 + offsetAB))), // 16 DI + 16 DO
+      new S7_523_1BL00_0AA0(3, eb.slice(64 + offsetEB, 66 + offsetEB).concat(ab.slice(42 + offsetAB, 44 + offsetAB))) // 16 DI + 16 DO
     ]
   }
   SH.push(rack)
@@ -70,7 +70,7 @@ for (let i = 1; i <= 14; i++) {
   const pn = new Pn('SH' + i, i + 5, inputs.find(b => b.addr === 'E' + (offsetEB + 56).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
   pn.rack = rack
   PN.push(pn)
-  offsetEB += 5
+  offsetEB += 6
   offsetAB += 4
 }
 
