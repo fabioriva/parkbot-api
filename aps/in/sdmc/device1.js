@@ -131,7 +131,7 @@ const drives = [IV1]
 
 const motors = [M1, M2, M3, M4, M5, M6]
 
-const main = new Main(drives, [M1, M3, M4, M2, M5, M6])
+const main = new Main(drives, [M1, M2, M3, M4, M5, M6])
 
 // const garage = new Garage(
 //   [],

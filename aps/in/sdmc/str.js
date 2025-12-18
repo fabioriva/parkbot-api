@@ -157,9 +157,9 @@ export const inputs3 = [
   { addr: 'E506.7', label: 'FTA35' },
   { addr: 'E507.0', label: 'SPR1' },
   { addr: 'E507.1', label: 'SPR2' },
-  { addr: 'E507.2', label: '' },
-  { addr: 'E507.3', label: '' },
-  { addr: 'E507.4', label: '' },
+  { addr: 'E507.2', label: 'FBBE' },
+  { addr: 'E507.3', label: 'EBOE' },
+  { addr: 'E507.4', label: 'EBZE' },
   { addr: 'E507.5', label: '' },
   { addr: 'E507.6', label: '' },
   { addr: 'E507.7', label: '' }
