@@ -12,8 +12,8 @@ const rack1 = {
   cards: [
     new S7_521_1BL00_0AB0(1, eb.slice(0, 4)),
     new S7_521_1BL00_0AB0(2, eb.slice(4, 8)),
-    new S7_522_1BL01_0AB0(4, ab.slice(0, 4)),
-    new S7_522_1BL01_0AB0(5, ab.slice(4, 8))
+    new S7_522_1BL01_0AB0(3, ab.slice(0, 4)),
+    new S7_522_1BL01_0AB0(4, ab.slice(4, 8))
   ]
 }
 
@@ -30,8 +30,8 @@ const rack3 = {
   cards: [
     new S7_131_6BH01_0BA0(1, eb.slice(10, 12)),
     new S7_131_6BH01_0BA0(2, eb.slice(12, 14)),
-    new S7_132_6BH01_0BA0(4, ab.slice(10, 12)),
-    new S7_132_6BH01_0BA0(5, ab.slice(12, 14))
+    new S7_132_6BH01_0BA0(3, ab.slice(10, 12)),
+    new S7_132_6BH01_0BA0(4, ab.slice(12, 14))
   ]
 }
 
