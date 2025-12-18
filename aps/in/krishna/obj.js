@@ -69,8 +69,8 @@ export const map = {
       nr: 2,
       label: '1st basement (P2)',
       min: 13,
-      max: 25,
-      stalls: stalls.slice(12, 25),
+      max: 26,
+      stalls: stalls.slice(12, 26),
       elevators: [
         { id: 'el', label: 'EL' }
       ]
@@ -80,7 +80,7 @@ export const map = {
       label: '1st floor (P3)',
       min: 27,
       max: 28,
-      stalls: stalls.slice(25, 28),
+      stalls: stalls.slice(26, 28),
       elevators: [
         { id: 'el', label: 'EL' }
       ]
