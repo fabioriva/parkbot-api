@@ -91,9 +91,9 @@ export const inputs2 = [
   { addr: 'E106.7', label: 'FTA35' },
   { addr: 'E107.0', label: 'SPR1' },
   { addr: 'E107.1', label: 'SPR2' },
-  { addr: 'E107.2', label: '' },
-  { addr: 'E107.3', label: '' },
-  { addr: 'E107.4', label: '' },
+  { addr: 'E107.2', label: 'FBBE' },
+  { addr: 'E107.3', label: 'EBOE' },
+  { addr: 'E107.4', label: 'EBZE' },
   { addr: 'E107.5', label: '' },
   { addr: 'E107.6', label: '' },
   { addr: 'E107.7', label: '' }
