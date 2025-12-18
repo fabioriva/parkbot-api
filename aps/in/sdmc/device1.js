@@ -133,13 +133,13 @@ const motors = [M1, M2, M3, M4, M5, M6]
 
 const main = new Main(drives, [M1, M3, M4, M2, M5, M6])
 
-const garage = new Garage(
-  [],
-  [M3, M4, M5, M6],
-  [/* L1, L2, L3, L4, L5 */],
-  [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FRE1, FRE2, FLP2, FDL2, FDR2]
-)
-const views = [main, garage]
+// const garage = new Garage(
+//   [],
+//   [M3, M4, M5, M6],
+//   [/* L1, L2, L3, L4, L5 */],
+//   [FRE1, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FRE1, FRE2, FLP2, FDL2, FDR2]
+// )
+const views = [main] //, garage]
 
 const device = new Device(1, 'EL1', [], lamps, motors, views)
 
