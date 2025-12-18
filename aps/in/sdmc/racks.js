@@ -48,7 +48,7 @@ offsetEB = 0
 offsetAB = 0
 for (let i = 1; i <= 7; i++) {
   const rack = {
-    nr: i + 5,
+    nr: i + 6,
     cards: [
       new S7_131_6BH01_0BA0(1, eb.slice(44 + offsetEB, 46 + offsetEB)),
       new S7_131_6BH01_0BA0(2, eb.slice(46 + offsetEB, 48 + offsetEB)),
