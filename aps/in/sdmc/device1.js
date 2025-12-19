@@ -56,7 +56,7 @@ const M2 = new Lock(
  * Flap
  */
 const ECA = inputs.find(b => b.addr === 'E103.2')
-const ECB = inputs.find(b => b.addr === 'E103.2')
+const ECB = inputs.find(b => b.addr === 'E103.3')
 const AMC = inputs.find(b => b.addr === 'E102.3')
 const SCA = outputs.find(b => b.addr === 'A102.2')
 const SCB = outputs.find(b => b.addr === 'A102.3')
