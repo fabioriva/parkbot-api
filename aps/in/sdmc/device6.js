@@ -8,8 +8,8 @@ import { Main, Silomat } from '../../../models/View.js'
 const EN1 = inputs.find(b => b.addr === 'E604.0')
 const IV1 = new Drive(1, 'IV1', EN1)
 
-const LH1 = new Position(1, 'LH1')
-const LH2 = new Position(2, 'LH2')
+const LH1 = new Position(11, 'LH1')
+const LH2 = new Position(12, 'LH2')
 const positions = [LH1, LH2]
 
 const lamps = [
