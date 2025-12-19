@@ -185,7 +185,7 @@ export const inputs4 = [
   { addr: 'E602.1', label: 'MTC' },
   { addr: 'E602.2', label: 'FTCR' },
   { addr: 'E602.3', label: 'DB32' },
-  { addr: 'E602.4', label: 'DBHZ' }2,
+  { addr: 'E602.4', label: 'DBHZ' },
   { addr: 'E602.5', label: 'RS12' },
   { addr: 'E602.6', label: 'TJ1' },
   { addr: 'E602.7', label: 'FE' },
