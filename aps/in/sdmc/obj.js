@@ -122,7 +122,8 @@ export const map = {
         { id: 'el-1', label: 'EL1' },
         { id: 'el-2', label: 'EL2' },
         { id: 'el-3', label: 'EL3' },
-        { id: 'el-4', label: 'EL4' }
+        { id: 'el-4', label: 'EL4' },
+        { id: 'el-5', label: 'EL5' }
       ]
     },
     {
@@ -135,7 +136,8 @@ export const map = {
         { id: 'el-1', label: 'EL1' },
         { id: 'el-2', label: 'EL2' },
         { id: 'el-3', label: 'EL3' },
-        { id: 'el-4', label: 'EL4' }
+        { id: 'el-4', label: 'EL4' },
+        { id: 'el-5', label: 'EL5' }
       ]
     },
     {
@@ -148,7 +150,8 @@ export const map = {
         { id: 'el-1', label: 'EL1' },
         { id: 'el-2', label: 'EL2' },
         { id: 'el-3', label: 'EL3' },
-        { id: 'el-4', label: 'EL4' }
+        { id: 'el-4', label: 'EL4' },
+        { id: 'el-5', label: 'EL5' }
       ]
     },
     {
@@ -161,7 +164,8 @@ export const map = {
         { id: 'el-1', label: 'EL1' },
         { id: 'el-2', label: 'EL2' },
         { id: 'el-3', label: 'EL3' },
-        { id: 'el-4', label: 'EL4' }
+        { id: 'el-4', label: 'EL4' },
+        { id: 'el-5', label: 'EL5' }
       ]
     },
     {
@@ -174,7 +178,8 @@ export const map = {
         { id: 'el-1', label: 'EL1' },
         { id: 'el-2', label: 'EL2' },
         { id: 'el-3', label: 'EL3' },
-        { id: 'el-4', label: 'EL4' }
+        { id: 'el-4', label: 'EL4' },
+        { id: 'el-5', label: 'EL5' }
       ]
     },
     {
@@ -187,7 +192,8 @@ export const map = {
         { id: 'el-1', label: 'EL1' },
         { id: 'el-2', label: 'EL2' },
         { id: 'el-3', label: 'EL3' },
-        { id: 'el-4', label: 'EL4' }
+        { id: 'el-4', label: 'EL4' },
+        { id: 'el-5', label: 'EL5' }
       ]
     },
     {
@@ -200,7 +206,8 @@ export const map = {
         { id: 'el-1', label: 'EL1' },
         { id: 'el-2', label: 'EL2' },
         { id: 'el-3', label: 'EL3' },
-        { id: 'el-4', label: 'EL4' }
+        { id: 'el-4', label: 'EL4' },
+        { id: 'el-5', label: 'EL5' }
       ]
     }
   ],
