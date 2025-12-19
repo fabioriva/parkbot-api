@@ -3,7 +3,7 @@ import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
 import { Barrier, Door, Flap, Lock, Hoisting } from '../../../models/Motor.js'
 import { Position } from '../../../models/Position.js'
-import { Main, Garage } from '../../../models/View.js'
+import { Main/*, Garage */ } from '../../../models/View.js'
 
 const LV1 = new Position(1, 'LV1')
 const LV2 = new Position(2, 'LV2')
@@ -112,20 +112,18 @@ const M6 = new Barrier(0, [EBZE, EBOE, FBBE], [SBZE, SBOE])
 // const L4 = outputs.find(b => b.addr === 'A102.3')
 // const L5 = outputs.find(b => b.addr === 'A102.4')
 
-const FDL = inputs.find(b => b.addr === 'E104.7')
-const FDR = inputs.find(b => b.addr === 'E104.6')
-const FDL2 = inputs.find(b => b.addr === 'E105.1')
-const FDR2 = inputs.find(b => b.addr === 'E105.0')
-const FLA = inputs.find(b => b.addr === 'E105.2')
-const FLP = inputs.find(b => b.addr === 'E105.3')
-const FLP2 = inputs.find(b => b.addr === 'E106.3')
-// const FLP3 = inputs.find(b => b.addr === 'E109.0')
-const FPE = inputs.find(b => b.addr === 'E104.5')
-const FRE1 = inputs.find(b => b.addr === 'E104.0')
-const FRE2 = inputs.find(b => b.addr === 'E104.1')
-const FTA1 = inputs.find(b => b.addr === 'E105.4')
-const FTA2 = inputs.find(b => b.addr === 'E105.5')
-// const FTA3 = inputs.find(b => b.addr === 'E108.7')
+// const FDL = inputs.find(b => b.addr === 'E104.7')
+// const FDR = inputs.find(b => b.addr === 'E104.6')
+// const FDL2 = inputs.find(b => b.addr === 'E105.1')
+// const FDR2 = inputs.find(b => b.addr === 'E105.0')
+// const FLA = inputs.find(b => b.addr === 'E105.2')
+// const FLP = inputs.find(b => b.addr === 'E105.3')
+// const FLP2 = inputs.find(b => b.addr === 'E106.3')
+// const FPE = inputs.find(b => b.addr === 'E104.5')
+// const FRE1 = inputs.find(b => b.addr === 'E104.0')
+// const FRE2 = inputs.find(b => b.addr === 'E104.1')
+// const FTA1 = inputs.find(b => b.addr === 'E105.4')
+// const FTA2 = inputs.find(b => b.addr === 'E105.5')
 
 const drives = [IV1]
 
