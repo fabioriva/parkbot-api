@@ -496,7 +496,7 @@ export const DEVICES = [
   { id: 9, key: 'SH4' },
   { id: 10, key: 'SH5' },
   { id: 11, key: 'SH6' },
-  { id: 12, key: 'SH7' },
+  { id: 12, key: 'SH7' }
 ]
 export const MODES = [
   { id: 0, key: 'mode-no' },
