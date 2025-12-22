@@ -14,8 +14,8 @@ const positions = [LH1, LH2]
 
 const lamps = [
   inputs.find(b => b.addr === 'E802.5'),
-  outputs.find(b => b.addr === 'A801.1'),
-  outputs.find(b => b.addr === 'A801.0')
+  outputs.find(b => b.addr === 'A801.0'),
+  outputs.find(b => b.addr === 'A801.1')
 ]
 
 const AH = inputs.find(b => b.addr === 'E802.0')
