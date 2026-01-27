@@ -5,8 +5,8 @@ import { Traveling } from '../../../models/Motor.js'
 import { Position } from '../../../models/Position.js'
 import { Main, Silomat } from '../../../models/View.js'
 
-let EB = 55
-let AB = 40
+let EB = 60
+let AB = 50
 
 const devices_ = []
 const drives_ = []
@@ -18,8 +18,8 @@ for (let i = 1; i <= 14; i++) {
 
   const lamps = [
     inputs.find(b => b.addr === 'E' + (EB + 1).toString() + '.3'),
-    outputs.find(b => b.addr === 'A' + (AB + 2).toString() + '.7'),
-    outputs.find(b => b.addr === 'A' + (AB + 2).toString() + '.6'),
+    outputs.find(b => b.addr === 'A' + (AB + 4).toString() + '.7'),
+    outputs.find(b => b.addr === 'A' + (AB + 4).toString() + '.6'),
     inputs.find(b => b.addr === 'E' + (EB + 2).toString() + '.3') // REH
   ]
 
@@ -29,9 +29,9 @@ for (let i = 1; i <= 14; i++) {
   // const FEMV = inputs.find(b => b.addr === 'E' + (EB + 1).toString() + '.4')
   // const FEMH = inputs.find(b => b.addr === 'E' + (EB + 1).toString() + '.5')
   // const LC = [FEMV, FEMH]
-  const AH = inputs.find(b => b.addr === 'E' + (EB + 3).toString() + '.6')
-  const T10 = outputs.find(b => b.addr === 'A' + (AB + 3).toString() + '.0')
-  const KBA = outputs.find(b => b.addr === 'A' + (AB + 2).toString() + '.3')
+  const AH = inputs.find(b => b.addr === 'E' + (EB + 4).toString() + '.6')
+  const T10 = outputs.find(b => b.addr === 'A' + (AB + 5).toString() + '.0')
+  const KBA = outputs.find(b => b.addr === 'A' + (AB + 4).toString() + '.3')
 
   const M1 = new Traveling(
     0,
@@ -53,15 +53,15 @@ for (let i = 1; i <= 14; i++) {
   const REAV = inputs.find(b => b.addr === 'E' + (EB + 2).toString() + '.5')
   const REAH = inputs.find(b => b.addr === 'E' + (EB + 2).toString() + '.6')
   const RCH = inputs.find(b => b.addr === 'E' + (EB + 2).toString() + '.7')
-  const T2 = outputs.find(b => b.addr === 'A' + (AB + 3).toString() + '.1')
-  const TRA = outputs.find(b => b.addr === 'A' + (AB + 3).toString() + '.2')
-  const TRB = outputs.find(b => b.addr === 'A' + (AB + 3).toString() + '.3')
-  const KCS = outputs.find(b => b.addr === 'A' + (AB + 3).toString() + '.4')
-  const KCV = outputs.find(b => b.addr === 'A' + (AB + 3).toString() + '.5')
-  const KCH = outputs.find(b => b.addr === 'A' + (AB + 3).toString() + '.6')
+  const T2 = outputs.find(b => b.addr === 'A' + (AB + 5).toString() + '.1')
+  const TRA = outputs.find(b => b.addr === 'A' + (AB + 5).toString() + '.2')
+  const TRB = outputs.find(b => b.addr === 'A' + (AB + 5).toString() + '.3')
+  const KCS = outputs.find(b => b.addr === 'A' + (AB + 5).toString() + '.4')
+  const KCV = outputs.find(b => b.addr === 'A' + (AB + 5).toString() + '.5')
+  const KCH = outputs.find(b => b.addr === 'A' + (AB + 5).toString() + '.6')
 
-  const AF8 = inputs.find(b => b.addr === 'E' + (EB + 3).toString() + '.7')
-  const MTC = inputs.find(b => b.addr === 'E' + (EB + 3).toString() + '.7')
+  const AF8 = inputs.find(b => b.addr === 'E' + (EB + 4).toString() + '.7')
+  const MTC = inputs.find(b => b.addr === 'E' + (EB + 4).toString() + '.7')
 
   const silomat = new Silomat(
     IV,
@@ -79,8 +79,8 @@ for (let i = 1; i <= 14; i++) {
   motors_.push(M1, ...silomat.motors)
   positions_.push(LH)
 
-  EB += 5
-  AB += 4
+  EB += 6
+  AB += 6
 }
 
 export default { devices_, drives_, positions_ }

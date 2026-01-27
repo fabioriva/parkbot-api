@@ -37,8 +37,8 @@ for (let i = 1; i <= 5; i++) {
       new S7_523_1BL00_0AA0(2, eb.slice(0 + offsetEB, 2 + offsetEB).concat(ab.slice(0 + offsetAB, 2 + offsetAB))), // 16 DI + 16 DO
       new S7_521_1BL00_0AB0(3, eb.slice(4 + offsetEB, 8 + offsetEB)),
       new S7_521_1BL00_0AB0(4, eb.slice(8 + offsetEB, 12 + offsetEB)),
-      new S7_522_1BL01_0AB0(5, ab.slice(2 + offsetAB, 6 + offsetAB)),
-      new S7_522_1BH01_0AB0(6, ab.slice(6 + offsetAB, 8 + offsetAB))
+      new S7_522_1BL01_0AB0(5, ab.slice(4 + offsetAB, 8 + offsetAB)),
+      new S7_522_1BH01_0AB0(6, ab.slice(8 + offsetAB, 10 + offsetAB))
     ]
   }
   EL.push(rack)
@@ -47,7 +47,7 @@ for (let i = 1; i <= 5; i++) {
   pn.rack = rack
   PN.push(pn)
   offsetEB += 12
-  offsetAB += 8
+  offsetAB += 10
 }
 
 // Racks SH
@@ -61,17 +61,17 @@ for (let i = 1; i <= 14; i++) {
     nr: i + 5,
     cards: [
       new S7_521_1BH00_0AB0(1, [eb[62 + offsetEB], dummy]),
-      new S7_523_1BL00_0AA0(2, eb.slice(60 + offsetEB, 62 + offsetEB).concat(ab.slice(40 + offsetAB, 42 + offsetAB))), // 16 DI + 16 DO
-      new S7_523_1BL00_0AA0(3, eb.slice(64 + offsetEB, 66 + offsetEB).concat(ab.slice(42 + offsetAB, 44 + offsetAB))) // 16 DI + 16 DO
+      new S7_523_1BL00_0AA0(2, eb.slice(60 + offsetEB, 62 + offsetEB).concat(ab.slice(50 + offsetAB, 52 + offsetAB))), // 16 DI + 16 DO
+      new S7_523_1BL00_0AA0(3, eb.slice(64 + offsetEB, 66 + offsetEB).concat(ab.slice(54 + offsetAB, 56 + offsetAB))) // 16 DI + 16 DO
     ]
   }
   SH.push(rack)
   // const pn = new Pn('SH' + i, i + 3, merkers.find(b => b.addr === 'M5.0'), 'IM 155-5 PN', { key: 'im', query: {} })
-  const pn = new Pn('SH' + i, i + 5, inputs.find(b => b.addr === 'E' + (offsetEB + 56).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
+  const pn = new Pn('SH' + i, i + 5, inputs.find(b => b.addr === 'E' + (offsetEB + 61).toString() + '.3'), 'IM 155-5 PN', { key: 'im', query: {} })
   pn.rack = rack
   PN.push(pn)
   offsetEB += 6
-  offsetAB += 4
+  offsetAB += 6
 }
 
 export default PN

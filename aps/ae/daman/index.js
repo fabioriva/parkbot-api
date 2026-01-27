@@ -6,10 +6,9 @@ import obj from './obj.js'
 import mongo from '../../../lib/db.js'
 import History from '../../../lib/History.js'
 import MailingList from '../../../lib/MailingList.js'
-// import Plc from '../../../lib/Plc.js'
-import Plc from './Plc.js'
-// import Router from '../../../lib/Router.js'
-import Router from './Router.js'
+import Plc from '../../../lib/Plc.js'
+import PlcW from './PlcW.js'
+import Router from '../../../lib/Router.js'
 import { updateOnLog } from '../../../lib/Log.js'
 
 const main = async () => {
@@ -32,8 +31,10 @@ const main = async () => {
     // const map = new Map(def.PLC)
     // map.on('pub', ({ channel, data }) => app.publish(channel, data))
     // map.run(def, obj)
+    const plcW = new PlcW(def.PLC)
+    plcW.run(def, obj)
     // API routes
-    const router = new Router(app, history, mailingList, plc)
+    const router = new Router(app, history, mailingList, plcW)
     router.run(def, obj)
   } catch (err) {
     console.error(new Error(err))
