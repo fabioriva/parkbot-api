@@ -1,4 +1,4 @@
-export const APS = 'daman'
+export const APS = 'daman-n'
 export const PORT = 49039
 export const HOST =
   process.env.NODE_ENV !== 'production'
