@@ -17,7 +17,7 @@ const main = async () => {
     const db = await mongo(def.APS, str)
     const history = new History(db)
     const mailingList = new MailingList(db)
-    // PLC I/O
+    // PLC read
     const plc = new Plc(def.PLC)
     plc.on('log', async log => {
       updateOnLog(def, log, obj, plc)
@@ -27,10 +27,7 @@ const main = async () => {
     })
     plc.on('pub', ({ channel, data }) => app.publish(channel, data))
     plc.run(def, obj)
-    // PLC Map
-    // const map = new Map(def.PLC)
-    // map.on('pub', ({ channel, data }) => app.publish(channel, data))
-    // map.run(def, obj)
+    // PLC write
     const plcW = new PlcW(def.PLC)
     plcW.run(def, obj)
     // API routes

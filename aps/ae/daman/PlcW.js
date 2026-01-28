@@ -1,17 +1,7 @@
 import { EventEmitter } from 'events'
-// import net from 'net'
 import pino from 'pino'
 import snap7 from 'node-snap7'
-// import { Log, LOG_LEN } from './Log.js'
-// import { ReadArea } from './utils7.js'
-// import { countAlarms, updateAlarms } from '../models/Alarm.js'
-// import { updateBits } from '../models/Bit.js'
-// import { updateCards } from '../models/Card.js'
-// import { updateDevices } from '../models/Device.js'
-// import { updateDrives } from '../models/Drive.js'
-// import { updatePositions } from '../models/Position.js'
-// import { updateQueue } from '../models/Queue.js'
-// import { occupancy, updateStalls } from '../models/Stall.js'
+import { ReadArea } from '../../../lib/utils7.js'
 
 const logger = pino()
 
@@ -28,8 +18,13 @@ class PLC extends EventEmitter {
     isNaN(e) ? logger.error(e) : logger.error(this.client.ErrorText(e))
   }
 
-  async stall (def, obj) {
-    console.log('Stall updated!')
+  async read (def, obj) {
+    try {
+      const { area, dbNumber, start, amount, wordLen } = def.DATA_READ
+      this.online ? await ReadArea(this.client, area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
+    } catch (e) {
+      this.error(e)
+    }
   }
 
   async run (def, obj) {
@@ -45,19 +40,17 @@ class PLC extends EventEmitter {
     setTimeout(() => {
       if (this.online) {
         // logger.info('Connected to PLC %s', this.params.ip)
+        this.read(def, obj)
       } else {
         this.online = this.client.Connect()
         this.online ? logger.info('Connected to PLC %s', this.params.ip) : logger.info('Connecting to PLC %s ...', this.params.ip)
       }
-      // if (this.online_ !== this.online) {
-      //   // this.alarms(def, obj)
-      //   // this.cards(def, obj)
-      //   // this.main(def, obj)
-      //   // this.map(def, obj)
-      //   this.online_ = this.online
-      // }
       this.forever(def, obj)
     }, this.params.polling_time)
+  }
+
+  stall (def, obj) {
+    console.log('Stall updated!')
   }
 }
 

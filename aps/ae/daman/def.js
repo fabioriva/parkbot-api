@@ -44,6 +44,15 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
+// Data log read for PlcW used for connection testing purpose
+export const DATA_LOG_READ = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: 0,
+  amount: 32,
+  wordLen: 0x02
+}
+
 export const PLC_MAP = {
   ip: '192.168.24.2',
   rack: 0,
