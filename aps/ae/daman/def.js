@@ -24,7 +24,7 @@ export const DBS_ALARM = [531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541,
 
 // const CARDS = 557
 // const CARD_LEN = 10
-export const CARDS = 557
+export const CARDS = 999
 export const CARD_LEN = 10
 
 const DB_DATA = 505
