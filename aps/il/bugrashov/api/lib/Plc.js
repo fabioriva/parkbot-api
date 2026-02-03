@@ -73,6 +73,14 @@ class PLC extends EventEmitter {
       ])
       obj.next.bay = buffer.readInt16BE(buffer.length - 4)
       obj.next.message = buffer.readInt16BE(buffer.length - 2)
+      //
+      obj.map.occupancy = {
+        total: 224,
+        available: buffer.readInt16BE(def.DB_DATA_INIT_SCREEN + 0),
+        high: buffer.readInt16BE(def.DB_DATA_INIT_SCREEN + 2),
+        medium: buffer.readInt16BE(def.DB_DATA_INIT_SCREEN + 4),
+        low: buffer.readInt16BE(def.DB_DATA_INIT_SCREEN + 6)
+      }
     } catch (e) {
       this.error(e)
     } finally {
@@ -94,8 +102,8 @@ class PLC extends EventEmitter {
         )
         const stalls = await updateStalls(0, buffer, def.STALL_LEN, obj.stalls)
         // const stalls = await updateStalls(0, buffer, def.STALL_LEN, obj.cards, obj.stalls)
-        const data = occupancy(0, stalls, def.STALL_STATUS)
-        obj.map.occupancy = data
+        // const data = occupancy(0, stalls, def.STALL_STATUS)
+        // obj.map.occupancy = data
         // this.publish('aps/map', obj.map)
       } catch (e) {
         this.error(e)

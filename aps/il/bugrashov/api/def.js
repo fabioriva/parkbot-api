@@ -12,11 +12,12 @@ export const PLC = {
 }
 
 const DB_DATA = 507
-const DB_DATA_LEN = 208
+const DB_DATA_LEN = 216
 export const DB_DATA_INIT_BAY = 32
 export const DB_DATA_INIT_DEVICE = 88
 export const DB_DATA_INIT_QUEUE = 176
 export const DB_DATA_INIT_MB = 196
+export const DB_DATA_INIT_SCREEN = 208
 export const DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,
@@ -55,49 +56,49 @@ export const MAP_READ = {
 export const REQ_0 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 208,
+  start: 216,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_1 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 210,
+  start: 218,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_2 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 212,
+  start: 220,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_3 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 214,
+  start: 222,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_4 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 216,
+  start: 224,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_BAY = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 218,
+  start: 226,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_HEIGHT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 220,
+  start: 228,
   amount: 2,
   wordLen: 0x02
 }
