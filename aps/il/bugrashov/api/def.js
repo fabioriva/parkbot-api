@@ -17,6 +17,7 @@ export const DB_DATA_INIT_BAY = 32
 export const DB_DATA_INIT_DEVICE = 88
 export const DB_DATA_INIT_QUEUE = 176
 export const DB_DATA_INIT_MB = 196
+export const DB_DATA_INIT_NEXT = 204
 export const DB_DATA_INIT_SCREEN = 208
 export const DATA_READ = {
   area: 0x84,

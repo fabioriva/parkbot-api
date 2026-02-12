@@ -71,8 +71,8 @@ class PLC extends EventEmitter {
           obj.queue
         )
       ])
-      obj.next.bay = buffer.readInt16BE(buffer.length - 4)
-      obj.next.message = buffer.readInt16BE(buffer.length - 2)
+      obj.next.bay = buffer.readInt16BE(def.DB_DATA_INIT_NEXT)
+      obj.next.message = buffer.readInt16BE(def.DB_DATA_INIT_NEXT + 2)
       //
       obj.map.occupancy = {
         total: 224,
