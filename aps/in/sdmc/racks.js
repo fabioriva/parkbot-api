@@ -73,8 +73,11 @@ const KKP5 = {
     new S7_132_6BH01_0BA0(2, ab.slice(56, 58))
   ]
 }
-const pn01 = new Pn('KKP5', 14, merkers.find(b => b.addr === 'M4.5'), 'IM 155-6 PN ST', { key: 'im', query: {} })
+const pn01 = new Pn('KKP5', 13, merkers.find(b => b.addr === 'M4.5'), 'IM 155-6 PN ST', { key: 'im', query: {} })
 pn01.rack = KKP5
 PN.push(pn01)
+
+console.log(PN)
+
 
 export default PN
