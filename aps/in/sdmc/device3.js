@@ -10,20 +10,20 @@ const LV2 = new Position(6, 'LV2')
 const positions = [LV1, LV2]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E101.4'),
+  inputs.find(b => b.addr === 'E301.4'),
   outputs.find(b => b.addr === 'A301.5'),
   outputs.find(b => b.addr === 'A301.4')
 ]
 
-const EN1 = inputs.find(b => b.addr === 'E102.7')
+const EN1 = inputs.find(b => b.addr === 'E302.7')
 const IV1 = new Drive(1, 'IV1', EN1)
 
 /**
  * Hoisting
  */
-const FSBK = inputs.find(b => b.addr === 'E102.0')
-const ASBK = inputs.find(b => b.addr === 'E101.7')
-const RTA = inputs.find(b => b.addr === 'E101.6')
+const FSBK = inputs.find(b => b.addr === 'E302.0')
+const ASBK = inputs.find(b => b.addr === 'E301.7')
+const RTA = inputs.find(b => b.addr === 'E301.6')
 const SBK1 = outputs.find(b => b.addr === 'A301.0')
 const SBK2 = outputs.find(b => b.addr === 'A301.1')
 
@@ -40,9 +40,9 @@ const M1 = new Hoisting(
 /**
  * Lock
  */
-const AMM1 = inputs.find(b => b.addr === 'E102.2')
-const EOM1 = inputs.find(b => b.addr === 'E103.0')
-const EZM1 = inputs.find(b => b.addr === 'E103.1')
+const AMM1 = inputs.find(b => b.addr === 'E302.2')
+const EOM1 = inputs.find(b => b.addr === 'E303.0')
+const EZM1 = inputs.find(b => b.addr === 'E303.1')
 const SMA1 = outputs.find(b => b.addr === 'A302.0')
 const SMB1 = outputs.find(b => b.addr === 'A302.1')
 
@@ -55,9 +55,9 @@ const M2 = new Lock(
 /**
  * Flap
  */
-const ECA = inputs.find(b => b.addr === 'E103.2')
-const ECB = inputs.find(b => b.addr === 'E103.3')
-const AMC = inputs.find(b => b.addr === 'E102.3')
+const ECA = inputs.find(b => b.addr === 'E303.2')
+const ECB = inputs.find(b => b.addr === 'E303.3')
+const AMC = inputs.find(b => b.addr === 'E302.3')
 const SCA = outputs.find(b => b.addr === 'A302.2')
 const SCB = outputs.find(b => b.addr === 'A302.3')
 
@@ -70,10 +70,10 @@ const M3 = new Flap(
 /**
  * Door E
  */
-const EZE = inputs.find(b => b.addr === 'E105.7')
-const EOE = inputs.find(b => b.addr === 'E105.6')
-const FBE = inputs.find(b => b.addr === 'E104.3')
-const APE = inputs.find(b => b.addr === 'E102.5')
+const EZE = inputs.find(b => b.addr === 'E305.7')
+const EOE = inputs.find(b => b.addr === 'E305.6')
+const FBE = inputs.find(b => b.addr === 'E304.3')
+const APE = inputs.find(b => b.addr === 'E302.5')
 const SZE = outputs.find(b => b.addr === 'A302.6')
 const SOE = outputs.find(b => b.addr === 'A302.5')
 const SPE = outputs.find(b => b.addr === 'A302.4')
@@ -83,10 +83,10 @@ const M4 = new Door(1, [EZE, EOE, FBE, APE], [SZE, SOE, SPE])
 /**
  * Door U
  */
-const EZA = inputs.find(b => b.addr === 'E106.1')
-const EOA = inputs.find(b => b.addr === 'E106.0')
-const FBA = inputs.find(b => b.addr === 'E104.4')
-const APA = inputs.find(b => b.addr === 'E102.6')
+const EZA = inputs.find(b => b.addr === 'E306.1')
+const EOA = inputs.find(b => b.addr === 'E306.0')
+const FBA = inputs.find(b => b.addr === 'E304.4')
+const APA = inputs.find(b => b.addr === 'E302.6')
 const SZA = outputs.find(b => b.addr === 'A303.1')
 const SOA = outputs.find(b => b.addr === 'A303.0')
 const SPA = outputs.find(b => b.addr === 'A302.7')
@@ -96,10 +96,10 @@ const M5 = new Door(2, [EZA, EOA, FBA, APA], [SZA, SOA, SPA])
 /**
  * Barrier
  */
-const EBZE = inputs.find(b => b.addr === 'E107.4')
-const EBOE = inputs.find(b => b.addr === 'E107.3')
-const FBBE = inputs.find(b => b.addr === 'E107.2')
-// const APBE = inputs.find(b => b.addr === 'E111.1')
+const EBZE = inputs.find(b => b.addr === 'E307.4')
+const EBOE = inputs.find(b => b.addr === 'E307.3')
+const FBBE = inputs.find(b => b.addr === 'E307.2')
+// const APBE = inputs.find(b => b.addr === 'E311.1')
 const SBZE = outputs.find(b => b.addr === 'A303.5')
 const SBOE = outputs.find(b => b.addr === 'A303.4')
 // const SPBE = outputs.find(b => b.addr === 'A306.4')
@@ -112,18 +112,18 @@ const M6 = new Barrier(0, [EBZE, EBOE, FBBE], [SBZE, SBOE])
 // const L4 = outputs.find(b => b.addr === 'A302.3')
 // const L5 = outputs.find(b => b.addr === 'A302.4')
 
-// const FDL = inputs.find(b => b.addr === 'E104.7')
-// const FDR = inputs.find(b => b.addr === 'E104.6')
-// const FDL2 = inputs.find(b => b.addr === 'E105.1')
-// const FDR2 = inputs.find(b => b.addr === 'E105.0')
-// const FLA = inputs.find(b => b.addr === 'E105.2')
-// const FLP = inputs.find(b => b.addr === 'E105.3')
-// const FLP2 = inputs.find(b => b.addr === 'E106.3')
-// const FPE = inputs.find(b => b.addr === 'E104.5')
-// const FRE1 = inputs.find(b => b.addr === 'E104.0')
-// const FRE2 = inputs.find(b => b.addr === 'E104.1')
-// const FTA1 = inputs.find(b => b.addr === 'E105.4')
-// const FTA2 = inputs.find(b => b.addr === 'E105.5')
+// const FDL = inputs.find(b => b.addr === 'E304.7')
+// const FDR = inputs.find(b => b.addr === 'E304.6')
+// const FDL2 = inputs.find(b => b.addr === 'E305.1')
+// const FDR2 = inputs.find(b => b.addr === 'E305.0')
+// const FLA = inputs.find(b => b.addr === 'E305.2')
+// const FLP = inputs.find(b => b.addr === 'E305.3')
+// const FLP2 = inputs.find(b => b.addr === 'E306.3')
+// const FPE = inputs.find(b => b.addr === 'E304.5')
+// const FRE3 = inputs.find(b => b.addr === 'E304.0')
+// const FRE2 = inputs.find(b => b.addr === 'E304.1')
+// const FTA1 = inputs.find(b => b.addr === 'E305.4')
+// const FTA2 = inputs.find(b => b.addr === 'E305.5')
 
 const drives = [IV1]
 
