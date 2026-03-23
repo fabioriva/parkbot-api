@@ -76,8 +76,21 @@ const pn01 = new Pn('KKP5', 13, merkers.find(b => b.addr === 'M4.5'), 'IM 155-6 
 pn01.rack = KKP5
 PN.push(pn01)
 
-console.log(offsetEB, offsetAB)
-console.log(eb.slice(86, 88))
-console.log(ab.slice(52, 54))
+const SH5 = {
+  nr: 15,
+  cards: [
+    new S7_131_6BH01_0BA0(1, eb.slice(88, 90)),
+    new S7_131_6BH01_0BA0(2, eb.slice(90, 92)),
+    new S7_131_6BH01_0BA0(3, eb.slice(92, 94)),
+    new S7_132_6BH01_0BA0(4, ab.slice(54, 56)),
+    new S7_132_6BH01_0BA0(5, ab.slice(56, 58))
+  ]
+}
+const pn02 = new Pn('KKP5', 13, merkers.find(b => b.addr === 'M4.5'), 'IM 155-6 PN ST', { key: 'im', query: {} })
+pn02.rack = SH5
+PN.push(pn02)
+
+console.log(eb.slice(88, 90))
+console.log(ab.slice(54, 56))
 
 export default PN
