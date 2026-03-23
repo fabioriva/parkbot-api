@@ -15,7 +15,7 @@ const inputs11 = generateBits('E', 1000, 1005, str.inputs4)
 const inputs12 = generateBits('E', 1100, 1105, str.inputs4)
 const inputs13 = generateBits('E', 1200, 1205, str.inputs4)
 const inputs14 = generateBits('E', 508, 509, str.inputs5) // KKP5
-const inputs15 = generateBits('E', 510, 514, str.inputs4) // KKP5
+const inputs15 = generateBits('E', 510, 515, str.inputs4) // SH5
 export const inputs = inputs1.concat(inputs2, inputs3, inputs4, inputs5, inputs6, inputs7, inputs8,
   inputs9,
   inputs10,
