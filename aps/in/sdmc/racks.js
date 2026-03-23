@@ -63,6 +63,18 @@ for (let i = 1; i <= 7; i++) {
   PN.push(pn)
   offsetEB += 6
   offsetAB += 4
+  console.log(offsetEB, offsetAB)
 }
+
+const KKP5 = {
+  nr: 13,
+  cards: [
+    new S7_131_6BH01_0BA0(1, eb.slice(68, 70)),
+    new S7_132_6BH01_0BA0(2, ab.slice(56, 58))
+  ]
+}
+const pn01 = new Pn('KKP5', 14, merkers.find(b => b.addr === 'M4.5'), 'IM 155-6 PN ST', { key: 'im', query: {} })
+pn01.rack = KKP5
+PN.push(pn01)
 
 export default PN

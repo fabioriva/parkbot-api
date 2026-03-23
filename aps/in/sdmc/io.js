@@ -14,12 +14,14 @@ const inputs10 = generateBits('E', 900, 905, str.inputs4)
 const inputs11 = generateBits('E', 1000, 1005, str.inputs4)
 const inputs12 = generateBits('E', 1100, 1105, str.inputs4)
 const inputs13 = generateBits('E', 1200, 1205, str.inputs4)
+const inputs14 = generateBits('E', 508, 509, str.inputs5) // KKP5
 export const inputs = inputs1.concat(inputs2, inputs3, inputs4, inputs5, inputs6, inputs7, inputs8,
   inputs9,
   inputs10,
   inputs11,
   inputs12,
-  inputs13
+  inputs13,
+  inputs14
 )
 export const eb = generateBytes(inputs)
 
@@ -36,12 +38,14 @@ const outputs10 = generateBits('A', 900, 903, str.outputs4)
 const outputs11 = generateBits('A', 1000, 1003, str.outputs4)
 const outputs12 = generateBits('A', 1100, 1103, str.outputs4)
 const outputs13 = generateBits('A', 1200, 1203, str.outputs4)
+const outputs14 = generateBits('A', 508, 509, str.outputs5) // KKP5
 export const outputs = outputs1.concat(outputs2, outputs3, outputs4, outputs5, outputs6, outputs7, outputs8,
   outputs9,
   outputs10,
   outputs11,
   outputs12,
-  outputs13
+  outputs13,
+  outputs14
 )
 export const ab = generateBytes(outputs)
 

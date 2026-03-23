@@ -214,6 +214,24 @@ export const inputs4 = [
   { addr: 'E605.6', label: '' },
   { addr: 'E605.7', label: '' }
 ]
+export const inputs5 = [
+  { addr: 'E508.0', label: 'ACR' },
+  { addr: 'E508.1', label: 'AMM' },
+  { addr: 'E508.2', label: 'ASBK' },
+  { addr: 'E508.3', label: 'ASH' },
+  { addr: 'E508.4', label: 'FTCR' },
+  { addr: 'E508.5', label: 'FE' },
+  { addr: 'E508.6', label: 'KP12' },
+  { addr: 'E508.7', label: '' },
+  { addr: 'E509.0', label: 'EMC' },
+  { addr: 'E509.1', label: 'EOM' },
+  { addr: 'E509.2', label: 'EZM' },
+  { addr: 'E509.3', label: 'EFB' },
+  { addr: 'E509.4', label: 'EXPV' },
+  { addr: 'E509.5', label: '' },
+  { addr: 'E509.6', label: '' },
+  { addr: 'E509.7', label: '' }
+]
 export const outputs1 = [
   { addr: 'A0.0', label: '' },
   { addr: 'A0.1', label: '' },
@@ -349,6 +367,24 @@ export const outputs4 = [
   { addr: 'A603.5', label: '' },
   { addr: 'A603.6', label: '' },
   { addr: 'A603.7', label: '' }
+]
+export const outputs5 = [
+  { addr: 'A508.0', label: 'SMA' },
+  { addr: 'A508.1', label: 'SMB' },
+  { addr: 'A508.2', label: 'TCR' },
+  { addr: 'A508.3', label: 'SBK' },
+  { addr: 'A508.4', label: 'LA' },
+  { addr: 'A508.5', label: '' },
+  { addr: 'A508.6', label: '' },
+  { addr: 'A508.7', label: '' },
+  { addr: 'A509.0', label: '' },
+  { addr: 'A509.1', label: '' },
+  { addr: 'A509.2', label: '' },
+  { addr: 'A509.3', label: '' },
+  { addr: 'A509.4', label: '' },
+  { addr: 'A509.5', label: '' },
+  { addr: 'A509.6', label: '' },
+  { addr: 'A509.7', label: '' }
 ]
 export const alarms1 = [
   { id: 1, key: '', query: {} },
