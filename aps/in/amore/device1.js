@@ -17,7 +17,7 @@ const positions = [LV1]
 const lamps = [
   inputs.find(b => b.addr === 'E3.0'),
   outputs.find(b => b.addr === 'A15.0'),
-  outputs.find(b => b.addr === 'A16.0')
+  outputs.find(b => b.addr === 'A12.3')
 ]
 
 const RTA = inputs.find(b => b.addr === 'E3.2')
