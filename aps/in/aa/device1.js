@@ -27,8 +27,8 @@ const IV2 = new Drive(1, 'IV2', EN2)
 const FSBK = inputs.find(b => b.addr === 'E100.3')
 const ASBK = inputs.find(b => b.addr === 'E100.2')
 const RTA = inputs.find(b => b.addr === 'E100.1')
-const SBK1 = outputs.find(b => b.addr === 'A110.0')
-const SBK2 = outputs.find(b => b.addr === 'A110.1')
+const SBK1 = outputs.find(b => b.addr === 'A100.0')
+const SBK2 = outputs.find(b => b.addr === 'A100.1')
 const M1 = new Hoisting(
   0,
   IV1,
@@ -45,8 +45,8 @@ const M1 = new Hoisting(
 const AMM1 = inputs.find(b => b.addr === 'E110.1')
 const EOM1 = inputs.find(b => b.addr === 'E110.6')
 const EZM1 = inputs.find(b => b.addr === 'E110.7')
-const SMA1 = outputs.find(b => b.addr === 'A102.0')
-const SMB1 = outputs.find(b => b.addr === 'A102.1')
+const SMA1 = outputs.find(b => b.addr === 'A110.0')
+const SMB1 = outputs.find(b => b.addr === 'A110.1')
 const M2 = new Lock(
   0,
   [EZM1, EOM1, AMM1],
@@ -93,7 +93,7 @@ const AF8 = inputs.find(b => b.addr === 'E114.0')
 const MTC = inputs.find(b => b.addr === 'E114.1')
 
 const silomat = new Silomat(
-  IV1,
+  IV2,
   [],
   [RMV, RMH, RES, REH, RCV, REAV, REAH, RCH, T2, TRA, TRB, KCS, KCV, KCH],
   [AF8, MTC]

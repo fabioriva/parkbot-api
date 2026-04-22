@@ -310,7 +310,7 @@ export const outputs4 = [
   { addr: 'A120.5', label: 'AD2' },
   { addr: 'A120.6', label: 'AD3' },
   { addr: 'A120.7', label: 'STR' },
-  { addr: 'A121.0', label: 'SBK2' },
+  { addr: 'A121.0', label: 'SBKE' },
   { addr: 'A121.1', label: '' },
   { addr: 'A121.2', label: 'STO1-3' },
   { addr: 'A121.3', label: 'STO2-3' },

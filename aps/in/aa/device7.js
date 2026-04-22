@@ -10,12 +10,12 @@ const lamps = [
 ]
 
 const AP = inputs.find(b => b.addr === 'E122.3')
-const EZ = inputs.find(b => b.addr === 'E125.0')
-const EO = inputs.find(b => b.addr === 'E125.1')
-const FB = inputs.find(b => b.addr === 'E123.3')
-const SZ = outputs.find(b => b.addr === 'A122.2')
-const SO = outputs.find(b => b.addr === 'A122.1')
-const KX = outputs.find(b => b.addr === 'A122.0')
+const EZ = inputs.find(b => b.addr === 'E126.3')
+const EO = inputs.find(b => b.addr === 'E126.4')
+const FB = inputs.find(b => b.addr === 'E126.1')
+const SZ = outputs.find(b => b.addr === 'A123.0')
+const SO = outputs.find(b => b.addr === 'A122.7')
+const KX = outputs.find(b => b.addr === 'A122.6')
 
 const M2 = new Door(
   0,
@@ -24,12 +24,12 @@ const M2 = new Door(
 )
 
 const APB = inputs.find(b => b.addr === 'E122.4')
-const EZB = inputs.find(b => b.addr === 'E124.6')
-const EOB = inputs.find(b => b.addr === 'E124.7')
-const FBB = inputs.find(b => b.addr === 'E123.2')
-const SZB = outputs.find(b => b.addr === 'A122.5')
-const SOB = outputs.find(b => b.addr === 'A122.4')
-const KXB = outputs.find(b => b.addr === 'A122.3')
+const EZB = inputs.find(b => b.addr === 'E126.5')
+const EOB = inputs.find(b => b.addr === 'E126.6')
+const FBB = inputs.find(b => b.addr === 'E126.2')
+const SZB = outputs.find(b => b.addr === 'A123.3')
+const SOB = outputs.find(b => b.addr === 'A123.2')
+const KXB = outputs.find(b => b.addr === 'A123.1')
 
 const M3 = new Barrier(
   0,
