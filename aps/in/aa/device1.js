@@ -11,7 +11,7 @@ const LH = new Position(3, 'LH')
 const positions = [LV1, LV2, LH]
 
 const lamps = [
-  inputs.find(b => b.addr === 'E100.0'),
+  inputs.find(b => b.addr === 'E110.4'),
   outputs.find(b => b.addr === 'A100.5'),
   outputs.find(b => b.addr === 'A100.4')
 ]

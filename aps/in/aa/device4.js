@@ -7,7 +7,7 @@ import { Position } from '../../../models/Position.js'
 import { Main/*, Garage */ } from '../../../models/View.js'
 
 const lamps = [
-  inputs.find(b => b.addr === 'E100.0'),
+  inputs.find(b => b.addr === 'E121.2'),
   outputs.find(b => b.addr === 'A100.5'),
   outputs.find(b => b.addr === 'A100.4')
 ]
