@@ -19,22 +19,22 @@ export const queue = generateQueue(def)
 
 export const devices = [
   device1.device,
-  device2.device,
+  device2.device
 ]
 
 export const drives = device1.drives.concat(
-  device2.drives,
+  device2.drives
 )
 
 export const positions = device1.positions.concat(
-  device2.positions,
+  device2.positions
 )
 
 export const modes = str.MODES
 
 export const overview = {
   devices: [
-    [device1.device, device2.device],
+    [device1.device, device2.device]
   ],
   exitQueue: {
     queueList: queue,
@@ -58,11 +58,11 @@ const elevators = [
 
 const P1 = {
   nr: 1,
-    label: `Level P1`,
-    min: 1,
-    max: 2,
-    stalls: stalls.slice(0, 2),
-    elevators
+  label: 'Level P1',
+  min: 1,
+  max: 2,
+  stalls: stalls.slice(0, 2),
+  elevators
 }
 
 let offset = 0
@@ -86,7 +86,7 @@ export const map = {
     stalls: def.STALLS,
     stallStatus: def.STALL_STATUS
   },
-  levels,
+  levels: [P1, ...levels],
   occupancy: [
     { id: 'busy', value: 0 },
     { id: 'free', value: 0 },
