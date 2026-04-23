@@ -25,7 +25,7 @@ const rack2 = {
   nr: 2,
   cards: [
     new S7_521_1BH00_0AB0(1, eb.slice(8, 10)),
-    new S7_522_1BH01_0AB0(2, ab.slice(6, 6))
+    new S7_522_1BH01_0AB0(2, ab.slice(4, 6))
   ]
 }
 // KKP1
