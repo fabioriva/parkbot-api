@@ -61,7 +61,7 @@ export const CARD_READ = {
 export const CARD_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 426,
+  start: 434,
   amount: 4,
   wordLen: 0x02
 }
@@ -75,42 +75,42 @@ export const MAP_READ = {
 export const MAP_EDIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 422,
+  start: 430,
   amount: 4,
   wordLen: 0x02
 }
 export const QUEUE_DELETE = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 430,
+  start: 438,
   amount: 4,
   wordLen: 0x02
 }
 export const REQ_0 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 434,
+  start: 442,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_1 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 436,
+  start: 444,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_2 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 438,
+  start: 446,
   amount: 2,
   wordLen: 0x02
 }
 export const REQ_3 = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 440,
+  start: 448,
   amount: 2,
   wordLen: 0x02
 }
