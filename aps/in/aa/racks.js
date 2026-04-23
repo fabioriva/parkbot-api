@@ -37,6 +37,17 @@ const rack3 = {
     new S7_132_6BH01_0BA0(5, ab.slice(8, 10))
   ]
 }
+// KKE1
+const rack4 = {
+  nr: 4,
+  cards: [
+    new S7_131_6BH01_0BA0(1, eb.slice(12, 14)),
+    new S7_131_6BH01_0BA0(2, eb.slice(14, 16)),
+    new S7_131_6BH01_0BA0(3, eb.slice(16, 18)),
+    new S7_132_6BH01_0BA0(4, ab.slice(10, 12)),
+    new S7_132_6BH01_0BA0(5, ab.slice(12, 14))
+  ]
+}
 const pn01 = new Pn('LS1', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-6 PN ST', { key: 'im', query: {} })
 pn01.rack = rack1
 PN.push(pn01)
@@ -46,5 +57,8 @@ PN.push(pn02)
 const pn03 = new Pn('SH1', 2, merkers.find(b => b.addr === 'M4.2'), 'IM 155-6 PN ST', { key: 'im', query: {} })
 pn03.rack = rack3
 PN.push(pn03)
+const pn04 = new Pn('KKE1', 2, merkers.find(b => b.addr === 'M4.3'), 'IM 155-6 PN ST', { key: 'im', query: {} })
+pn04.rack = rack4
+PN.push(pn04)
 
 export default PN
