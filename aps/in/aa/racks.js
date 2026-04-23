@@ -44,6 +44,7 @@ const rack4 = {
     new S7_131_6BH01_0BA0(1, eb.slice(12, 14)),
     new S7_131_6BH01_0BA0(2, eb.slice(14, 16)),
     new S7_131_6BH01_0BA0(3, eb.slice(16, 18)),
+    new S7_131_6BH01_0BA0(3, eb.slice(18, 20)),
     new S7_132_6BH01_0BA0(4, ab.slice(10, 12)),
     new S7_132_6BH01_0BA0(5, ab.slice(12, 14))
   ]
