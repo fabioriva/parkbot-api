@@ -33,7 +33,7 @@ export const DB_DATA_INIT_POS = 94
 export const DB_DATA_INIT_QUEUE = 110
 export const DB_DATA_INIT_AB = 130
 export const DB_DATA_INIT_EB = 142
-export const DB_DATA_INIT_MB = 168
+export const DB_DATA_INIT_MB = 160
 export const DATA_READ = {
   area: 0x84,
   dbNumber: DB_DATA,

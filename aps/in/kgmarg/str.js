@@ -1,4 +1,5 @@
-export const inputs1 = [{ addr: 'E0.0', label: '' },
+export const inputs1 = [
+  { addr: 'E0.0', label: '' },
   { addr: 'E0.1', label: '' },
   { addr: 'E0.2', label: '' },
   { addr: 'E0.3', label: '' },
@@ -30,7 +31,8 @@ export const inputs1 = [{ addr: 'E0.0', label: '' },
   { addr: 'E3.5', label: '' },
   { addr: 'E3.6', label: '' },
   { addr: 'E3.7', label: '' }]
-export const inputs2 = [{ addr: 'E100.0', label: '' },
+export const inputs2 = [
+  { addr: 'E100.0', label: '' },
   { addr: 'E100.1', label: '' },
   { addr: 'E100.2', label: '' },
   { addr: 'E100.3', label: '' },
