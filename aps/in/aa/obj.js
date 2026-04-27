@@ -19,8 +19,8 @@ import { generateQueue } from '../../../models/Queue.js'
 import { generateStalls } from '../../../models/Stall.js'
 
 const al01 = new Alarms(generateAlarms(1, 64, str.alarms1), 1) // EL1
-const al02 = new Alarms(generateAlarms(1, 64, str.alarms1), 2) // EL1
-const al03 = new Alarms(generateAlarms(1, 64, str.alarms1), 3) // EL1
+const al02 = new Alarms(generateAlarms(1, 64, str.alarms1), 2) // EL2
+const al03 = new Alarms(generateAlarms(1, 64, str.alarms1), 3) // EL3
 const al04 = new Alarms(generateAlarms(1, 64, str.alarms2), 4) // EU1
 const al05 = new Alarms(generateAlarms(1, 64, str.alarms2), 5) // EU2
 const al06 = new Alarms(generateAlarms(1, 64, str.alarms2), 6) // EU3

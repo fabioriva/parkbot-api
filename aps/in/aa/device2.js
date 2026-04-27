@@ -19,7 +19,7 @@ const lamps = [
 const EN1 = inputs.find(b => b.addr === 'E200.5')
 const IV1 = new Drive(1, 'IV1', EN1)
 const EN2 = inputs.find(b => b.addr === 'E213.7')
-const IV2 = new Drive(1, 'IV2', EN2)
+const IV2 = new Drive(2, 'IV2', EN2)
 
 /**
  * Hoisting
