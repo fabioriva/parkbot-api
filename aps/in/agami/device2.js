@@ -8,8 +8,8 @@ import { Main/*, Garage */ } from '../../../models/View.js'
 
 const lamps = [
   inputs.find(b => b.addr === 'E1.0'),
-  outputs.find(b => b.addr === 'A1.5'),
-  outputs.find(b => b.addr === 'A1.4')
+  outputs.find(b => b.addr === 'A1.4'),
+  outputs.find(b => b.addr === 'A1.5')
 ]
 
 const EN3 = inputs.find(b => b.addr === 'E2.4')
