@@ -37,25 +37,33 @@ const map = {
       nr: 1,
       label: 'Level -3',
       min: 1,
-      max: 12,
-      stalls: stalls.slice(0, 12),
+      max: 10,
+      stalls: stalls.slice(0, 10),
       elevators: [{ id: 'el-1', label: 'EL' }]
     },
     {
       nr: 2,
       label: 'Level -2',
-      min: 13,
-      max: 24,
-      stalls: stalls.slice(12, 24),
-      elevators: [{ id: 'el-2', label: 'EL' }]
+      min: 11,
+      max: 20,
+      stalls: stalls.slice(10, 20),
+      elevators: [{ id: 'el-1', label: 'EL' }]
     },
     {
       nr: 3,
       label: 'Level 3',
-      min: 25,
-      max: 36,
-      stalls: stalls.slice(24, 36),
-      elevators: [{ id: 'el-3', label: 'EL' }]
+      min: 21,
+      max: 28,
+      stalls: stalls.slice(20, 28),
+      elevators: [{ id: 'el-1', label: 'EL' }]
+    },
+    {
+      nr: 4,
+      label: 'Level 3',
+      min: 29,
+      max: 34,
+      stalls: stalls.slice(28, 34),
+      elevators: [{ id: 'el-1', label: 'EL' }]
     }
   ],
   occupancy: [
