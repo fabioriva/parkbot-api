@@ -33,7 +33,7 @@ const lamps = [
 const RTA = inputs.find(b => b.addr === 'E8.6')
 const ASBK = inputs.find(b => b.addr === 'E15.0')
 const FSBK = inputs.find(b => b.addr === 'E15.1')
-const SBK1 = outputs.find(b => b.addr === 'A15.7')
+const SBK1 = outputs.find(b => b.addr === 'A15.2')
 const SBK2 = outputs.find(b => b.addr === 'A14.7')
 
 const M1 = new Hoisting(
@@ -46,20 +46,18 @@ const M1 = new Hoisting(
   FSBK
 )
 
-const AKKS = inputs.find(b => b.addr === 'E17.4')
 const ASH = inputs.find(b => b.addr === 'E9.3')
-// const AIV = inputs.find(b => b.addr === 'E9.4')
-const EMC = inputs.find(b => b.addr === 'E17.1')
-const MNR = inputs.find(b => b.addr === 'E17.6')
-const MNL = inputs.find(b => b.addr === 'E17.7')
+const AIV = inputs.find(b => b.addr === 'E9.4')
+const AH = inputs.find(b => b.addr === 'E15.3')
+const EHP = inputs.find(b => b.addr === 'E17.1')
 // const TLIV = outputs.find(b => b.addr === 'A7.6')
-const T10 = outputs.find(b => b.addr === 'A15.0')
+const T10 = outputs.find(b => b.addr === 'A14.0')
 
 const M6 = new Traveling(
   0,
   IV2,
   [ENH],
-  [ASH, AKKS, EMC, MNR, MNL],
+  [ASH, AIV, AH, EHP],
   [T10],
   [],
   T10
@@ -68,7 +66,7 @@ const M6 = new Traveling(
 const AD = inputs.find(b => b.addr === 'E16.7')
 const ASBK2 = inputs.find(b => b.addr === 'E15.4')
 const EXD = inputs.find(b => b.addr === 'E17.0')
-const TD = outputs.find(b => b.addr === 'A14.0')
+const TD = outputs.find(b => b.addr === 'A15.6')
 
 const M7 = new Rotation(
   0,
@@ -83,8 +81,8 @@ const M7 = new Rotation(
 const ECA = inputs.find(b => b.addr === 'E16.4')
 const ECB = inputs.find(b => b.addr === 'E16.5')
 const AMC = inputs.find(b => b.addr === 'E16.6')
-const SCA = outputs.find(b => b.addr === 'A15.5')
-const SCB = outputs.find(b => b.addr === 'A15.6')
+const SCA = outputs.find(b => b.addr === 'A15.0')
+const SCB = outputs.find(b => b.addr === 'A15.1')
 
 const M8 = new Flap(
   0,
@@ -178,6 +176,8 @@ const FDR = inputs.find(b => b.addr === 'E10.4')
 const FDL = inputs.find(b => b.addr === 'E10.5')
 const FTA1 = inputs.find(b => b.addr === 'E10.6')
 const FTA2 = inputs.find(b => b.addr === 'E10.7')
+const FDR2 = inputs.find(b => b.addr === 'E10.4')
+const FDL2 = inputs.find(b => b.addr === 'E10.5')
 
 const main = new Main(drives, [M1, M2, M3, M4, M5, M6, M7])
 
@@ -185,7 +185,7 @@ const garage = new Garage(
   [IV2],
   [M8, M9],
   [L1, L2, L3, L4, L5],
-  [EPZ, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2]
+  [EPZ, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2, FDR2, FDL2]
 )
 
 const views = [main, garage, silomat]
