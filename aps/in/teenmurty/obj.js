@@ -13,7 +13,7 @@ import { generateStalls } from '../../../models/Stall.js'
 
 const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1)
 const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 2)
-const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(128, 192)), 3)
+const al03 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 3)
 export const alarms = [al01, al02, al03]
 
 // const inputs1 = generateBits('E', 0, 7, str.inputs1)
