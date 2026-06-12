@@ -94,7 +94,7 @@ export const inputs2 = [
   { addr: 'E13.1', label: 'SRL' },
   { addr: 'E13.2', label: 'RSI' },
   { addr: 'E13.3', label: 'EOM1' },
-  { addr: 'E13.4', label: 'EZM1' },
+  { addr: 'E13.4', label: 'EOM2' },
   { addr: 'E13.5', label: 'EMC' },
   { addr: 'E13.6', label: 'EXV' },
   { addr: 'E13.7', label: 'EXPV' },
