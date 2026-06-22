@@ -9,9 +9,11 @@ import { generateCards } from '../../../models/Card.js'
 import { generateQueue } from '../../../models/Queue.js'
 import { generateStalls } from '../../../models/Stall.js'
 
-const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(64, 128)), 1) // EL
-const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // EU
-export const alarms = [al01, al02]
+const al01 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 1) // EL
+export const alarms = [al01]
+
+// const al02 = new Alarms(generateAlarms(1, 64, str.ALARMS.slice(0, 64)), 2) // EU
+// export const alarms = [al01, al02]
 
 // const inputs1 = generateBits('E', 0, 17, str.inputs1)
 // const inputs = inputs1

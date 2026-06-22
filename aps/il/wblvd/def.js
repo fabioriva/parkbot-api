@@ -17,7 +17,7 @@ export const QUEUE_LEN = 5
 export const ALARM_LEN = 8
 export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
-export const DBS_ALARM = [531, 532]
+export const DBS_ALARM = [532]
 
 // const CARDS = 31
 // const CARD_LEN = 10
