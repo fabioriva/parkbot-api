@@ -6,7 +6,7 @@ export const HOST =
     : process.env.PRODUCTION_SERVER
 export const HTTP = 9038
 export const PLC = {
-  ip: '192.168.20.55', // 85.2',
+  ip: '192.168.85.2',
   rack: 0,
   slot: 1,
   polling_time: 500
