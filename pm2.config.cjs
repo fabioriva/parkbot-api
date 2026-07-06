@@ -298,6 +298,14 @@ module.exports = {
       out_file: '/dev/null'
     },
     {
+      name: 'api-vaibhab-lakshmi',
+      script: './aps/in/vl/index.js',
+      cwd: './',
+      node_args: '-r dotenv/config',
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      out_file: '/dev/null'
+    },
+    {
       name: 'api-wblvd',
       script: './aps/il/wblvd/index.js',
       cwd: './',
