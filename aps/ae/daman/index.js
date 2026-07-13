@@ -18,7 +18,8 @@ const main = async () => {
     const history = new History(db)
     // const mailingList = new MailingList(db)
     // PLC read
-    const plc = new Plc(def.PLC)
+    const plc = new Plc(app, history)
+    // const plc = new Plc(def.PLC)
     // plc.on('log', async log => {
     //   updateOnLog(def, log, obj, plc)
     //   const doc = await history.saveLog(log)
