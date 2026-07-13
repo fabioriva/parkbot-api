@@ -31,7 +31,7 @@ const main = async () => {
     const plcW = new PlcW(def.PLC)
     plcW.run(def, obj)
     // API routes
-    const router = new Router(app, history, mailingList, plcW)
+    const router = new Router(app, history, plcW)
     router.run(def, obj)
   } catch (err) {
     console.error(new Error(err))
