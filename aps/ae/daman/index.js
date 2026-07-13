@@ -5,11 +5,11 @@ import * as str from './str.js'
 import obj from './obj.js'
 import mongo from '../../../lib/db.js'
 import History from '../../../lib/History.js'
-import MailingList from '../../../lib/MailingList.js'
+// import MailingList from '../../../lib/MailingList.js'
 import Plc from '../../../lib/Plc.js'
 import PlcW from './PlcW.js'
 import Router from '../../../lib/Router.js'
-import { updateOnLog } from '../../../lib/Log.js'
+// import { updateOnLog } from '../../../lib/Log.js'
 
 const main = async () => {
   try {
@@ -19,13 +19,13 @@ const main = async () => {
     const mailingList = new MailingList(db)
     // PLC read
     const plc = new Plc(def.PLC)
-    plc.on('log', async log => {
-      updateOnLog(def, log, obj, plc)
-      const doc = await history.saveLog(log)
-      mailingList.sendMail(def.APS, doc)
-      app.publish('aps/info', JSON.stringify({ notification: doc }))
-    })
-    plc.on('pub', ({ channel, data }) => app.publish(channel, data))
+    // plc.on('log', async log => {
+    //   updateOnLog(def, log, obj, plc)
+    //   const doc = await history.saveLog(log)
+    //   mailingList.sendMail(def.APS, doc)
+    //   app.publish('aps/info', JSON.stringify({ notification: doc }))
+    // })
+    // plc.on('pub', ({ channel, data }) => app.publish(channel, data))
     plc.run(def, obj)
     // PLC write
     const plcW = new PlcW(def.PLC)
