@@ -16,7 +16,7 @@ const main = async () => {
     const app = uWS.App().listen(def.HTTP, token => console.info(token))
     const db = await mongo(def.APS, str)
     const history = new History(db)
-    const mailingList = new MailingList(db)
+    // const mailingList = new MailingList(db)
     // PLC read
     const plc = new Plc(def.PLC)
     // plc.on('log', async log => {
