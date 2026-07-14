@@ -19,10 +19,8 @@ export const DB_ALARM_INIT = 12
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [431, 432]
 
-// const CARDS = 110
-// const CARD_LEN = 20
 export const CARDS = 110
-export const CARD_LEN = 10
+export const CARD_LEN = 20
 
 const DB_DATA = 505
 const DB_DATA_LEN = 300
