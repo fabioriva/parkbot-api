@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events'
+// import { EventEmitter } from 'events'
 import pino from 'pino'
 import snap7 from 'node-snap7'
 import { ReadArea } from '../../../lib/utils7.js'
@@ -6,12 +6,14 @@ import { updateBits } from '../../../models/Bit.js'
 
 const logger = pino()
 
-class PLC extends EventEmitter {
-  constructor (plc) {
-    super()
+// class PLC extends EventEmitter {
+class PLC {
+  constructor (app) {
+    // super()
     this.client = new snap7.S7Client()
+    this.app = app
     this.online = false
-    this.params = plc
+    // this.params = plc
   }
 
   async error (e) {
@@ -36,7 +38,7 @@ class PLC extends EventEmitter {
 
   async run (def, obj) {
     try {
-      this.online = this.client.ConnectTo(this.params.ip, this.params.rack, this.params.slot)
+      this.online = this.client.ConnectTo(def.PLC_SH.ip, def.PLC_SH.rack, def.PLC_SH.slot)
       this.forever(def, obj)
     } catch (e) {
       this.error(e)
@@ -50,7 +52,7 @@ class PLC extends EventEmitter {
         this.main(def, obj)
       } else {
         this.online = this.client.Connect()
-        this.online ? logger.info('Connected to PLC %s', this.params.ip) : logger.info('Connecting to PLC %s ...', this.params.ip)
+        this.online ? logger.info('Connected to PLC %s', def.PLC_SH.ip) : logger.info('Connecting to PLC %s ...', def.PLC_SH.ip)
       }
       if (this.online_ !== this.online) {
         this.online_ = this.online
@@ -60,11 +62,12 @@ class PLC extends EventEmitter {
       // const latency = (pong[0] * 1000000000 + pong[1]) / 1000000
       // console.log('forever execution time in millisecond is: ', latency)
       this.forever(def, obj)
-    }, this.params.polling_time)
+    }, def.PLC_SH.polling_time)
   }
 
   publish (channel, data) {
-    this.emit('pub', { channel, data: Buffer.from(JSON.stringify(data)) })
+    // this.emit('pub', { channel, data: Buffer.from(JSON.stringify(data)) })
+    this.app.publish(channel, Buffer.from(JSON.stringify(data)))
   }
 }
 
