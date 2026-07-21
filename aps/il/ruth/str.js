@@ -224,7 +224,7 @@ export const ALARMS = [
   { id: 39, key: 'al-fc', query: { fc1: 'ECA', fc2: 'ECB' } },
   { id: 40, key: 'al-lv', query: {} },
   { id: 41, key: 'al-lh', query: {} },
-  { id: 42, key: 'al-iv', query: { nr: 1 } },
+  { id: 42, key: 'al-iv', query: { nr: 2 } },
   { id: 43, key: '', query: {} },
   { id: 44, key: '', query: {} },
   { id: 45, key: '', query: {} },
