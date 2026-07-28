@@ -176,8 +176,8 @@ const FDR = inputs.find(b => b.addr === 'E10.4')
 const FDL = inputs.find(b => b.addr === 'E10.5')
 const FTA1 = inputs.find(b => b.addr === 'E10.6')
 const FTA2 = inputs.find(b => b.addr === 'E10.7')
-const FDR2 = inputs.find(b => b.addr === 'E10.4')
-const FDL2 = inputs.find(b => b.addr === 'E10.5')
+const FDR2 = inputs.find(b => b.addr === 'E11.3')
+const FDL2 = inputs.find(b => b.addr === 'E11.2')
 
 const main = new Main(drives, [M1, M2, M3, M4, M5, M6, M7])
 
