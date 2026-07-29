@@ -18,7 +18,7 @@ const main = async () => {
   try {
     const app = uWS.App().listen(def.HTTP, (token) => console.info(token));
     const db = await mongo(def.APS, str);
-    app.get("/items", async (res, req) => {
+    app.get("/api/aps/daman-n/items", async (res, req) => {
       res.onAborted(() => {
         res.aborted = true;
       });
@@ -43,7 +43,12 @@ const main = async () => {
       ]);
       // console.log(items, total);
 
-      sendJson(res, { items, total });
+      sendJson(res, {
+        items,
+        total,
+        page,
+        hasMore: skip + items.length < total,
+      });
     });
 
     const history = new History(db);
