@@ -11,46 +11,10 @@ import PlcW from './PlcW.js'
 import Router from '../../../lib/Router.js'
 // import { updateOnLog } from '../../../lib/Log.js'
 
-import { sendJson } from '../../../lib/json.js'
-import querystring from 'querystring'
-
 const main = async () => {
   try {
     const app = uWS.App().listen(def.HTTP, (token) => console.info(token))
     const db = await mongo(def.APS, str)
-    app.get('/api/aps/daman-n/items', async (res, req) => {
-      res.onAborted(() => {
-        res.aborted = true
-      })
-      const query = querystring.parse(req.getQuery())
-
-      const page = parseInt(query.page) || 1 // parseInt(req.query.page) || 1;
-      const limit = parseInt(query.limit) || 20 // parseInt(req.query.limit) || 20;
-      console.log(query, page, limit)
-
-      const skip = (page - 1) * limit
-
-      const [items, total] = await Promise.all([
-        db
-          .collection('logs')
-          .find({})
-          .sort({ _id: -1 }) // ordinamento stabile
-          .skip(skip)
-          .limit(limit)
-          .toArray(),
-
-        db.collection('logs').countDocuments()
-      ])
-      // console.log(items, total);
-
-      sendJson(res, {
-        items,
-        total,
-        page,
-        hasMore: skip + items.length < total
-      })
-    })
-
     const history = new History(db)
     // const mailingList = new MailingList(db)
     // PLC read
