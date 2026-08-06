@@ -308,10 +308,6 @@ export const outputs3 = [
   { addr: 'A115.6', label: '' },
   { addr: 'A115.7', label: '' }]
 export const alarms1 = [
-  { id: 1, key: '', query: {} },
-  { id: 2, key: '', query: {} },
-  { id: 3, key: '', query: {} },
-  { id: 4, key: '', query: {} },
   { id: 1, key: 'al-sil-01', query: {} },
   { id: 2, key: 'al-sil-02', query: {} },
   { id: 3, key: 'al-sil-03', query: {} },
