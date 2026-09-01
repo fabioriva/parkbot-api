@@ -87,6 +87,6 @@ const main = new Main(drives, [M1, M2, M3])
 
 const views = [main]
 
-const device = new Device(3, 'C', [A0], lamps, motors, views)
+const device = new Device(5, 'C', [A0], lamps, motors, views)
 
 export default { device, drives, positions }
