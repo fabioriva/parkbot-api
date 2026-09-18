@@ -20,6 +20,7 @@
     "mqtt": "^5.10.3",
     "node-snap7": "^1.0.9",
     "pino": "^10.3.1",
+    "snap7-node-addon-api": "^0.1.2",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.52.0"
   },
   "devDependencies": {
