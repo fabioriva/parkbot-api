@@ -1,8 +1,8 @@
 // import { EventEmitter } from 'events'
 import pino from 'pino'
-// import snap7 from 'node-snap7'
-import Snap7Driver from '../../../lib/Snap7Driver.js'
-// import { ReadArea } from '../../../lib/utils7.js'
+import snap7 from 'node-snap7'
+// import Snap7Driver from '../../../lib/Snap7Driver.js'
+import { ReadArea } from '../../../lib/utils7.js'
 
 const logger = pino()
 
@@ -10,29 +10,27 @@ const logger = pino()
 class PLC {
   constructor (plc) {
     // super()
-    // this.client = new snap7.S7Client()
-    this.client = new Snap7Driver()
-
+    this.client = new snap7.S7Client()
+    // this.client = new Snap7Driver()
     this.online = false
     // this.params = plc
   }
 
   async error (e) {
-    // this.online = !this.client.Disconnect()
-    try {
-      await this.client.Disconnect()
-      this.online = false
-    } catch (err) {
-      this.online = false
-    }
+    this.online = !this.client.Disconnect()
+    // try {
+    //   await this.client.Disconnect()
+    //   this.online = false
+    // } catch (err) {
+    //   this.online = false
+    // }
     isNaN(e) ? logger.error(e) : logger.error(this.client.ErrorText(e))
   }
 
   async read (def, obj) {
     try {
       const { area, dbNumber, start, amount, wordLen } = def.DATA_READ
-      // this.online ? await ReadArea(this.client, area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
-      this.online ? await this.client.ReadArea(area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
+      this.online ? await ReadArea(this.client, area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
     } catch (e) {
       this.error(e)
     }
