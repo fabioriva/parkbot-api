@@ -7,11 +7,18 @@
     "dev": "nodemon aps/ae/daman/index.js",
     "start": "NODE_ENV=production pm2 start aps/ae/daman/index.js --name api-daman-n --max-memory-restart 128M",
     "test": "standard",
-    "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0"
+    "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0",
+    "i18n:compile": "paraglide-js compile --project ./project.inlang --outdir ./lib/paraglide",
+    "preapi": "npm run i18n:compile",
+    "predev": "npm run i18n:compile",
+    "prestart": "npm run i18n:compile",
+    "pretest": "npm run i18n:compile",
+    "test:notifications": "npm run i18n:compile && node --test test/notifications.test.js"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^8.1.6",
     "better-auth": "^1.7.2",
     "date-fns": "^4.4.0",
     "date-fns-tz": "^3.2.0",
@@ -24,13 +31,15 @@
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.52.0"
   },
   "devDependencies": {
+    "@inlang/paraglide-js": "^2.25.4",
     "nodemon": "^3.1.9",
     "standard": "^17.1.2"
   },
   "standard": {
     "ignore": [
       "/node_modules/**",
-      "/public"
+      "/public",
+      "/lib/paraglide/**"
     ]
   },
   "engines": {
