@@ -2,6 +2,3 @@
 .env
 .vscode
 /utils
-
-/lib/paraglide/
-/project.inlang/cache/

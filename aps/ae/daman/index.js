@@ -5,7 +5,7 @@ import * as str from './str.js'
 import obj from './obj.js'
 import mongo from '../../../lib/db.js'
 import History from '../../../lib/History.js'
-import MailingList from '../../../lib/MailingList.js'
+// import MailingList from '../../../lib/MailingList.js'
 import Plc from '../../../lib/Plc.js'
 import PlcW from './PlcW.js'
 import Router from '../../../lib/Router.js'
@@ -16,9 +16,9 @@ const main = async () => {
     const app = uWS.App().listen(def.HTTP, (token) => console.info(token))
     const db = await mongo(def.APS, str)
     const history = new History(db)
-    const mailingList = new MailingList(db)
+    // const mailingList = new MailingList(db)
     // PLC read
-    const plc = new Plc(app, history, mailingList)
+    const plc = new Plc(app, history)
     // const plc = new Plc(def.PLC)
     // plc.on('log', async log => {
     //   updateOnLog(def, log, obj, plc)
