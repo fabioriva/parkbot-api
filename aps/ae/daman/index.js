@@ -18,7 +18,7 @@ const main = async () => {
     const history = new History(db)
     const notifications = new Notifications(db)
     // PLC read
-    const plc = new Plc(app, history)
+    const plc = new Plc(app, history, notifications)
     // const plc = new Plc(def.PLC)
     // plc.on('log', async log => {
     //   updateOnLog(def, log, obj, plc)
