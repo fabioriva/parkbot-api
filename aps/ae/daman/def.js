@@ -1,9 +1,9 @@
 export const APS = 'daman-n'
 export const PORT = 49039
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
+// export const HOST =
+//   process.env.NODE_ENV !== 'production'
+//     ? process.env.DEVELOPMENT_SERVER
+//     : process.env.PRODUCTION_SERVER
 export const HTTP = 9036
 export const PLC = {
   ip: '192.168.24.2',
@@ -12,8 +12,16 @@ export const PLC = {
   polling_time: 999
 }
 
-export const MQTT_TOPIC = 'aps/ae/daman/#'
-export const MQTT_TZ = 'Asia/Dubai'
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 6,
+  start: 2,
+  amount: 14,
+  wordLen: 0x02
+}
+
+// export const MQTT_TOPIC = 'aps/ae/daman/#'
+// export const MQTT_TZ = 'Asia/Dubai'
 
 export const QUEUE_LEN = 10
 
