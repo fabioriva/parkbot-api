@@ -1,9 +1,5 @@
 export const APS = 'daman-n'
 export const PORT = 49039
-// export const HOST =
-//   process.env.NODE_ENV !== 'production'
-//     ? process.env.DEVELOPMENT_SERVER
-//     : process.env.PRODUCTION_SERVER
 export const HTTP = 9036
 export const PLC = {
   ip: '192.168.24.2',
@@ -20,9 +16,6 @@ export const CLOCK_READ = {
   wordLen: 0x02
 }
 
-// export const MQTT_TOPIC = 'aps/ae/daman/#'
-// export const MQTT_TZ = 'Asia/Dubai'
-
 export const QUEUE_LEN = 10
 
 export const ALARM_LEN = 8
@@ -30,8 +23,6 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549] // EL1-5, SH1-14
 
-// const CARDS = 557
-// const CARD_LEN = 10
 export const CARDS = 999
 export const CARD_LEN = 10
 
@@ -68,8 +59,6 @@ export const PLC_MAP = {
   polling_time: 750
 }
 
-// const STALLS = 558
-// const STALL_LEN = 10
 export const STALLS = 558
 export const STALL_LEN = 10
 export const STALL_STATUS = {
