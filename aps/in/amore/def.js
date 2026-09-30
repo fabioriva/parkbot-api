@@ -1,9 +1,5 @@
 export const APS = 'amore'
 export const PORT = 49044
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9041
 export const PLC = {
   ip: '192.168.87.2',
@@ -12,8 +8,13 @@ export const PLC = {
   polling_time: 500
 }
 
-export const MQTT_TOPIC = 'aps/in/amore/#'
-export const MQTT_TZ = 'Asia/Kolkata'
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
+}
 
 export const QUEUE_LEN = 5
 
