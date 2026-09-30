@@ -8,13 +8,13 @@ export const PLC = {
   polling_time: 500
 }
 
-export const CLOCK_READ = {
-  area: 0x84,
-  dbNumber: 6,
-  start: 2,
-  amount: 14,
-  wordLen: 0x02
-}
+// export const CLOCK_READ = {
+//   area: 0x84,
+//   dbNumber: 6,
+//   start: 2,
+//   amount: 14,
+//   wordLen: 0x02
+// }
 
 export const QUEUE_LEN = 5
 
