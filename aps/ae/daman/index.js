@@ -9,7 +9,6 @@ import Notifications from '../../../lib/Notifications.js'
 import Plc from '../../../lib/Plc.js'
 import PlcW from './PlcW.js'
 import Router from '../../../lib/Router.js'
-// import { updateOnLog } from '../../../lib/Log.js'
 
 const main = async () => {
   try {
@@ -17,21 +16,10 @@ const main = async () => {
     const db = await mongo(def.APS, str)
     const history = new History(db)
     const notifications = new Notifications(db)
-    // PLC read
     const plc = new Plc(app, history, notifications)
-    // const plc = new Plc(def.PLC)
-    // plc.on('log', async log => {
-    //   updateOnLog(def, log, obj, plc)
-    //   const doc = await history.saveLog(log)
-    //   mailingList.sendMail(def.APS, doc)
-    //   app.publish('aps/info', JSON.stringify({ notification: doc }))
-    // })
-    // plc.on('pub', ({ channel, data }) => app.publish(channel, data))
     plc.run(def, obj)
-    // PLC write
-    const plcW = new PlcW(def.PLC)
+    const plcW = new PlcW() // PLC write
     plcW.run(def, obj)
-    // API routes
     const router = new Router(app, history, notifications, plcW)
     router.run(def, obj)
   } catch (err) {
