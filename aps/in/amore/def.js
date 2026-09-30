@@ -11,7 +11,7 @@ export const PLC = {
 export const CLOCK_READ = {
   area: 0x84,
   dbNumber: 520,
-  start: 0,
+  start: 2,
   amount: 14,
   wordLen: 0x02
 }
