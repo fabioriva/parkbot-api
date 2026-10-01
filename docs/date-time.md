@@ -55,6 +55,17 @@ History salva i log PLC e le azioni come Date JavaScript (BSON Date in MongoDB).
 La serializzazione JSON restituisce stringhe ISO con Z.
 Esempio: 2026-01-27T11:18:47.731Z corrisponde alle 15:18:47.731 a Dubai.
 
+## Mappa degli stalli
+
+`models/Stall.js` espone `date` come stringa ISO UTC con `Z`, sia nella
+risposta HTTP `/map` sia negli aggiornamenti WebSocket. La conversione da
+DATE/TOD usa campi senza segno agli offset 2 (UInt16 BE) e 4 (UInt32 BE),
+preserva i millisecondi e non dipende dal fuso del server.
+Il valore iniziale è `1990-01-01T00:00:00.000Z`.
+
+Anche DATE/TOD degli stalli devono rappresentare UTC nel PLC. Il frontend
+converte questi istanti nel fuso dell'impianto, come per lo storico.
+
 ## Frontend
 
 Esempio con date-fns-tz, da integrare nel repository frontend:
@@ -110,7 +121,7 @@ anche ai confini e ai raggruppamenti; non basta formattare le etichette.
 Eseguire con Node.js >= 22:
 
 ```sh
-node --test test/utc-history.test.js
+node --test test/utc-history.test.js test/utc-stalls.test.js
 ```
 
 I test coprono quattro fusi del server, millisecondi, anno bisestile, date dei
