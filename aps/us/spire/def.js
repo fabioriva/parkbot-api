@@ -1,15 +1,19 @@
 export const APS = 'wallstreet'
 export const PORT = 49009
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9001
 export const PLC = {
   ip: '192.168.67.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 2,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 5
