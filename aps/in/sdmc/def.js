@@ -1,9 +1,5 @@
 export const APS = 'sdmc'
 export const PORT = 49046
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9043
 export const PLC = {
   ip: '192.168.93.2',
@@ -12,8 +8,13 @@ export const PLC = {
   polling_time: 999
 }
 
-export const MQTT_TOPIC = 'aps/in/sdmc/#'
-export const MQTT_TZ = 'Asia/Kolkata'
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 2,
+  amount: 14,
+  wordLen: 0x02
+}
 
 export const QUEUE_LEN = 10
 
