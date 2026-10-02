@@ -1,4 +1,3 @@
-// import { EventEmitter } from 'events'
 import pino from 'pino'
 import snap7 from 'node-snap7'
 import { ReadArea } from '../../../lib/utils7.js'
@@ -6,14 +5,10 @@ import { updateBits } from '../../../models/Bit.js'
 
 const logger = pino()
 
-// class PLC extends EventEmitter {
 class PLC {
-  constructor (app) {
-    // super()
+  constructor () {
     this.client = new snap7.S7Client()
-    this.app = app
     this.online = false
-    // this.params = plc
   }
 
   async error (e) {
@@ -47,7 +42,6 @@ class PLC {
 
   forever (def, obj) {
     setTimeout(() => {
-      // const ping = process.hrtime()
       if (this.online) {
         this.main(def, obj)
       } else {
@@ -57,17 +51,8 @@ class PLC {
       if (this.online_ !== this.online) {
         this.online_ = this.online
       }
-      // main cycle execution time
-      // const pong = process.hrtime(ping)
-      // const latency = (pong[0] * 1000000000 + pong[1]) / 1000000
-      // console.log('forever execution time in millisecond is: ', latency)
       this.forever(def, obj)
     }, def.PLC_SH.polling_time)
-  }
-
-  publish (channel, data) {
-    // this.emit('pub', { channel, data: Buffer.from(JSON.stringify(data)) })
-    this.app.publish(channel, Buffer.from(JSON.stringify(data)))
   }
 }
 
