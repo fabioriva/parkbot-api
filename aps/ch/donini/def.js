@@ -1,15 +1,19 @@
 export const APS = 'donini'
 export const PORT = 49023
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9018
 export const PLC = {
   ip: '192.168.54.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 5
@@ -19,8 +23,6 @@ export const DB_ALARM_INIT = 12
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531, 533]
 
-// const CARDS = 84
-// const CARD_LEN = 12 // stall fixed
 export const CARDS = 84
 export const CARD_LEN = 12
 
@@ -41,10 +43,7 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const DB_MAP = 510
 export const DB_MAP = 510
-// const STALLS = 81
-// const STALL_LEN = 10
 export const STALLS = 81
 export const STALL_LEN = 10
 export const STALL_STATUS = {
