@@ -1,15 +1,19 @@
 export const APS = 'muse'
 export const PORT = 49004
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9010
 export const PLC = {
   ip: '140.80.49.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 5
@@ -19,13 +23,11 @@ export const DB_ALARM_INIT = 12
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [431, 432, 433, 434]
 
-// const CARDS = 208
-// const CARD_LEN = 10
 export const CARDS = 208
 export const CARD_LEN = 10
 
 const DB_DATA = 450
-const DB_DATA_LEN = 346 // 398
+const DB_DATA_LEN = 346
 export const DB_DATA_INIT_DEVICE = 32
 export const DB_DATA_INIT_DRIVE = 96
 export const DB_DATA_INIT_POS = 176
@@ -41,8 +43,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 208
-// const STALL_LEN = 10
 export const STALLS = 208
 export const STALL_LEN = 10
 export const STALL_STATUS = {

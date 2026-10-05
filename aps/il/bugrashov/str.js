@@ -502,8 +502,8 @@ export const OPERATIONS = [
   { id: 9, key: 'op-stall-rsv' },
   { id: 10, key: 'op-req-exit' },
   { id: 11, key: 'op-req-entry' },
-  { id: 12, key: 'op-no' },
-  { id: 13, key: 'op-no' },
+  { id: 12, key: 'op-req-pp' },
+  { id: 13, key: 'op-req-queue' },
   { id: 14, key: 'op-no' },
   { id: 15, key: 'op-no' }
 ]

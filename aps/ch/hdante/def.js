@@ -1,9 +1,5 @@
 export const APS = 'hdante'
 export const PORT = 49027
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9022
 const POLL_TIME = 600
 export const PLC = {
@@ -20,8 +16,6 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531, 532] // EL, EU
 
-// const CARDS = 52
-// const CARD_LEN = 10
 export const CARDS = 52
 export const CARD_LEN = 10
 
@@ -41,8 +35,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 52
-// const STALL_LEN = 10
 export const STALLS = 52
 export const STALL_LEN = 10
 export const STALL_STATUS = {

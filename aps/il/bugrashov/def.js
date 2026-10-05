@@ -1,9 +1,5 @@
 export const APS = 'bugrashov'
 export const PORT = 49041
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9038
 export const PLC = {
   ip: '192.168.85.2',
@@ -12,6 +8,14 @@ export const PLC = {
   polling_time: 500
 }
 
+// export const CLOCK_READ = {
+//   area: 0x84,
+//   dbNumber: 6,
+//   start: 2,
+//   amount: 14,
+//   wordLen: 0x02
+// }
+
 export const QUEUE_LEN = 5
 
 export const ALARM_LEN = 8
@@ -19,8 +23,6 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541] // EL1..EL4, SH1..SH7
 
-// const CARDS = 225
-// const CARD_LEN = 10
 export const CARDS = 225
 export const CARD_LEN = 10
 
@@ -41,8 +43,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 229
-// const STALL_LEN = 10
 export const STALLS = 229
 export const STALL_LEN = 10
 export const STALL_STATUS = {

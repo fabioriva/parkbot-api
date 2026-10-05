@@ -1,4 +1,3 @@
-import { format } from 'date-fns'
 import util from 'util'
 import { getPlcDateTime } from '../lib/utils7.js'
 
@@ -6,7 +5,7 @@ class Stall {
   constructor (
     nr,
     status = 0,
-    date = format(new Date('1990-01-01 00:00:00'), 'yyyy-MM-dd HH:mm:ss'),
+    date = '1990-01-01T00:00:00.000Z',
     size = 0
   ) {
     this.nr = nr
@@ -17,10 +16,9 @@ class Stall {
 
   update (buffer) {
     this.status = buffer.readInt16BE(0)
-    this.date = format(
-      getPlcDateTime(buffer.readInt16BE(2), buffer.readInt32BE(4)),
-      'yyyy-MM-dd HH:mm:ss'
-    )
+    this.date = new Date(
+      getPlcDateTime(buffer.readUInt16BE(2), buffer.readUInt32BE(4))
+    ).toISOString()
     this.size = buffer.readInt16BE(8)
   }
 }

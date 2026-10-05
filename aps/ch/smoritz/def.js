@@ -1,9 +1,5 @@
 export const APS = 'smoritz'
 export const PORT = 49031
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9026
 const POLL_TIME = 500
 export const PLC = {

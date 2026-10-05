@@ -1,15 +1,19 @@
 export const APS = 'chandan'
 export const PORT = 49016
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9004
 export const PLC = {
   ip: '192.168.66.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 5
@@ -19,8 +23,6 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531, 532, 533]
 
-// const CARDS = 120
-// const CARD_LEN = 10
 export const CARDS = 120
 export const CARD_LEN = 10
 
@@ -41,8 +43,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 105
-// const STALL_LEN = 10
 export const STALLS = 105
 export const STALL_LEN = 10
 export const STALL_STATUS = {
