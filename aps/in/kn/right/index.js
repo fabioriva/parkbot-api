@@ -5,7 +5,7 @@ import * as str from '../str.js'
 import obj from '../obj.js'
 import mongo from '../../../../lib/db.js'
 import History from '../../../../lib/History.js'
-import Notifications from '../../../lib/Notifications.js'
+import Notifications from '../../../../lib/Notifications.js'
 import Plc from '../../../../lib/Plc.js'
 import Router from '../../../../lib/Router.js'
 
