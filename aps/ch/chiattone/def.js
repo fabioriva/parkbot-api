@@ -1,15 +1,19 @@
 export const APS = 'chiattone'
 export const PORT = 49007
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9017
 export const PLC = {
   ip: '192.168.58.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 5
@@ -19,8 +23,6 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531, 532, 533, 534]
 
-// const CARDS = 38
-// const CARD_LEN = 10
 export const CARDS = 38
 export const CARD_LEN = 10
 
@@ -41,10 +43,7 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const DB_MAP = 510
 export const DB_MAP = 510
-// const STALLS = 39
-// const STALL_LEN = 10
 export const STALLS = 39
 export const STALL_LEN = 10
 export const STALL_STATUS = {
