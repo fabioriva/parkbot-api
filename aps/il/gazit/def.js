@@ -12,7 +12,7 @@ export const PLC = {
   slot: 2,
   polling_time: POLL_TIME
 }
-
+export const TIME_ZONE = 'Asia/Jerusalem'
 export const QUEUE_LEN = 5
 
 export const ALARM_LEN = 8

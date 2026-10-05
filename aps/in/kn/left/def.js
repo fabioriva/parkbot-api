@@ -1,9 +1,5 @@
 export const APS = 'knl'
 export const PORT = 49021
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9015
 export const PLC = {
   ip: '140.80.25.22',
@@ -11,7 +7,7 @@ export const PLC = {
   slot: 2,
   polling_time: 1200 // 999
 }
-
+export const TIME_ZONE = 'Asia/Kolkata'
 export const QUEUE_LEN = 10
 
 export const ALARM_LEN = 8

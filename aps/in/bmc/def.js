@@ -1,9 +1,5 @@
 export const APS = 'bmc'
 export const PORT = 49015
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9005
 export const PLC = {
   ip: '192.168.69.2',
@@ -11,7 +7,7 @@ export const PLC = {
   slot: 1,
   polling_time: 500
 }
-
+export const TIME_ZONE = 'Asia/Kolkata'
 export const QUEUE_LEN = 5
 
 export const ALARM_LEN = 8

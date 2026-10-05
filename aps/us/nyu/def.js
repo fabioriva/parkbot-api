@@ -1,9 +1,5 @@
 export const APS = 'nyu'
 export const PORT = 49003
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9011
 export const PLC = {
   ip: '192.168.55.2',
@@ -11,7 +7,7 @@ export const PLC = {
   slot: 1,
   polling_time: 500
 }
-
+export const TIME_ZONE = 'America/New_York'
 export const QUEUE_LEN = 5
 
 export const ALARM_LEN = 8
@@ -19,8 +15,6 @@ export const DB_ALARM_INIT = 12
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [431, 432]
 
-// const CARDS = 119
-// const CARD_LEN = 10
 export const CARDS = 119
 export const CARD_LEN = 10
 
@@ -41,8 +35,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 121
-// const STALL_LEN = 10
 export const STALLS = 121
 export const STALL_LEN = 10
 export const STALL_STATUS = {

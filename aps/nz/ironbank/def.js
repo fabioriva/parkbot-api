@@ -7,7 +7,7 @@ export const PLC = {
   slot: 2, // 1=s7-1500, 2=s7-300
   polling_time: 999
 }
-
+export const TIME_ZONE = 'Pacific/Auckland'
 export const QUEUE_LEN = 5
 
 export const ALARM_LEN = 8

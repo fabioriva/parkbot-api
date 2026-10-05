@@ -109,19 +109,38 @@ conoscere la precedente semantica e il fuso dell'impianto alla data dell'evento.
 Le azioni storiche salvate come numero richiedono a loro volta una migrazione
 del tipo BSON per essere confrontate con i nuovi campi Date.
 
-Questa modifica riguarda acquisizione, salvataggio e query dello storico.
-Le statistiche in lib/operations.js e la scelta della data della dashboard in
-lib/Router.js usano ancora convenzioni precedenti (confini nel fuso del server,
-offset fisso nel report giornaliero, raggruppamenti MongoDB in UTC).
-Per report basati sul calendario dell'impianto bisogna applicare il suo fuso
-anche ai confini e ai raggruppamenti; non basta formattare le etichette.
+## Statistiche e dashboard
+
+Configurare il fuso IANA dell'impianto con `def.TIME_ZONE` (precedenza) oppure
+con la variabile d'ambiente `APS_TIME_ZONE`, per esempio `Asia/Dubai` o
+`America/Los_Angeles`. In assenza di configurazione il fuso è UTC; il fuso del
+server non viene usato. Il router applica il fuso configurato alle statistiche
+e alla scelta del giorno corrente della dashboard.
+
+`getOperations`, `getCards` e `getDevices` accettano `dateFrom`/`dateTo` come
+istanti ISO con Z o offset esplicito: l'intervallo è `[dateFrom, dateTo)`.
+Per compatibilità, accettano anche `YYYY-MM-DD`, interpretato come mezzanotte
+nel fuso dell'impianto. Con estremi uguali selezionano l'intero giorno locale.
+Date/ore prive di offset e intervalli invertiti vengono rifiutati.
+
+`getOperations({ dateString: '2026-10-05' }, timeZone)` restituisce i report
+giornaliero, settimana precedente (lunedì–lunedì), mese precedente e ultimo
+anno fino alla mezzanotte della data selezionata. I confini vengono convertiti
+separatamente in UTC, rispettando i giorni di 23 o 25 ore. MongoDB raggruppa
+ore, giorni e mesi nello stesso fuso, senza aggiungere offset fissi.
+
+La risposta conserva `data`, `key` e `query.date`, aggiungendo in `query`
+`dateFrom`, `dateTo` (ISO UTC) e `timeZone`. Le etichette AM/PM sono ore locali
+dell'impianto: `12 am` = 00:00 e `12 pm` = 12:00. Le ore senza operazioni
+restano omesse; nel ritorno all'ora solare le due occorrenze della stessa ora
+locale vengono sommate. `total` è ingressi + uscite, non l'occupazione.
 
 ## Verifica
 
 Eseguire con Node.js >= 22:
 
 ```sh
-node --test test/utc-history.test.js test/utc-stalls.test.js
+node --test test/utc-history.test.js test/utc-stalls.test.js test/operations-timezone.test.js
 ```
 
 I test coprono quattro fusi del server, millisecondi, anno bisestile, date dei

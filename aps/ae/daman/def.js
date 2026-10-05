@@ -7,7 +7,7 @@ export const PLC = {
   slot: 1,
   polling_time: 999
 }
-
+export const TIME_ZONE = 'Asia/Dubai'
 export const CLOCK_READ = {
   area: 0x84,
   dbNumber: 520,
