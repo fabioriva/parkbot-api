@@ -1,15 +1,19 @@
 export const APS = 'nhidcl'
 export const PORT = 49008
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9006
 export const PLC = {
   ip: '192.168.56.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 5
@@ -39,8 +43,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 112
-// const STALL_LEN = 10
 export const STALLS = 112
 export const STALL_LEN = 10
 export const STALL_STATUS = {

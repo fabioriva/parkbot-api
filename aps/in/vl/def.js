@@ -1,15 +1,19 @@
 export const APS = 'vl'
 export const PORT = 49011
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9003
 export const PLC = {
   ip: '192.168.65.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 10
@@ -19,8 +23,6 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531]
 
-// const CARDS = 55
-// const CARD_LEN = 10
 export const CARDS = 55
 export const CARD_LEN = 10
 
@@ -41,8 +43,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 56
-// const STALL_LEN = 10
 export const STALLS = 56
 export const STALL_LEN = 10
 export const STALL_STATUS = {
