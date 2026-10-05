@@ -1,15 +1,19 @@
 export const APS = 'aminadav16'
 export const PORT = 49035
-export const HOST =
-  process.env.NODE_ENV !== 'production'
-    ? process.env.DEVELOPMENT_SERVER
-    : process.env.PRODUCTION_SERVER
 export const HTTP = 9032
 export const PLC = {
   ip: '192.168.74.2',
   rack: 0,
   slot: 1,
   polling_time: 500
+}
+
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
 }
 
 export const QUEUE_LEN = 5
@@ -19,8 +23,6 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531, 532] // T, EU1
 
-// const CARDS = 54
-// const CARD_LEN = 10
 export const CARDS = 54
 export const CARD_LEN = 10
 
@@ -41,8 +43,6 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-// const STALLS = 54
-// const STALL_LEN = 10
 export const STALLS = 54
 export const STALL_LEN = 10
 export const STALL_STATUS = {
