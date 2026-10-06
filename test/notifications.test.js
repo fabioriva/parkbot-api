@@ -60,6 +60,16 @@ test('reads updated tokens on the next send', async t => {
   assert.equal(fetch.mock.calls[1].arguments[1].headers.Authorization, 'Bearer rotated-token')
 })
 
+test('returns without reading the token or sending a request when there are no recipients', async t => {
+  const { notifications, doc, fetch, recipients } = await setup(t)
+  recipients.length = 0
+  delete process.env.NOTIFICATIONS_API_TOKENS_FILE
+
+  await notifications.send('aa', doc)
+
+  assert.equal(fetch.mock.callCount(), 0)
+})
+
 test('rejects a missing file setting before sending a request', async t => {
   const { notifications, doc, fetch } = await setup(t)
   delete process.env.NOTIFICATIONS_API_TOKENS_FILE
