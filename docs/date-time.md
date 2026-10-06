@@ -66,6 +66,17 @@ Il valore iniziale è `1990-01-01T00:00:00.000Z`.
 Anche DATE/TOD degli stalli devono rappresentare UTC nel PLC. Il frontend
 converte questi istanti nel fuso dell'impianto, come per lo storico.
 
+## Allarmi live
+
+`models/Alarm.js` espone `date` come stringa ISO UTC con `Z`, conservando i
+millisecondi. DATE/TOD vengono letti senza segno agli offset 2 e 4, come per
+log e stalli, senza usare il fuso del server. Anche questi campi devono
+rappresentare UTC nel PLC.
+
+Le date degli allarmi nella diagnostica HTTP e WebSocket possono quindi essere
+convertite dal frontend nel fuso dell'impianto. L'ordinamento degli allarmi
+attivi usa gli istanti ISO, dal più recente al meno recente.
+
 ## Frontend
 
 Esempio con date-fns-tz, da integrare nel repository frontend:
@@ -140,7 +151,7 @@ locale vengono sommate. `total` è ingressi + uscite, non l'occupazione.
 Eseguire con Node.js >= 22:
 
 ```sh
-node --test test/utc-history.test.js test/utc-stalls.test.js test/operations-timezone.test.js
+node --test test/utc-history.test.js test/utc-stalls.test.js test/operations-timezone.test.js test/utc-alarms.test.js
 ```
 
 I test coprono quattro fusi del server, millisecondi, anno bisestile, date dei

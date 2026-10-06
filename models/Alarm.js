@@ -1,4 +1,3 @@
-import { format } from 'date-fns'
 import util from 'util'
 import { getPlcDateTime } from '../lib/utils7.js'
 // const i18next = require('i18next')
@@ -14,10 +13,9 @@ class Alarm {
 
   update (buffer) {
     this.status = (buffer[0] & 1) === 1
-    this.date = format(
-      getPlcDateTime(buffer.readInt16BE(2), buffer.readInt32BE(4)),
-      'yyyy-MM-dd HH:mm:ss:SSS'
-    )
+    this.date = new Date(
+      getPlcDateTime(buffer.readUInt16BE(2), buffer.readUInt32BE(4))
+    ).toISOString()
   }
 
   // async translate (locale) {
