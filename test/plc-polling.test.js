@@ -27,6 +27,8 @@ function fixture () {
   const messages = []
   const errors = []
   const updates = []
+  let now = 0
+  let readCalls = 0
   class Client {
     constructor () {
       this.reads = []
@@ -55,6 +57,7 @@ function fixture () {
     ErrorText (code) { return `Snap7 ${code}` }
 
     ReadArea (area, dbNumber, start, amount, wordLen, callback) {
+      readCalls++
       const result = this.reads.shift() ?? clockBuffer()
       queueMicrotask(() => Buffer.isBuffer(result) ? callback(null, result) : callback(result))
     }
@@ -77,6 +80,7 @@ function fixture () {
     updatePositions: decode,
     updateQueue: decode,
     Buffer,
+    performance: { now: () => now },
     setTimeout: (callback, delay) => timers.push({ callback, delay })
   })
   vm.runInContext(classSource + '\nglobalThis.TestPLC = PLC', context)
@@ -100,7 +104,19 @@ function fixture () {
     await callback()
     assert.equal(timers.length, 1, 'The next polling cycle must always be scheduled')
   }
-  return { plc, def, obj, timers, messages, errors, updates, tick, originalMain }
+  return {
+    plc,
+    def,
+    obj,
+    timers,
+    messages,
+    errors,
+    updates,
+    tick,
+    originalMain,
+    setTime: value => { now = value },
+    readCalls: () => readCalls
+  }
 }
 
 test('clock timeout broadcasts offline and recovers polling after reconnect', async () => {
@@ -199,7 +215,7 @@ test('connection refresh reads finish sequentially before the next cycle', async
   f.plc.forever(f.def, f.obj)
   await f.tick()
   assert.equal(maxActive, 1)
-  assert.deepEqual(f.updates, ['alarms', 'cards', 'main', 'map'])
+  assert.deepEqual(f.updates, ['main', 'alarms', 'cards', 'main', 'map'])
 })
 
 test('main handles PLC log write and history errors before completing', async () => {
@@ -222,4 +238,78 @@ test('main handles PLC log write and history errors before completing', async ()
     if (stage === 'write') assert.equal(f.errors[0][0].code, 655470)
     else assert.equal(f.errors[0][0].message, 'History failed')
   }
+})
+
+test('clock sync reads once a minute while operation timestamps keep advancing', async () => {
+  const f = fixture()
+  f.plc.online = f.plc.online_ = true
+  f.plc.forever(f.def, f.obj)
+  await f.tick()
+  const initial = f.obj.plcDTL
+  assert.equal(f.readCalls(), 1)
+  for (let now = 500; now < 60_000; now += 500) {
+    f.setTime(now)
+    await f.tick()
+    assert.equal(f.obj.plcDTL, initial + now)
+    assert.equal(f.readCalls(), 1)
+  }
+  const nextClock = clockBuffer()
+  nextClock[6] = 31
+  f.plc.client.reads.push(nextClock)
+  f.setTime(60_000)
+  await f.tick()
+  assert.equal(f.readCalls(), 2)
+  assert.equal(f.obj.plcDTL, Date.UTC(2026, 9, 7, 8, 31, 9))
+  f.setTime(60_500)
+  await f.tick()
+  assert.equal(f.readCalls(), 2)
+  assert.equal(f.obj.plcDTL, Date.UTC(2026, 9, 7, 8, 31, 9, 500))
+})
+
+test('a clock resync timeout recovers immediately after reconnection', async () => {
+  const f = fixture()
+  f.plc.online = f.plc.online_ = true
+  f.plc.forever(f.def, f.obj)
+  await f.tick()
+  f.plc.client.reads.push(655470, clockBuffer())
+  f.setTime(60_000)
+  await f.tick()
+  assert.equal(f.plc.online, false)
+  assert.equal(f.plc.plcClockSync, undefined)
+  assert.equal(f.messages.at(-1).data.comm, false)
+  f.setTime(60_500)
+  await f.tick()
+  assert.equal(f.readCalls(), 3)
+  assert.equal(f.plc.online, true)
+  assert.equal(f.obj.plcDTL, Date.UTC(2026, 9, 7, 8, 30, 9))
+  assert.equal(f.messages.at(-1).data.comm, true)
+})
+
+test('reconnect after a data read failure refreshes the clock before main', async () => {
+  const f = fixture()
+  f.plc.online = f.plc.online_ = true
+  f.plc.forever(f.def, f.obj)
+  await f.tick()
+  f.setTime(500)
+  await f.plc.error(655470)
+  const nextClock = clockBuffer()
+  nextClock[5] = 9
+  f.plc.client.reads.push(nextClock)
+  const mainTimes = []
+  f.plc.main = async () => mainTimes.push(f.obj.plcDTL)
+  await f.tick()
+  assert.equal(f.readCalls(), 2)
+  assert.equal(mainTimes[0], Date.UTC(2026, 9, 7, 9, 30, 9))
+})
+
+test('sites without CLOCK_READ retain the server time fallback without Snap7 reads', async () => {
+  const f = fixture()
+  delete f.def.CLOCK_READ
+  f.plc.online = f.plc.online_ = true
+  f.plc.forever(f.def, f.obj)
+  const before = Date.now()
+  await f.tick()
+  assert.ok(f.obj.plcDTL >= before && f.obj.plcDTL <= Date.now())
+  assert.equal(f.readCalls(), 0)
+  assert.equal(f.plc.plcClockSync, undefined)
 })
