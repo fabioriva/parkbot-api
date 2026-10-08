@@ -1,6 +1,6 @@
 {
   "name": "parkbot-api",
-  "version": "0.10.0",
+  "version": "1.9.0",
   "description": "parkbot backend",
   "scripts": {
     "api": "nodemon aps/ae/daman/api/index.js",
