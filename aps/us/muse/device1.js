@@ -1,4 +1,6 @@
-import { inputs, outputs } from './io.js'
+import * as def from './def.js'
+import { inputs, outputs, merkers } from './io.js'
+import { ActionEntry } from '../../../models/Action.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
 import { Door, Flap, Lock, Hoisting, Rotation, Traveling } from '../../../models/Motor.js'
@@ -16,6 +18,8 @@ const lamps = [
   outputs.find(b => b.addr === 'A103.7'),
   outputs.find(b => b.addr === 'A103.6')
 ]
+
+const A0 = new ActionEntry('action-rollback', merkers.find(b => b.addr === 'M4.2'), 1, 1, def.CARDS)
 
 const EN1 = inputs.find(b => b.addr === 'E103.0')
 const EN2 = inputs.find(b => b.addr === 'E103.1')
@@ -155,6 +159,6 @@ const garage = new Garage(
 
 const views = [main, garage]
 
-const device = new Device(1, 'EL1', [], lamps, motors, views)
+const device = new Device(1, 'EL1', [A0], lamps, motors, views)
 
 export default { device, drives, positions }
