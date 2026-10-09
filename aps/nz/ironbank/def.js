@@ -112,13 +112,13 @@ export const REQ_ENTRY = {
   area: 0x84,
   dbNumber: DB_DATA,
   start: 326,
-  amount: 4, // card + entry nr
+  amount: 4, // entry ID + card
   wordLen: 0x02
 }
 export const REQ_EXIT = {
   area: 0x84,
   dbNumber: DB_DATA,
   start: 322,
-  amount: 4, // card + exit nr
+  amount: 4, // exit ID + card
   wordLen: 0x02
 }

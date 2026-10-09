@@ -94,17 +94,39 @@ export const REQ_0 = {
   amount: 2,
   wordLen: 0x02
 }
-export const ROLLBACK_EL3 = {
+// export const ROLLBACK_EL3 = {
+//   area: 0x84,
+//   dbNumber: DB_DATA,
+//   start: 264 * 8 + 4, // Offset 264.4 (M4.4)
+//   amount: 1,
+//   wordLen: 0x01 // Bit (inside a word)
+// }
+// export const ROLLBACK_EL4 = {
+//   area: 0x84,
+//   dbNumber: DB_DATA,
+//   start: 264 * 8 + 5, // Offset 264.5 (M4.5)
+//   amount: 1,
+//   wordLen: 0x01 // Bit (inside a word)
+// }
+export const MAX_ENTRY = 2
+export const REQ_ENTRY = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 264 * 8 + 4, // Offset 264.4 (M4.4)
-  amount: 1,
-  wordLen: 0x01 // Bit (inside a word)
+  start: 502,
+  amount: 4, // entry ID + card
+  wordLen: 0x02
 }
-export const ROLLBACK_EL4 = {
+export const REQ_EXIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 264 * 8 + 5, // Offset 264.5 (M4.5)
-  amount: 1,
-  wordLen: 0x01 // Bit (inside a word)
+  start: 498,
+  amount: 4, // exit ID + card
+  wordLen: 0x02
+}
+export const REQ_ROLLBACK = {
+  area: 0x84,
+  dbNumber: DB_DATA,
+  start: 506,
+  amount: 4, // entry ID + card
+  wordLen: 0x02
 }
