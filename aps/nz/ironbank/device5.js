@@ -1,6 +1,7 @@
 import * as def from './def.js'
 import { inputs, merkers, outputs } from './io.js'
-import { Action } from '../../../models/Action.js'
+// import { Action } from '../../../models/Action.js'
+import { ActionEntry } from '../../../models/Action.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
 import { Barrier, Door, Flap, Rotation } from '../../../models/Motor.js'
@@ -14,7 +15,8 @@ const lamps = [
   outputs.find(b => b.addr === 'A0.6')
 ]
 
-const A0 = new Action('action-entry', merkers.find(b => b.addr === 'M3.3'), def.REQ_3, 1, def.CARDS)
+// const A0 = new Action('action-entry', merkers.find(b => b.addr === 'M3.3'), def.REQ_3, 1, def.CARDS)
+const A0 = new ActionEntry('action-entry', merkers.find(b => b.addr === 'M3.3'), 3, 1, def.CARDS)
 
 const EN1 = inputs.find(b => b.addr === 'E16.0')
 const IV1 = new Drive(1, 'IVC', EN1)

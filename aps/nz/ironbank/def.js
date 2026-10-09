@@ -86,24 +86,39 @@ export const REQ_0 = {
   amount: 2,
   wordLen: 0x02
 }
-export const REQ_1 = {
-  area: 0x84,
-  dbNumber: DB_DATA,
-  start: 324,
-  amount: 2,
-  wordLen: 0x02
-}
-export const REQ_2 = {
+// export const REQ_1 = {
+//   area: 0x84,
+//   dbNumber: DB_DATA,
+//   start: 324,
+//   amount: 2,
+//   wordLen: 0x02
+// }
+// export const REQ_2 = {
+//   area: 0x84,
+//   dbNumber: DB_DATA,
+//   start: 326,
+//   amount: 2,
+//   wordLen: 0x02
+// }
+// export const REQ_3 = {
+//   area: 0x84,
+//   dbNumber: DB_DATA,
+//   start: 328,
+//   amount: 2,
+//   wordLen: 0x02
+// }
+export const MAX_ENTRY = 3
+export const REQ_ENTRY = {
   area: 0x84,
   dbNumber: DB_DATA,
   start: 326,
-  amount: 2,
+  amount: 4, // card + entry nr
   wordLen: 0x02
 }
-export const REQ_3 = {
+export const REQ_EXIT = {
   area: 0x84,
   dbNumber: DB_DATA,
-  start: 328,
-  amount: 2,
+  start: 322,
+  amount: 4, // card + exit nr
   wordLen: 0x02
 }

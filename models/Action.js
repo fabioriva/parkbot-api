@@ -2,9 +2,19 @@ export class Action {
   constructor (id, enable, writeArea, minTag = 0, maxTag = 0) {
     this.key = id
     this.enable = enable
-    this.writeArea = writeArea
+    this.writeArea = writeArea // TODO: don't use it
     this.min = minTag
     this.max = maxTag
+  }
+}
+
+export class ActionEntry {
+  constructor (id, enable, entry = 0, min = 0, max = 0) {
+    this.key = id
+    this.enable = enable // enable button
+    this.entry = entry // entry nr
+    this.min = min // card min
+    this.max = max // card max
   }
 }
 
