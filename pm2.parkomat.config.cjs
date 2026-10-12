@@ -28,6 +28,15 @@ module.exports = {
       out_file: '/dev/null'
     },
     {
+      name: 'api-avigail',
+      script: './aps/il/avigail/index.js',
+      cwd: './',
+      max_memory_restart: '150M',
+      node_args: '-r dotenv/config',
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      out_file: '/dev/null'
+    },
+    {
       name: 'api-bugrashov',
       script: './aps/il/bugrashov/index.js',
       cwd: './',
