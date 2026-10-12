@@ -1,8 +1,8 @@
-export const APS = 'ruth'
-export const PORT = 49050
-export const HTTP = 9047
+export const APS = 'avigail'
+// export const PORT = 49050
+export const HTTP = 9048
 export const PLC = {
-  ip: '140.80.42.12',
+  ip: '140.80.41.12',
   rack: 0,
   slot: 1,
   polling_time: 500
