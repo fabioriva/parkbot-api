@@ -23,7 +23,7 @@ export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [531]
 
-export const CARDS = 34
+export const CARDS = 33
 export const CARD_LEN = 10
 
 const DB_DATA = 505
@@ -43,7 +43,7 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-export const STALLS = 34
+export const STALLS = 33
 export const STALL_LEN = 10
 export const STALL_STATUS = {
   FREE: 0,
