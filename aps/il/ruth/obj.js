@@ -35,7 +35,7 @@ const map = {
   levels: [
     {
       nr: 1,
-      label: 'Level -3',
+      label: 'Level -4',
       min: 1,
       max: 10,
       stalls: stalls.slice(0, 10),
@@ -43,7 +43,7 @@ const map = {
     },
     {
       nr: 2,
-      label: 'Level -2',
+      label: 'Level -3',
       min: 11,
       max: 20,
       stalls: stalls.slice(10, 20),
@@ -51,7 +51,7 @@ const map = {
     },
     {
       nr: 3,
-      label: 'Level 3',
+      label: 'Level -2',
       min: 21,
       max: 28,
       stalls: stalls.slice(20, 28),
@@ -59,7 +59,7 @@ const map = {
     },
     {
       nr: 4,
-      label: 'Level 3',
+      label: 'Level -1',
       min: 29,
       max: 34,
       stalls: stalls.slice(28, 34),
