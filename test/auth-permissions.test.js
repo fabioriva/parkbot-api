@@ -38,14 +38,14 @@ test('storage failures are server errors and two-factor policy is enforced', asy
   await assert.rejects(with2FA({}, 'avigail', 'read'), denied(403))
 })
 
-function upgradeFixture (origin = 'https://sotefinservice.com') {
-  const headers = { origin, cookie: 'parkbot.session_token=test', 'sec-websocket-key': 'key' }
+function upgradeFixture (origin = 'https://sotefinservice.com', protocols = '') {
+  const headers = { origin, cookie: 'parkbot.session_token=test', 'sec-websocket-key': 'key', 'sec-websocket-protocol': protocols }
   const res = {
     onAborted (fn) { this.abort = fn },
     cork (fn) { fn() },
     writeStatus (status) { this.status = status; return this },
     end () {},
-    upgrade (data) { this.data = data }
+    upgrade (data, key, protocol) { this.data = data; this.protocol = protocol }
   }
   const req = { forEach (fn) { Object.entries(headers).forEach(([key, value]) => fn(key, value)) }, getHeader: key => headers[key] || '' }
   return { res, req }
@@ -92,4 +92,46 @@ test('an aborted upgrade cannot create a WebSocket after authorization resolves'
   finishAuthorization(validSession())
   await pending
   assert.equal(res.data, undefined)
+})
+
+test('localhost can authenticate without remote-domain cookies when explicitly trusted', async () => {
+  const origins = new Set(['http://localhost:3000'])
+  let received
+  const behavior = authenticatedWebSocket({
+    authorize: async (headers, aps, permission) => {
+      received = { headers, aps, permission }
+      if (headers.authorization !== 'Bearer session-token') throw new AuthorizationError(401, 'Unauthorized')
+      return validSession()
+    },
+    aps: 'daman-n',
+    permission: 'read',
+    topic: 'aps/info',
+    origins
+  })
+  const { res, req } = upgradeFixture('http://localhost:3000', 'parkbot, parkbot-session.session-token')
+  // This is the browser request in the screenshot: no remote-domain cookie.
+  req.forEach = fn => {
+    fn('origin', 'http://localhost:3000')
+    fn('sec-websocket-protocol', 'parkbot, parkbot-session.session-token')
+  }
+  await behavior.upgrade(res, req, {})
+  assert.equal(received.headers.authorization, 'Bearer session-token')
+  assert.equal(received.aps, 'daman-n')
+  assert.equal(res.protocol, 'parkbot')
+  assert.ok(res.data)
+})
+
+test('protocol credentials still require a trusted origin and reject invalid or ambiguous tokens', async () => {
+  let calls = 0
+  const behavior = authenticatedWebSocket({ authorize: async () => { calls++; return validSession() }, aps: 'daman-n', permission: 'read', topic: 'aps/info' })
+  const foreign = upgradeFixture('https://attacker.test', 'parkbot, parkbot-session.session-token')
+  await behavior.upgrade(foreign.res, foreign.req, {})
+  assert.equal(foreign.res.status, '403 Forbidden')
+  for (const protocols of ['parkbot, parkbot-session.', 'parkbot-session.session-token', 'parkbot, parkbot-session.one, parkbot-session.two']) {
+    const { res, req } = upgradeFixture('https://sotefinservice.com', protocols)
+    await behavior.upgrade(res, req, {})
+    assert.equal(res.status, '401 Unauthorized')
+    assert.equal(res.data, undefined)
+  }
+  assert.equal(calls, 0)
 })
