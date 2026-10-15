@@ -7,7 +7,7 @@
     "dev": "nodemon aps/us/menloa/index.js",
     "start": "NODE_ENV=production pm2 start aps/us/menloa/index.js --name api-menlo-a --max-memory-restart 128M",
     "test": "standard",
-    "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0",
+    "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.69.0",
     "test:uws": "node --test test/uws.integration.test.js",
     "test:auth": "node --test --experimental-test-isolation=none test/auth-permissions.test.js test/router-auth.test.js test/better-auth-session.test.js",
     "test:plc": "node --test --experimental-test-isolation=none test/daman-plcw.test.js test/utils7.test.js",
@@ -26,7 +26,7 @@
     "mqtt": "^5.10.3",
     "node-snap7": "^1.0.9",
     "pino": "^10.3.1",
-    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.52.0"
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.69.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
