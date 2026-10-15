@@ -10,7 +10,8 @@
     "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0",
     "test:auth": "node --test --experimental-test-isolation=none test/auth-permissions.test.js test/router-auth.test.js test/better-auth-session.test.js",
     "test:plc": "node --test --experimental-test-isolation=none test/daman-plcw.test.js test/utils7.test.js",
-    "test:startup": "node --test --experimental-test-isolation=none test/startup.test.js"
+    "test:startup": "node --test --experimental-test-isolation=none test/startup.test.js",
+    "test:db": "node --test --experimental-test-isolation=none test/db.test.js"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
