@@ -8,12 +8,12 @@
     "start": "NODE_ENV=production pm2 start aps/us/menloa/index.js --name api-menlo-a --max-memory-restart 128M",
     "test": "standard",
     "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0",
-    "test:auth": "node --test --test-isolation=none test/auth-permissions.test.js test/router-auth.test.js"
+    "test:auth": "node --test --test-isolation=none test/auth-permissions.test.js test/router-auth.test.js test/better-auth-session.test.js"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
   "dependencies": {
-    "better-auth": "^1.7.2",
+    "better-auth": "1.7.9",
     "date-fns": "^4.4.0",
     "date-fns-tz": "^3.2.0",
     "dotenv": "^17.4.2",
