@@ -38,14 +38,14 @@ function routes () {
   return handlers
 }
 
-async function call (handler, authorization = 'Bearer test') {
+async function call (handler, authorization = 'Bearer test', body = '{}') {
   const res = {
     onAborted (fn) { this.abort = fn },
-    onData (fn) { queueMicrotask(() => fn(Buffer.from('{}'), true)) },
+    onData (fn) { queueMicrotask(() => fn(Buffer.from(body), true)) },
     cork (fn) { fn() },
     writeStatus (status) { this.status = status; return this },
     writeHeader () { return this },
-    end (body) { this.body = JSON.parse(body); return this }
+    end (body, closeConnection) { this.body = JSON.parse(body); this.closeConnection = closeConnection; return this }
   }
   const req = {
     getHeader: key => key === 'authorization' ? authorization : '',
@@ -88,4 +88,27 @@ test('HTTP routes distinguish missing credentials, forbidden operations and serv
   state.databaseFailure = true
   assert.equal((await call(map)).status, '500 Internal Server Error')
   state.databaseFailure = false
+})
+
+test('malformed and oversized JSON produce 400 and 413 without PLC writes', async () => {
+  state.session = { user: { email: 'user@example.test', emailVerified: true, role: 'admin' } }
+  state.subscription = { aps: ['avigail'], role: 'admin' }
+  state.databaseFailure = false
+  state.writes = 0
+  const handler = routes().get('post /api/aps/avigail/map/edit')
+  const malformed = await call(handler, 'Bearer test', '{')
+  assert.equal(malformed.status, '400 Bad Request')
+  assert.deepEqual(malformed.body, { error: 'Invalid JSON' })
+  const oversized = await call(handler, 'Bearer test', 'x'.repeat(64 * 1024 + 1))
+  assert.equal(oversized.status, '413 Payload Too Large')
+  assert.equal(oversized.closeConnection, true)
+  assert.equal(state.writes, 0)
+})
+
+test('a missing rack returns a JSON 404 instead of a successful empty response', async () => {
+  state.session = { user: { email: 'user@example.test', emailVerified: true, role: 'admin' } }
+  state.subscription = { aps: ['avigail'], role: 'admin' }
+  const res = await call(routes().get('get /api/aps/avigail/racks/:id'))
+  assert.equal(res.status, '404 Not Found')
+  assert.deepEqual(res.body, { error: 'Rack not found' })
 })
