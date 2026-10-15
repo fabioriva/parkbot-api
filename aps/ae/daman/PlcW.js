@@ -13,22 +13,23 @@ class PLC {
   }
 
   async error (e) {
-    this.online = !this.client.Disconnect()
-    // try {
-    //   await this.client.Disconnect()
-    //   this.online = false
-    // } catch (err) {
-    //   this.online = false
-    // }
-    isNaN(e) ? logger.error(e) : logger.error(this.client.ErrorText(e))
+    this.online = false
+    try {
+      this.client.Disconnect()
+    } catch (error) {
+      logger.error({ err: error }, 'PLC disconnect failed')
+    }
+    typeof e === 'number'
+      ? logger.error({ code: e }, this.client.ErrorText(e))
+      : logger.error(e)
   }
 
   async read (def, obj) {
     try {
       const { area, dbNumber, start, amount, wordLen } = def.DATA_READ
-      this.online ? await ReadArea(this.client, area, dbNumber, start, amount, wordLen) : Buffer.alloc(amount)
+      if (this.online) await ReadArea(this.client, area, dbNumber, start, amount, wordLen)
     } catch (e) {
-      this.error(e)
+      await this.error(e)
     }
   }
 
@@ -39,23 +40,29 @@ class PLC {
         def.PLC.rack,
         def.PLC.slot
       )
-      this.forever(def, obj)
     } catch (e) {
-      this.error(e)
+      await this.error(e)
+    } finally {
+      this.forever(def, obj)
     }
   }
 
   forever (def, obj) {
-    setTimeout(() => {
-      if (this.online) {
-        this.read(def, obj)
-      } else {
-        this.online = this.client.Connect()
-        this.online
-          ? logger.info('Connected to PLC %s', def.PLC.ip)
-          : logger.info('Connecting to PLC %s ...', def.PLC.ip)
+    setTimeout(async () => {
+      try {
+        if (this.online) {
+          await this.read(def, obj)
+        } else {
+          this.online = this.client.Connect()
+          this.online
+            ? logger.info('Connected to PLC %s', def.PLC.ip)
+            : logger.info('Connecting to PLC %s ...', def.PLC.ip)
+        }
+      } catch (e) {
+        await this.error(e)
+      } finally {
+        this.forever(def, obj)
       }
-      this.forever(def, obj)
     }, def.PLC.polling_time)
   }
 

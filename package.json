@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production pm2 start aps/us/menloa/index.js --name api-menlo-a --max-memory-restart 128M",
     "test": "standard",
     "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0",
-    "test:auth": "node --test --experimental-test-isolation=none test/auth-permissions.test.js test/router-auth.test.js test/better-auth-session.test.js"
+    "test:auth": "node --test --experimental-test-isolation=none test/auth-permissions.test.js test/router-auth.test.js test/better-auth-session.test.js",
+    "test:plc": "node --test --experimental-test-isolation=none test/daman-plcw.test.js test/utils7.test.js"
   },
   "author": "f.riva@sotefin.ch",
   "license": "MIT",
