@@ -40,7 +40,7 @@ module.exports = {
       name: 'api-bugrashov',
       script: './aps/il/bugrashov/index.js',
       cwd: './',
-      max_memory_restart: '150M',
+      max_memory_restart: '256M',
       node_args: '-r dotenv/config',
       log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
       out_file: '/dev/null'
