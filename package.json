@@ -22,7 +22,7 @@
     "date-fns": "^4.4.0",
     "date-fns-tz": "^3.2.0",
     "dotenv": "^17.4.2",
-    "mongodb": "^7.6.0",
+    "mongodb": "^7.7.0",
     "mqtt": "^5.10.3",
     "node-snap7": "^1.0.9",
     "pino": "^10.3.1",
