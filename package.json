@@ -11,6 +11,13 @@
     "test:uws": "node --test test/uws.integration.test.js",
     "test:auth": "node --test --experimental-test-isolation=none test/auth-permissions.test.js test/router-auth.test.js test/better-auth-session.test.js",
     "test:plc": "node --test --experimental-test-isolation=none test/daman-plcw.test.js test/utils7.test.js",
+    "test:parking": "node --test --experimental-test-isolation=none test/parking-operations.test.js test/router-auth.test.js",
+    "test:queue": "node --test --experimental-test-isolation=none test/queue-operations.test.js test/router-auth.test.js",
+    "test:stalls": "node --test --experimental-test-isolation=none test/stall-operations.test.js test/router-auth.test.js",
+    "test:cards": "node --test --experimental-test-isolation=none test/card-operations.test.js test/router-auth.test.js",
+    "test:pp": "node --test --experimental-test-isolation=none test/pp-operations.test.js test/router-auth.test.js",
+    "test:clock": "node --test --experimental-test-isolation=none test/plc-clock-commands.test.js test/router-auth.test.js",
+    "test:commands": "node --test --experimental-test-isolation=none test/*-operations.test.js test/plc-clock-commands.test.js test/router-auth.test.js test/auth-permissions.test.js test/better-auth-session.test.js test/json.test.js test/utils7.test.js test/startup.test.js",
     "test:startup": "node --test --experimental-test-isolation=none test/startup.test.js",
     "test:db": "node --test --experimental-test-isolation=none test/db.test.js",
     "test:json": "node --test --experimental-test-isolation=none test/json.test.js"
