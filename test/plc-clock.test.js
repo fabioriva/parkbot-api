@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import PLC from '../lib/Plc.js'
+import PlcConnection from '../lib/PlcConnection.js'
 
 const def = {
   PLC: { ip: '192.0.2.1', polling_time: 500 },
@@ -29,12 +30,18 @@ for (const failure of [
     const plc = Object.create(PLC.prototype)
     plc.online = true
     plc.online_ = true
-    plc.client = {
+    const connectionFailure = 12345
+    const native = {
       ReadArea: (area, dbNumber, start, amount, wordLen, callback) => callback(failure.code, failure.data),
       Disconnect: t.mock.fn(() => true),
-      Connect: t.mock.fn(() => false),
+      Connect: t.mock.fn(callback => callback(connectionFailure)),
+      ConnectTo: (...args) => args.at(-1)(null),
       ErrorText: code => `Snap7 error ${code}`
     }
+    plc.connection = new PlcConnection(native, { onUnavailable: () => { plc.online = false } })
+    plc.client = plc.connection.client
+    await plc.connection.connectTo('simulated', 0, 1)
+    plc.connection.markReady()
     const main = t.mock.method(plc, 'main', async () => {})
     for (const method of ['alarms', 'cards', 'map']) {
       t.mock.method(plc, method, async () => {})
@@ -51,14 +58,14 @@ for (const failure of [
     await callbacks.shift()()
 
     assert.equal(plc.online, false)
-    assert.equal(plc.client.Disconnect.mock.callCount(), 1)
+    assert.equal(native.Disconnect.mock.callCount(), 1)
     assert.equal(obj.plcDTL, 42)
     assert.equal(main.mock.callCount(), 1) // Offline refresh after the connection changes.
     assert.equal(publish.mock.calls.at(-1).arguments[1].comm, false)
     assert.equal(callbacks.length, 1)
 
     await callbacks.shift()()
-    assert.equal(plc.client.Connect.mock.callCount(), 1)
+    assert.equal(native.Connect.mock.callCount(), 1)
     assert.equal(callbacks.length, 1)
   })
 }
@@ -66,11 +73,14 @@ for (const failure of [
 test('reads the PLC clock as UTC milliseconds', async () => {
   const plc = Object.create(PLC.prototype)
   plc.client = {
+    ConnectTo: (...args) => args.at(-1)(null),
     ReadArea: (area, dbNumber, start, amount, wordLen, callback) => {
       assert.deepEqual([area, dbNumber, start, amount, wordLen], [0x84, 520, 2, 14, 0x02])
-      callback(0, clockBuffer())
+      callback(null, clockBuffer())
     }
   }
+  plc.connection = new PlcConnection(plc.client)
+  await plc.connection.connectTo('simulated', 0, 1)
   const obj = {}
   await plc.readPlcClock(def, obj)
   assert.equal(obj.plcDTL, Date.UTC(2026, 9, 7, 12, 34, 56, 731))

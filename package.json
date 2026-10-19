@@ -17,7 +17,7 @@
     "test:cards": "node --test --experimental-test-isolation=none test/card-operations.test.js test/router-auth.test.js",
     "test:pp": "node --test --experimental-test-isolation=none test/pp-operations.test.js test/router-auth.test.js",
     "test:clock": "node --test --experimental-test-isolation=none test/plc-clock-commands.test.js test/router-auth.test.js",
-    "test:commands": "node --test --experimental-test-isolation=none test/*-operations.test.js test/plc-clock-commands.test.js test/router-auth.test.js test/auth-permissions.test.js test/better-auth-session.test.js test/json.test.js test/utils7.test.js test/startup.test.js",
+    "test:commands": "node --test --experimental-test-isolation=none test/*-operations.test.js test/plc-clock-commands.test.js test/plc-connection.test.js test/plc-polling.test.js test/daman-plcw.test.js test/plc-clock.test.js test/router-auth.test.js test/auth-permissions.test.js test/better-auth-session.test.js test/json.test.js test/utils7.test.js test/startup.test.js",
     "test:startup": "node --test --experimental-test-isolation=none test/startup.test.js",
     "test:db": "node --test --experimental-test-isolation=none test/db.test.js",
     "test:json": "node --test --experimental-test-isolation=none test/json.test.js"

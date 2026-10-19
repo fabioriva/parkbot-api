@@ -30,12 +30,13 @@ function setup (t) {
   })
   errors.length = 0
   const plc = new PLC()
-  plc.client = {
-    ConnectTo: () => true,
-    Connect: () => true,
+  plc.connection.client = {
+    ConnectTo: (...args) => args.at(-1)(null),
+    Connect: callback => callback(null),
     Disconnect: () => true,
     ErrorText: code => `PLC error ${code}`
   }
+  plc.client = plc.connection.client
   return { plc, timers }
 }
 
@@ -43,22 +44,25 @@ test('Daman schedules the next poll only after the current native read completes
   const { plc, timers } = setup(t)
   let complete
   let reads = 0
-  plc.client.ReadArea = (...args) => {
+  plc.connection.client.ReadArea = (...args) => {
     assert.deepEqual(args.slice(0, -1), [0x84, 6, 0, 4, 0x02])
     reads++
     complete = args.at(-1)
   }
   await plc.run(def, {})
   assert.equal(timers.length, 1)
+  assert.equal(plc.connection.ready, false, 'The write client first needs a successful control read')
 
   for (let cycle = 1; cycle <= 2; cycle++) {
     const pending = timers.shift()()
+    await new Promise(resolve => setImmediate(resolve))
     assert.equal(reads, cycle)
     assert.equal(timers.length, 0, 'No further poll can start while the read is pending')
     await Promise.resolve()
     assert.equal(timers.length, 0)
     complete(null, Buffer.alloc(4))
     await pending
+    assert.equal(plc.connection.ready, true)
     assert.equal(timers.length, 1)
   }
 })
@@ -68,9 +72,9 @@ test('a failed read disconnects and retries before issuing another read', async 
   let disconnects = 0
   let connects = 0
   let reads = 0
-  plc.client.Disconnect = () => { disconnects++; return true }
-  plc.client.Connect = () => { connects++; return true }
-  plc.client.ReadArea = (...args) => { reads++; args.at(-1)(12345) }
+  plc.connection.client.Disconnect = () => { disconnects++; return true }
+  plc.connection.client.Connect = callback => { connects++; callback(null) }
+  plc.connection.client.ReadArea = (...args) => { reads++; args.at(-1)(12345) }
   await plc.run(def, {})
   await timers.shift()()
   assert.equal(plc.online, false)
@@ -89,14 +93,14 @@ test('a failed read disconnects and retries before issuing another read', async 
 test('a reconnection exception leaves the polling loop running', async t => {
   const { plc, timers } = setup(t)
   const failure = new Error('Connection failed')
-  plc.client.Connect = () => { throw failure }
+  plc.connection.client.Connect = () => { throw failure }
   plc.forever(def, {})
   await timers.shift()()
   assert.equal(plc.online, false)
   assert.equal(errors[0][0], failure)
   assert.equal(timers.length, 1)
 
-  plc.client.Connect = () => true
+  plc.connection.client.Connect = callback => callback(null)
   await timers.shift()()
   assert.equal(plc.online, true)
   assert.equal(timers.length, 1)
@@ -106,8 +110,8 @@ test('initial connection and disconnect exceptions still allow a later retry', a
   const { plc, timers } = setup(t)
   const connectFailure = new Error('Initial connection failed')
   const disconnectFailure = new Error('Disconnect failed')
-  plc.client.ConnectTo = () => { throw connectFailure }
-  plc.client.Disconnect = () => { throw disconnectFailure }
+  plc.connection.client.ConnectTo = () => { throw connectFailure }
+  plc.connection.client.Disconnect = () => { throw disconnectFailure }
   await plc.run(def, {})
   assert.equal(plc.online, false)
   assert.equal(errors[0][0].err, disconnectFailure)

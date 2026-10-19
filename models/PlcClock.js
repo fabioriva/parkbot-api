@@ -1,4 +1,4 @@
-import { ReadArea, WriteArea } from '../lib/utils7.js'
+import { ReadArea, WriteArea, PlcCommandError } from '../lib/utils7.js'
 
 export default class PlcClockCommands {
   constructor ({ client }) {
@@ -12,7 +12,7 @@ export default class PlcClockCommands {
     // Check write status
     const pending = await ReadArea(this.client, 0x84, 6, 30, 1, 0x02)
     if (pending[0] !== 0) {
-      throw new Error('Richiesta di impostazione già presente nel PLC')
+      throw new PlcCommandError('Richiesta di impostazione già presente nel PLC')
     }
     // Codifica DTL in UTC.
     const data = Buffer.alloc(12)
@@ -42,7 +42,7 @@ export default class PlcClockCommands {
       if (reply[2] === 0) {
         const status = reply.readUInt16BE(0)
         if (status !== 0) {
-          throw new Error(
+          throw new PlcCommandError(
             `WR_SYS_T: errore 0x${status.toString(16).padStart(4, '0')}`
           )
         }
@@ -52,6 +52,6 @@ export default class PlcClockCommands {
       await new Promise(resolve => setTimeout(resolve, 100))
     }
 
-    throw new Error('Timeout: esito della richiesta non confermato')
+    throw new PlcCommandError('Timeout: esito della richiesta non confermato')
   }
 }

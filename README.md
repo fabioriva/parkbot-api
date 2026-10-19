@@ -51,3 +51,36 @@ WebSocket distribuiscono gli aggiornamenti in tempo reale ai client autorizzati.
 ## 📚 Documentazione tecnica
 
 - [Date e fusi orari: contratto PLC, backend e frontend](docs/date-time.md)
+
+### Coordinamento della connessione PLC
+
+`lib/PlcConnection.js` gestisce una coda per ogni client Snap7: letture,
+scritture, connessione e disconnessione condividono lo stesso accesso.
+Il client Snap7 originale viene passato esplicitamente all'operazione:
+
+```js
+await connection.run(client => ReadArea(client, area, dbNumber, start, amount, wordLen))
+await connection.runCommand(client => new PlcClockCommands({ client }).setClock(new Date()))
+```
+
+`run` permette le letture durante il caricamento; `runCommand` richiede che
+il PLC sia pronto. Le chiamate native vanno attese una per volta, prima di
+terminare la funzione; la funzione non deve richiamare la coda dall'interno.
+La connessione usa le callback native; una disconnessione attende la fine
+dell'operazione in corso e invalida le richieste ancora in attesa.
+
+Il polling può leggere durante il caricamento iniziale. I comandi HTTP sono
+abilitati e `comm: true` viene pubblicato solo dopo il caricamento completo
+di allarmi, tessere, dati e mappa. Ogni riconnessione richiede un nuovo
+caricamento; i comandi ricevuti mentre il PLC non è pronto restituiscono HTTP 503.
+L'impostazione dell'orologio mantiene l'accesso esclusivo per tutta la sequenza.
+
+Daman mantiene due client e due code indipendenti. Il client dei comandi deve
+aver completato una lettura di controllo e richiede anche che il client dei dati
+sia pronto.
+
+Le richieste invalidate non vengono ripetute dopo la riconnessione. Un comando
+già inviato alla libreria nativa può invece avere esito incerto in caso di errore:
+non viene ritentato automaticamente.
+
+Verifica locale, con client simulati: `npm run test:commands`.

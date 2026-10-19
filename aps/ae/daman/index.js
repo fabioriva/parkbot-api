@@ -18,7 +18,7 @@ const main = async () => {
     const history = new History(db)
     const notifications = new Notifications(db)
     const plc = new Plc(app, history, notifications)
-    const plcW = new PlcW() // PLC write
+    const plcW = new PlcW({ isDataReady: () => plc.ready }) // PLC write
     const router = new Router(app, history, notifications, plcW)
     router.run(def, obj)
     await listen(app, def.APS, def.HTTP)

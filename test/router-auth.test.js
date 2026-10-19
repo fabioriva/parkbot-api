@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { registerHooks } from 'node:module'
 import test from 'node:test'
 import { createAuthorizer } from '../lib/authorization.js'
+import PlcConnection from '../lib/PlcConnection.js'
 
 const state = { session: null, subscription: null, writes: 0, databaseFailure: false }
 globalThis.routerAuthTest = {
@@ -32,7 +33,7 @@ function routes ({ history = {}, plc, def = {}, obj = {} } = {}) {
     post: (path, handler) => handlers.set('post ' + path, handler),
     ws () {}
   }
-  const router = new Router(app, history, {}, plc ?? {
+  const driver = plc ?? {
     client: {
       WriteArea (...args) {
         state.writes++
@@ -42,7 +43,11 @@ function routes ({ history = {}, plc, def = {}, obj = {} } = {}) {
         throw new Error('Unexpected PLC read')
       }
     }
-  })
+  }
+  // Domain/auth tests use a ready command port; connection lifecycle is tested
+  // separately below with the real coordinator.
+  const connection = driver.connection ?? { runCommand: operation => operation(driver.client) }
+  const router = new Router(app, history, {}, { ...driver, connection })
   router.run({ APS: 'avigail', ...def }, { racks: [], map: { occupancy: [] }, ...obj })
   return handlers
 }
@@ -120,6 +125,33 @@ test('a missing rack returns a JSON 404 instead of a successful empty response',
   const res = await call(routes().get('get /api/aps/avigail/racks/:id'))
   assert.equal(res.status, '404 Not Found')
   assert.deepEqual(res.body, { error: 'Rack not found' })
+})
+
+test('authorized commands return 503 while disconnected or loading without native writes or audit', async () => {
+  state.session = { user: { email: 'user@example.test', emailVerified: true, role: 'admin' } }
+  state.subscription = { aps: ['avigail'], role: 'admin' }
+  let writes = 0
+  let audits = 0
+  const connection = new PlcConnection({
+    ConnectTo: (...args) => args.at(-1)(null),
+    ReadArea () { throw new Error('Unexpected native read') },
+    WriteArea () { writes++ }
+  })
+  const handlers = routes({
+    plc: { connection, client: connection.client },
+    def: { CARDS: 500, REQ_0: { area: 0x84, dbNumber: 6, start: 398, amount: 2, wordLen: 2 } },
+    obj: { stalls: [{ status: 123 }] },
+    history: { saveAction: async () => { audits++ } }
+  })
+  for (const stage of ['disconnected', 'loading']) {
+    if (stage === 'loading') await connection.connectTo('simulated', 0, 1)
+    const exit = await call(handlers.get('post /api/aps/avigail/operation/exit'), 'Bearer test', '{"card":123}')
+    assert.equal(exit.status, '503 Service Unavailable', stage)
+    const clock = await call(handlers.get('get /api/aps/avigail/set-now'))
+    assert.equal(clock.status, '503 Service Unavailable', stage)
+  }
+  assert.equal(writes, 0)
+  assert.equal(audits, 0)
 })
 
 test('exit route preserves authorization, PLC encoding, audit and response', async () => {

@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import test from 'node:test'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import vm from 'node:vm'
+import PlcConnection from '../lib/PlcConnection.js'
 
 const root = process.env.PLC_TEST_ROOT || fileURLToPath(new URL('../', import.meta.url))
 const source = readFileSync(process.env.PLC_TEST_SOURCE || join(root, 'lib/Plc.js'), 'utf8')
@@ -37,15 +38,15 @@ function fixture () {
       this.disconnects = 0
     }
 
-    ConnectTo () {
+    ConnectTo (...args) {
       if (this.initialError) throw this.initialError
-      return true
+      queueMicrotask(() => args.at(-1)(null))
     }
 
-    Connect () {
+    Connect (callback) {
       const result = this.connects.shift() ?? true
       if (result instanceof Error) throw result
-      return result
+      queueMicrotask(() => callback(result ? null : 12345))
     }
 
     Disconnect () {
@@ -69,6 +70,7 @@ function fixture () {
   const decode = async () => {}
   const context = vm.createContext({
     snap7: { S7Client: Client },
+    PlcConnection,
     logger: { error: (...args) => errors.push(args), info: () => {} },
     getPlcDateTime,
     ReadArea,
@@ -79,6 +81,7 @@ function fixture () {
     updateDrives: decode,
     updatePositions: decode,
     updateQueue: decode,
+    updateAlarms: decode,
     Buffer,
     performance: { now: () => now },
     setTimeout: (callback, delay) => timers.push({ callback, delay })
@@ -106,6 +109,12 @@ function fixture () {
   }
   return {
     plc,
+    native: plc.client,
+    async connect () {
+      plc.online = await plc.connection.connectTo('simulated', 0, 1)
+      plc.connection.markReady()
+      plc.online_ = true
+    },
     def,
     obj,
     timers,
@@ -121,12 +130,12 @@ function fixture () {
 
 test('clock timeout broadcasts offline and recovers polling after reconnect', async () => {
   const f = fixture()
-  f.plc.online = f.plc.online_ = true
-  f.plc.client.reads.push(655470, clockBuffer())
+  await f.connect()
+  f.native.reads.push(655470, clockBuffer())
   f.plc.forever(f.def, f.obj)
   await f.tick()
   assert.equal(f.plc.online, false)
-  assert.equal(f.plc.client.disconnects, 1)
+  assert.equal(f.native.disconnects, 1)
   assert.equal(f.errors[0][0].code, 655470)
   assert.equal(f.messages.at(-1).data.comm, false)
   await f.tick()
@@ -139,8 +148,8 @@ test('clock timeout broadcasts offline and recovers polling after reconnect', as
 
 test('invalid PLC clock status is handled and polling continues', async () => {
   const f = fixture()
-  f.plc.online = f.plc.online_ = true
-  f.plc.client.reads.push(clockBuffer(12))
+  await f.connect()
+  f.native.reads.push(clockBuffer(12))
   f.plc.forever(f.def, f.obj)
   await f.tick()
   assert.equal(f.plc.online, false)
@@ -151,10 +160,10 @@ test('invalid PLC clock status is handled and polling continues', async () => {
 test('disconnect failure still marks the PLC offline and allows retries', async () => {
   for (const throws of [false, true]) {
     const f = fixture()
-    f.plc.online = f.plc.online_ = true
-    f.plc.client.reads.push(655470)
-    f.plc.client.disconnectResult = false
-    if (throws) f.plc.client.disconnectError = new Error('Disconnect failed')
+    await f.connect()
+    f.native.reads.push(655470)
+    f.native.disconnectResult = false
+    if (throws) f.native.disconnectError = new Error('Disconnect failed')
     f.plc.forever(f.def, f.obj)
     await f.tick()
     assert.equal(f.plc.online, false)
@@ -165,7 +174,7 @@ test('disconnect failure still marks the PLC offline and allows retries', async 
 
 test('initial connection error still starts the retry loop', async () => {
   const f = fixture()
-  f.plc.client.initialError = new Error('Initial connection failed')
+  f.native.initialError = new Error('Initial connection failed')
   await f.plc.run(f.def, f.obj)
   assert.equal(f.plc.online, false)
   assert.equal(f.timers.length, 1)
@@ -175,7 +184,7 @@ test('initial connection error still starts the retry loop', async () => {
 
 test('failed and throwing reconnect attempts do not stop subsequent cycles', async () => {
   const f = fixture()
-  f.plc.client.connects.push(false, new Error('Reconnect failed'), true)
+  f.native.connects.push(false, new Error('Reconnect failed'), true)
   f.plc.forever(f.def, f.obj)
   await f.tick()
   assert.equal(f.messages.at(-1).data.comm, false)
@@ -187,7 +196,7 @@ test('failed and throwing reconnect attempts do not stop subsequent cycles', asy
 
 test('publishing error does not terminate polling', async () => {
   const f = fixture()
-  f.plc.online = f.plc.online_ = true
+  await f.connect()
   const publish = f.plc.app.publish
   f.plc.app.publish = () => { throw new Error('Publish failed') }
   f.plc.forever(f.def, f.obj)
@@ -215,25 +224,25 @@ test('connection refresh reads finish sequentially before the next cycle', async
   f.plc.forever(f.def, f.obj)
   await f.tick()
   assert.equal(maxActive, 1)
-  assert.deepEqual(f.updates, ['main', 'alarms', 'cards', 'main', 'map'])
+  assert.deepEqual(f.updates, ['alarms', 'cards', 'main', 'map'])
 })
 
 test('main handles PLC log write and history errors before completing', async () => {
   for (const stage of ['write', 'history']) {
     const f = fixture()
-    f.plc.online = true
+    await f.connect()
     const buffer = Buffer.alloc(32)
     buffer.writeInt16BE(0x264, 0)
     buffer.writeInt16BE(3, 30)
-    f.plc.client.reads.push(buffer)
+    f.native.reads.push(buffer)
     if (stage === 'write') {
-      f.plc.client.WriteArea = (...args) => queueMicrotask(() => args.at(-1)(655470))
+      f.native.WriteArea = (...args) => queueMicrotask(() => args.at(-1)(655470))
     } else {
       f.plc.history.saveLog = async () => { throw new Error('History failed') }
     }
     await f.originalMain(f.def, f.obj)
     assert.equal(f.plc.online, false)
-    assert.equal(f.plc.client.disconnects, 1)
+    assert.equal(f.native.disconnects, 1)
     assert.equal(f.messages.at(-1).channel, 'aps/overview')
     if (stage === 'write') assert.equal(f.errors[0][0].code, 655470)
     else assert.equal(f.errors[0][0].message, 'History failed')
@@ -242,7 +251,7 @@ test('main handles PLC log write and history errors before completing', async ()
 
 test('clock sync reads once a minute while operation timestamps keep advancing', async () => {
   const f = fixture()
-  f.plc.online = f.plc.online_ = true
+  await f.connect()
   f.plc.forever(f.def, f.obj)
   await f.tick()
   const initial = f.obj.plcDTL
@@ -255,7 +264,7 @@ test('clock sync reads once a minute while operation timestamps keep advancing',
   }
   const nextClock = clockBuffer()
   nextClock[6] = 31
-  f.plc.client.reads.push(nextClock)
+  f.native.reads.push(nextClock)
   f.setTime(60_000)
   await f.tick()
   assert.equal(f.readCalls(), 2)
@@ -268,10 +277,10 @@ test('clock sync reads once a minute while operation timestamps keep advancing',
 
 test('a clock resync timeout recovers immediately after reconnection', async () => {
   const f = fixture()
-  f.plc.online = f.plc.online_ = true
+  await f.connect()
   f.plc.forever(f.def, f.obj)
   await f.tick()
-  f.plc.client.reads.push(655470, clockBuffer())
+  f.native.reads.push(655470, clockBuffer())
   f.setTime(60_000)
   await f.tick()
   assert.equal(f.plc.online, false)
@@ -287,14 +296,14 @@ test('a clock resync timeout recovers immediately after reconnection', async () 
 
 test('reconnect after a data read failure refreshes the clock before main', async () => {
   const f = fixture()
-  f.plc.online = f.plc.online_ = true
+  await f.connect()
   f.plc.forever(f.def, f.obj)
   await f.tick()
   f.setTime(500)
   await f.plc.error(655470)
   const nextClock = clockBuffer()
   nextClock[5] = 9
-  f.plc.client.reads.push(nextClock)
+  f.native.reads.push(nextClock)
   const mainTimes = []
   f.plc.main = async () => mainTimes.push(f.obj.plcDTL)
   await f.tick()
@@ -305,11 +314,56 @@ test('reconnect after a data read failure refreshes the clock before main', asyn
 test('sites without CLOCK_READ retain the server time fallback without Snap7 reads', async () => {
   const f = fixture()
   delete f.def.CLOCK_READ
-  f.plc.online = f.plc.online_ = true
+  await f.connect()
   f.plc.forever(f.def, f.obj)
   const before = Date.now()
   await f.tick()
   assert.ok(f.obj.plcDTL >= before && f.obj.plcDTL <= Date.now())
   assert.equal(f.readCalls(), 0)
   assert.equal(f.plc.plcClockSync, undefined)
+})
+
+for (const failedMethod of ['alarms', 'cards', 'main', 'map']) {
+  test(`a failed ${failedMethod} refresh never skips the complete snapshot after reconnect`, async () => {
+    const f = fixture()
+    let fail = true
+    f.plc[failedMethod] = async () => {
+      if (f.plc.online) {
+        f.updates.push(failedMethod)
+        if (fail) {
+          fail = false
+          await f.plc.error(655470)
+        }
+      }
+    }
+    f.plc.forever(f.def, f.obj)
+    await f.tick()
+    assert.equal(f.plc.ready, false)
+    assert.equal(f.messages.at(-1).data.comm, false)
+    f.updates.length = 0
+    await f.tick()
+    assert.deepEqual(f.updates, ['alarms', 'cards', 'main', 'map'])
+    assert.equal(f.plc.ready, true)
+    assert.equal(f.messages.at(-1).data.comm, true)
+  })
+}
+
+test('commands and comm:true wait for the last snapshot read after connection', async () => {
+  const f = fixture()
+  let finish
+  f.plc.map = () => new Promise(resolve => { finish = resolve })
+  f.plc.forever(f.def, f.obj)
+  const polling = f.tick()
+  await new Promise(resolve => setImmediate(resolve))
+  assert.equal(f.plc.online, true)
+  assert.equal(f.plc.ready, false)
+  assert.equal(f.messages.length, 0)
+  await assert.rejects(
+    f.plc.connection.runCommand(client => WriteArea(client, 0x84, 6, 0, 2, 0x02, Buffer.alloc(2))),
+    { name: 'PlcUnavailableError' }
+  )
+  finish()
+  await polling
+  assert.equal(f.plc.ready, true)
+  assert.equal(f.messages.at(-1).data.comm, true)
 })
