@@ -1,10 +1,8 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import PpOperations, { PpRequestError } from '../lib/PpOperations.js'
-import { ActionPP } from '../models/Action.js'
+import { PpOperations, PpRequestError, PlcPpCommands, PpActionDefinition } from '../models/Parking.js'
 import device1 from '../aps/il/bugrashov/device1.js'
 import device5 from '../aps/il/bugrashov/device5.js'
-import PlcPpCommands from '../lib/PlcPpCommands.js'
 
 function fixture ({ writeError, auditError } = {}) {
   const events = []
@@ -13,11 +11,11 @@ function fixture ({ writeError, auditError } = {}) {
     devices: [{
       id: 2,
       d: [
-        new ActionPP('action-pp', { status: 1 }, 2, 1, 500, [
+        new PpActionDefinition('action-pp', { status: 1 }, 2, 1, 500, [
           { key: 'B', value: '1' }, { key: 'B', value: '2' },
           { key: 'D', value: '0' }, { key: 'E', value: '0' }, { key: 'F', value: '0' }
         ]),
-        new ActionPP('action-pp-reset', { status: true }, 2, 1, 500, [{ key: 'A', value: '0' }])
+        new PpActionDefinition('action-pp-reset', { status: true }, 2, 1, 500, [{ key: 'A', value: '0' }])
       ]
     }]
   }

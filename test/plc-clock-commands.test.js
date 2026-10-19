@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import PlcClockCommands from '../lib/PlcClockCommands.js'
+import PlcClockCommands from '../models/PlcClock.js'
 
 const date = new Date('2026-10-18T12:34:56.731Z') // Sunday: Siemens day 1.
 

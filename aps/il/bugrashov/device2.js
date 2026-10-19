@@ -1,6 +1,6 @@
 // import * as def from './def.js'
 import { inputs, merkers, outputs } from './io.js'
-import { ActionPP } from '../../../models/Action.js'
+import { PpActionDefinition } from '../../../models/Parking.js'
 import { Device } from '../../../models/Device.js'
 import { Drive } from '../../../models/Drive.js'
 import { Barrier, Door, Flap, Lock, Hoisting, Rotation } from '../../../models/Motor.js'
@@ -21,7 +21,7 @@ const lamps = [
 /**
  * Action for step by step
  */
-const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.1'), 2, 1, 7, [
+const A0 = new PpActionDefinition('action-pp', merkers.find(b => b.addr === 'M6.1'), 2, 1, 7, [
   { id: 1, key: 'B', value: '1', tooltip: 'open barrier' },
   { id: 2, key: 'B', value: '2', tooltip: 'close barrier' },
   { id: 3, key: 'B', value: '3', tooltip: 'open door 1 for entry' },
@@ -32,7 +32,7 @@ const A0 = new ActionPP('action-pp', merkers.find(b => b.addr === 'M6.1'), 2, 1,
   { id: 8, key: 'F', value: '0', tooltip: 'send VT to level' }
 ])
 
-const A1 = new ActionPP('action-pp-reset', merkers.find(b => b.addr === 'M6.5'), 2, 1, 7, [
+const A1 = new PpActionDefinition('action-pp-reset', merkers.find(b => b.addr === 'M6.5'), 2, 1, 7, [
   { id: 1, key: 'A', value: '0', tooltip: 'reset PP' }
 ])
 

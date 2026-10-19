@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import ParkingOperations, { ParkingRequestError } from '../lib/ParkingOperations.js'
-import PlcParkingCommands from '../lib/PlcParkingCommands.js'
+import { ParkingOperations, ParkingRequestError, PlcParkingCommands } from '../models/Parking.js'
 
 function fixture (options = {}) {
   const events = []

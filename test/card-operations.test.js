@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import CardOperations, { CardRequestError } from '../lib/CardOperations.js'
-import PlcCardCommands from '../lib/PlcCardCommands.js'
+import { CardOperations, CardRequestError, PlcCardCommands, generateCards, generateTags, updateCards } from '../models/Card.js'
+import { format } from 'date-fns'
+import { getPlcDateTime } from '../lib/utils7.js'
 
 function fixture ({ def: overrides, writeError, auditError } = {}) {
   const events = []
@@ -89,4 +90,77 @@ test('PLC failures skip audit; audit failures propagate without repeating the wr
   const failedAudit = fixture({ auditError })
   await assert.rejects(failedAudit.cards.updatePin({ card: 123, code: '123' }), error => error === auditError)
   assert.deepEqual(failedAudit.events.map(event => event[0]), ['write', 'audit'])
+})
+
+function cardRecord (pin, from, to, length = 10) {
+  const record = Buffer.alloc(length, 255)
+  record.writeInt16BE(pin, 0)
+  record.writeInt32BE(from, 2)
+  record.writeInt32BE(to, 6)
+  return record
+}
+
+test('card decoding preserves object identity, PIN padding, times and occupancy status', async () => {
+  for (const length of [10, 12, 20]) {
+    const cards = generateCards({ CARDS: 3 })
+    const first = cards[0]
+    first.status = 42
+    const untouched = { ...cards[2] }
+    const buffer = Buffer.concat([
+      Buffer.from([255, 255, 255]), cardRecord(0x00A, 1234, 86399000, length),
+      cardRecord(0xABC, 3600000, 7200000, length)
+    ])
+    assert.equal(await updateCards(3, buffer, length, cards), cards)
+    assert.equal(cards[0], first)
+    assert.equal(first.code, '00A')
+    assert.equal(cards[1].code, 'ABC')
+    assert.equal(first.from, format(getPlcDateTime(0, 1234), 'HH:mm:ss'))
+    assert.equal(first.to, format(getPlcDateTime(0, 86399000), 'HH:mm:ss'))
+    assert.equal(first.status, 42)
+    assert.deepEqual({ ...cards[2] }, untouched)
+  }
+})
+
+test('tag decoding respects configured numbering, record boundaries and UID lengths', async () => {
+  for (const length of [6, 8, 10, 20]) {
+    const tags = generateTags({ MIN_CARD: 243, MAX_CARD: 244 })
+    tags[0].status = 7
+    const first = tags[0]
+    const buffer = Buffer.alloc(2 + 2 * length)
+    for (let i = 0; i < 2; i++) {
+      const start = 2 + i * length
+      buffer.writeInt16BE(i === 0 ? 1 : 0, start)
+      buffer.writeUInt16BE(i === 0 ? 0x0ABC : 0x0123, start + 2)
+      buffer.writeInt16BE(i + 1, start + 4)
+      buffer.fill(i === 0 ? 0xAB : 0xCD, start + 6, start + length)
+    }
+    assert.equal(await updateCards(2, buffer, length, tags), tags)
+    assert.equal(tags[0], first)
+    assert.deepEqual(tags.map(tag => ({ ...tag })), [
+      { nr: 243, charge: true, code: 'ABC', status: 7, type: 1, uid: 'AB'.repeat(length - 6) },
+      { nr: 244, charge: false, code: '123', status: 0, type: 2, uid: 'CD'.repeat(length - 6) }
+    ])
+  }
+})
+
+test('invalid card buffers reject before changing any decoded fields', async () => {
+  for (const [start, length, stride] of [
+    [-1, 20, 10], [21, 20, 10], [0.5, 20, 10],
+    [0, 20, 0], [0, 20, 10.5], [0, 18, 9], [0, 21, 10], [0, 30, 10]
+  ]) {
+    const cards = generateCards({ CARDS: 2 })
+    const before = cards.map(card => ({ ...card }))
+    await assert.rejects(updateCards(start, Buffer.alloc(length), stride, cards), RangeError)
+    assert.deepEqual(cards.map(card => ({ ...card })), before)
+  }
+  const tags = generateTags({ MIN_CARD: 1, MAX_CARD: 2 })
+  await assert.rejects(updateCards(0, Buffer.alloc(10), 5, tags), RangeError)
+  assert.ok(tags.every(tag => tag.code === '' && tag.uid === ''))
+})
+
+test('empty card buffers leave existing objects unchanged', async () => {
+  const cards = generateCards({ CARDS: 1 })
+  const before = { ...cards[0] }
+  assert.equal(await updateCards(0, Buffer.alloc(0), 10, cards), cards)
+  assert.deepEqual({ ...cards[0] }, before)
 })

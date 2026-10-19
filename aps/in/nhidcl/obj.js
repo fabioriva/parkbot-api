@@ -8,7 +8,7 @@ import device4 from './device4.js'
 import device5 from './device5.js'
 import device6 from './device6.js'
 import racks from './racks.js'
-import { Action } from '../../../models/Action.js'
+import { ExitActionDefinition } from '../../../models/Parking.js'
 import { Alarms, generateAlarms } from '../../../models/Alarm.js'
 import { generateCards } from '../../../models/Card.js'
 import { generateQueue } from '../../../models/Queue.js'
@@ -115,7 +115,7 @@ export const overview = {
   ],
   exitQueue: {
     queueList: queue,
-    exitButton: new Action('action-exit', io.merkers.find(b => b.addr === 'M3.0'), def.REQ_0, 1, def.CARDS)
+    exitButton: new ExitActionDefinition('action-exit', io.merkers.find(b => b.addr === 'M3.0'), 1, def.CARDS)
   }
 }
 

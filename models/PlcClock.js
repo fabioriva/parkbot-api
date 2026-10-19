@@ -1,4 +1,4 @@
-import { ReadArea, WriteArea } from './utils7.js'
+import { ReadArea, WriteArea } from '../lib/utils7.js'
 
 export default class PlcClockCommands {
   constructor ({ client }) {

@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import StallOperations, { StallRequestError } from '../lib/StallOperations.js'
-import PlcStallCommands from '../lib/PlcStallCommands.js'
+import { StallOperations, StallRequestError, PlcStallCommands, generateStalls, updateStalls, occupancy } from '../models/Stall.js'
 
 function fixture ({ def: overrides, writeError, auditError } = {}) {
   const events = []
@@ -101,4 +100,78 @@ test('PLC failures skip audit; audit failures propagate without repeating the wr
   const failedAudit = fixture({ auditError })
   await assert.rejects(failedAudit.stalls.updateStall({ stall: 2, card: 124 }), error => error === auditError)
   assert.deepEqual(failedAudit.events.map(event => event[0]), ['write', 'audit'])
+})
+
+function stallRecord (status, size = 1) {
+  const record = Buffer.alloc(10)
+  record.writeInt16BE(status, 0)
+  record.writeUInt32BE(1234, 4)
+  record.writeInt16BE(size, 8)
+  return record
+}
+
+test('map updates preserve object identity, first card match and last matching stall', async () => {
+  const stalls = generateStalls({ STALLS: 4 })
+  const firstStall = stalls[0]
+  const cards = [{ nr: '123', status: 0 }, { nr: 123, status: 0 }, { nr: 123, status: 99 }, { nr: 124, status: 4 }]
+  const buffer = Buffer.concat([stallRecord(123), stallRecord(-1), stallRecord(123)])
+  assert.equal(await updateStalls(0, buffer, 10, cards, stalls), stalls)
+  assert.equal(stalls[0], firstStall)
+  assert.equal(firstStall.date, '1990-01-01T00:00:01.234Z')
+  assert.deepEqual(cards.map(card => card.status), [0, 3, 99, 4])
+  assert.equal(stalls[3].date, '1990-01-01T00:00:00.000Z')
+  assert.equal(stalls[3].status, 0)
+})
+
+test('map decoding supports a buffer prefix and padded records', async () => {
+  const stalls = generateStalls({ STALLS: 2 })
+  const cards = [{ nr: 124, status: 0 }]
+  const buffer = Buffer.concat([
+    Buffer.from([9, 9, 9]), stallRecord(124, 2), Buffer.from([255, 255]),
+    stallRecord(0, 3), Buffer.from([255, 255])
+  ])
+  await updateStalls(3, buffer, 12, cards, stalls)
+  assert.deepEqual(stalls.map(stall => [stall.status, stall.size]), [[124, 2], [0, 3]])
+  assert.equal(cards[0].status, 1)
+  assert.equal(stalls[1].date, '1990-01-01T00:00:01.234Z')
+})
+
+test('invalid record sizes, bounds or incomplete maps reject before changing state', async () => {
+  for (const [start, length, stride] of [
+    [-1, 10, 10], [11, 10, 10], [0.5, 10, 10],
+    [0, 10, 0], [0, 10, 9], [0, 10, 10.5],
+    [0, 11, 10], [0, 20, 10]
+  ]) {
+    const stalls = generateStalls({ STALLS: 1 })
+    const cards = [{ nr: 123, status: 99 }]
+    const before = structuredClone({ stalls, cards })
+    await assert.rejects(updateStalls(start, Buffer.alloc(length), stride, cards, stalls), RangeError)
+    assert.deepEqual(structuredClone({ stalls, cards }), before)
+  }
+})
+
+test('an empty map leaves cached stalls and card status unchanged', async () => {
+  const stalls = generateStalls({ STALLS: 1 })
+  const cards = [{ nr: 123, status: 1 }]
+  assert.equal(await updateStalls(0, Buffer.alloc(0), 10, cards, stalls), stalls)
+  assert.equal(cards[0].status, 1)
+  assert.equal(stalls[0].status, 0)
+})
+
+test('occupancy preserves category order, size filtering and special-state classification', () => {
+  for (const lock of [-1, 999]) {
+    const stalls = [
+      { status: 0, size: 1 }, { status: 123, size: 1 }, { status: lock, size: 1 },
+      { status: 997, size: 2 }, { status: 998, size: 2 }, { status: 0, size: 2 }
+    ]
+    const counts = size => occupancy(size, stalls, { FREE: 0, LOCK: lock })
+    assert.deepEqual(counts(0), [{ id: 'busy', value: 3 }, { id: 'free', value: 2 }, { id: 'lock', value: 1 }])
+    assert.deepEqual(counts(1), [{ id: 'busy', value: 1 }, { id: 'free', value: 1 }, { id: 'lock', value: 1 }])
+    assert.deepEqual(counts(2), [{ id: 'busy', value: 2 }, { id: 'free', value: 1 }, { id: 'lock', value: 0 }])
+    assert.deepEqual(counts(3), [{ id: 'busy', value: 0 }, { id: 'free', value: 0 }, { id: 'lock', value: 0 }])
+    assert.notEqual(counts(0), counts(0))
+  }
+  assert.deepEqual(occupancy(0, [], { LOCK: -1 }), [
+    { id: 'busy', value: 0 }, { id: 'free', value: 0 }, { id: 'lock', value: 0 }
+  ])
 })
