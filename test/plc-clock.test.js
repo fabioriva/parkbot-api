@@ -23,7 +23,6 @@ function clockBuffer (status = 0) {
 
 for (const failure of [
   { name: 'Snap7 read failure', code: 123, data: undefined },
-  { name: 'nonzero PLC clock status', code: 0, data: clockBuffer(1) },
   { name: 'truncated clock buffer', code: 0, data: Buffer.alloc(12) }
 ]) {
   test(`${failure.name} disconnects and keeps polling for reconnection`, async t => {

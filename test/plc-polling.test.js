@@ -146,15 +146,73 @@ test('clock timeout broadcasts offline and recovers polling after reconnect', as
   assert.equal(f.messages.length, 3)
 })
 
-test('invalid PLC clock status is handled and polling continues', async () => {
+test('invalid clock status blocks commands and retries without reconnecting until a full refresh', async () => {
+  const f = fixture()
+  await f.plc.run(f.def, f.obj)
+  f.native.reads.push(clockBuffer(-1), clockBuffer(-1), clockBuffer())
+  f.native.connects.push(new Error('The clock retry must not reconnect'))
+  f.obj.plcDTL = 42
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await f.tick()
+    assert.equal(f.plc.online, false)
+    assert.equal(f.plc.connection.connected, true)
+    assert.equal(f.plc.ready, false)
+    assert.equal(f.native.disconnects, 0)
+    assert.equal(f.obj.plcDTL, 42)
+    assert.equal(f.plc.plcClockSync, undefined)
+    assert.match(f.errors[attempt][0].message, /orologio PLC non valida: -1/)
+    assert.equal(f.messages.at(-1).data.comm, false)
+    await assert.rejects(f.plc.connection.runCommand(() => assert.fail('Command must not run')), { name: 'PlcUnavailableError' })
+  }
+
+  f.updates.length = 0
+  await f.tick()
+  assert.deepEqual(f.updates, ['alarms', 'cards', 'main', 'map'])
+  assert.equal(f.obj.plcDTL, Date.UTC(2026, 9, 7, 8, 30, 9))
+  assert.equal(f.plc.ready, true)
+  assert.equal(f.native.disconnects, 0)
+  assert.equal(f.native.connects.length, 1)
+  assert.equal(f.messages.at(-1).data.comm, true)
+  assert.equal(await f.plc.connection.runCommand(() => 'accepted'), 'accepted')
+})
+
+test('invalid clock resync suspends a ready session and refreshes all data when the clock recovers', async () => {
   const f = fixture()
   await f.connect()
-  f.native.reads.push(clockBuffer(12))
   f.plc.forever(f.def, f.obj)
   await f.tick()
+  f.setTime(60_000)
+  f.native.reads.push(clockBuffer(12))
+  await f.tick()
   assert.equal(f.plc.online, false)
+  assert.equal(f.plc.ready, false)
+  assert.equal(f.plc.connection.connected, true)
+  assert.equal(f.native.disconnects, 0)
   assert.match(f.errors[0][0].message, /orologio PLC non valida: 12/)
   assert.equal(f.messages.at(-1).data.comm, false)
+  await assert.rejects(f.plc.connection.runCommand(() => assert.fail('Command must not run')), { name: 'PlcUnavailableError' })
+  f.updates.length = 0
+  await f.tick()
+  assert.deepEqual(f.updates, ['alarms', 'cards', 'main', 'map'])
+  assert.equal(f.plc.ready, true)
+  assert.equal(f.native.disconnects, 0)
+  assert.equal(f.messages.at(-1).data.comm, true)
+})
+
+test('a transport failure while waiting for a valid clock still disconnects and reconnects', async () => {
+  const f = fixture()
+  await f.plc.run(f.def, f.obj)
+  f.native.reads.push(clockBuffer(-1), 655470, clockBuffer())
+  await f.tick()
+  assert.equal(f.native.disconnects, 0)
+  await f.tick()
+  assert.equal(f.native.disconnects, 1)
+  assert.equal(f.plc.connection.connected, false)
+  assert.equal(f.messages.at(-1).data.comm, false)
+  await f.tick()
+  assert.equal(f.plc.ready, true)
+  assert.equal(f.messages.at(-1).data.comm, true)
 })
 
 test('disconnect failure still marks the PLC offline and allows retries', async () => {

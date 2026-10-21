@@ -75,6 +75,11 @@ di allarmi, tessere, dati e mappa. Ogni riconnessione richiede un nuovo
 caricamento; i comandi ricevuti mentre il PLC non è pronto restituiscono HTTP 503.
 L'impostazione dell'orologio mantiene l'accesso esclusivo per tutta la sequenza.
 
+Se la lettura dell'orologio riesce ma il relativo stato PLC non è zero, il polling
+mantiene la connessione e riprova. Nel frattempo pubblica `comm: false` e blocca
+i comandi; alla prima lettura valida ricarica tutti i dati prima di riabilitarli.
+Gli errori di comunicazione continuano a richiedere la riconnessione.
+
 Daman mantiene due client e due code indipendenti. Il client dei comandi deve
 aver completato una lettura di controllo e richiede anche che il client dei dati
 sia pronto.
