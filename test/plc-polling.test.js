@@ -27,6 +27,8 @@ function fixture () {
   const timers = []
   const messages = []
   const errors = []
+  const warnings = []
+  const infos = []
   const updates = []
   let now = 0
   let readCalls = 0
@@ -71,7 +73,11 @@ function fixture () {
   const context = vm.createContext({
     snap7: { S7Client: Client },
     PlcConnection,
-    logger: { error: (...args) => errors.push(args), info: () => {} },
+    logger: {
+      error: (...args) => errors.push(args),
+      warn: (...args) => warnings.push(args),
+      info: (...args) => infos.push(args)
+    },
     getPlcDateTime,
     ReadArea,
     WriteArea,
@@ -120,6 +126,8 @@ function fixture () {
     timers,
     messages,
     errors,
+    warnings,
+    infos,
     updates,
     tick,
     originalMain,
@@ -161,7 +169,11 @@ test('invalid clock status blocks commands and retries without reconnecting unti
     assert.equal(f.native.disconnects, 0)
     assert.equal(f.obj.plcDTL, 42)
     assert.equal(f.plc.plcClockSync, undefined)
-    assert.match(f.errors[attempt][0].message, /orologio PLC non valida: -1/)
+    assert.equal(f.errors.length, 0)
+    assert.equal(f.warnings.length, 1)
+    assert.equal(f.warnings[0][0].status, -1)
+    assert.equal(f.warnings[0][1], 'PLC clock not ready; waiting for valid data')
+    assert.equal(f.infos.length, 0)
     assert.equal(f.messages.at(-1).data.comm, false)
     await assert.rejects(f.plc.connection.runCommand(() => assert.fail('Command must not run')), { name: 'PlcUnavailableError' })
   }
@@ -175,6 +187,10 @@ test('invalid clock status blocks commands and retries without reconnecting unti
   assert.equal(f.native.connects.length, 1)
   assert.equal(f.messages.at(-1).data.comm, true)
   assert.equal(await f.plc.connection.runCommand(() => 'accepted'), 'accepted')
+  assert.deepEqual(f.infos, [['PLC data loaded; commands enabled']])
+  await f.tick()
+  assert.equal(f.warnings.length, 1)
+  assert.equal(f.infos.length, 1)
 })
 
 test('invalid clock resync suspends a ready session and refreshes all data when the clock recovers', async () => {
@@ -189,7 +205,9 @@ test('invalid clock resync suspends a ready session and refreshes all data when 
   assert.equal(f.plc.ready, false)
   assert.equal(f.plc.connection.connected, true)
   assert.equal(f.native.disconnects, 0)
-  assert.match(f.errors[0][0].message, /orologio PLC non valida: 12/)
+  assert.equal(f.errors.length, 0)
+  assert.equal(f.warnings.length, 1)
+  assert.equal(f.warnings[0][0].status, 12)
   assert.equal(f.messages.at(-1).data.comm, false)
   await assert.rejects(f.plc.connection.runCommand(() => assert.fail('Command must not run')), { name: 'PlcUnavailableError' })
   f.updates.length = 0
@@ -198,18 +216,31 @@ test('invalid clock resync suspends a ready session and refreshes all data when 
   assert.equal(f.plc.ready, true)
   assert.equal(f.native.disconnects, 0)
   assert.equal(f.messages.at(-1).data.comm, true)
+
+  // A new wait after recovery must emit a new warning.
+  f.setTime(120_000)
+  f.native.reads.push(clockBuffer(-1))
+  await f.tick()
+  assert.equal(f.warnings.length, 2)
+  assert.equal(f.warnings[1][0].status, -1)
+  assert.equal(f.messages.at(-1).data.comm, false)
 })
 
 test('a transport failure while waiting for a valid clock still disconnects and reconnects', async () => {
   const f = fixture()
   await f.plc.run(f.def, f.obj)
-  f.native.reads.push(clockBuffer(-1), 655470, clockBuffer())
+  f.native.reads.push(clockBuffer(-1), 655470, clockBuffer(-1), clockBuffer())
   await f.tick()
   assert.equal(f.native.disconnects, 0)
+  assert.equal(f.warnings.length, 1)
   await f.tick()
   assert.equal(f.native.disconnects, 1)
   assert.equal(f.plc.connection.connected, false)
   assert.equal(f.messages.at(-1).data.comm, false)
+  assert.equal(f.errors[0][0].code, 655470)
+  await f.tick()
+  assert.equal(f.warnings.length, 2)
+  assert.equal(f.plc.ready, false)
   await f.tick()
   assert.equal(f.plc.ready, true)
   assert.equal(f.messages.at(-1).data.comm, true)
@@ -398,11 +429,13 @@ for (const failedMethod of ['alarms', 'cards', 'main', 'map']) {
     await f.tick()
     assert.equal(f.plc.ready, false)
     assert.equal(f.messages.at(-1).data.comm, false)
+    assert.ok(!f.infos.some(args => args[0] === 'PLC data loaded; commands enabled'))
     f.updates.length = 0
     await f.tick()
     assert.deepEqual(f.updates, ['alarms', 'cards', 'main', 'map'])
     assert.equal(f.plc.ready, true)
     assert.equal(f.messages.at(-1).data.comm, true)
+    assert.equal(f.infos.filter(args => args[0] === 'PLC data loaded; commands enabled').length, 1)
   })
 }
 
@@ -416,6 +449,7 @@ test('commands and comm:true wait for the last snapshot read after connection', 
   assert.equal(f.plc.online, true)
   assert.equal(f.plc.ready, false)
   assert.equal(f.messages.length, 0)
+  assert.ok(!f.infos.some(args => args[0] === 'PLC data loaded; commands enabled'))
   await assert.rejects(
     f.plc.connection.runCommand(client => WriteArea(client, 0x84, 6, 0, 2, 0x02, Buffer.alloc(2))),
     { name: 'PlcUnavailableError' }
@@ -424,4 +458,5 @@ test('commands and comm:true wait for the last snapshot read after connection', 
   await polling
   assert.equal(f.plc.ready, true)
   assert.equal(f.messages.at(-1).data.comm, true)
+  assert.equal(f.infos.filter(args => args[0] === 'PLC data loaded; commands enabled').length, 1)
 })

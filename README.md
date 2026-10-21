@@ -79,6 +79,9 @@ Se la lettura dell'orologio riesce ma il relativo stato PLC non è zero, il poll
 mantiene la connessione e riprova. Nel frattempo pubblica `comm: false` e blocca
 i comandi; alla prima lettura valida ricarica tutti i dati prima di riabilitarli.
 Gli errori di comunicazione continuano a richiedere la riconnessione.
+Il log segnala una sola volta ogni attesa dell'orologio, con livello `warn` e
+relativo stato PLC. Al completamento di ogni caricamento pubblica un messaggio
+`info`: `PLC data loaded; commands enabled`.
 
 Daman mantiene due client e due code indipendenti. Il client dei comandi deve
 aver completato una lettura di controllo e richiede anche che il client dei dati
