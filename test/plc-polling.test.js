@@ -316,6 +316,26 @@ test('connection refresh reads finish sequentially before the next cycle', async
   assert.deepEqual(f.updates, ['alarms', 'cards', 'main', 'map'])
 })
 
+test('canonical card-issued events refresh cards before saving; rollback does not', async () => {
+  for (const [operation, expected] of [[4, ['cards']], [17, ['cards']], [12, []]]) {
+    const f = fixture()
+    await f.connect()
+    const buffer = Buffer.alloc(32)
+    buffer.writeInt16BE(0x264, 0)
+    buffer.writeInt16BE(operation, 8)
+    buffer.writeInt16BE(3, 30)
+    f.plc.history.saveLog = async log => {
+      assert.equal(log.operation, operation)
+      assert.deepEqual(f.updates, expected)
+      return { operation: { id: operation } }
+    }
+    await f.plc.log(buffer, f.def, f.obj)
+    assert.equal(f.errors.length, 0)
+    assert.deepEqual(f.updates, expected)
+    assert.equal(f.messages.at(-1).data.notification.operation.id, operation)
+  }
+})
+
 test('main handles PLC log write and history errors before completing', async () => {
   for (const stage of ['write', 'history']) {
     const f = fixture()

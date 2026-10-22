@@ -48,7 +48,7 @@ test('PP buttons preserve hexadecimal key encoding, field order and audit', asyn
     })
     assert.deepEqual(events, [
       ['write', 0x84, 7, 410, 4, 2, Buffer.from([value >> 8, value & 255, byte, 2])],
-      ['audit', { card: 0, date: obj.plcDTL, operation: 12, stall: 0, user: 'operator' }]
+      ['audit', { card: 0, date: obj.plcDTL, operation: 14, stall: 0, user: 'operator' }]
     ])
   }
 })

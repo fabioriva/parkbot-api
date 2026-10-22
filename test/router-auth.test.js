@@ -295,7 +295,7 @@ test('PP route preserves authorization, encoding, audit, response and failures',
       async saveAction (action) {
         events.push('audit')
         assert.deepEqual(action, {
-          card: 0, date: 1700000000000, operation: 12, stall: 0, user: 'user@example.test'
+          card: 0, date: 1700000000000, operation: 14, stall: 0, user: 'user@example.test'
         })
         if (auditError) throw auditError
       }

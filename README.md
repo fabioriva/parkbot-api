@@ -51,6 +51,7 @@ WebSocket distribuiscono gli aggiornamenti in tempo reale ai client autorizzati.
 ## 📚 Documentazione tecnica
 
 - [Date e fusi orari: contratto PLC, backend e frontend](docs/date-time.md)
+- [Catalogo delle operazioni e migrazione](docs/migration/operation-ids.md)
 
 ### Coordinamento della connessione PLC
 

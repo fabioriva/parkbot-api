@@ -65,6 +65,7 @@ test('UTC timestamps do not depend on the server time zone', async t => {
           buffer.writeUInt32BE(11 * 3600000 + 18 * 60000 + 47731, 22)
           const saved = await history.saveLog(new Log(buffer))
           assert.ok(calls.document.date instanceof Date)
+          assert.equal(calls.document.operationVersion, 1)
           assert.equal(saved.date.toISOString(), '2026-01-27T11:18:47.731Z')
           assert.equal(JSON.parse(JSON.stringify(saved)).date, '2026-01-27T11:18:47.731Z')
         })
@@ -75,6 +76,7 @@ test('UTC timestamps do not depend on the server time zone', async t => {
           assert.ok(calls.document.date instanceof Date)
           assert.equal(calls.document.date.toISOString(), '2026-01-27T11:18:47.731Z')
           assert.equal(calls.document.operation, 5)
+          assert.equal(calls.document.operationVersion, 1)
         })
 
         await t.test('uses exact inclusive/exclusive query bounds without adding an hour', async () => {

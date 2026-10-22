@@ -1,4 +1,5 @@
 import { WriteArea } from '../lib/utils7.js'
+import { OPERATION } from '../lib/operationDefinitions.js'
 
 export class ExitActionDefinition {
   constructor (id, enable, minTag = 0, maxTag = 0) {
@@ -85,7 +86,7 @@ export class ParkingOperations {
   async requestRollback (request) {
     const { card, entry } = this.validateEntryAndCard(request)
     const written = await this.plc.requestRollback({ card, entry })
-    await this.saveRequest(card, request.user, 12) // 'op-req-rollback'
+    await this.saveRequest(card, request.user, OPERATION.ROLLBACK.id)
     return { card, written }
   }
 
@@ -195,7 +196,7 @@ export class PpOperations {
     await this.history.saveAction({
       card: 0,
       date: this.obj.plcDTL,
-      operation: 12, // 'op-req-pp'
+      operation: OPERATION.PP.id,
       stall: 0,
       user: request.user
     })

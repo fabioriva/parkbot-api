@@ -1,3 +1,5 @@
+import { createOperationDefinitions } from '../../../lib/operationDefinitions.js'
+
 // generate I/O
 export const inputs1 = [
   { addr: 'E0.0', label: 'A' },
@@ -580,21 +582,4 @@ export const MODES = [
   { id: 8, key: 'mode-auto' }
 ]
 
-export const OPERATIONS = [
-  { id: 0, key: 'op-no' },
-  { id: 1, key: 'op-alarm-on' },
-  { id: 2, key: 'op-alarm-off' },
-  { id: 3, key: 'op-switch-mode' },
-  { id: 4, key: 'op-change-pin' },
-  { id: 5, key: 'op-stall-in' },
-  { id: 6, key: 'op-stall-out' },
-  { id: 7, key: 'op-shuffle-in' },
-  { id: 8, key: 'op-shuffle-out' },
-  { id: 9, key: 'op-stall-rsv' },
-  { id: 10, key: 'op-req-exit' },
-  { id: 11, key: 'op-req-entry' },
-  { id: 12, key: 'op-no' },
-  { id: 13, key: 'op-no' },
-  { id: 14, key: 'op-no' },
-  { id: 15, key: 'op-no' }
-]
+export const OPERATIONS = createOperationDefinitions()

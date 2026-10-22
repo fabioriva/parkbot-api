@@ -1,4 +1,5 @@
 import { WriteArea } from '../lib/utils7.js'
+import { OPERATION } from '../lib/operationDefinitions.js'
 
 // Minimum bytes read by Queue.update; the record stride is supplied by the caller.
 const MIN_QUEUE_DATA_BYTES = 4
@@ -68,7 +69,7 @@ export class QueueOperations {
     await this.history.saveAction({
       card,
       date: this.obj.plcDTL,
-      operation: 13, // 'op-req-queue'
+      operation: OPERATION.QUEUE_DELETE.id,
       stall: 0,
       user
     })

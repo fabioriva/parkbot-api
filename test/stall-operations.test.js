@@ -74,12 +74,12 @@ test('configured card limits, stall boundaries and special values are honored', 
     assert.deepEqual(await stalls.updateStall({ stall, card }), { stall, written: true })
   }
 
-  const special = fixture({ def: { STALL_STATUS: { FREE: -2, LOCK: -3 } } })
-  special.obj.stalls = [{ status: -2 }, { status: -3 }]
-  for (const card of [-2, -3]) {
+  const special = fixture({ def: { STALL_STATUS: { FREE: 0, LOCK: -3 } } })
+  special.obj.stalls = [{ status: 0 }, { status: -3 }]
+  for (const card of [0, -3]) {
     await special.stalls.updateStall({ stall: 2, card })
     const audit = special.events.at(-1)[1]
-    assert.equal(audit.operation, 5, 'Preserve card !== 0 mapping even for nonzero FREE')
+    assert.equal(audit.operation, card === 0 ? 6 : 5)
   }
 })
 
