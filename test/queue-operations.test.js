@@ -5,8 +5,10 @@ import { QueueOperations, QueueRequestError, PlcQueueCommands, generateQueue, up
 function fixture ({ writeError, auditError } = {}) {
   const events = []
   const obj = { queue: generateQueue({ QUEUE_LEN: 4 }), plcDTL: 1700000000000 }
+  obj.queue[0].card = 183
   obj.queue[1].card = 123
   obj.queue[2].card = 124
+  obj.queue[3].card = 125
   const plc = new PlcQueueCommands({
     def: { QUEUE_DELETE: { area: 0x84, dbNumber: 7, start: 394, amount: 4, wordLen: 2 } },
     client: {
@@ -27,7 +29,7 @@ function fixture ({ writeError, auditError } = {}) {
 }
 
 test('queue deletion checks one-based IDs and encodes index then card before auditing', async () => {
-  for (const [index, card] of [[2, 123], [3, 124]]) {
+  for (const [index, card] of [[1, 183], [2, 123], [3, 124], [4, 125]]) {
     const { queue, obj, events } = fixture()
     assert.deepEqual(await queue.deleteRequest({ index, card, user: 'operator' }), { card, written: true })
     assert.deepEqual(events, [
@@ -38,16 +40,17 @@ test('queue deletion checks one-based IDs and encodes index then card before aud
   }
 })
 
-test('invalid inputs and strict PLC boundaries prevent both writes and audit', async () => {
+test('invalid inputs and indices outside the one-based queue prevent both writes and audit', async () => {
   for (const [index, card, message] of [
-    [1, 123, 'Queue index not valid'], [4, 123, 'Queue index not valid'],
     [0, 123, 'Queue index not valid'], [-1, 123, 'Queue index not valid'],
     [5, 123, 'Queue index not valid'], [2.5, 123, 'Parameters not valid'],
     ['2', 123, 'Parameters not valid'], [undefined, 123, 'Parameters not valid'],
     [2, '123', 'Parameters not valid'], [2, null, 'Parameters not valid'],
     [2, 123.5, 'Parameters not valid'], [2, 0, 'Parameters not valid'],
     [2, -1, 'Parameters not valid'], [2, 65536, 'Parameters not valid'],
-    [2, 124, 'Queue changed, refresh and try again']
+    [1, 123, 'Queue changed, refresh and try again'],
+    [2, 124, 'Queue changed, refresh and try again'],
+    [4, 123, 'Queue changed, refresh and try again']
   ]) {
     const { queue, events } = fixture()
     await assert.rejects(queue.deleteRequest({ index, card }), error => {

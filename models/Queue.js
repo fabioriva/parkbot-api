@@ -53,8 +53,8 @@ export class QueueOperations {
       throw new QueueRequestError('Parameters not valid')
     }
     const queue = this.obj.queue
-    // Match the PLC's strict bounds; IDs are one-based and must not be reindexed.
-    if (index <= 1 || index >= queue.length) {
+    // PLC indices include both ends: 1 through QUEUE_LEN, without reindexing.
+    if (index < 1 || index > queue.length) {
       throw new QueueRequestError('Queue index not valid')
     }
     const item = queue.find(item => item.id === index)

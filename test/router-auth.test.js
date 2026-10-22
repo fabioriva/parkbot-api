@@ -3,6 +3,8 @@ import { registerHooks } from 'node:module'
 import test from 'node:test'
 import { createAuthorizer } from '../lib/authorization.js'
 import PlcConnection from '../lib/PlcConnection.js'
+import { generateQueue } from '../models/Queue.js'
+import * as menloaDef from '../aps/us/menloa/def.js'
 
 const state = { session: null, subscription: null, writes: 0, databaseFailure: false }
 globalThis.routerAuthTest = {
@@ -479,6 +481,44 @@ test('queue route rejects stale selections without writes and preserves permissi
   assert.equal(sent.status, '200 OK')
   assert.deepEqual(sent.body, { severity: 'success', message: 'Deleted card 123' })
   assert.deepEqual(events, ['write', 'audit'])
+})
+
+test('Menlo A queue route accepts the reported first slot and the last slot without reindexing', async () => {
+  state.session = { user: { email: 'user@example.test', emailVerified: true } }
+  state.subscription = { aps: ['menloa'], role: 'valet' }
+  state.databaseFailure = false
+  const items = [
+    { id: 1, card: 183, stall: 201 },
+    { id: 2, card: 220, stall: 98 },
+    { id: menloaDef.QUEUE_LEN, card: 240, stall: 247 }
+  ]
+  const obj = { queue: generateQueue(menloaDef), plcDTL: 1700000000000 }
+  for (const item of items) Object.assign(obj.queue[item.id - 1], item)
+  const events = []
+  const handler = routes({
+    def: menloaDef,
+    obj,
+    plc: {
+      client: {
+        WriteArea (area, dbNumber, start, amount, wordLen, buffer, callback) {
+          events.push(['write', area, dbNumber, start, amount, wordLen, Buffer.from(buffer)])
+          callback(null)
+        }
+      }
+    },
+    history: { async saveAction (action) { events.push(['audit', action]) } }
+  }).get('post /api/aps/menloa/queue/delete')
+
+  for (const item of items) {
+    events.length = 0
+    const response = await call(handler, 'Bearer test', JSON.stringify({ ...item, index: item.id }))
+    assert.equal(response.status, '200 OK')
+    assert.deepEqual(response.body, { severity: 'success', message: `Deleted card ${item.card}` })
+    assert.deepEqual(events, [
+      ['write', 0x84, 505, 394, 4, 2, Buffer.from([0, item.id, 0, item.card])],
+      ['audit', { card: item.card, date: obj.plcDTL, operation: 13, stall: 0, user: 'user@example.test' }]
+    ])
+  }
 })
 
 for (const [command, operation, start] of [['entry', 11, 400], ['rollback', 12, 404]]) {
