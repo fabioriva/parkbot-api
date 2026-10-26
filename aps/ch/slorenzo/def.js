@@ -8,6 +8,14 @@ export const PLC = {
   polling_time: POLL_TIME
 }
 export const TIME_ZONE = 'Europe/Zurich'
+export const CLOCK_READ = {
+  area: 0x84,
+  dbNumber: 520,
+  start: 0,
+  amount: 14,
+  wordLen: 0x02
+}
+
 export const QUEUE_LEN = 5
 
 export const ALARM_LEN = 8
