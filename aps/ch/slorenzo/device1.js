@@ -127,11 +127,11 @@ const SMB2 = outputs.find(b => b.addr === 'A11.3')
 
 const M3 = new Lock(2, [EZM2, EOM2, AMM2], [SMA2, SMB2])
 
-const AMD = inputs.find(b => b.addr === 'E7.0')
-const EOMD = inputs.find(b => b.addr === 'E6.2')
-const EZMD = inputs.find(b => b.addr === 'E6.3')
-const SMAD = outputs.find(b => b.addr === 'A8.4')
-const SMBD = outputs.find(b => b.addr === 'A8.5')
+const AMD = inputs.find(b => b.addr === 'E13.3')
+const EOMD = inputs.find(b => b.addr === 'E9.3')
+const EZMD = inputs.find(b => b.addr === 'E9.4')
+const SMAD = outputs.find(b => b.addr === 'A11.6')
+const SMBD = outputs.find(b => b.addr === 'A11.7')
 
 const M4 = new Lock(3, [EZMD, EOMD, AMD], [SMAD, SMBD])
 

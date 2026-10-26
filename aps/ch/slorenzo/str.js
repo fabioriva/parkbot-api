@@ -183,7 +183,7 @@ export const outputs1 = [
   { addr: 'A6.0', label: 'SPE' },
   { addr: 'A6.1', label: 'SZE' },
   { addr: 'A6.2', label: 'SOE' },
-  { addr: 'A6.3', label: 'KXP2' },
+  { addr: 'A6.3', label: 'KXPE' },
   { addr: 'A6.4', label: 'SPBE' },
   { addr: 'A6.5', label: 'SBZE' },
   { addr: 'A6.6', label: 'SBOE' },
