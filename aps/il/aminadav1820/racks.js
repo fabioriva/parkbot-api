@@ -6,6 +6,7 @@ import {
   S7_131_6BF00_0BA0,
   S7_132_6BF00_0BA0
 } from '../../../models/Modules.js'
+import { Pn } from '../../../models/Pn.js'
 
 const rack1 = {
   nr: 1,
@@ -68,10 +69,6 @@ const rack4 = {
     new S7_132_6BF00_0BA0(11, ab[19])
   ]
 }
-
-// export default [rack1, rack2, rack3, rack4]
-
-import { Pn } from '../../../models/Pn.js'
 
 const pn00 = new Pn('LS1', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
 const pn01 = new Pn('KKU1', 1, merkers.find(b => b.addr === 'M4.0'), 'IM 155-6 PN', { key: 'im', query: {} })

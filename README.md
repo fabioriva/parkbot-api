@@ -53,6 +53,14 @@ WebSocket distribuiscono gli aggiornamenti in tempo reale ai client autorizzati.
 - [Date e fusi orari: contratto PLC, backend e frontend](docs/date-time.md)
 - [Catalogo delle operazioni e migrazione](docs/migration/operation-ids.md)
 
+### Formattazione JavaScript
+
+Il workspace consiglia l'estensione VS Code **StandardJS - JavaScript Standard Style**
+e abilita la correzione automatica al salvataggio. Per applicare le correzioni
+manualmente a tutti i file JavaScript inclusi, eseguire `npm run format`.
+`npm test` controlla lo stile senza modificare i file. La correzione automatica
+non è supportata con `files.autoSave` impostato su `afterDelay`.
+
 ### Coordinamento della connessione PLC
 
 `lib/PlcConnection.js` gestisce una coda per ogni client Snap7: letture,
