@@ -56,10 +56,9 @@ WebSocket distribuiscono gli aggiornamenti in tempo reale ai client autorizzati.
 ### Formattazione JavaScript
 
 Il workspace consiglia l'estensione VS Code **StandardJS - JavaScript Standard Style**
-e abilita la correzione automatica al salvataggio. Per applicare le correzioni
-manualmente a tutti i file JavaScript inclusi, eseguire `npm run format`.
-`npm test` controlla lo stile senza modificare i file. La correzione automatica
-non è supportata con `files.autoSave` impostato su `afterDelay`.
+e **Prettier - Code formatter**. Prettier formatta i file al salvataggio; per
+applicare la formattazione manualmente ai file JavaScript e TypeScript, eseguire
+`npm run format`. `npm test` controlla lo stile Standard senza modificare i file.
 
 ### Coordinamento della connessione PLC
 

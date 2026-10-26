@@ -7,7 +7,7 @@
     "dev": "nodemon aps/us/menloa/index.js",
     "start": "NODE_ENV=production pm2 start aps/us/menloa/index.js --name api-menlo-a --max-memory-restart 128M",
     "test": "standard",
-    "format": "standard --fix",
+    "format": "prettier --write \"**/*.{js,cjs,mjs,jsx,ts,tsx}\"",
     "uWS": "npm i uWebSockets.js@uNetworking/uWebSockets.js#v20.52.0",
     "test:uws": "node --test test/uws.integration.test.js",
     "test:auth": "node --test --experimental-test-isolation=none test/auth-permissions.test.js test/router-auth.test.js test/better-auth-session.test.js",
@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
+    "prettier": "^3.9.10",
     "standard": "^17.1.2"
   },
   "standard": {
