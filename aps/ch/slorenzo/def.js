@@ -1,5 +1,5 @@
 export const APS = 'slorenzo'
-export const HTTP = 9048
+export const HTTP = 9049
 const POLL_TIME = 500
 export const PLC = {
   ip: '192.168.91.2',

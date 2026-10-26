@@ -1,5 +1,4 @@
 export const APS = 'avigail'
-// export const PORT = 49050
 export const HTTP = 9048
 export const PLC = {
   ip: '140.80.41.12',
