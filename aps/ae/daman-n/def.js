@@ -1,5 +1,4 @@
 export const APS = 'daman-n'
-export const PORT = 49039
 export const HTTP = 9036
 export const PLC = {
   ip: '192.168.24.2',
@@ -21,7 +20,10 @@ export const QUEUE_LEN = 10
 export const ALARM_LEN = 8
 export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
-export const DBS_ALARM = [531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545, 546, 547, 548, 549] // EL1-5, SH1-14
+export const DBS_ALARM = [
+  531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543, 544, 545,
+  546, 547, 548, 549
+] // EL1-5, SH1-14
 
 export const CARDS = 999
 export const CARD_LEN = 10
@@ -50,13 +52,6 @@ export const DATA_LOG_READ = {
   start: 0,
   amount: 32,
   wordLen: 0x02
-}
-
-export const PLC_MAP = {
-  ip: '192.168.24.2',
-  rack: 0,
-  slot: 1,
-  polling_time: 750
 }
 
 export const STALLS = 558
