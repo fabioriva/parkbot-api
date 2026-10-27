@@ -10,7 +10,7 @@ module.exports = {
       out_file: '/dev/null'
     },
     {
-      name: 'api-daman-n',
+      name: 'api-daman-s',
       script: './aps/ae/daman-s/index.js',
       cwd: './',
       max_memory_restart: '256M',
