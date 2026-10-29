@@ -733,7 +733,7 @@ export const ALARMS = [
   { id: 61, key: '', query: {} },
   { id: 62, key: '', query: {} },
   { id: 63, key: '', query: {} },
-  { id: 64, key: '', query: {} },
+  { id: 64, key: 'al-oversize', query: {} },
   { id: 65, key: 'al-sil-01', query: {} },
   { id: 66, key: 'al-sil-02', query: {} },
   { id: 67, key: 'al-sil-03', query: {} },
