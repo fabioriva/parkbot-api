@@ -21,13 +21,13 @@ export const ALARM_LEN = 8
 export const DB_ALARM_INIT = 6
 export const DB_ALARM_LEN = 64 * ALARM_LEN
 export const DBS_ALARM = [
-  531, 532, 533, 534, 535, 536, 537, 538, 539, 540, 541, 542, 543
+  631, 632, 633, 634, 635, 636, 637, 638, 639, 640, 641, 642, 643
 ] // EL1-5, SH1-8; verify DB numbers for Daman S
 
 export const CARDS = 999
 export const CARD_LEN = 10
 
-const DB_DATA = 506
+const DB_DATA = 605
 const DB_DATA_LEN = 726
 export const DB_DATA_INIT_DEVICE = 32
 export const DB_DATA_INIT_DRIVE = 240
@@ -64,7 +64,7 @@ export const STALL_STATUS = {
 
 export const CARD_READ = {
   area: 0x84,
-  dbNumber: 511,
+  dbNumber: 611,
   start: 0,
   amount: CARDS * CARD_LEN,
   wordLen: 0x02
@@ -78,7 +78,7 @@ export const CARD_EDIT = {
 }
 export const MAP_READ = {
   area: 0x84,
-  dbNumber: 510,
+  dbNumber: 610,
   start: 0,
   amount: STALLS * STALL_LEN,
   wordLen: 0x02
