@@ -200,7 +200,7 @@ for (let i = 1; i <= 5; i++) {
 
   const views = [main, garage, silomat]
 
-  const device = new Device(i, 'EL' + i, [], lamps, motors_, views)
+  const device = new Device(i, 'EL' + (i + 5), [], lamps, motors_, views)
 
   devices_.push(device)
   drives_.push(IV1, IV2)
