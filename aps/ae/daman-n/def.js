@@ -58,9 +58,9 @@ export const STALLS = 558
 export const STALL_LEN = 10
 export const STALL_STATUS = {
   FREE: 0,
-  PAPA: 997,
-  RSVD: 998,
-  LOCK: 999
+  PAPA: 1997,
+  RSVD: 1998,
+  LOCK: 1999
 }
 
 export const CARD_READ = {
