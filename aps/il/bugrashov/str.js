@@ -148,7 +148,7 @@ export const inputs2 = [
   { addr: 'E113.4', label: '' },
   { addr: 'E113.5', label: '' },
   { addr: 'E113.6', label: '' },
-  { addr: 'E113.7', label: '' }
+  { addr: 'E113.7', label: 'EXZA' }
 ]
 // SH
 export const inputs3 = [
