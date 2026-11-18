@@ -592,3 +592,16 @@ for (const [command, operation, start] of [['entry', 11, 400], ['rollback', 12, 
     assert.deepEqual(events, ['write', 'audit'])
   })
 }
+
+test('history export requires read access to the assigned plant', async () => {
+  let exports = 0
+  const handler = routes({ history: { async export () { exports++; return [] } } }).get('get /api/aps/avigail/history/export')
+  assert.equal((await call(handler, '')).status, '401 Unauthorized')
+  state.session = { user: { email: 'user@example.test', emailVerified: true, role: 'admin' } }
+  state.subscription = { aps: [], role: 'admin' }
+  assert.equal((await call(handler)).status, '403 Forbidden')
+  assert.equal(exports, 0)
+  state.subscription = { aps: ['avigail'], role: 'valet' }
+  assert.deepEqual((await call(handler)).body, { query: [] })
+  assert.equal(exports, 1)
+})
