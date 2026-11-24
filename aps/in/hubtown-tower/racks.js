@@ -23,8 +23,9 @@ PN.push(pn1)
 const rack2 = {
   nr: 2,
   cards: [
-    new S7_521_1BL00_0AB0(1, eb.slice(2, 10)),
-    new S7_522_1BL01_0AB0(2, ab.slice(2, 6))
+    new S7_521_1BL00_0AB0(1, eb.slice(2, 6)),
+    new S7_521_1BL00_0AB0(2, eb.slice(6, 10)),
+    new S7_522_1BL01_0AB0(3, ab.slice(2, 6))
   ]
 }
 const pn2 = new Pn(
@@ -41,7 +42,7 @@ const rack3 = {
   nr: 3,
   cards: [
     new S7_131_6BH01_0BA0(1, eb.slice(10, 12)),
-    new S7_131_6BH01_0BA0(2, eb.slice(6, 8))
+    new S7_132_6BH01_0BA0(2, ab.slice(6, 8))
   ]
 }
 const pn3 = new Pn(
@@ -77,8 +78,9 @@ PN.push(pn4)
 const rack5 = {
   nr: 5,
   cards: [
-    new S7_521_1BL00_0AB0(1, eb.slice(18, 26)),
-    new S7_522_1BL01_0AB0(2, ab.slice(12, 16))
+    new S7_521_1BL00_0AB0(1, eb.slice(18, 22)),
+    new S7_521_1BL00_0AB0(2, eb.slice(22, 26)),
+    new S7_522_1BL01_0AB0(3, ab.slice(12, 16))
   ]
 }
 const pn5 = new Pn(
@@ -95,7 +97,7 @@ const rack6 = {
   nr: 6,
   cards: [
     new S7_131_6BH01_0BA0(1, eb.slice(26, 28)),
-    new S7_131_6BH01_0BA0(2, eb.slice(16, 18))
+    new S7_132_6BH01_0BA0(2, ab.slice(16, 18))
   ]
 }
 const pn6 = new Pn(
