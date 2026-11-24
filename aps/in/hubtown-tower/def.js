@@ -42,7 +42,7 @@ export const DATA_READ = {
   wordLen: 0x02
 }
 
-export const STALLS = 90
+export const STALLS = 272
 export const STALL_LEN = 10
 export const STALL_STATUS = {
   FREE: 0,
