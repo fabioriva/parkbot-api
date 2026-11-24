@@ -14,7 +14,7 @@ const outputs2 = generateBits('A', 100, 103, str.outputs2)
 const outputs3 = generateBits('A', 110, 115, str.outputs3)
 const outputs4 = generateBits('A', 200, 203, str.outputs2)
 const outputs5 = generateBits('A', 210, 215, str.outputs3)
-export const outputs = outputs1.concat(outputs2, outputs3, outputs4)
+export const outputs = outputs1.concat(outputs2, outputs3, outputs4, outputs5)
 export const ab = generateBytes(outputs)
 
 export const merkers = generateBits('M', 0, 7)
