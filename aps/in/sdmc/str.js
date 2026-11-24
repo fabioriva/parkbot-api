@@ -60,7 +60,7 @@ export const inputs2 = [
   { addr: 'E102.6', label: 'APA' },
   { addr: 'E102.7', label: 'IV1' },
   { addr: 'E103.0', label: 'EOM' },
-  { addr: 'E1503.1', label: 'EZM' },
+  { addr: 'E103.1', label: 'EZM' },
   { addr: 'E103.2', label: 'ECA' },
   { addr: 'E103.3', label: 'ECB' },
   { addr: 'E103.4', label: 'EXPV' },
