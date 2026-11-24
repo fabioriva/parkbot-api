@@ -64,6 +64,15 @@ module.exports = {
       out_file: '/dev/null'
     },
     {
+      name: 'api-hubtown-t',
+      script: './aps/in/hubtown-tower/index.js',
+      cwd: './',
+      max_memory_restart: '256M',
+      node_args: '-r dotenv/config',
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      out_file: '/dev/null'
+    },
+    {
       name: 'api-kaveri-gold',
       script: './aps/in/kg/index.js',
       cwd: './',
