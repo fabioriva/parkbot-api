@@ -86,7 +86,7 @@ const rack5 = {
 const pn5 = new Pn(
   'LS2',
   1,
-  merkers.find((b) => b.addr === 'M4.0'),
+  merkers.find((b) => b.addr === 'M4.3'),
   'IM 155-6 PN ST',
   { key: 'im', query: {} }
 )
@@ -103,7 +103,7 @@ const rack6 = {
 const pn6 = new Pn(
   'KKP2',
   1,
-  merkers.find((b) => b.addr === 'M4.1'),
+  merkers.find((b) => b.addr === 'M4.4'),
   'IM 155-6 PN ST',
   { key: 'im', query: {} }
 )
@@ -123,7 +123,7 @@ const rack7 = {
 const pn7 = new Pn(
   'SH2',
   1,
-  merkers.find((b) => b.addr === 'M4.2'),
+  merkers.find((b) => b.addr === 'M4.5'),
   'IM 155-6 PN ST',
   { key: 'im', query: {} }
 )
