@@ -5,7 +5,7 @@ const inputs1 = generateBits('E', 0, 1, str.inputs1)
 const inputs2 = generateBits('E', 100, 107, str.inputs2)
 const inputs3 = generateBits('E', 110, 117, str.inputs3)
 const inputs4 = generateBits('E', 200, 207, str.inputs2)
-const inputs5 = generateBits('E', 210, 210, str.inputs3)
+const inputs5 = generateBits('E', 210, 217, str.inputs3)
 export const inputs = inputs1.concat(inputs2, inputs3, inputs4, inputs5)
 export const eb = generateBytes(inputs)
 
