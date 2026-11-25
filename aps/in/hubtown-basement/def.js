@@ -15,7 +15,7 @@ export const CLOCK_READ = {
   wordLen: 0x02
 }
 
-export const QUEUE_LEN = 10
+export const QUEUE_LEN = 5
 
 export const ALARM_LEN = 8
 export const DB_ALARM_INIT = 6

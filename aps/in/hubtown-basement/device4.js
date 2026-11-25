@@ -71,6 +71,6 @@ const main = new Main(drives, [M1])
 
 const views = [main, silomat]
 
-const device = new Device(2, 'SH1', [], lamps, motors, views)
+const device = new Device(4, 'SH3', [], lamps, motors, views)
 
 export default { device, drives, positions }
