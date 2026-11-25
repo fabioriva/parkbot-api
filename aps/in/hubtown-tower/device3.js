@@ -52,7 +52,7 @@ const motors = [M2, M3, M4]
 
 const main = new Main(drives, [M2, M3, M4])
 
-const EPZ = inputs.find((b) => b.addr === 'E16.2')
+const EPZ = inputs.find((b) => b.addr === 'E105.2')
 const FPE = inputs.find((b) => b.addr === 'E103.4')
 const FLA = inputs.find((b) => b.addr === 'E104.1')
 const FLP = inputs.find((b) => b.addr === 'E104.2')
