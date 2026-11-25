@@ -70,7 +70,7 @@ const garage = new Garage(
   [EPZ, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2]
 )
 
-const views = [main, garage]
+const views = [garage]
 
 const device = new Device(3, 'E2', [], lamps, motors, views)
 
