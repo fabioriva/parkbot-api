@@ -26,11 +26,11 @@ let offsetEB = 0
 let offsetAB = 0
 for (let i = 1; i <= 3; i++) {
   const rack = {
-    nr: i + 6,
+    nr: i + 1,
     cards: [
-      new S7_131_6BH01_0BA0(1, eb.slice(4 + offsetEB, 6 + offsetEB)),
-      new S7_131_6BH01_0BA0(2, eb.slice(6 + offsetEB, 8 + offsetEB)),
-      new S7_131_6BH01_0BA0(3, eb.slice(8 + offsetEB, 10 + offsetEB)),
+      new S7_131_6BH01_0BA0(1, eb.slice(8 + offsetEB, 10 + offsetEB)),
+      new S7_131_6BH01_0BA0(2, eb.slice(10 + offsetEB, 12 + offsetEB)),
+      new S7_131_6BH01_0BA0(3, eb.slice(12 + offsetEB, 14 + offsetEB)),
       new S7_132_6BH01_0BA0(4, ab.slice(4 + offsetAB, 6 + offsetAB)),
       new S7_132_6BH01_0BA0(5, ab.slice(6 + offsetAB, 8 + offsetAB))
     ]
@@ -38,7 +38,7 @@ for (let i = 1; i <= 3; i++) {
   SH.push(rack)
   const pn = new Pn(
     'SH' + i,
-    i + 5,
+    i + 1,
     merkers.find((b) => b.addr === 'M4.' + (i - 1)),
     'IM 155-5 PN',
     { key: 'im', query: {} }
