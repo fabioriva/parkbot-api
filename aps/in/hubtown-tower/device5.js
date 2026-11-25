@@ -39,7 +39,7 @@ const FPA = inputs.find((b) => b.addr === 'E103.4')
 
 const garage = new Garage([], [M2, M3], [], [FPA])
 
-const views = [main]
+const views = [garage]
 
 const device = new Device(5, 'U1', [], lamps, motors, views)
 
