@@ -24,10 +24,10 @@ const lamps = [
 const AH = inputs.find((b) => b.addr === 'E102.0')
 const ASBK = inputs.find((b) => b.addr === 'E101.6')
 const FT10 = inputs.find((b) => b.addr === 'E101.5')
-// const FTM = inputs.find(b => b.addr === 'E1204.2')
+// const FTM = inputs.find(b => b.addr === 'E104.2')
 const T101 = outputs.find((b) => b.addr === 'A102.2')
 const T102 = outputs.find((b) => b.addr === 'A102.3')
-const T10F = outputs.find((b) => b.addr === 'A101.0')
+const T10F = outputs.find((b) => b.addr === 'A101.1')
 const M1 = new Traveling(
   0,
   IV1,
