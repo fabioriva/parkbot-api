@@ -38,7 +38,7 @@ for (let i = 1; i <= 3; i++) {
   SH.push(rack)
   const pn = new Pn(
     'SH' + i,
-    i + 1,
+    i,
     merkers.find((b) => b.addr === 'M4.' + (i - 1)),
     'IM 155-5 PN',
     { key: 'im', query: {} }
