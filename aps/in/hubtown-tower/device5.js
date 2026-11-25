@@ -1,7 +1,7 @@
 import { inputs, outputs } from './io.js'
 import { Device } from '../../../models/Device.js'
 import { Barrier, Door } from '../../../models/Motor.js'
-import { Main /*, Garage */ } from '../../../models/View.js'
+import { Main, Garage } from '../../../models/View.js'
 
 const lamps = [
   inputs.find((b) => b.addr === 'E101.2'),
@@ -34,6 +34,10 @@ const drives = []
 const motors = [M2, M3]
 
 const main = new Main(drives, [M2, M3])
+
+const FPA = inputs.find((b) => b.addr === 'E103.4')
+
+const garage = new Garage([], [M2, M3], [], [FPA])
 
 const views = [main]
 
