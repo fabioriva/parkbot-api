@@ -5,8 +5,8 @@ import { Main /*, Garage */ } from '../../../models/View.js'
 
 const lamps = [
   inputs.find((b) => b.addr === 'E101.2'),
-  outputs.find((b) => b.addr === 'A100.5'),
-  outputs.find((b) => b.addr === 'A100.4')
+  outputs.find((b) => b.addr === 'A101.5'),
+  outputs.find((b) => b.addr === 'A101.4')
 ]
 
 const AP = inputs.find((b) => b.addr === 'E102.3')

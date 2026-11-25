@@ -4,7 +4,7 @@
   "description": "parkbot backend",
   "scripts": {
     "api": "nodemon aps/ae/daman/api/index.js",
-    "dev": "nodemon aps/in/hubtown-basement/index.js",
+    "dev": "nodemon aps/in/hubtown-tower/index.js",
     "start": "NODE_ENV=production pm2 start aps/us/menloa/index.js --name api-menlo-a --max-memory-restart 128M",
     "test": "standard",
     "format": "prettier --write \"**/*.{js,cjs,mjs,jsx,ts,tsx}\"",

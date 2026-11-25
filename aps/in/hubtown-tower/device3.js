@@ -6,8 +6,8 @@ import { Main, Garage } from '../../../models/View.js'
 
 const lamps = [
   inputs.find((b) => b.addr === 'E101.2'),
-  outputs.find((b) => b.addr === 'A100.5'),
-  outputs.find((b) => b.addr === 'A100.4')
+  outputs.find((b) => b.addr === 'A101.5'),
+  outputs.find((b) => b.addr === 'A101.4')
 ]
 
 const positions = []
@@ -40,11 +40,11 @@ const SCB = outputs.find((b) => b.addr === 'A101.7')
 
 const M4 = new Flap(0, [ECA, ECB, AMC], [SCA, SCB])
 
-const A0 = {
-  conn: def.REQ_1,
-  enable: merkers.find((b) => b.addr === 'M3.1'),
-  key: 'action-entry'
-}
+// const A0 = {
+//   conn: def.REQ_1,
+//   enable: merkers.find((b) => b.addr === 'M3.1'),
+//   key: 'action-entry'
+// }
 
 const drives = []
 
@@ -70,8 +70,8 @@ const garage = new Garage(
   [EPZ, FPE, FLA, FLP, FDL, FDR, FTA1, FTA2]
 )
 
-const views = [main.garage]
+const views = [main, garage]
 
-const device = new Device(3, 'E1', [A0], lamps, motors, views)
+const device = new Device(3, 'E1', [], lamps, motors, views)
 
 export default { device, drives, positions }
