@@ -12,8 +12,9 @@ const PN = []
 const rack1 = {
   nr: 1,
   cards: [
-    new S7_521_1BL00_0AB0(1, eb.slice(0, 8)),
-    new S7_522_1BL01_0AB0(2, ab.slice(0, 4))
+    new S7_521_1BL00_0AB0(1, eb.slice(0, 4)),
+    new S7_521_1BL00_0AB0(2, eb.slice(4, 8)),
+    new S7_522_1BL01_0AB0(3, ab.slice(0, 4))
   ]
 }
 const pn1 = new Pn('PLC', 0, { status: 1 }, 'CPU', { key: 'cpu', query: {} })
