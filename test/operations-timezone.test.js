@@ -98,3 +98,44 @@ test('daily labels retain AM/PM and totals from the grouped operations', async (
     { name: '11 pm', entries: 2, exits: 5, total: 7 }
   ])
 })
+
+test('card statistics filter PLC movements, group by plant day and paginate rows without slicing totals', async () => {
+  const { history, pipelines } = createHistory()
+  const dates = { dateFrom: '2026-10-25', dateTo: '2026-10-26' }
+  const empty = await history.getCards({ ...dates, page: '2' }, 'Europe/Rome', [999])
+  const [list] = pipelines
+  assertBounds(list, '2026-10-24T22:00:00.000Z', '2026-10-25T23:00:00.000Z')
+  assert.deepEqual(list[0].$match.device, { $gt: 0 })
+  assert.deepEqual(list[0].$match.card, { $gt: 0, $nin: [999] })
+  assert.deepEqual(list[0].$match.operation, { $in: [5, 6] })
+  assert.deepEqual(list[1].$group._id.day.$dateToString, {
+    date: '$date', format: '%Y-%m-%d', timezone: 'Europe/Rome'
+  })
+  assert.deepEqual(list[2].$group.activeDays, { $sum: 1 })
+  assert.equal(list[2].$group.daily, undefined)
+  assert.deepEqual(list[3].$facet.rows.slice(0, 3), [
+    { $sort: { entries: -1, _id: 1 } },
+    { $skip: 20 },
+    { $limit: 20 }
+  ])
+  assert.deepEqual(empty.rows, [])
+  assert.deepEqual(empty.summary, { activeCards: 0, entries: 0, exits: 0 })
+
+  await history.getCards({ ...dates, card: '00183' }, 'Europe/Rome', [999])
+  const detail = pipelines[1]
+  assert.deepEqual(detail[0].$match.card, { $gt: 0, $nin: [999], $eq: 183 })
+  assert.deepEqual(detail[2], { $sort: { '_id.day': 1 } })
+  assert.deepEqual(detail[3].$group.daily, {
+    $push: { name: '$_id.day', entries: '$entries', exits: '$exits' }
+  })
+
+  await history.getCards({ ...dates, sort: 'activeDays' })
+  assert.deepEqual(pipelines[2][3].$facet.rows[0], { $sort: { activeDays: 1, _id: 1 } })
+  await history.getCards({ ...dates, sort: '-card' })
+  assert.deepEqual(pipelines[3][3].$facet.rows[0], { $sort: { _id: -1 } })
+
+  for (const filters of [{ card: '0' }, { card: ['1', '2'] }, { page: '-1' }, { card: '183', page: '2' }, { sort: '$date' }]) {
+    await assert.rejects(history.getCards({ ...dates, ...filters }, 'Europe/Rome'), RangeError)
+  }
+  assert.equal(pipelines.length, 4)
+})

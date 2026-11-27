@@ -54,7 +54,7 @@ function routes ({ history = {}, plc, def = {}, obj = {} } = {}) {
   return handlers
 }
 
-async function call (handler, authorization = 'Bearer test', body = '{}') {
+async function call (handler, authorization = 'Bearer test', body = '{}', query = '') {
   const res = {
     onAborted (fn) { this.abort = fn },
     onData (fn) { queueMicrotask(() => fn(Buffer.from(body), true)) },
@@ -67,7 +67,7 @@ async function call (handler, authorization = 'Bearer test', body = '{}') {
     getHeader: key => key === 'authorization' ? authorization : '',
     getMethod: () => 'post',
     getUrl: () => '/test',
-    getQuery: () => '',
+    getQuery: () => query,
     getParameter: () => '0',
     forEach: fn => fn('authorization', authorization)
   }
@@ -604,4 +604,34 @@ test('history export requires read access to the assigned plant', async () => {
   state.subscription = { aps: ['avigail'], role: 'valet' }
   assert.deepEqual((await call(handler)).body, { query: [] })
   assert.equal(exports, 1)
+})
+
+test('card statistics require assigned plant access and use its time zone and reserved values', async () => {
+  const requests = []
+  const handlers = routes({
+    history: {
+      async getCards (query, timeZone, excludedCards) {
+        requests.push({ query: { ...query }, timeZone, excludedCards })
+        if (query.card === '0') throw new RangeError('Invalid card')
+        return { rows: [] }
+      }
+    },
+    def: { TIME_ZONE: 'Asia/Dubai', STALL_STATUS: { FREE: 0, LOCK: 999 } }
+  })
+  const handler = handlers.get('get /api/aps/avigail/statistics/cards')
+  assert.equal((await call(handler, '')).status, '401 Unauthorized')
+  state.session = { user: { email: 'user@example.test', emailVerified: true, role: 'admin' } }
+  state.subscription = { aps: ['menloa'], role: 'admin' }
+  assert.equal((await call(handler)).status, '403 Forbidden')
+  assert.equal(requests.length, 0)
+  state.subscription = { aps: ['avigail'], role: 'valet' }
+  const res = await call(handler, 'Bearer test', '{}', 'dateFrom=2026-11-01&dateTo=2026-11-02&card=183')
+  assert.equal(res.status, '200 OK')
+  assert.deepEqual(res.body, { rows: [] })
+  assert.deepEqual(requests, [{
+    query: { dateFrom: '2026-11-01', dateTo: '2026-11-02', card: '183' },
+    timeZone: 'Asia/Dubai',
+    excludedCards: [999]
+  }])
+  assert.equal((await call(handler, 'Bearer test', '{}', 'card=0')).status, '400 Bad Request')
 })
