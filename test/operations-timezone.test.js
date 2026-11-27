@@ -118,24 +118,49 @@ test('card statistics filter PLC movements, group by plant day and paginate rows
     { $skip: 20 },
     { $limit: 20 }
   ])
+  assert.deepEqual(list[3].$facet.topCards, [
+    { $project: { movements: { $add: ['$entries', '$exits'] } } },
+    { $sort: { movements: -1, _id: 1 } },
+    { $limit: 5 },
+    { $project: { _id: 0, card: '$_id', movements: 1 } }
+  ])
   assert.deepEqual(empty.rows, [])
+  assert.deepEqual(empty.topCards, [])
   assert.deepEqual(empty.summary, { activeCards: 0, entries: 0, exits: 0 })
 
-  await history.getCards({ ...dates, card: '00183' }, 'Europe/Rome', [999])
+  const selectedCard = await history.getCards({ ...dates, card: '00183' }, 'Europe/Rome', [999])
   const detail = pipelines[1]
   assert.deepEqual(detail[0].$match.card, { $gt: 0, $nin: [999], $eq: 183 })
   assert.deepEqual(detail[2], { $sort: { '_id.day': 1 } })
   assert.deepEqual(detail[3].$group.daily, {
     $push: { name: '$_id.day', entries: '$entries', exits: '$exits' }
   })
+  assert.equal(Object.hasOwn(detail[4].$facet, 'topCards'), false)
+  assert.equal(Object.hasOwn(selectedCard, 'topCards'), false)
 
   await history.getCards({ ...dates, sort: 'activeDays' })
   assert.deepEqual(pipelines[2][3].$facet.rows[0], { $sort: { activeDays: 1, _id: 1 } })
   await history.getCards({ ...dates, sort: '-card' })
   assert.deepEqual(pipelines[3][3].$facet.rows[0], { $sort: { _id: -1 } })
+  assert.deepEqual(pipelines[3][3].$facet.topCards, list[3].$facet.topCards)
 
   for (const filters of [{ card: '0' }, { card: ['1', '2'] }, { page: '-1' }, { card: '183', page: '2' }, { sort: '$date' }]) {
     await assert.rejects(history.getCards({ ...dates, ...filters }, 'Europe/Rome'), RangeError)
   }
   assert.equal(pipelines.length, 4)
+})
+
+test('the card statistics response keeps the top cards separate from the paginated rows', async () => {
+  const topCards = [{ card: 21, movements: 9 }, { card: 18, movements: 7 }]
+  const summary = { activeCards: 22, entries: 14, exits: 13 }
+  const history = new History({
+    collection: () => ({
+      aggregate: () => ({ toArray: async () => [{ summary: [summary], topCards, rows: [{ card: 3 }] }] })
+    })
+  })
+
+  const statistics = await history.getCards({ dateFrom: '2026-11-01', dateTo: '2026-11-02', page: '2' })
+  assert.deepEqual(statistics.topCards, topCards)
+  assert.deepEqual(statistics.summary, summary)
+  assert.deepEqual(statistics.rows, [{ card: 3 }])
 })
