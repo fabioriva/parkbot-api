@@ -15,7 +15,7 @@ const lamps = [
   outputs.find((b) => b.addr === 'A1.4')
 ]
 
-const EN1 = inputs.find((b) => b.addr === 'E2.7')
+const EN1 = inputs.find((b) => b.addr === 'E2.6')
 const IV1 = new Drive(1, 'IV1', EN1)
 
 /**
